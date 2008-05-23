@@ -1,0 +1,65 @@
+autoload -U colors
+colors
+
+# Auto completion
+autoload -U compinit
+compinit
+
+# History
+export HISTFILE=~/.zsh_history
+export HISTSIZE=50000
+export SAVEHIST=50000
+export HISTCONTROL=ignoredups
+setopt SHARE_HISTORY
+setopt EXTENDED_GLOB
+
+# Key bindings
+bindkey -e             # emacs key bindings
+bindkey ' ' magic-space  # also do history expansion on space
+
+bindkey "\e[3~" delete-char
+bindkey "\e[1~" beginning-of-line
+bindkey "\e[4~" end-of-line
+bindkey "\e[H"  beginning-of-line
+bindkey "\e[F"  end-of-line
+bindkey "\e[7~" beginning-of-line
+bindkey "\e[8~" end-of-line
+bindkey "^[[5~" up-line-or-history
+bindkey "^[[6~" down-line-or-history
+
+# Editor
+export VISUAL="nano"
+
+# Other options
+setopt NO_BEEP
+setopt CORRECT_ALL
+setopt AUTO_LIST
+setopt AUTO_PUSHD
+setopt PUSHD_IGNORE_DUPS
+setopt PUSHD_SILENT
+setopt INTERACTIVE_COMMENTS
+setopt NONOMATCH
+setopt NOPROMPT_SP
+setopt COMBININGCHARS
+
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh_cache
+zstyle ':acceptline:*' rehash true
+
+if test -z $EMACS; then
+    export PS1="%{$fg[green]%}[%n@%m]%{$reset_color$fg[white]%}[%D{%H:%M:%S}]%{$reset_color%}%{$fg_bold[blue]%}
+[%~]>%{$reset_color%} "
+else
+    export PS1="[%n@%m]> "
+fi
+
+export PYTHONSTARTUP="/etc/pythonstart"
+alias cl="clear"
+alias ci="xmllint --valid --noout"
+alias scp="rsync --compress-level=3 --partial --progress --rsh=ssh -r"
+alias wi="/usr/local/bin/emacs"
+
+export PATH=~/bin:/usr/local/bin:/Developer/usr/bin:$PATH
+export CLICOLOR=1
+export LSCOLORS=ExFxCxDxBxegedabagacad
+export LC_ALL=en_US.UTF-8
