@@ -10,6 +10,10 @@
 ;; No startup message
 (setq inhibit-startup-message 1)
 
+;; Alternative keys for execute comment
+(global-set-key "\C-x\C-m" 'execute-extended-command)
+(global-set-key "\C-c\C-m" 'execute-extended-command)
+
 ;; Default font
 (if (string= "mac" window-system)
     (setq my-font "-apple-droid sans mono-medium-r-normal--15-0-72-72-m-0-iso10646-1")
