@@ -1,0 +1,16 @@
+[core]
+	excludesfile = /home/cartman/.gitignore
+	editor = emacs -nw
+[alias]
+	st = status
+	ci = commit
+	co = checkout
+	br = branch
+[user]
+	name = İsmail Dönmez
+	email = ismail.donmez@vestel.com.tr
+[color]
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
