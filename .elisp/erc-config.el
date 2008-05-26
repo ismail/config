@@ -12,7 +12,7 @@
  (setq erc-log-channels-directory "~/.irclogs")
  (setq erc-log-mode t)
  (setq erc-minibuffer-notice t)
- (setq erc-modules (quote (autojoin button completion fill identd irccontrols list log match menu move-to-prompt netsplit networks noncommands notify readonly ring services smiley sound stamp track)))
+ (setq erc-modules (quote (autojoin button completion fill identd irccontrols log match menu netsplit noncommands notify readonly ring services smiley stamp track)))
  (setq erc-nick "cartman")
  (setq erc-nick-uniquifier "`")
  (setq erc-notify-mode t)
