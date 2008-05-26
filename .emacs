@@ -23,5 +23,8 @@
 ;; Python
 (load "python-config.el")
 
+;; EMMS
+(load "emms.el")
+
 (server-start)
 
