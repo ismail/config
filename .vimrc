@@ -26,7 +26,6 @@ set sts=4
 set et
 
 " Always enable syntax & last search highlighting 
-syntax enable
 set hlsearch
 
 set modelines=0
@@ -93,15 +92,6 @@ nmap <C-N><C-N> :set invnumber <CR>
 nmap <C-T> :Tlist <CR>
 map <Up> gk
 map <Down> gj
-
-" Taglist defaults
-let Tlist_Use_Right_Window=1
-let Tlist_WinWidth=40
-let Tlist_Exit_OnlyWindow=1
-let Tlist_File_Fold_Auto_Close=1
-
-" Enable filetype stuff
-filetype plugin indent on
 
 set wrap
 set linebreak
