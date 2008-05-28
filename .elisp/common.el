@@ -33,6 +33,13 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 
+;; For multi-tty mode
+(add-hook 'after-make-frame-functions
+          (lambda (frame)
+            (select-frame frame)
+            (if window-system
+                (tool-bar-mode -1))))
+
 ;; Remember cursor position
 (require 'saveplace)
 (setq-default save-place t)
