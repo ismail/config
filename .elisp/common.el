@@ -62,7 +62,9 @@
 (if (string= "x" window-system)
     (progn
       (setq browse-url-generic-program (executable-find "firefox")
-            browse-url-browser-function 'browse-url-generic))
+            browse-url-browser-function 'browse-url-generic)))
+
+(if (string= "mac" window-system)
   (progn
     (setq browse-url-browser-function 'browse-url-safari)
     (defun browse-url-safari (url &optional new-window)
