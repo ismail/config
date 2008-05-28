@@ -1,6 +1,6 @@
 [core]
 	excludesfile = /home/cartman/.gitignore
-	editor = emacs -nw
+	editor = emacsclient -t -c
 [alias]
 	st = status
 	ci = commit

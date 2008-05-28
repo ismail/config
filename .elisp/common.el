@@ -76,6 +76,3 @@
         (start-process (concat "open -a WebKit " url) nil "open -a WebKit " url)
         (message "Starting Safari... done")))))
 
-;; Server Name
-(setq server-name "ninbuntu")
-
