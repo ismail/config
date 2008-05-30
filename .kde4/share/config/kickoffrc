@@ -1,0 +1,5 @@
+[Favorites]
+FavoriteURLs=/usr/share/applications/kde4/konqbrowser.desktop,/usr/share/applications/kde4/systemsettings.desktop,/usr/share/applications/kde4/dolphin.desktop
+
+[RecentlyUsed]
+Applications=netbeans-6.0.1.desktop,kde4-systemsettings.desktop,lyx.desktop,kde4-konqbrowser.desktop,kde4-dolphin.desktop

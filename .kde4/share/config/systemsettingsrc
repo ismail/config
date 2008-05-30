@@ -1,0 +1,12 @@
+[KFileDialog Settings]
+Height 1050=400
+Width 1680=640
+
+[MainWindow]
+Height 1050=841
+MenuBar=Disabled
+State=AAAA/wAAAAD9AAAAAAAAA3sAAAMdAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgEAAAAAAAADewAAAAAAAAAA
+Width 1680=891
+
+[Notification Messages]
+FontSettingsChanged=false

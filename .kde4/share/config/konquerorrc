@@ -1,0 +1,44 @@
+[$Version]
+update_info=kfmclient_3_2.upd:kfmclient_3_2
+
+[HTML Settings]
+AutomaticDetectionLanguage=1
+
+[KonqMainWindow]
+State=AAAA/wAAAAD9AAAAAAAABpAAAAOOAAAABAAAAAQAAAAIAAAACPwAAAACAAAAAgAAAAMAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgEAAAAAAAAA5QAAAAAAAAAAAAAAGABlAHgAdAByAGEAVABvAG8AbABCAGEAcgAAAAAA/////wAAAAAAAAAAAAAAHgBsAG8AYwBhAHQAaQBvAG4AVABvAG8AbABCAGEAcgEAAADlAAAFqwAAAAAAAAAAAAAAAgAAAAMAAAAeAGIAbwBvAGsAbQBhAHIAawBUAG8AbwBsAEIAYQByAAAAAAAAAAVAAAAAAAAAAAAAAAAWAGgAdABtAGwAVABvAG8AbABCAGEAcgAAAAAA/////wAAAAAAAAAAAAAAGgBzAHAAZQBlAGMAaABUAG8AbwBsAGIAYQByAAAAAAD/////AAAAAAAAAAA=
+
+[KonqMainWindow Toolbar bookmarkToolBar]
+Hidden=true
+IconSize=16
+Index=3
+ToolButtonStyle=TextBesideIcon
+
+[KonqMainWindow Toolbar extraToolBar]
+Index=1
+ToolButtonStyle=TextUnderIcon
+
+[KonqMainWindow Toolbar htmlToolBar]
+Index=4
+ToolButtonStyle=IconOnly
+
+[KonqMainWindow Toolbar locationToolBar]
+Index=2
+ToolButtonStyle=IconOnly
+
+[KonqMainWindow Toolbar mainToolBar]
+Index=0
+
+[KonqMainWindow Toolbar speechToolbar]
+Index=5
+ToolButtonStyle=TextUnderIcon
+
+[KonqMainWindow_Size]
+Height 1050=1051
+Width 1680=1681
+
+[Notification Messages]
+discardchangesclose=false
+
+[Trash]
+ConfirmDelete=false
+ConfirmTrash=false

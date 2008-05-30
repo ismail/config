@@ -1,0 +1,183 @@
+<capabilities>
+ <info node="http://kopete.kde.org/jabber/caps" ver="0.12.5" ext="" >
+  <identity category="client" type="pc" name="Kopete" />
+ </info>
+ <info node="http://kopete.kde.org/jabber/caps" ver="0.12.5" ext="0.12.5" >
+  <identity category="client" type="pc" name="Kopete" />
+  <feature node="http://jabber.org/protocol/bytestreams" />
+  <feature node="http://jabber.org/protocol/si" />
+  <feature node="http://jabber.org/protocol/si/profile/file-transfer" />
+  <feature node="http://jabber.org/protocol/xhtml-im" />
+  <feature node="http://jabber.org/protocol/disco#info" />
+ </info>
+ <info node="http://kopete.kde.org/jabber/caps" ver="0.12.7" ext="" >
+  <identity category="client" type="pc" name="Kopete" />
+ </info>
+ <info node="http://kopete.kde.org/jabber/caps" ver="0.12.7" ext="0.12.7" >
+  <identity category="client" type="pc" name="Kopete" />
+  <feature node="http://jabber.org/protocol/bytestreams" />
+  <feature node="http://jabber.org/protocol/si" />
+  <feature node="http://jabber.org/protocol/si/profile/file-transfer" />
+  <feature node="http://jabber.org/protocol/xhtml-im" />
+  <feature node="http://jabber.org/protocol/disco#info" />
+ </info>
+ <info node="http://kopete.kde.org/jabber/caps" ver="0.12.7" ext="mimic" >
+  <identity category="client" type="pc" name="Kopete" />
+  <feature node="http://kopete.kde.org/protocol/mimic" />
+ </info>
+ <info node="http://kopete.kde.org/jabber/caps" ver="0.12.7" ext="voice-v1" >
+  <identity category="client" type="pc" name="Kopete" />
+  <feature node="http://www.google.com/xmpp/protocol/voice/v1" />
+ </info>
+ <info node="http://mail.google.com/xmpp/client/caps" ver="1.1" ext="1.1" >
+  <identity category="client" type="pc" name="" />
+  <feature node="http://jabber.org/protocol/disco#info" />
+ </info>
+ <info node="http://mail.google.com/xmpp/client/caps" ver="1.1" ext="pmuc-v1" >
+  <feature node="http://www.google.com/xmpp/protocol/pmuc/v1" />
+ </info>
+ <info node="http://pidgin.im/caps" ver="2.3.1" ext="2.3.1" >
+  <identity category="client" type="pc" name="pidgin" />
+  <feature node="jabber:iq:last" />
+  <feature node="jabber:iq:oob" />
+  <feature node="jabber:iq:time" />
+  <feature node="xmpp:urn:time" />
+  <feature node="jabber:iq:version" />
+  <feature node="jabber:x:conference" />
+  <feature node="http://jabber.org/protocol/bytestreams" />
+  <feature node="http://jabber.org/protocol/disco#info" />
+  <feature node="http://jabber.org/protocol/disco#items" />
+  <feature node="http://jabber.org/protocol/muc" />
+  <feature node="http://jabber.org/protocol/muc#user" />
+  <feature node="http://jabber.org/protocol/si" />
+  <feature node="http://jabber.org/protocol/si/profile/file-transfer" />
+  <feature node="http://jabber.org/protocol/xhtml-im" />
+  <feature node="urn:xmpp:ping" />
+  <feature node="http://www.xmpp.org/extensions/xep-0199.html#ns" />
+ </info>
+ <info node="http://pidgin.im/caps" ver="2.3.1" ext="avatar" >
+  <feature node="http://www.xmpp.org/extensions/xep-0084.html#ns-metadata+notify" />
+ </info>
+ <info node="http://pidgin.im/caps" ver="2.3.1" ext="moodn" >
+  <feature node="http://jabber.org/protocol/mood+notify" />
+ </info>
+ <info node="http://pidgin.im/caps" ver="2.3.1" ext="nickn" >
+  <feature node="http://jabber.org/protocol/nick+notify" />
+ </info>
+ <info node="http://pidgin.im/caps" ver="2.3.1" ext="tunen" >
+  <feature node="http://jabber.org/protocol/tune+notify" />
+ </info>
+ <info node="http://pidgin.im/caps" ver="2.4.1" ext="2.4.1" >
+  <identity category="client" type="pc" name="pidgin" />
+  <feature node="jabber:iq:last" />
+  <feature node="jabber:iq:oob" />
+  <feature node="jabber:iq:time" />
+  <feature node="xmpp:urn:time" />
+  <feature node="jabber:iq:version" />
+  <feature node="jabber:x:conference" />
+  <feature node="http://jabber.org/protocol/bytestreams" />
+  <feature node="http://jabber.org/protocol/disco#info" />
+  <feature node="http://jabber.org/protocol/disco#items" />
+  <feature node="http://jabber.org/protocol/muc" />
+  <feature node="http://jabber.org/protocol/muc#user" />
+  <feature node="http://jabber.org/protocol/si" />
+  <feature node="http://jabber.org/protocol/si/profile/file-transfer" />
+  <feature node="http://jabber.org/protocol/xhtml-im" />
+  <feature node="urn:xmpp:ping" />
+  <feature node="http://www.xmpp.org/extensions/xep-0199.html#ns" />
+ </info>
+ <info node="http://pidgin.im/caps" ver="2.4.1" ext="avatar" >
+  <feature node="http://www.xmpp.org/extensions/xep-0084.html#ns-metadata+notify" />
+ </info>
+ <info node="http://pidgin.im/caps" ver="2.4.1" ext="moodn" >
+  <feature node="http://jabber.org/protocol/mood+notify" />
+ </info>
+ <info node="http://pidgin.im/caps" ver="2.4.1" ext="nickn" >
+  <feature node="http://jabber.org/protocol/nick+notify" />
+ </info>
+ <info node="http://pidgin.im/caps" ver="2.4.1" ext="tunen" >
+  <feature node="http://jabber.org/protocol/tune+notify" />
+ </info>
+ <info node="http://pidgin.im/caps" ver="2.4.2" ext="2.4.2" >
+  <identity category="client" type="pc" name="pidgin" />
+  <feature node="jabber:iq:last" />
+  <feature node="jabber:iq:oob" />
+  <feature node="jabber:iq:time" />
+  <feature node="xmpp:urn:time" />
+  <feature node="jabber:iq:version" />
+  <feature node="jabber:x:conference" />
+  <feature node="http://jabber.org/protocol/bytestreams" />
+  <feature node="http://jabber.org/protocol/disco#info" />
+  <feature node="http://jabber.org/protocol/disco#items" />
+  <feature node="http://jabber.org/protocol/muc" />
+  <feature node="http://jabber.org/protocol/muc#user" />
+  <feature node="http://jabber.org/protocol/si" />
+  <feature node="http://jabber.org/protocol/si/profile/file-transfer" />
+  <feature node="http://jabber.org/protocol/xhtml-im" />
+  <feature node="urn:xmpp:ping" />
+  <feature node="http://www.xmpp.org/extensions/xep-0199.html#ns" />
+ </info>
+ <info node="http://pidgin.im/caps" ver="2.4.2" ext="avatar" >
+  <feature node="http://www.xmpp.org/extensions/xep-0084.html#ns-metadata+notify" />
+ </info>
+ <info node="http://pidgin.im/caps" ver="2.4.2" ext="moodn" >
+  <feature node="http://jabber.org/protocol/mood+notify" />
+ </info>
+ <info node="http://pidgin.im/caps" ver="2.4.2" ext="nickn" >
+  <feature node="http://jabber.org/protocol/nick+notify" />
+ </info>
+ <info node="http://pidgin.im/caps" ver="2.4.2" ext="tunen" >
+  <feature node="http://jabber.org/protocol/tune+notify" />
+ </info>
+ <info node="http://pidgin.im/caps" ver="2.4.2devel" ext="2.4.2devel" >
+  <identity category="client" type="pc" name="pidgin" />
+  <feature node="jabber:iq:last" />
+  <feature node="jabber:iq:oob" />
+  <feature node="jabber:iq:time" />
+  <feature node="xmpp:urn:time" />
+  <feature node="jabber:iq:version" />
+  <feature node="jabber:x:conference" />
+  <feature node="http://jabber.org/protocol/bytestreams" />
+  <feature node="http://jabber.org/protocol/disco#info" />
+  <feature node="http://jabber.org/protocol/disco#items" />
+  <feature node="http://jabber.org/protocol/muc" />
+  <feature node="http://jabber.org/protocol/muc#user" />
+  <feature node="http://jabber.org/protocol/si" />
+  <feature node="http://jabber.org/protocol/si/profile/file-transfer" />
+  <feature node="http://jabber.org/protocol/xhtml-im" />
+  <feature node="urn:xmpp:ping" />
+  <feature node="http://www.xmpp.org/extensions/xep-0199.html#ns" />
+ </info>
+ <info node="http://pidgin.im/caps" ver="2.4.2devel" ext="adiumcmd" >
+  <feature node="http://jabber.org/protocol/commands" />
+ </info>
+ <info node="http://pidgin.im/caps" ver="2.4.2devel" ext="avatar" >
+  <feature node="http://www.xmpp.org/extensions/xep-0084.html#ns-metadata+notify" />
+ </info>
+ <info node="http://pidgin.im/caps" ver="2.4.2devel" ext="buzz" >
+  <feature node="http://www.xmpp.org/extensions/xep-0224.html#ns" />
+ </info>
+ <info node="http://pidgin.im/caps" ver="2.4.2devel" ext="moodn" >
+  <feature node="http://jabber.org/protocol/mood+notify" />
+ </info>
+ <info node="http://pidgin.im/caps" ver="2.4.2devel" ext="nickn" >
+  <feature node="http://jabber.org/protocol/nick+notify" />
+ </info>
+ <info node="http://pidgin.im/caps" ver="2.4.2devel" ext="tunen" >
+  <feature node="http://jabber.org/protocol/tune+notify" />
+ </info>
+ <info node="http://www.google.com/xmpp/client/caps" ver="1.0.0.104" ext="1.0.0.104" >
+  <identity category="client" type="pc" name="" />
+  <feature node="http://jabber.org/protocol/disco#info" />
+  <feature node="http://www.google.com/xmpp/protocol/session" />
+ </info>
+ <info node="http://www.google.com/xmpp/client/caps" ver="1.0.0.104" ext="share-v1" >
+  <feature node="http://www.google.com/xmpp/protocol/share/v1" />
+ </info>
+ <info node="http://www.google.com/xmpp/client/caps" ver="1.0.0.104" ext="sidebar" >
+  <feature node="http://desktop.google.com/xmpp/protocol/sidebar" />
+ </info>
+ <info node="http://www.google.com/xmpp/client/caps" ver="1.0.0.104" ext="voice-v1" >
+  <feature node="http://www.google.com/xmpp/protocol/voice/v1" />
+ </info>
+</capabilities>

@@ -1,0 +1,20 @@
+[Event/Textcompletion: no match]
+Action=Sound
+Execute=
+KTTS=
+Logfile=
+Sound=KDE-Sys-List-Match-No.ogg
+
+[Event/exitkde]
+Action=
+Execute=
+KTTS=
+Logfile=
+Sound=KDE-Sys-Log-Out.ogg
+
+[Event/startkde]
+Action=
+Execute=
+KTTS=
+Logfile=
+Sound=KDE-Sys-Log-In-Short.ogg

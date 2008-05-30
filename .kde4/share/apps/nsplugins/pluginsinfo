@@ -1,0 +1,19 @@
+number=3
+
+[0]
+description=Shockwave Flash 10.0 b218
+file=flashplugin-alternative.so
+mime=application/x-shockwave-flash:swf:Shockwave Flash;application/futuresplash:spl:FutureSplash Player;
+name=Shockwave Flash
+
+[1]
+description=Shockwave Flash 10.0 b218
+file=flashplugin-alternative.so
+mime=application/x-shockwave-flash:swf:Shockwave Flash;application/futuresplash:spl:FutureSplash Player;
+name=Shockwave Flash
+
+[2]
+description=Shockwave Flash 10.0 b218
+file=flashplugin-alternative.so
+mime=application/x-shockwave-flash:swf:Shockwave Flash;application/futuresplash:spl:FutureSplash Player;
+name=Shockwave Flash
