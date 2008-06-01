@@ -1,8 +1,0 @@
-[Auto Allow]
-kdewallet=Kopete
-
-[Wallet]
-Close When Idle=false
-Enabled=true
-First Use=false
-Use One Wallet=true
