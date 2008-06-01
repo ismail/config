@@ -1,0 +1,155 @@
+[$Version]
+update_info=kopete-pluginloader2.upd:kopete0.8/r1,kopete-account-kconf_update.upd:kopete0.7/r1,kopete-account-kconf_update.upd:kopete0.10/r1,kopete-jabberproxytype-kconf_update.upd:kopete0.9/r1,kopete-pluginloader.upd:kopete0.7/r1,kopete-jabberpriorityaddition-kconf_update.upd:kopete0.9/r1
+
+[Account_JabberProtocol_ismail@namtrac.org]
+AccountId=ismail@namtrac.org
+AllowPlainTextPassword=true
+CustomServer=true
+ExcludeConnect=false
+HideSystemInfo=false
+Identity=bDVyYb9rh6
+PasswordIsWrong=false
+Port=5223
+Priority=5
+Protocol=JabberProtocol
+ProxyJID=
+RememberPassword=true
+Resource=Kopete
+SendComposingEvent=true
+SendDeliveredEvent=true
+SendDisplayedEvent=true
+SendEvents=false
+SendGoneEvent=true
+Server=talk.google.com
+UseSSL=true
+
+[Account_Kopete::Protocol_previewaccount]
+Identity=AqzmYnJlZ7
+
+[AutoAway]
+autoAwayCustomMessage=
+
+[Away Messages]
+Messages=ADAtastic,Sorry\\, I am busy right now,I am gone right now\\, but I will be back later
+
+[Behavior]
+autoConnect=true
+chatWindowGroupPolicy=GroupAll
+useMessageQueue=false
+useMessageStack=true
+
+[ContactList]
+contactListDisplayMode=Detailed
+contactListIconMode=IconPhoto
+showOfflineUsers=false
+
+[General Options]
+Geometry=313,727
+Height 1050=727
+Position=1324,245
+State=Hidden
+Width 1680=313
+
+[General Options Toolbar mainToolBar]
+Index=0
+
+[General Options Toolbar quickSearchBar]
+Hidden=true
+Index=1
+ToolButtonStyle=TextUnderIcon
+
+[HTML Settings]
+AutomaticDetectionLanguage=1
+
+[IdentityManager]
+DefaultIdentity=bDVyYb9rh6
+
+[Identity_bDVyYb9rh6]
+Id=bDVyYb9rh6
+Label=Default Identity
+prop_QString_firstName=İsmail
+prop_QString_lastName=Dönmez
+prop_QString_nickName=Cartman
+
+[Jabber]
+LocalIP=
+LocalPort=8010
+
+[KopeteChatWindowIndividualMode]
+ChatViewSplitter=AAAA/wAAAAAAAAACAAABQAAAADUAAAAABgEAAAAC
+Height 1050=488
+State=AAAA/wAAAAD9AAAAAQAAAAH////6AAABf/wCAAAAAfsAAAAYAFAAYQByAHQAaQBjAGkAcABhAG4AdABzAAAAAAD/////AAAAUgD///8AAAKJAAABfwAAAAQAAAAEAAAACAAAAAj8AAAAAQAAAAIAAAAEAAAAFgBtAGEAaQBuAFQAbwBvAGwAQgBhAHIAAAAAAP////8AAAAAAAAAAAAAABYAYwBoAGEAdABUAG8AbwBsAEIAYQByAQAAAAAAAADWAAAAAAAAAAAAAAAaAHMAdABhAHQAdQBzAFQAbwBvAGwAQgBhAHIAAAAAAP////8AAAAAAAAAAAAAABoAZgBvAHIAbQBhAHQAVABvAG8AbABCAGEAcgEAAADWAAABswAAAAAAAAAA
+Width 1680=649
+
+[KopeteChatWindowIndividualMode Toolbar chatToolBar]
+Index=1
+ToolButtonStyle=TextUnderIcon
+
+[KopeteChatWindowIndividualMode Toolbar formatToolBar]
+Hidden=false
+Index=3
+ToolButtonStyle=TextUnderIcon
+
+[KopeteChatWindowIndividualMode Toolbar mainToolBar]
+Index=0
+
+[KopeteChatWindowIndividualMode Toolbar statusToolBar]
+Index=2
+ToolButtonStyle=TextUnderIcon
+
+[MainWindow]
+Height 1050=488
+State=AAAA/wAAAAD9AAAAAQAAAAH////6AAABf/wCAAAAAfsAAAAYAFAAYQByAHQAaQBjAGkAcABhAG4AdABzAAAAAAD/////AAAAUgD///8AAAKJAAABfwAAAAQAAAAEAAAACAAAAAj8AAAAAQAAAAIAAAAEAAAAFgBtAGEAaQBuAFQAbwBvAGwAQgBhAHIAAAAAAP////8AAAAAAAAAAAAAABYAYwBoAGEAdABUAG8AbwBsAEIAYQByAQAAAAAAAADWAAAAAAAAAAAAAAAaAHMAdABhAHQAdQBzAFQAbwBvAGwAQgBhAHIAAAAAAP////8AAAAAAAAAAAAAABoAZgBvAHIAbQBhAHQAVABvAG8AbABCAGEAcgEAAADWAAABswAAAAAAAAAA
+Width 1680=649
+
+[MainWindow Toolbar chatToolBar]
+Index=1
+ToolButtonStyle=TextUnderIcon
+
+[MainWindow Toolbar formatToolBar]
+Hidden=false
+Index=3
+ToolButtonStyle=TextUnderIcon
+
+[MainWindow Toolbar mainToolBar]
+Index=0
+
+[MainWindow Toolbar statusToolBar]
+Index=2
+ToolButtonStyle=TextUnderIcon
+
+[Notification Messages]
+KopeteTLSWarningnamtrac.orgHostMismatch=false
+hideOnCloseInfo=false
+
+[Plugins]
+kopete_jabberEnabled=true
+
+[QuickSearchBar Settings]
+Hidden=true
+Index=1
+ToolButtonStyle=TextUnderIcon
+
+[RichTextEditor]
+EditAlignment=1
+Font=Tahoma,9,-1,5,50,0,0,0,0,0
+FontBold=false
+FontItalic=false
+FontSize=9
+FontUnderline=false
+TextColor=0,0,0
+
+[ToolBar Settings]
+Index=0
+
+[chatwindow_JabberProtocol:ismail@namtrac.org:bahadir@jabber.pardus.org.tr]
+EnableAutoSpellCheck=false
+EnableRichText=true
+
+[chatwindow_JabberProtocol:ismail@namtrac.org:nightfairy@jabber.pardus.org.tr]
+EnableAutoSpellCheck=false
+EnableRichText=true
+
+[chatwindow_JabberProtocol:ismail@namtrac.org:twitter@twitter.com]
+EnableAutoSpellCheck=false
+EnableRichText=true

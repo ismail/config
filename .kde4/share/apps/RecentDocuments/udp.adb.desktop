@@ -1,0 +1,6 @@
+[Desktop Entry]
+Icon=text-x-adasrc
+Name=udp.adb
+Type=Link
+URL[$e]=file://$HOME/vsm/ada/udp.adb
+X-KDE-LastOpenedWith=kwrite

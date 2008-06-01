@@ -1,0 +1,6 @@
+[History]
+CompletionItems=unused
+
+[Location Bar]
+ComboContents[$e]=google.com,smb://,mail.namtrac.org
+ComboIconCache[$e]=google.com,unknown,smb:,network-workgroup,mail.namtrac.org,unknown

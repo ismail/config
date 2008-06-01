@@ -1,0 +1,9 @@
+[General]
+UseKTTSD=false
+
+[Main View]
+ShowLeftPanel=false
+
+[PageView]
+ZoomFactor=1.73855805397034
+ZoomMode=0

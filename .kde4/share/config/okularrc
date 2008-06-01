@@ -1,0 +1,18 @@
+[Desktop Entry]
+FullScreen=false
+
+[HTML Settings]
+AutomaticDetectionLanguage=1
+
+[MainWindow]
+Height 1050=1051
+State=AAAA/wAAAAD9AAAAAAAABpAAAAODAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgEAAAAAAAAGkAAAAAAAAAAA
+Width 1680=1681
+
+[Recent Files]
+File1[$e]=$HOME/awk.pdf
+File2[$e]=zip:/home/cartman/Downloads/ada95_rationale.zip/rat_1.pdf
+File3[$e]=$HOME/Downloads/OpenGC/Documentation/opengc_install_guide.pdf
+Name1[$e]=awk.pdf
+Name2[$e]=rat_1.pdf
+Name3[$e]=opengc_install_guide.pdf

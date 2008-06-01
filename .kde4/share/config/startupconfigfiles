@@ -1,0 +1,40 @@
+kcminputrc Mouse cursorTheme ''
+/home/cartman/.kde4/share/config/kcminputrc
+!/usr/lib/kde4/share/config/kcminputrc
+*
+kcminputrc Mouse cursorSize ''
+/home/cartman/.kde4/share/config/kcminputrc
+!/usr/lib/kde4/share/config/kcminputrc
+*
+ksplashrc KSplash Theme Default
+!/home/cartman/.kde4/share/config/ksplashrc
+!/usr/lib/kde4/share/config/ksplashrc
+*
+ksplashrc KSplash Engine KSplashX
+!/home/cartman/.kde4/share/config/ksplashrc
+!/usr/lib/kde4/share/config/ksplashrc
+*
+kcmrandrrc Display ApplyOnStartup false
+!/home/cartman/.kde4/share/config/kcmrandrrc
+!/usr/lib/kde4/share/config/kcmrandrrc
+*
+kcmrandrrc [Screen0]
+!/home/cartman/.kde4/share/config/kcmrandrrc
+!/usr/lib/kde4/share/config/kcmrandrrc
+*
+kcmrandrrc [Screen1]
+!/home/cartman/.kde4/share/config/kcmrandrrc
+!/usr/lib/kde4/share/config/kcmrandrrc
+*
+kcmrandrrc [Screen2]
+!/home/cartman/.kde4/share/config/kcmrandrrc
+!/usr/lib/kde4/share/config/kcmrandrrc
+*
+kcmrandrrc [Screen3]
+!/home/cartman/.kde4/share/config/kcmrandrrc
+!/usr/lib/kde4/share/config/kcmrandrrc
+*
+kcmfonts General forceFontDPI 0
+/home/cartman/.kde4/share/config/kcmfonts
+!/usr/lib/kde4/share/config/kcmfonts
+*

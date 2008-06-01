@@ -1,0 +1,13 @@
+[Colors]
+CurrentPalette=Forty Colors
+
+[Desktop Entry]
+DefaultProfile=Shell.profile
+
+[Favorite Profiles]
+Favorites=/home/cartman/.kde4/share/apps/konsole/Shell.profile
+
+[MainWindow]
+Height 1050=768
+State=AAAA/wAAAAD9AAAAAAAAAwwAAALnAAAABAAAAAQAAAAIAAAACPwAAAAA
+Width 1680=780
