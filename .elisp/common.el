@@ -81,6 +81,11 @@
         (start-process (concat "open -a WebKit " url) nil "open -a WebKit " url)
         (message "Starting Safari... done")))))
 
+;; Fullscreen, kinda
 (setq initial-frame-alist
       `((left . 0) (top . 0)
       (width . 237) (height . 65)))
+
+;; Server start if we are in X
+(if (string= "x" window-system)
+    (server-start))

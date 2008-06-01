@@ -23,5 +23,3 @@
 ;; Python
 (load "python-config.el")
 
-(server-start)
-
