@@ -18,9 +18,11 @@
  (global-set-key "\C-u" 'comment-or-uncomment-region)
 
 ;; Default font
-(if (string= "mac" window-system)
-    (setq my-font "-apple-droid sans mono-medium-r-normal--15-0-72-72-m-0-iso10646-1")
-    (setq my-font "Droid Sans Mono-11.3"))
+(if (string= "ns" window-system)
+    (setq my-font "DroidSansMono-14")
+    (elif (string= "mac" window-system)
+        (setq my-font "-apple-droid sans mono-medium-r-normal--15-0-72-72-m-0-iso10646-1")
+        (setq my-font "Droid Sans Mono-11.3")))
 (set-frame-font my-font)
 (add-hook 'after-make-frame-functions
         (lambda (cur-frame)
@@ -31,7 +33,8 @@
 ;; Lose the UI
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(if (string= "x" window-system)
+    (if (fboundp 'menu-bar-mode) (menu-bar-mode -1)))
 
 ;; For multi-tty mode
 (add-hook 'after-make-frame-functions
