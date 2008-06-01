@@ -20,7 +20,7 @@
 ;; Default font
 (if (string= "ns" window-system)
     (setq my-font "DroidSansMono-14")
-    (elif (string= "mac" window-system)
+    (if (string= "mac" window-system)
         (setq my-font "-apple-droid sans mono-medium-r-normal--15-0-72-72-m-0-iso10646-1")
         (setq my-font "Droid Sans Mono-11.3")))
 (set-frame-font my-font)
@@ -81,3 +81,6 @@
         (start-process (concat "open -a WebKit " url) nil "open -a WebKit " url)
         (message "Starting Safari... done")))))
 
+(setq initial-frame-alist
+      `((left . 0) (top . 0)
+      (width . 237) (height . 65)))
