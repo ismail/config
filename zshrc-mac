@@ -58,6 +58,7 @@ alias cl="clear"
 alias ci="xmllint --valid --noout"
 alias scp="rsync --compress-level=3 --partial --progress --rsh=ssh -r"
 alias wi="/usr/local/bin/emacs"
+alias wk="ssh localhost -p 4400"
 
 export PATH=~/bin:/usr/local/bin:/Developer/usr/bin:$PATH
 export CLICOLOR=1
