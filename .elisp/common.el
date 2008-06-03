@@ -19,7 +19,7 @@
 
 ;; Default font
 (if (string= "ns" window-system)
-    (setq my-font "DroidSansMono-14")
+    (setq my-font "Droid Sans Mono-14")
     (if (string= "mac" window-system)
         (setq my-font "-apple-droid sans mono-medium-r-normal--15-0-72-72-m-0-iso10646-1")
         (setq my-font "Droid Sans Mono-11.3")))
