@@ -86,6 +86,6 @@
       `((left . 0) (top . 0)
       (width . 237) (height . 65)))
 
-;; Server start if we are in X
-(if (string= "x" window-system)
+;; Server start if we are not in a windowing environment
+(if (string= nil window-system)
     (server-start))
