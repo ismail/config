@@ -20,9 +20,7 @@
 ;; Default font
 (if (string= "ns" window-system)
     (setq my-font "Droid Sans Mono-14")
-    (if (string= "mac" window-system)
-        (setq my-font "-apple-droid sans mono-medium-r-normal--15-0-72-72-m-0-iso10646-1")
-        (setq my-font "Droid Sans Mono-11.3")))
+    (setq my-font "Droid Sans Mono-11.3"))
 (set-frame-font my-font)
 (add-hook 'after-make-frame-functions
         (lambda (cur-frame)
@@ -66,7 +64,7 @@
       (setq browse-url-generic-program (executable-find "firefox")
             browse-url-browser-function 'browse-url-generic)))
 
-(if (string= "mac" window-system)
+(if (string= "ns" window-system)
   (progn
     (setq browse-url-browser-function 'browse-url-safari)
     (defun browse-url-safari (url &optional new-window)
