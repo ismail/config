@@ -259,7 +259,6 @@ Right now it will check every 90 seconds, Which will generate a maximum of 40 re
 
 (copy-face 'bold 'twit-message-face)
 (set-face-attribute 'twit-message-face nil
-                    :family "helv"
                     :height 1.2
                     :weight 'semi-bold
                     :width 'semi-condensed)
