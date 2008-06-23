@@ -59,7 +59,6 @@
 (setq bookmark-save-flag 1)
 
 ;; 3rd party modules
-(require 'git-emacs)
 (require 'twit)
 
 ;; Enable IDO mode
