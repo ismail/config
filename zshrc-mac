@@ -60,7 +60,7 @@ alias scp="rsync --compress-level=3 --partial --progress --rsh=ssh -r"
 alias wi="~/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
 alias wk="ssh localhost -p 4400"
 
-export PATH=~/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/Developer/usr/bin:$PATH
+export PATH=~/bin:/opt/ghc/bin:/usr/local/bin:/Developer/usr/bin:$PATH
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 export LC_ALL=en_US.UTF-8
