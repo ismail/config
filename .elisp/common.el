@@ -21,7 +21,8 @@
  (global-set-key "\C-u" 'comment-or-uncomment-region)
 
 ;; Choose XFT over X
-(push '(font-backend xft x) default-frame-alist)
+(if (string= "x" window-system)
+    (push '(font-backend xft x) default-frame-alist))
 
 ;; Default font
 (if (string= "ns" window-system)
