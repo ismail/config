@@ -20,6 +20,3 @@
 ;; Eshell
 (load "eshell-config.el")
 
-;; Python
-(load "python-config.el")
-
