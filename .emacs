@@ -22,4 +22,3 @@
 
 ;; Python
 (load "python-config.el")
-
