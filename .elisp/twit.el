@@ -500,3 +500,209 @@ Null prefix argument turns off the mode.
 (provide 'twit)
 
 ;;; twit.el ends here
+
+									 (when src-info (concat " (via " src-info ")"))
+									 "\n")
+							 '((face . "twit-info-face"))))
+					  (setq overlay-end (point))
+					  (let ((o (make-overlay overlay-start overlay-end)))
+						(overlay-put o 'face (if (= 0 (% times-through 2))
+												 "twit-zebra-1-face"
+												 "twit-zebra-2-face"))
+						(add-to-list 'overlays o)))
+					(setq times-through (+ 1 times-through))))
+	(if (not (equal last-tweet twit-last-tweet))
+		(progn (setq twit-last-tweet last-tweet)
+			   (setq first-time-through nil)
+			   (run-hooks 'twit-new-tweet-hook))))
+	
+	;; go back to top so we see the latest messages
+	
+  (beginning-of-buffer))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; User images.  Not complete.
+
+(defvar twit-user-image-list 'nil
+  "List containing all user images")
+
+(setq twit-user-image-list 'nil)
+
+(defun twit-get-user-image (url)
+  "Retrieve the user image from the list, or from the URL"
+  (let ((img (assoc url twit-user-image-list)))
+	(if (and img (not (bufferp (cdr img))))
+		(cdr (assoc url twit-user-image-list))
+		(let ((url-buffer (url-retrieve url 'twit-write-user-image (list url))))
+		  (if url-buffer
+			  (progn
+			   (add-to-list 'twit-user-image-list (cons url url-buffer))
+			   (if twit-debug (message "list is %s" twit-user-image-list)))
+			  (message "Warning, couldn't load %s " url))))))
+
+(defun twit-write-user-image (status url)
+  "Called by twit-get-user-image, this performs the actual writing of the status url."
+  (debug)
+  (let ((buffer (and (assoc url twit-user-image-list)
+					 (cdr (assoc url twit-user-image-list))))
+		(image-file-name (concat twit-user-image-dir "/" (file-name-nondirectory url))))
+	(when (not (file-directory-p twit-user-image-dir))
+		  (make-directory twit-user-image-dir))
+	(save-window-excursion
+	 (set-buffer buffer)
+	 (setq buffer-file-name image-file-name)
+	 (save-buffer)
+	 (delete buffer twit-user-image-list)
+	 (add-to-list 'twit-user-image-list (create-image image-file-name)))))
+
+;;;
+;; Recent tweets timer funciton and callback
+
+(defun twit-follow-recent-tweets-timer-function ()
+  "Timer function for recent tweets, called via a timer"
+  (twit-parse-xml-async twit-friend-timeline-file 'twit-follow-recent-tweets-async-callback))
+
+(defun twit-follow-recent-tweets-async-callback (status xml)
+  (if twit-debug (message "Twit.el debug: %S" status))
+  (save-window-excursion
+   (set-buffer (get-buffer-create "*Twit-recent*"))
+   (toggle-read-only 0)
+   (twit-write-recent-tweets xml)
+   (toggle-read-only 1)))
+
+;;; Check the rate limiting, and if it is not the default rate-limiting, set it to something sane
+;; this should probably be asyncronous.  That can happen a little later.
+(defun twit-verify-rate-limit ()
+  (let ((limit (twit-get-rate-limit)))
+	(when (< limit twit-standard-rate-limit)
+		  (progn
+		   (setq twit-follow-idle-interval (+ (/ (* 60 60) limit)
+											 twit-rate-limit-offset))))))
+
+;;; funciton to integrade with growl.el or todochiku.el
+(defun twit-todochiku ()
+  (todochiku-message "twit.el" (format "From %s:\n%s" (cadr twit-last-tweet) (caddr twit-last-tweet)) (todochiku-icon 'social)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Main interactive functions
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;###autoload
+(defun twit-post ()
+  "Send a post to twitter.com.
+Prompt the first time for password and username \(unless
+`twit-user' and/or `twit-pass' is set\) and for the text of the
+post; thereafter just for post text.  Posts must be <= 140 chars
+long."
+  (interactive)
+  (let* ((post (twit-query-for-post)))
+    (if (> (length post) 140)
+	(error twit-too-long-msg)
+      (if (twit-post-function twit-update-url post)
+	  (message twit-success-msg)))))
+
+;;;###autoload
+(defun twit-post-region (start end)
+  "Send text in the region as a post to twitter.com.
+Uses `twit-post-function' to do the dirty work and to obtain
+needed user and password information.  Posts must be <= 140 chars
+long."
+  (interactive "r")
+  (let ((post (buffer-substring start end)))
+    (if (> (length post) 140)
+	(error twit-too-long-error)
+      (if (twit-post-function twit-update-url post)
+	  (message twit-success-msg)))))
+
+;;;###autoload
+(defun twit-post-buffer ()
+  "Post the entire contents of the current buffer to twitter.com.
+Uses `twit-post-function' to do the dirty work and to obtain
+needed user and password information.  Posts must be <= 140 chars
+long."
+  (interactive)
+  (let ((post (buffer-substring (point-min) (point-max))))
+    (if (> (length post) 140)
+	(error twit-too-long-error)
+      (if (twit-post-function twit-update-url post)
+	  (message twit-success-msg)))))
+
+;;;###autoload
+(defun twit-list-followers ()
+  "Display a list of all your twitter.com followers' names."
+  (interactive)
+  (pop-to-buffer "*Twit-followers*")
+  (kill-region (point-min) (point-max))
+  (loop for name in 
+        (loop for name in
+              (loop for user in 
+                    (xml-get-children
+                     (cadr (twit-parse-xml twit-followers-file)) 'user)
+                    collect (sixth user))
+              collect (third name))
+        do (insert (concat name "\n")))
+  ;; set up mode as with twit-show-recent-tweets
+  (text-mode)
+  (use-local-map twit-followers-mode-map))
+
+;;; Helper function to insert text into buffer, add an overlay and
+;;; apply the supplied attributes to the overlay
+(defun twit-insert-with-overlay-attributes (text attributes)
+  (let ((start (point)))
+    (insert text)
+    (let ((overlay (make-overlay start (point))))
+      (dolist (spec attributes)
+        (overlay-put overlay (car spec) (cdr spec))))))
+
+
+;;; Added by Jonathan Arkell
+;;;###autoload
+(defun twit-follow-recent-tweets ()
+  "Display, and redisplay the tweets.  This might suck if it bounces the point to the bottom all the time."
+  (interactive)
+  (twit-show-recent-tweets)
+  (twit-verify-rate-limit)
+  (setq twit-rate-limit-timer (run-with-timer twit-rate-limit-interval twit-rate-limit-interval 'twit-verify-rate-limit))
+  (setq twit-timer (run-with-timer twit-follow-idle-interval twit-follow-idle-interval 'twit-follow-recent-tweets-timer-function)))
+
+(defun twit-stop-following-tweets ()
+  "When you want to stop following tweets, you can use this function to turn off the timer."
+  (if (featurep 'todochiku)
+	  (todochiku-message "Twit.el" "Twit.el Stopped Following Tweets" (todochiku-icon 'social)))
+  (interactive)
+  (cancel-timer twit-timer))
+
+;;;###autoload
+(defun twit-show-recent-tweets ()
+  "Display a list of the most recent twewets from your followers."
+  (interactive)
+  (pop-to-buffer "*Twit-recent*")
+  (toggle-read-only 0)
+  (twit-write-recent-tweets (twit-parse-xml twit-friend-timeline-file))
+  ;; set up some sensible mode and useful bindings
+  (text-mode)
+  (toggle-read-only 1)
+  (use-local-map twit-status-mode-map))
+
+;;;###autoload
+(define-minor-mode twit-mode 
+  "Toggle twit-mode.
+Globally binds some keys to Twit's interactive functions.
+
+With no argument, this command toggles the mode. 
+Non-null prefix argument turns on the mode.
+Null prefix argument turns off the mode.
+
+\\{twit-mode-map}" nil
+" Twit" 
+'(("\C-c\C-tp" . twit-post)
+  ("\C-c\C-tr" . twit-post-region)
+  ("\C-c\C-tb" . twit-post-buffer)
+  ("\C-c\C-tf" . twit-list-followers))
+ :global t
+ :group 'twit
+ :version twit-version-number)
+
+(provide 'twit)
+
+;;; twit.el ends here
