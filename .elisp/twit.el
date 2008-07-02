@@ -195,6 +195,7 @@
 (require 'xml)
 (require 'url)
 (require 'url-http)
+(require 'cl)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Variables
