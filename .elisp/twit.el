@@ -102,7 +102,7 @@
 
 ;; This package integrates nicely with todochiku.el, which you
 ;; can download here:
-;;
+;;  http://www.emacswiki.org/cgi-bin/wiki/todochiku.el
 ;; Just customize twit-new-tweet-hook and set it to twit-todochiku 
 
 ;;; History:
@@ -139,19 +139,36 @@
 ;;            follow-recent-tweets idle timer.  This is so that you
 ;;            wont get throttled when twitter changes their throttle
 ;;            time (JA)
-;;
+;; * 0.0.12 - Changed syncronous url call to an ascynronous one that
+;;            doesn't suck, and polls properly.
+;;            You can finally stop following recent tweets. (Rev 22)
+;; * 0.0.13 - Fixed twit-debug to be a customizeable variable.  Duh.
+;;            Image handling is on the way. (done, just buggy)
+;;            Better face definitions, now customizeable.
+;;            Zebra-tabling of the recent tweets is half there.
+;;            Retrieval of the rate-limiting is working. (Rev 23)
+;; * 0.0.14 - Finished zebra-table for recent tweets. (uses overlays)
+;;            Potential Fix for a really crazy bug in carbon emacs.
+;;            Tweaked default fonts to not suck, added more faces.            
+;;            
 ;; Bugs:
-;; * Posts with semicolons are being silently truncated.  I don't
-;;   know why.
 ;; * `twit-list-followers' may not work if it is the first thing you
 ;;   do.
-;; * there is no way to un-follow when you are following recent tweets
-;; * the idle-time-to-follow should be customizeable.
-
-;; Report bugs to me at the listed email address.  Additionally,
-;; report the absence of bugs if you are using a system not in the
-;; list below of systems tested at least minimally:
-
+;; * Following recent tweets does this really annoying thing where
+;;   the point will jump to the bottom on occation.  This seems to
+;;   happen if the recent tweets is null data. 
+;; * Face definitions for zebra tables kinda suck.  I lack experience
+;;   in making them not suck.  There needs to be a light and dark
+;;   background version of the defnition, instead of the raw default.
+;; * If you get rate-limited, the twit-follow-idle-interval gets set,
+;;   but never reset when rate-limiting returns.  The the interval
+;;   just needs to be shadowed so that setting it doesn't mess with
+;;   the customized variable
+;;
+;; Please report bugs to the twit emacs wiki page at:
+;;   http://www.emacswiki.org/cgi-bin/wiki/TwIt
+;;
+;; Tested Configurations:
 ;; Twit 0.0.2 / Emacs 22.0.93.1 / windows-nt
 ;; Twit 0.0.2 / Emacs 23.0.51.1 / gnu/linux
 ;; Twit 0.0.3 / Emacs 22..92.1 / gnu/linux
@@ -159,22 +176,32 @@
 ;; Twit 0.0.8 / Emacs 22.1.1 / gnu/linux
 ;; Twit 0.0.8 / Emacs 22.0.99.1 / windows
 
-
-
 ;;; To do:
-;; Integrate the other twit.el that is out there.  Looks like it might have some serious sexxxy to it.
+;; v1.0 release
+;; - Change the layout to be a little nicer.  (almost there)
+;; - Fix rate limiting
+;; - make sure, 100% sure, that following tweets is rock solid
+;;   and doesn't mess with the user.  (PLEASE SEND ME REPORTS!)
+;;
+;; Post 1.0
+;; - Images
+;; - Make @names a different color, and make them hot, so that hitting return on them will take you
+;;   to their page
+;; - Make urls hot
+;; - Integrate the other twit.el that is out there.  Looks like it might have some serious sexxxy to it.
 
 ;;; Code:
 
 (require 'xml)
 (require 'url)
 (require 'url-http)
+(require 'cl)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Variables
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defvar twit-version-number "0.0.11")
+(defvar twit-version-number "0.0.13")
 
 (defvar twit-status-mode-map (make-sparse-keymap))
 (defvar twit-followers-mode-map (make-sparse-keymap))
@@ -199,14 +226,76 @@
 (defcustom twit-new-tweet-hook
   '()
   "Functions to execute when there is a new tweet."
-  :type 'hook)
+  :type 'hook
+  :group 'twit)
 
 (defcustom twit-follow-idle-interval
   90
-  "How long in idle time to wait before checking for new tweets.
-Right now it will check every 90 seconds, Which will generate a maximum of 40 requests, leaving you another 30 per hour toto play with."
-  :type 'integer)
+  "How long in time to wait before checking for new tweets.
+Right now it will check every 90 seconds, Which will generate a maximum of 40 requests, leaving you another 30 per hour to play with.
 
+The function name is a bit of a misnomer."
+  :type 'integer
+  :group 'twit)
+
+(defcustom twit-user-image-dir
+  (concat (car image-load-path) "twitter")
+  "Directory where twitter user images are to be stored.  Need not exist."
+  :type 'string
+  :group 'twit)
+
+
+(defcustom twit-debug
+  nil
+  "Whether or not to run twit.el in debug mode"
+  :group 'twit
+  :type 'boolean)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Faces
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defface twit-message-face
+  '((default
+	  :family "helv"
+	  :height 1.1))
+  "The font face to use for a twitter message."
+  :group 'twit)
+
+(defface twit-author-face
+  '((t
+	  (:height 0.8
+	   :weight bold
+	   :family "mono")))
+  "The font face to use for the authors name"
+  :group 'twit)
+
+(defface twit-info-face
+  '((t (:height 0.8 :slant italic)))
+  "Face for displaying where, how and when someone tweeted.")
+
+(defface twit-title-face
+  '((t
+	  (:background "PowderBlue"
+	   :underline "DeepSkyBlue")))
+  "Title Area of the recent tweets buffer."
+  :group 'twit)
+
+(defface twit-zebra-1-face
+  '((t
+	  :background "gray89"))
+  "Color one of zebra-striping of recent tweets and followers list."
+  :group 'twit)
+
+(defface twit-zebra-2-face
+  '((t
+	  :background "AliceBlue"))
+  "Color two of zebra-striping of recent tweets and followers list."
+  :group 'twit)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Explicitly set URL info with customization vars
 
 (if (and (not (assoc "twitter.com:80" (symbol-value url-basic-auth-storage)))
 		 (not (string= twit-pass ""))
@@ -218,20 +307,36 @@ Right now it will check every 90 seconds, Which will generate a maximum of 40 re
 							(base64-encode-string (format "%s:%s" twit-user twit-pass))))
 				(symbol-value url-basic-auth-storage)))))
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Keymaps
 ;; 'r' key for reloading/refreshing the buffer
+(defvar twit-key-list
+  '(("s" . twit-show-recent-tweets)
+	("f" . twit-list-followers)
+	("p" . twit-post)
+	("h" . twit-mode-help)
+	("?" . twit-mode-help)))
+
 (define-key twit-status-mode-map "r" 'twit-show-recent-tweets)
 (define-key twit-followers-mode-map "r" 'twit-list-followers)
-(dolist (info '(("s" . twit-show-recent-tweets)
-                ("f" . twit-list-followers)
-                ("p" . twit-post)))
+
+
+(dolist (info twit-key-list)
   (define-key twit-status-mode-map (car info) (cdr info))
   (define-key twit-followers-mode-map (car info) (cdr info)))
 
+(defun twit-mode-help ()
+	(interactive)
+	(message "Help: %s" (append twit-key-list '(("r" . "Reload Current Page")))))
 
 (defvar twit-timer
   nil
   "Timer object that handles polling the followers")
 
+(defvar twit-rate-limit-timer
+  nil
+  "Timer object to poll the rate-limiting.")
 
 ;; Most of this will be used in the yet-to-be-written twitter
 ;; reading functions.
@@ -247,29 +352,22 @@ Right now it will check every 90 seconds, Which will generate a maximum of 40 re
   (concat twit-base-url "/statuses/followers.xml"))
 (defconst twit-friend-list-file
   (concat twit-base-url "/statuses/friends.xml"))
+(defconst twit-rate-limit-file
+  (concat twit-base-url "/account/rate_limit_status.xml"))
 
 (defconst twit-success-msg 
   "Post sent (no guarantees, though)")
 (defconst twit-too-long-msg 
   "Post not sent because length exceeds 140 characters")
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Faces
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defconst twit-standard-rate-limit 70)
 
-(copy-face 'bold 'twit-message-face)
-(set-face-attribute 'twit-message-face nil
-                    :height 1.2
-                    :weight 'semi-bold
-                    :width 'semi-condensed)
-(copy-face 'bold 'twit-author-face)
-(set-face-attribute 'twit-author-face nil
-                    :family 'unspecified
-                    :weight 'semi-bold
-                    :width 'semi-condensed)
+(defconst twit-rate-limit-offset 5
+  "Number of seconds to add to a throttled rate limit for insurance.")
 
+(defconst twit-rate-limit-interval (* 2 60 60)
+  "Every 2 Hours check for rate limiting.")
 
- 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; General purpose library to wrap twitter.com's api
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -285,6 +383,27 @@ Emacs' url package will prompt for authentication info if required."
       (kill-buffer (current-buffer)))
     result))
 
+(defvar twit-async-buffer 'nil
+  "Buffer that stores the temporary XML result for tiwt.el")
+
+(defun twit-parse-xml-async (url callback)
+  "Retrieve the resource at URL, and when retrieved call callback
+This is the asyncronous version of twit-parse-xml.  Once that function is
+refactored, and its named changed, so should this one."
+  (setq twit-async-buffer (url-retrieve url 'twit-parse-xml-async-retrieve (list callback))))
+
+(defun twit-parse-xml-async-retrieve (status callback)
+  (if (null status)   ; no news is good news.  
+	  (let ((result nil))
+		(if (bufferp twit-async-buffer)
+			(save-window-excursion
+			 (set-buffer twit-async-buffer)
+			 (goto-char (point-min))
+			 (setq result (xml-parse-fragment))
+			 (kill-buffer (current-buffer))))
+		(funcall callback status result))
+	  (message "Cannot retrieve twit URL.  Status is: %S" status)))
+
 (defun twit-post-function (url post)
   (let ((url-request-method "POST")
 	(url-request-data (concat "source=twit.el&status=" (url-hexify-string post)))
@@ -296,7 +415,11 @@ Emacs' url package will prompt for authentication info if required."
     (message "%s" url-request-data)
     (url-retrieve url (lambda (arg) (kill-buffer (current-buffer))))))
 
- 
+(defun twit-get-rate-limit ()
+  "Returns the rate limit as a number from the xml."
+  (let ((limit-xml (twit-parse-xml twit-rate-limit-file)))
+	(string-to-number (nth 2 (cadr limit-xml)))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Helpers for the interactive functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -312,74 +435,141 @@ It is in the format of (timestamp user-id message) ")
 
 (setq twit-last-tweet '())
 ; damn.. my latest addition to add the most recent tweet is HACKY.
-(defun twit-write-recent-tweets ()
-  (save-excursion
-	(delete-region (point-min) (point-max))
-	(insert (format-time-string "Last updated: %c\n"))
-	(let ((last-tweet '())
-		  (first-time-through t))
-	  (labels ((xml-first-child (node attr)
-								(car (xml-get-children node attr)))
-			   (xml-first-childs-value (node addr)
-									   (car (xml-node-children (xml-first-child node addr)))))
-			  (dolist (status-node (xml-get-children (cadr (twit-parse-xml twit-friend-timeline-file)) 'status))
-					  (let* ((user-info (xml-first-child status-node 'user))
-							 (user-id (or (xml-first-childs-value user-info 'screen_name) "??"))
-							 (user-name (xml-first-childs-value user-info 'name))
-							 (location (xml-first-childs-value user-info 'location))
-							 (src-info (xml-first-childs-value status-node 'source))
-							 (timestamp (xml-first-childs-value status-node 'created_at))
-							 (message (xml-first-childs-value status-node 'text)))
-						(if first-time-through
-							(progn
-							 (setq last-tweet (list timestamp user-id message))
-							 (setq first-time-through nil)))
-						;; the string-match is a bit weird, as emacswiki.org won't
-						;; accept pages with the href in it per se
-						(when (and src-info (string-match (concat "<a h" "ref=.*>\\(.*\\)<" "/a>")
-														  src-info))
-							  ;; remove the HTML link info; leave just the name
-							  (setq src-info (match-string 1 src-info)))
-						;; First line: Name and message
-						(twit-insert-with-overlay-attributes (format "%25s" 
-																	 (concat user-id
-																			 (if user-name
-																				 (concat " (" user-name ")")
-																				 "")))
-															 '((face . "twit-author-face")))
-						(insert ": ")
-						(twit-insert-with-overlay-attributes message
-															 '((face . "twit-message-face")))
-						(insert "\n")
-						(when (or timestamp location src-info)
-							  (insert "                          ")
-							  (when timestamp
-									(insert (concat " posted " timestamp)))
-							  (when location
-									(insert (concat " from " location)))
-							  (when src-info
-									(insert (concat " (via " src-info ")")))
-							  (insert "\n")))))
-	  (if (not (equal last-tweet twit-last-tweet))
-		  (progn (setq twit-last-tweet last-tweet)
-				 (setq first-time-through nil)
-				 (run-hooks 'twit-new-tweet-hook))))
+(defun twit-write-recent-tweets (xml-data)  ;(twit-parse-xml twit-friend-timeline-file)
+  (delete-region (point-min) (point-max))
+  (twit-insert-with-overlay-attributes (format-time-string "Last updated: %c\n")
+									   '((face . "twit-title-face")))
+  (let ((last-tweet '())
+		(times-through 1)
+		(overlay-start 0)
+		(overlay-end 0)
+		(overlays 'nil))
+	(labels ((xml-first-child (node attr)
+							  (car (xml-get-children node attr)))
+			 (xml-first-childs-value (node addr)
+									 (car (xml-node-children (xml-first-child node addr)))))
+			(dolist (status-node (xml-get-children (cadr xml-data) 'status))
+					(let* ((user-info (xml-first-child status-node 'user))
+						   (user-id (or (xml-first-childs-value user-info 'screen_name) "??"))
+						   (user-name (xml-first-childs-value user-info 'name))
+						   (location (xml-first-childs-value user-info 'location))
+						   (src-info (xml-first-childs-value status-node 'source))
+										;(user-img (twit-get-user-image (xml-first-childs-value user-info 'profile_image_url)))
+						   (user-img nil)
+						   (timestamp (xml-first-childs-value status-node 'created_at))
+						   (message (xml-first-childs-value status-node 'text)))
+					  (if (= times-through 1)
+						  (progn
+						   (setq last-tweet (list timestamp user-id message))
+						   (setq first-time-through nil)))
+					  ;; the string-match is a bit weird, as emacswiki.org won't
+					  ;; accept pages with the href in it per se
+					  (when (and src-info (string-match (concat "<a h" "ref=\"\\(.*\\)\">\\(.*\\)<" "/a>")
+														src-info))
+							;; remove the HTML link info; leave just the name (for now)
+							(setq src-info (match-string 2 src-info)))
+					  ;; Image first.  I wonder how this will work.
+					  (when (and user-img (not (bufferp user-img)))
+							(insert-image user-img))
+					  ;; First line: Name and message
+					  (setq overlay-start (point))
+					  (twit-insert-with-overlay-attributes (format "%25s" 
+																   (concat user-id
+																		   (if user-name
+																			   (concat " (" user-name ")")
+																			   "")))
+														   '((face . "twit-author-face")))
+					  (insert ": ")
+					  (twit-insert-with-overlay-attributes message
+														   '((face . "twit-message-face")))
+					  (insert "\n")
+					  
+					  (when (or timestamp location src-info)
+							(twit-insert-with-overlay-attributes
+							 (concat "                          "
+									 (when timestamp (concat " posted " timestamp))
+									 (when location (concat " from " location))
+									 (when src-info (concat " (via " src-info ")"))
+									 "\n")
+							 '((face . "twit-info-face"))))
+					  (setq overlay-end (point))
+					  (let ((o (make-overlay overlay-start overlay-end)))
+						(overlay-put o 'face (if (= 0 (% times-through 2))
+												 "twit-zebra-1-face"
+												 "twit-zebra-2-face"))
+						(add-to-list 'overlays o)))
+					(setq times-through (+ 1 times-through))))
+	(if (not (equal last-tweet twit-last-tweet))
+		(progn (setq twit-last-tweet last-tweet)
+			   (setq first-time-through nil)
+			   (run-hooks 'twit-new-tweet-hook))))
 	
 	;; go back to top so we see the latest messages
-	(beginning-of-buffer)))
+	
+  (beginning-of-buffer))
 
-(defun twit-follow-recent-tweets-timer ()
-  "Timer function for recent tweets"
-  (save-excursion
-	(set-buffer "*Twit-recent*")
-	(toggle-read-only 0)
-	(twit-write-recent-tweets)
-	(toggle-read-only 1)))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; User images.  Not complete.
 
+(defvar twit-user-image-list 'nil
+  "List containing all user images")
+
+(setq twit-user-image-list 'nil)
+
+(defun twit-get-user-image (url)
+  "Retrieve the user image from the list, or from the URL"
+  (let ((img (assoc url twit-user-image-list)))
+	(if (and img (not (bufferp (cdr img))))
+		(cdr (assoc url twit-user-image-list))
+		(let ((url-buffer (url-retrieve url 'twit-write-user-image (list url))))
+		  (if url-buffer
+			  (progn
+			   (add-to-list 'twit-user-image-list (cons url url-buffer))
+			   (if twit-debug (message "list is %s" twit-user-image-list)))
+			  (message "Warning, couldn't load %s " url))))))
+
+(defun twit-write-user-image (status url)
+  "Called by twit-get-user-image, this performs the actual writing of the status url."
+  (debug)
+  (let ((buffer (and (assoc url twit-user-image-list)
+					 (cdr (assoc url twit-user-image-list))))
+		(image-file-name (concat twit-user-image-dir "/" (file-name-nondirectory url))))
+	(when (not (file-directory-p twit-user-image-dir))
+		  (make-directory twit-user-image-dir))
+	(save-window-excursion
+	 (set-buffer buffer)
+	 (setq buffer-file-name image-file-name)
+	 (save-buffer)
+	 (delete buffer twit-user-image-list)
+	 (add-to-list 'twit-user-image-list (create-image image-file-name)))))
+
+;;;
+;; Recent tweets timer funciton and callback
+
+(defun twit-follow-recent-tweets-timer-function ()
+  "Timer function for recent tweets, called via a timer"
+  (twit-parse-xml-async twit-friend-timeline-file 'twit-follow-recent-tweets-async-callback))
+
+(defun twit-follow-recent-tweets-async-callback (status xml)
+  (if twit-debug (message "Twit.el debug: %S" status))
+  (save-window-excursion
+   (set-buffer (get-buffer-create "*Twit-recent*"))
+   (toggle-read-only 0)
+   (twit-write-recent-tweets xml)
+   (toggle-read-only 1)))
+
+;;; Check the rate limiting, and if it is not the default rate-limiting, set it to something sane
+;; this should probably be asyncronous.  That can happen a little later.
+(defun twit-verify-rate-limit ()
+  (let ((limit (twit-get-rate-limit)))
+	(when (< limit twit-standard-rate-limit)
+		  (progn
+		   (setq twit-follow-idle-interval (+ (/ (* 60 60) limit)
+											 twit-rate-limit-offset))))))
 
 ;;; funciton to integrade with growl.el or todochiku.el
 (defun twit-todochiku ()
-  (todochiku-message "twit.el" (format "From %s:\n%s" (cadr twit-last-tweet) (caddr twit-last-tweet)) ""))
+  (todochiku-message "twit.el" (format "From %s:\n%s" (cadr twit-last-tweet) (caddr twit-last-tweet)) (todochiku-icon 'social)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Main interactive functions
@@ -459,10 +649,14 @@ long."
   "Display, and redisplay the tweets.  This might suck if it bounces the point to the bottom all the time."
   (interactive)
   (twit-show-recent-tweets)
-  (setq twit-timer (run-with-idle-timer twit-follow-idle-interval 1 'twit-follow-recent-tweets-timer)))
+  (twit-verify-rate-limit)
+  (setq twit-rate-limit-timer (run-with-timer twit-rate-limit-interval twit-rate-limit-interval 'twit-verify-rate-limit))
+  (setq twit-timer (run-with-timer twit-follow-idle-interval twit-follow-idle-interval 'twit-follow-recent-tweets-timer-function)))
 
 (defun twit-stop-following-tweets ()
   "When you want to stop following tweets, you can use this function to turn off the timer."
+  (if (featurep 'todochiku)
+	  (todochiku-message "Twit.el" "Twit.el Stopped Following Tweets" (todochiku-icon 'social)))
   (interactive)
   (cancel-timer twit-timer))
 
@@ -472,7 +666,7 @@ long."
   (interactive)
   (pop-to-buffer "*Twit-recent*")
   (toggle-read-only 0)
-  (twit-write-recent-tweets)
+  (twit-write-recent-tweets (twit-parse-xml twit-friend-timeline-file))
   ;; set up some sensible mode and useful bindings
   (text-mode)
   (toggle-read-only 1)
