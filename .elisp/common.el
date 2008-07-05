@@ -23,9 +23,8 @@
 ;; Shortcut for comment/uncomment
  (global-set-key "\C-u" 'comment-or-uncomment-region)
 
-;; Choose XFT over X
-(if (string= "x" window-system)
-    (push '(font-backend xft x) default-frame-alist))
+;; Enable git-emacs
+(require 'git-emacs)
 
 ;; Default font
 (if (string= "ns" window-system)
