@@ -49,6 +49,7 @@ fi
 export PYTHONSTARTUP="/etc/pythonstart"
 alias cl="clear"
 alias ci="xmllint --valid --noout"
+alias d="cd"
 alias scp="rsync --compress-level=3 --partial --progress --rsh=ssh -r"
 alias wi="~/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
 alias wk="ssh localhost -p 4400"
