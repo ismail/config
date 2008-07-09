@@ -23,9 +23,6 @@
 ;; Shortcut for comment/uncomment
  (global-set-key "\C-u" 'comment-or-uncomment-region)
 
-;; Enable git-emacs
-(require 'git-emacs)
-
 ;; Default font
 (if (string= "ns" window-system)
     (setq my-font "Droid Sans Mono-14")
