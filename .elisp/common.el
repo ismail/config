@@ -21,7 +21,7 @@
 (global-set-key "\C-c\C-m" 'execute-extended-command)
 
 ;; Shortcut for comment/uncomment
- (global-set-key "\C-u" 'comment-or-uncomment-region)
+(global-set-key "\C-u" 'comment-or-uncomment-region)
 
 ;; Default font
 (if (string= "ns" window-system)
