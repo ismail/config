@@ -49,7 +49,7 @@ alias wix="emacsclient -c"
 alias d="cd"
 alias ada="/usr/gnat/bin/gnatmake"
 alias mac="ssh namtrac.ath.cx"
-alias p="python"
+alias p="ipython"
 alias p3="python3.0"
 
 export LC_ALL=en_US.UTF-8
