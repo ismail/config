@@ -1,5 +1,6 @@
 ;; load path
 (setq load-path (cons "~/.elisp" load-path))
+(progn (cd "~/.elisp") (normal-top-level-add-subdirs-to-load-path))
 
 ;; Erc config
 (load "erc-config.el")
