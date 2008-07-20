@@ -20,3 +20,7 @@
 
 ;; Eshell
 (load "eshell-config.el")
+
+;; Org mode
+(load "orgmode.el")
+
