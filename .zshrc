@@ -56,3 +56,8 @@ export LC_ALL=en_US.UTF-8
 export PYTHONSTARTUP=/etc/pythonstart
 export PATH="/usr/lib/ccache:/usr/local/cuda/bin:$PATH"
 
+keychain --nogui -q id_dsa
+[ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
+[ -f $HOME/.keychain/$HOSTNAME-sh ] &&
+. $HOME/.keychain/$HOSTNAME-sh
+
