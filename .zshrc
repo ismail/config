@@ -22,6 +22,8 @@ export VISUAL="nano"
 
 bindkey "^[OH" beginning-of-line
 bindkey "^[OF" end-of-line
+bindkey "^[[7~" beginning-of-line
+bindkey "^[[8~" end-of-line
 
 # Other options
 setopt NO_BEEP
