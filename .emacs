@@ -23,4 +23,3 @@
 
 ;; Org mode
 (load "orgmode.el")
-
