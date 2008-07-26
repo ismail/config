@@ -26,6 +26,9 @@
 ;; Enable w3m
 (require 'w3m-load)
 
+;; YA snippet
+(require 'yasnippet-bundle)
+
 ;; Default font
 (if (string= "ns" window-system)
     (setq my-font "Droid Sans Mono-14")
