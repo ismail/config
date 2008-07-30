@@ -64,7 +64,7 @@
 ;; Save bookmarks
 (setq bookmark-save-flag 1)
 
-;; 3rd party modules
+;; Enable twitter integration
 (require 'twit)
 
 ;; Enable IDO mode

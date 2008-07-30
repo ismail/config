@@ -1,4 +1,4 @@
-;;; twit.el --- interface with twitter.com
+;;; Twit.el --- interface with twitter.com
 
 ;; Copyright (c) 2007 Theron Tlax
 ;;           (c) 2008 Jonathan Arkell
@@ -109,7 +109,6 @@
 
 ;; 2007-3-16 theron tlax <thorne@timbral.net>
 ;; * 0.0.1 -- Initial release.  Posting only.
-;; 2007-3-17 ''
 ;; * 0.0.2 -- Near-total rewrite; better documentation; use standard
 ;;            Emacs xml and url packages; minor mode; a little
 ;;            abstraction; some stubs for the reading functions.
@@ -148,46 +147,45 @@
 ;;            Zebra-tabling of the recent tweets is half there.
 ;;            Retrieval of the rate-limiting is working. (Rev 23)
 ;; * 0.0.14 - Finished zebra-table for recent tweets. (uses overlays)
-;;            Potential Fix for a really crazy bug in carbon emacs.
-;;            Tweaked default fonts to not suck, added more faces.            
-;;            
+;;            Fix for a really crazy bug in carbon emacs. (thanks gr3p3)
+;;            Tweaked default fonts to not suck, added more faces.
+;;            If showing recent tweets fails, the buffer is no longer
+;;            set to blank. (JA)
+;; * 0.0.15 - Fixed the automatic rate-limiting on 400 messages from
+;;            twitter to work.
+;;            Updated rate limiting to use the new format
+;;            More messages are handed off to todochiku
+;;            Most rate limiting (except the initial follow) is done
+;;            Asyncronously.
+;;            Verified that twit-list-followers works.
+;;            URLs now are fontified and hot.
+;;            Maybe (maybe?) fixed the bug where following tweets
+;;            kills the mark, and dumps the point at the bottom. (JA)
+;;
 ;; Bugs:
-;; * `twit-list-followers' may not work if it is the first thing you
-;;   do.
 ;; * Following recent tweets does this really annoying thing where
 ;;   the point will jump to the bottom on occation.  This seems to
-;;   happen if the recent tweets is null data. 
+;;   happen if the recent tweets is null data.
+;;   Definately has to do with twit-get-and-set-async-rate-limit
 ;; * Face definitions for zebra tables kinda suck.  I lack experience
 ;;   in making them not suck.  There needs to be a light and dark
 ;;   background version of the defnition, instead of the raw default.
-;; * If you get rate-limited, the twit-follow-idle-interval gets set,
-;;   but never reset when rate-limiting returns.  The the interval
-;;   just needs to be shadowed so that setting it doesn't mess with
-;;   the customized variable
 ;;
 ;; Please report bugs to the twit emacs wiki page at:
 ;;   http://www.emacswiki.org/cgi-bin/wiki/TwIt
 ;;
-;; Tested Configurations:
-;; Twit 0.0.2 / Emacs 22.0.93.1 / windows-nt
-;; Twit 0.0.2 / Emacs 23.0.51.1 / gnu/linux
-;; Twit 0.0.3 / Emacs 22..92.1 / gnu/linux
-;; Twit 0.0.6 / Emacs 22.0.90.1 / gnu/linux
-;; Twit 0.0.8 / Emacs 22.1.1 / gnu/linux
-;; Twit 0.0.8 / Emacs 22.0.99.1 / windows
-
-;;; To do:
+;;; Roadmap:
 ;; v1.0 release
 ;; - Change the layout to be a little nicer.  (almost there)
-;; - Fix rate limiting
 ;; - make sure, 100% sure, that following tweets is rock solid
-;;   and doesn't mess with the user.  (PLEASE SEND ME REPORTS!)
+;;   and doesn't mess with the point. Please send me a report
+;;   or at least a message if this is happening to you.
+;;   (this is a tough one to debug)
 ;;
 ;; Post 1.0
 ;; - Images
 ;; - Make @names a different color, and make them hot, so that hitting return on them will take you
 ;;   to their page
-;; - Make urls hot
 ;; - Integrate the other twit.el that is out there.  Looks like it might have some serious sexxxy to it.
 
 ;;; Code:
@@ -195,13 +193,12 @@
 (require 'xml)
 (require 'url)
 (require 'url-http)
-(require 'cl)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Variables
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defvar twit-version-number "0.0.13")
+(defvar twit-version-number "0.0.15")
 
 (defvar twit-status-mode-map (make-sparse-keymap))
 (defvar twit-followers-mode-map (make-sparse-keymap))
@@ -234,9 +231,13 @@
   "How long in time to wait before checking for new tweets.
 Right now it will check every 90 seconds, Which will generate a maximum of 40 requests, leaving you another 30 per hour to play with.
 
-The function name is a bit of a misnomer."
+The variable name is a bit of a misnomer, because it is not actually based on idle time (anymore)."
   :type 'integer
   :group 'twit)
+
+(defvar twit-shadow-follow-idle-interval
+  twit-follow-idle-interval
+  "Shadow definition of `twit-follow-idle-interval' that we can modify on the fly.")
 
 (defcustom twit-user-image-dir
   (concat (car image-load-path) "twitter")
@@ -369,6 +370,17 @@ The function name is a bit of a misnomer."
   "Every 2 Hours check for rate limiting.")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Internal Library Functions
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun twit-alert (msg &optional title)
+  "Send some kind of alert to the user.  
+If todochiku is available, use that.  Instead, just message the user."
+  (when (null title) (setq title "twit.el"))
+  (when (featurep 'todochiku)
+	  (todochiku-message title msg (todochiku-icon 'social)))
+  (message "%s: %s" title msg))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; General purpose library to wrap twitter.com's api
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -390,19 +402,22 @@ Emacs' url package will prompt for authentication info if required."
   "Retrieve the resource at URL, and when retrieved call callback
 This is the asyncronous version of twit-parse-xml.  Once that function is
 refactored, and its named changed, so should this one."
-  (setq twit-async-buffer (url-retrieve url 'twit-parse-xml-async-retrieve (list callback))))
+  (setq twit-async-buffer (url-retrieve url 'twit-parse-xml-async-retrieve (list url callback))))
 
-(defun twit-parse-xml-async-retrieve (status callback)
+(defun twit-parse-xml-async-retrieve (status url callback)
   (if (null status)   ; no news is good news.  
 	  (let ((result nil))
 		(if (bufferp twit-async-buffer)
-			(save-window-excursion
+			(save-excursion
 			 (set-buffer twit-async-buffer)
 			 (goto-char (point-min))
 			 (setq result (xml-parse-fragment))
 			 (kill-buffer (current-buffer))))
-		(funcall callback status result))
-	  (message "Cannot retrieve twit URL.  Status is: %S" status)))
+		(funcall callback status url result))
+	  (progn
+	   (twit-alert (format "Cannot retrieve twit URL.  Status is: %S" status))
+	   (when (equal status '(:error (error http 400)))
+			 (twit-get-and-set-async-rate-limit)))))
 
 (defun twit-post-function (url post)
   (let ((url-request-method "POST")
@@ -412,13 +427,34 @@ refactored, and its named changed, so should this one."
         (url-request-extra-headers `(("X-Twitter-Client" . "twit.el")
                                      ("X-Twitter-Client-Version" . ,twit-version-number)
                                      ("X-Twitter-Client-URL" . "http://www.emacswiki.org/cgi-bin/emacs/twit.el"))))
-    (message "%s" url-request-data)
+    (twit-alert url-request-data)
     (url-retrieve url (lambda (arg) (kill-buffer (current-buffer))))))
 
+(defun twit-parse-rate-limit (xml)
+  "Parse the rate limit file, and return the hourly limit.  XML should be the twitter ratelimit sxml.
+XML should not have any HTTP header information in its car."
+  (let ((limit (assoc 'hourly-limit xml)))
+	(if twit-debug (message "Parsed limit %s from xml %s" limit xml))
+	(if limit
+		(string-to-number (caddr limit)))))
+
 (defun twit-get-rate-limit ()
+  (interactive)
   "Returns the rate limit as a number from the xml."
   (let ((limit-xml (twit-parse-xml twit-rate-limit-file)))
-	(string-to-number (nth 2 (cadr limit-xml)))))
+	(twit-parse-rate-limit (cadr limit-xml))))
+
+(defun twit-get-and-set-async-rate-limit ()
+  (interactive)
+  "Check rate limiting asyncronously, and automagickally set it."
+  (twit-parse-xml-async twit-rate-limit-file 'twit-get-and-set-async-rate-limit-callback))
+
+(defun twit-get-and-set-async-rate-limit-callback (status url result)
+  "callback for twit-get-and-set-async-rate-limit"
+  (if (null status)
+	  (if twit-debug (message "Rate Limit XML is %S" result))
+	  (twit-verify-and-set-rate-limit (twit-parse-rate-limit (cadr result)))
+	  (twit-alert (format "Cannot retrieve rate limit URL %S! Status: %S" url status))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Helpers for the interactive functions
@@ -455,7 +491,7 @@ It is in the format of (timestamp user-id message) ")
 						   (location (xml-first-childs-value user-info 'location))
 						   (src-info (xml-first-childs-value status-node 'source))
 										;(user-img (twit-get-user-image (xml-first-childs-value user-info 'profile_image_url)))
-						   (user-img nil)
+						   (user-img nil)y
 						   (timestamp (xml-first-childs-value status-node 'created_at))
 						   (message (xml-first-childs-value status-node 'text)))
 					  (if (= times-through 1)
@@ -503,9 +539,9 @@ It is in the format of (timestamp user-id message) ")
 		(progn (setq twit-last-tweet last-tweet)
 			   (setq first-time-through nil)
 			   (run-hooks 'twit-new-tweet-hook))))
-	
-	;; go back to top so we see the latest messages
-	
+  
+  ;; go back to top so we see the latest messages
+  (goto-address)
   (beginning-of-buffer))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -526,7 +562,7 @@ It is in the format of (timestamp user-id message) ")
 			  (progn
 			   (add-to-list 'twit-user-image-list (cons url url-buffer))
 			   (if twit-debug (message "list is %s" twit-user-image-list)))
-			  (message "Warning, couldn't load %s " url))))))
+			  (twit-alert (format "Warning, couldn't load %s " url)))))))
 
 (defun twit-write-user-image (status url)
   "Called by twit-get-user-image, this performs the actual writing of the status url."
@@ -550,22 +586,47 @@ It is in the format of (timestamp user-id message) ")
   "Timer function for recent tweets, called via a timer"
   (twit-parse-xml-async twit-friend-timeline-file 'twit-follow-recent-tweets-async-callback))
 
-(defun twit-follow-recent-tweets-async-callback (status xml)
-  (if twit-debug (message "Twit.el debug: %S" status))
-  (save-window-excursion
-   (set-buffer (get-buffer-create "*Twit-recent*"))
-   (toggle-read-only 0)
-   (twit-write-recent-tweets xml)
-   (toggle-read-only 1)))
+(defun twit-follow-recent-tweets-async-callback (status url xml)
+  (when (not status)
+		(save-window-excursion
+		 (set-buffer (get-buffer-create "*Twit-recent*"))
+		 (toggle-read-only 0)
+		 (twit-write-recent-tweets xml)
+		 (toggle-read-only 1))))
 
-;;; Check the rate limiting, and if it is not the default rate-limiting, set it to something sane
-;; this should probably be asyncronous.  That can happen a little later.
-(defun twit-verify-rate-limit ()
-  (let ((limit (twit-get-rate-limit)))
-	(when (< limit twit-standard-rate-limit)
+(defvar twit-last-rate-limit
+  twit-standard-rate-limit
+  "What is the previous rate limit?")
+
+(defun twit-verify-and-set-rate-limit (limit)
+  "Check if limiting is in effect, and if so, set the timer."
+  (let ((limit-reset nil))
+	(if twit-debug (message  "Rate limit is %s, doing ratelimit magic." limit))
+	(when (and limit
+			   (not (= limit 0))
+			   (not (= twit-last-rate-limit limit)))
+		  (cond ((< limit twit-standard-rate-limit)
+				 (progn
+				  (setq twit-shadow-follow-idle-interval (+ (/ (* 60 60) limit)
+															twit-rate-limit-offset))
+				  (setq limit-reset 't)
+				  (twit-alert (format "Twitter is under a rate limit.  Timer set to %s seconds." twit-shadow-follow-idle-interval))))
+				((= limit twit-standard-rate-limit)
+				 (progn
+				  (setq twit-shadow-follow-idle-interval twit-follow-idle-interval)
+				  (setq limit-reset 't)
+				  (twit-alert (format "Rate limiting relaxed.  Timer set to normal timeout (%s seconds)" twit-shadow-follow-idle-interval))))
+				(t ; exceptional case...
+				 (progn
+				  (setq twit-shadow-follow-idle-interval twit-follow-idle-interval)
+				  (setq limit-reset 't)
+				  (twit-alert (format "The twitter rate has exceeded its expected maximum.  This is weird."))))))
+	(when (and limit-reset (timerp twit-timer))
 		  (progn
-		   (setq twit-follow-idle-interval (+ (/ (* 60 60) limit)
-											 twit-rate-limit-offset))))))
+		   (if twit-debug (message "Cancelling and restarting timer."))
+		   (cancel-timer 'twit-timer)
+		   (twit-follow-recent-tweets)))
+	(setq twit-last-rate-limit limit))) 
 
 ;;; funciton to integrade with growl.el or todochiku.el
 (defun twit-todochiku ()
@@ -587,7 +648,7 @@ long."
     (if (> (length post) 140)
 	(error twit-too-long-msg)
       (if (twit-post-function twit-update-url post)
-	  (message twit-success-msg)))))
+		  (twit-alert twit-success-msg)))))
 
 ;;;###autoload
 (defun twit-post-region (start end)
@@ -600,7 +661,7 @@ long."
     (if (> (length post) 140)
 	(error twit-too-long-error)
       (if (twit-post-function twit-update-url post)
-	  (message twit-success-msg)))))
+		  (twit-alert twit-success-msg)))))
 
 ;;;###autoload
 (defun twit-post-buffer ()
@@ -613,7 +674,7 @@ long."
     (if (> (length post) 140)
 	(error twit-too-long-error)
       (if (twit-post-function twit-update-url post)
-	  (message twit-success-msg)))))
+		  (twit-alert twit-success-msg)))))
 
 ;;;###autoload
 (defun twit-list-followers ()
@@ -643,15 +704,14 @@ long."
         (overlay-put overlay (car spec) (cdr spec))))))
 
 
-;;; Added by Jonathan Arkell
 ;;;###autoload
 (defun twit-follow-recent-tweets ()
   "Display, and redisplay the tweets.  This might suck if it bounces the point to the bottom all the time."
   (interactive)
   (twit-show-recent-tweets)
-  (twit-verify-rate-limit)
-  (setq twit-rate-limit-timer (run-with-timer twit-rate-limit-interval twit-rate-limit-interval 'twit-verify-rate-limit))
-  (setq twit-timer (run-with-timer twit-follow-idle-interval twit-follow-idle-interval 'twit-follow-recent-tweets-timer-function)))
+  (twit-verify-and-set-rate-limit (twit-get-rate-limit))
+  (setq twit-rate-limit-timer (run-with-timer twit-rate-limit-interval twit-rate-limit-interval 'twit-get-and-set-async-rate-limit))
+  (setq twit-timer (run-with-timer twit-shadow-follow-idle-interval twit-shadow-follow-idle-interval 'twit-follow-recent-tweets-timer-function)))
 
 (defun twit-stop-following-tweets ()
   "When you want to stop following tweets, you can use this function to turn off the timer."
