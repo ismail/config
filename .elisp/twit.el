@@ -258,7 +258,6 @@ The variable name is a bit of a misnomer, because it is not actually based on id
 
 (defface twit-message-face
   '((default
-	  :family "helv"
 	  :height 1.1))
   "The font face to use for a twitter message."
   :group 'twit)
