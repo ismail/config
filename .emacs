@@ -24,6 +24,3 @@
 ;; Org mode
 (load "orgmode.el")
 
-;; G-Client
-(load "google.el")
-
