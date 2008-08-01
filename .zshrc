@@ -20,6 +20,8 @@ bindkey ' ' magic-space  # also do history expansion on space
 # Editor
 export VISUAL="nano"
 
+bindkey "^[[H" beginning-of-line
+bindkey "^[[F" end-of-line
 bindkey "^[OH" beginning-of-line
 bindkey "^[OF" end-of-line
 bindkey "^[[7~" beginning-of-line
