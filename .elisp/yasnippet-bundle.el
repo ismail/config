@@ -3,7 +3,7 @@
 ;; Copyright 2008 pluskid
 ;; 
 ;; Author: pluskid <pluskid@gmail.com>
-;; Version: 0.5.5
+;; Version: 0.5.4
 ;; X-URL: http://code.google.com/p/yasnippet/
 
 ;; This file is free software; you can redistribute it and/or modify
@@ -107,14 +107,10 @@ them. `yas/window-system-popup-function' is used instead when in
 a window system.")
 
 (defvar yas/extra-mode-hooks
-  '()
+  '(ruby-mode-hook actionscript-mode-hook ox-mode-hook python-mode-hook)
   "A list of mode-hook that should be hooked to enable yas/minor-mode.
 Most modes need no special consideration. Some mode (like ruby-mode)
 doesn't call `after-change-major-mode-hook' need to be hooked explicitly.")
-(mapc '(lambda (x)
-	 (add-to-list 'yas/extra-mode-hooks
-		      x))
-      '(ruby-mode-hook actionscript-mode-hook ox-mode-hook python-mode-hook))
 
 (defvar yas/after-exit-snippet-hook
   '()
@@ -182,7 +178,7 @@ to expand.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Internal variables
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defvar yas/version "0.5.5")
+(defvar yas/version "0.5.4")
 
 (defvar yas/snippet-tables (make-hash-table)
   "A hash table of snippet tables corresponding to each major-mode.")
@@ -200,7 +196,7 @@ to expand.
   '(menu-item "--"))
 
 (defvar yas/known-modes
-  '(ruby-mode rst-mode)
+  '(ruby-mode rst-mode markdown-mode)
   "A list of mode which is well known but not part of emacs.")
 (defconst yas/escape-backslash
   (concat "YASESCAPE" "BACKSLASH" "PROTECTGUARD"))
@@ -808,7 +804,7 @@ will be deleted before inserting template."
 		     (yas/group-primary-field target))))
       (yas/exit-snippet (yas/group-snippet group)))))
 
-(defun yas/parse-template ()
+(defun yas/parse-template (&optional file-name)
   "Parse the template in the current buffer.
 If the buffer contains a line of \"# --\" then the contents
 above this line are ignored. Variables can be set above this
@@ -826,7 +822,7 @@ Here's a list of currently recognized variables:
 # --
 #include \"$1\""
   (goto-char (point-min))
-  (let (template name bound condition)
+  (let ((name file-name) template bound condition)
     (if (re-search-forward "^# --\n" nil t)
 	(progn (setq template 
 		     (buffer-substring-no-properties (point) 
@@ -929,9 +925,10 @@ hierarchy."
       (dolist (file (yas/directory-files directory t))
 	(when (file-readable-p file)
 	  (insert-file-contents file nil nil nil t)
-	  (push (cons (file-name-nondirectory file)
-		      (yas/parse-template))
-		snippets))))
+	  (let ((snippet-file-name (file-name-nondirectory file)))
+	    (push (cons snippet-file-name
+			(yas/parse-template snippet-file-name))
+		  snippets)))))
     (yas/define-snippets mode-sym
 			 snippets
 			 parent)
@@ -1097,7 +1094,7 @@ parent mode. The PARENT-MODE may not need to be a real mode."
     (dolist (snippet snippets)
       (let* ((full-key (car snippet))
 	     (key (file-name-sans-extension full-key))
-	     (name (caddr snippet))
+	     (name (or (caddr snippet) (file-name-extension full-key)))
 	     (condition (nth 3 snippet))
 	     (template (yas/make-template (cadr snippet)
 					  (or name key)
@@ -1573,7 +1570,6 @@ $0
 '(
   ("using" "using namespace ${std};
 $0" "using namespace ... " nil)
-  ("ns" "namespace " "namespace ..." nil)
   ("class" "class ${1:Name}
 {
 public:
@@ -1811,6 +1807,82 @@ end do
   )
 'text-mode)
 
+;;; snippets for markdown-mode
+(yas/define-snippets 'markdown-mode
+'(
+  ("rlink" "[${1:Link Text}][$2] $0
+" "Reference Link" nil)
+  ("rlb" "[${1:Reference}]: ${2:URL} $3
+$0
+" "Reference Label" nil)
+  ("rimg" "![${1:Alt Text}][$2] $0
+" "Referenced Image" nil)
+  ("ol" "${1:1}. ${2:Text}
+${1:$(number-to-string (1+ (string-to-number text)))}. $0
+" "Ordered List" nil)
+  ("link" "[${1:Link Text}](${2:URL} $3) $0
+" "Link" nil)
+  ("img" "![${1:Alt Text}](${2:URL} $3) $0
+" "Image" nil)
+  ("hr.2" "
+*******
+
+$0
+" "Horizontal Rule (*)" nil)
+  ("hr.1" "
+----------
+
+$0
+" "Horizontal Rule (-)" nil)
+  ("h6" "###### ${1:Header 6} ######
+
+$0
+" "Header 6" nil)
+  ("h5" "##### ${1:Header 5} #####
+
+$0
+" "Header 5" nil)
+  ("h4" "#### ${1:Header 4} ####
+
+$0
+" "Header 4" nil)
+  ("h3" "### ${1:Header 3} ###
+
+$0
+" "Header 3" nil)
+  ("h2.2" "${1:Header 2}
+${1:$(make-string (string-width text) ?\\-)}
+
+$0
+" "Header 2 (-)" nil)
+  ("h2.1" "## ${1:Header 1} ##
+
+$0
+" "Header 2 (##)" nil)
+  ("h1.2" "${1:Header 1}
+${1:$(make-string (string-width text) ?\\=)}
+
+$0
+" "Header 1 (=)" nil)
+  ("h1.1" "# ${1:Header 1} #
+
+$0
+" "Header 1 (#)" nil)
+  ("`" "\\`${1:Code}\\` $0
+" "Inline Code" nil)
+  ("__" "**${1:Text}** $0
+" "Strong" nil)
+  ("_" "_${1:Text}_ $0
+" "Emphasis" nil)
+  ("-" "- ${1:Text}
+-$0
+" "Unordered List" nil)
+  ("+" "+ ${1:Text}
++$0
+" "Unordered List" nil)
+  )
+'text-mode)
+
 ;;; snippets for objc-mode
 (yas/define-snippets 'objc-mode
 '(
@@ -1921,8 +1993,8 @@ $0
               '(lambda (x)
                  (mapcar
                   '(lambda (x)
-                     (replace-regexp-in-string \"\\s*$\" \"\"
-                      (replace-regexp-in-string \"^\\s*\" \"\" x)))
+                     (replace-regexp-in-string \"[[:blank:]]*$\" \"\"
+                      (replace-regexp-in-string \"^[[:blank:]]*\" \"\" x)))
                   x))
               (mapcar '(lambda (x) (split-string x \"=\"))
                       (split-string text \",\")))
@@ -1935,7 +2007,7 @@ $0
          indent)))
     }
     $0
-" nil nil)
+" "defm" nil)
   ("def" "def ${1:name}($2):
     \"\"\"$3
     ${2:$
@@ -1951,8 +2023,8 @@ $0
               '(lambda (x)
                  (mapcar
                   '(lambda (x)
-                     (replace-regexp-in-string \"\\s*$\" \"\"
-                      (replace-regexp-in-string \"^\\s*\" \"\" x)))
+                     (replace-regexp-in-string \"[[:blank:]]*$\" \"\"
+                      (replace-regexp-in-string \"^[[:blank:]]*\" \"\" x)))
                   x))
               (mapcar '(lambda (x) (split-string x \"=\"))
                       (split-string text \",\")))
@@ -1965,7 +2037,7 @@ $0
          indent)))
     }
     $0
-" nil nil)
+" "def" nil)
   ("class" "class ${1:ClassName}(${2:object}):
     \"\"\"$3
     \"\"\"
@@ -1985,8 +2057,8 @@ $0
                   '(lambda (x)
                      (mapcar
                       (lambda (x)
-                        (replace-regexp-in-string \"\\s*$\" \"\"
-                         (replace-regexp-in-string \"^\\s*\" \"\" x))) x))
+                        (replace-regexp-in-string \"[[:blank:]]*$\" \"\"
+                         (replace-regexp-in-string \"^[[:blank:]]*\" \"\" x))) x))
                   (mapcar '(lambda (x) (split-string x \"=\"))
                           (split-string text \",\")))
                  indent)))
@@ -2006,15 +2078,15 @@ $0
           '(lambda (x)
              (mapcar
               '(lambda (x)
-                 (replace-regexp-in-string \"\\s*$\" \"\"
-                  (replace-regexp-in-string \"^\\s*\" \"\" x)))
+                 (replace-regexp-in-string \"[[:blank:]]*$\" \"\"
+                  (replace-regexp-in-string \"^[[:blank:]]*\" \"\" x)))
               x))
           (mapcar '(lambda (x) (split-string x \"=\"))
                   (split-string text \",\")))
          (concat \"\\n\" (make-string (current-column) 32)))
         }
         $0
-" nil nil)
+" "class" nil)
   ("__" "__${init}__" "__...__" nil)
   )
 'text-mode)
@@ -2103,7 +2175,7 @@ def <=> other
 end" "include Comparable; def <=> ... end" nil)
   ("=b" "=begin rdoc
   $0
-=end" nil nil)
+=end" "=b" nil)
   ("#" "# => " "# =>" nil)
   )
 'text-mode)
