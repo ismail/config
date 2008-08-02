@@ -39,12 +39,8 @@ zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh_cache
 zstyle ':acceptline:*' rehash true
 
-if test -z $EMACS; then
-    export PS1="%{$fg[green]%}[%n@%m]%{$reset_color$fg[white]%}[%D{%H:%M:%S}]%{$reset_color%}%{$fg_bold[blue]%}
+export PS1="%{$fg[green]%}[%n@%m]%{$reset_color$fg[white]%}[%D{%H:%M:%S}]%{$reset_color%}%{$fg_bold[blue]%}
 [%~]>%{$reset_color%} "
-else
-    export PS1="[%n@%m]> "
-fi
 
 export PYTHONSTARTUP="/etc/pythonstart"
 alias cl="clear"
