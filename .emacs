@@ -24,3 +24,6 @@
 ;; Org mode
 (load "orgmode.el")
 
+;; Python
+(load "python.el")
+
