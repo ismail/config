@@ -25,5 +25,5 @@
 (load "orgmode.el")
 
 ;; Python
-(load "python.el")
+(load "ropy.el")
 
