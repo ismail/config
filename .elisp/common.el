@@ -32,7 +32,7 @@
 ;; Default font
 (if (string= "ns" window-system)
     (setq my-font "Droid Sans Mono-14")
-    (setq my-font "Droid Sans Mono-11.3"))
+    (setq my-font "Droid Sans Mono-8.3"))
 (set-frame-font my-font)
 (add-hook 'after-make-frame-functions
         (lambda (cur-frame)
