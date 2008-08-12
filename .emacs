@@ -27,3 +27,6 @@
 ;; Python
 (load "ropy.el")
 
+;; ECB
+(load "ecb-config.el")
+

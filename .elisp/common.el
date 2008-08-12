@@ -29,6 +29,9 @@
 ;; YA snippet
 (require 'yasnippet-bundle)
 
+;; Enable jabber support
+(require 'jabber)
+
 ;; Default font
 (if (string= "ns" window-system)
     (setq my-font "Droid Sans Mono-14")
