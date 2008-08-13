@@ -4,6 +4,7 @@
 (setq ecb-vc-enable-support t)
 (setq ecb-layout-name "left9")
 (setq ecb-primary-secondary-mouse-buttons (quote mouse-1--C-mouse-1))
+(setq global-semantic-auto-parse-mode t)
 (setq semantic-load-turn-useful-things-on t)
 (semantic-load-enable-excessive-code-helpers)
 
