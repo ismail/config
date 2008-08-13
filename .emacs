@@ -30,3 +30,6 @@
 ;; ECB
 (load "ecb-config.el")
 
+;; Jabber
+(load "jabber-config.el")
+
