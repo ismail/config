@@ -1,7 +1,7 @@
 ;; Change the default eshell prompt
 (setq eshell-prompt-function
       (lambda ()
-        (concat (getenv "USER") "@nintosh "
+        (concat (getenv "USER") "@havana "
                 (eshell/pwd) " $ ")))
 
 ;; This will transform ansi color to faces in Emacs shell!
