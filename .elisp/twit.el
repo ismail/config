@@ -161,7 +161,12 @@
 ;;            URLs now are fontified and hot.
 ;;            Maybe (maybe?) fixed the bug where following tweets
 ;;            kills the mark, and dumps the point at the bottom. (JA)
-;;
+;; * 0.0.16 - Fixed most compilation warnings. (PeterJones)
+;; * 0.0.17 - Fixed a bug where a users username/password pair is
+;;            not properly updated through customization.  It's not
+;;            100%, but it should be much better now. (JA)
+;;            twit-show-recent-tweets doesn't change focus. (thanks Ben Atkin)
+
 ;; Bugs:
 ;; * Following recent tweets does this really annoying thing where
 ;;   the point will jump to the bottom on occation.  This seems to
@@ -194,15 +199,58 @@
 (require 'url)
 (require 'url-http)
 
+(eval-when-compile
+  (require 'cl))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Variables
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defvar twit-version-number "0.0.15")
+(defvar twit-version-number "0.0.17")
 
 (defvar twit-status-mode-map (make-sparse-keymap))
 (defvar twit-followers-mode-map (make-sparse-keymap))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Cusomtization functions
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun twit-set-user-pass (sym val)
+  "Set the username/password pair after a customization.
+
+Note that this function uses a really cheap hack.
+Basically the problem is that we need to run this whenever the twit-user
+and twit-pass variables are customized and loaded.  The problem is, this
+funciton is executed by cutomzie on emacs initialization, during the
+setting of twit-user, but before the binding to twit-pass, throwing an 
+error.
+
+We get around this by using condition-case and handling the void-varible
+error."
+  (set-default sym val)
+  (condition-case nil
+    (let ((twit-pass-var 'twit-pass))
+	  (when (and (not (string= (symbol-value twit-pass-var) ""))   
+				 (not (string= twit-user "")))
+			(let ((old-storage (assoc "twitter.com:80" (symbol-value url-basic-auth-storage))))
+			  (when old-storage 
+					(set url-basic-auth-storage (delete old-storage (symbol-value url-basic-auth-storage)))))
+			(set url-basic-auth-storage
+				 (cons (list "twitter.com:80"
+							 (cons "Twitter API"
+								   (base64-encode-string (format "%s:%s" twit-user (symbol-value twit-pass-var)))))
+					   (symbol-value url-basic-auth-storage)))))
+	(void-variable nil)))
+
+;; Use this when testing the basic storage engine.
+;; Set up for easy space for your C-x C-e execution pleasure.
+(when nil
+	  (set url-basic-auth-storage nil)
+	  )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Customizations
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defgroup twit nil
   "twit.el customizations."
   :version "0.1"
@@ -212,13 +260,15 @@
   ""
   "Your twitter username."
   :group 'twit
-  :type 'string)
+  :type 'string
+  :set 'twit-set-user-pass)
 
 (defcustom twit-pass
   ""
   "Your twitter password."
   :group 'twit
-  :type 'string)
+  :type 'string
+  :set 'twit-set-user-pass)
 
 (defcustom twit-new-tweet-hook
   '()
@@ -252,6 +302,7 @@ The variable name is a bit of a misnomer, because it is not actually based on id
   :group 'twit
   :type 'boolean)
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Faces
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -272,7 +323,8 @@ The variable name is a bit of a misnomer, because it is not actually based on id
 
 (defface twit-info-face
   '((t (:height 0.8 :slant italic)))
-  "Face for displaying where, how and when someone tweeted.")
+  "Face for displaying where, how and when someone tweeted."
+  :group 'twit)
 
 (defface twit-title-face
   '((t
@@ -294,22 +346,8 @@ The variable name is a bit of a misnomer, because it is not actually based on id
   :group 'twit)
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Explicitly set URL info with customization vars
-
-(if (and (not (assoc "twitter.com:80" (symbol-value url-basic-auth-storage)))
-		 (not (string= twit-pass ""))
-		 (not (string= twit-user "")))
-	(progn
-	 (set url-basic-auth-storage
-		  (cons (list "twitter.com:80"
-					  (cons "Twitter API"
-							(base64-encode-string (format "%s:%s" twit-user twit-pass))))
-				(symbol-value url-basic-auth-storage)))))
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Keymaps
+;; More variables and constants
 ;; 'r' key for reloading/refreshing the buffer
 (defvar twit-key-list
   '(("s" . twit-show-recent-tweets)
@@ -337,6 +375,8 @@ The variable name is a bit of a misnomer, because it is not actually based on id
 (defvar twit-rate-limit-timer
   nil
   "Timer object to poll the rate-limiting.")
+
+(defvar twit-first-time-through nil)
 
 ;; Most of this will be used in the yet-to-be-written twitter
 ;; reading functions.
@@ -496,7 +536,7 @@ It is in the format of (timestamp user-id message) ")
 					  (if (= times-through 1)
 						  (progn
 						   (setq last-tweet (list timestamp user-id message))
-						   (setq first-time-through nil)))
+						   (setq twit-first-time-through nil)))
 					  ;; the string-match is a bit weird, as emacswiki.org won't
 					  ;; accept pages with the href in it per se
 					  (when (and src-info (string-match (concat "<a h" "ref=\"\\(.*\\)\">\\(.*\\)<" "/a>")
@@ -536,12 +576,12 @@ It is in the format of (timestamp user-id message) ")
 					(setq times-through (+ 1 times-through))))
 	(if (not (equal last-tweet twit-last-tweet))
 		(progn (setq twit-last-tweet last-tweet)
-			   (setq first-time-through nil)
+			   (setq twit-first-time-through nil)
 			   (run-hooks 'twit-new-tweet-hook))))
   
   ;; go back to top so we see the latest messages
   (goto-address)
-  (beginning-of-buffer))
+  (goto-char (point-min)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; User images.  Not complete.
@@ -658,7 +698,7 @@ long."
   (interactive "r")
   (let ((post (buffer-substring start end)))
     (if (> (length post) 140)
-	(error twit-too-long-error)
+	(error twit-too-long-msg)
       (if (twit-post-function twit-update-url post)
 		  (twit-alert twit-success-msg)))))
 
@@ -671,7 +711,7 @@ long."
   (interactive)
   (let ((post (buffer-substring (point-min) (point-max))))
     (if (> (length post) 140)
-	(error twit-too-long-error)
+	(error twit-too-long-msg)
       (if (twit-post-function twit-update-url post)
 		  (twit-alert twit-success-msg)))))
 
@@ -714,22 +754,24 @@ long."
 
 (defun twit-stop-following-tweets ()
   "When you want to stop following tweets, you can use this function to turn off the timer."
+  (interactive)
   (if (featurep 'todochiku)
 	  (todochiku-message "Twit.el" "Twit.el Stopped Following Tweets" (todochiku-icon 'social)))
-  (interactive)
   (cancel-timer twit-timer))
 
 ;;;###autoload
 (defun twit-show-recent-tweets ()
-  "Display a list of the most recent twewets from your followers."
+  "Display a list of the most recent tweets from people you're following."
   (interactive)
-  (pop-to-buffer "*Twit-recent*")
+  (let ((b (get-buffer-create "*Twit-recent*")))
+    (display-buffer b)
+    (with-current-buffer b
   (toggle-read-only 0)
   (twit-write-recent-tweets (twit-parse-xml twit-friend-timeline-file))
   ;; set up some sensible mode and useful bindings
   (text-mode)
   (toggle-read-only 1)
-  (use-local-map twit-status-mode-map))
+	  (use-local-map twit-status-mode-map))))
 
 ;;;###autoload
 (define-minor-mode twit-mode 
