@@ -30,9 +30,14 @@
 (require 'yasnippet-bundle)
 
 ;; Default font
-(if (string= "ns" window-system)
-    (setq my-font "Droid Sans Mono-14")
-    (setq my-font "Droid Sans Mono-8.3"))
+(cond
+    ((string= "ns" window-system)
+        (setq my-font "Droid Sans Mono-14"))
+    ((string= "x" window-system)
+        (setq my-font "Droid Sans Mono-8.3"))
+    ((string= "w32" window-system)
+        (setq my-font "Droid Sans Mono-10")))
+
 (set-frame-font my-font)
 (add-hook 'after-make-frame-functions
         (lambda (cur-frame)
