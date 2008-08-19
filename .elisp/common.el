@@ -40,6 +40,9 @@
         (list
         (cons 'font my-font)))))
 
+;; Use UTF-8 everywhere
+(prefer-coding-system 'utf-8)
+
 ;; Lose the UI
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
