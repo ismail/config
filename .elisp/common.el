@@ -30,11 +30,10 @@
 (require 'yasnippet-bundle)
 
 ;; Default font
+(setq my-font "Droid Sans Mono-8.3")
 (cond
     ((string= "ns" window-system)
         (setq my-font "Droid Sans Mono-14"))
-    ((string= "x" window-system)
-        (setq my-font "Droid Sans Mono-8.3"))
     ((string= "w32" window-system)
         (setq my-font "Droid Sans Mono-10")))
 
