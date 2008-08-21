@@ -1057,8 +1057,9 @@ name. And under each subdirectory, each file is a definition
 of a snippet. The file name is the trigger key and the
 content of the file is the template."
   (interactive "DSelect the root directory: ")
-  (when (file-directory-p directory)
-    (add-to-list 'yas/root-directory directory))
+  (unless (file-directory-p directory)
+    (error "Error %s not a directory" directory))
+  (add-to-list 'yas/root-directory directory)
   (dolist (dir (yas/directory-files directory nil))
     (yas/load-directory-1 dir))
   (when (interactive-p)
@@ -1650,6 +1651,23 @@ public:
   )
 'text-mode)
 
+;;; snippets for erlang-mode
+(yas/define-snippets 'erlang-mode
+'(
+  ("mod" "-module(${1:$(file-name-nondirectory 
+               (file-name-sans-extension (buffer-file-name)))}).
+$0
+
+" "-module()." nil)
+  ("imp" "-import(${1:lists}, [${2:map/2, sum/1}]).
+$0
+" "-import([])." nil)
+  ("exp" "-export([${1:start/0}]).
+$0
+" "-export([])." nil)
+  )
+'text-mode)
+
 ;;; snippets for f90-mode
 (yas/define-snippets 'f90-mode
 '(
@@ -2165,9 +2183,16 @@ end" "for ... in ...; ... end" nil)
   ("deli" "delete_if { |${e} $0 }" "delete_if { |...| ... }" nil)
   ("dee" "Marshal.load(Marshal.dump($0))" "deep_copy(...)" nil)
   ("collect" "collect { |${e}| $0 }" "collect { |...| ... }" nil)
-  ("cls" "class ${Name}
-  $0
-end" "class ... end" nil)
+  ("cls" "class ${1:$
+         (let ((fn (capitalize (file-name-nondirectory
+                                 (file-name-sans-extension
+                                   (buffer-file-name))))))
+           (cond
+             ((string-match \"_\" fn) (replace-match \"\" nil nil fn))
+              (t fn)))}
+ $0
+end
+" "class ... end" nil)
   ("classify" "classify { |${e}| $0 }" "classify { |...| ... }" nil)
   ("cla" "class << ${self}
   $0
