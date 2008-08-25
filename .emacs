@@ -2,6 +2,9 @@
 (setq load-path (cons "~/.elisp" load-path))
 (progn (cd "~/.elisp") (normal-top-level-add-subdirs-to-load-path))
 
+;; Platform discovery
+(load "platforms.el")
+
 ;; Erc config
 (load "erc-config.el")
 
@@ -32,4 +35,16 @@
 
 ;; Jabber
 (load "jabber-config.el")
+
+;; Paths
+(load "path.el")
+
+;; Fonts
+(load "fonts.el")
+
+;; Browser config
+(load "browser.el")
+
+;; Load packages
+(load "packages.el")
 
