@@ -10,6 +10,9 @@
 ;; No startup message
 (setq inhibit-startup-message 1)
 
+;; No beeping
+(setq ring-bell-function (lambda () (message "*beep*")))
+
 ;; Die trailing whitespace die
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
