@@ -23,30 +23,6 @@
 ;; Shortcut for comment/uncomment
 (global-set-key "\C-u" 'comment-or-uncomment-region)
 
-;; Enable w3m
-(require 'w3m-load)
-
-;; YA snippet
-(require 'yasnippet-bundle)
-
-;; Default content
-(require 'defaultcontent)
-
-;; Default font
-(setq my-font "Droid Sans Mono-8.3")
-(cond
-    ((string= "ns" window-system)
-        (setq my-font "Droid Sans Mono-14"))
-    ((string= "w32" window-system)
-        (setq my-font "Droid Sans Mono-10")))
-
-(set-frame-font my-font)
-(add-hook 'after-make-frame-functions
-        (lambda (cur-frame)
-        (modify-frame-parameters cur-frame
-        (list
-        (cons 'font my-font)))))
-
 ;; Use UTF-8 everywhere
 (prefer-coding-system 'utf-8)
 
@@ -54,7 +30,7 @@
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 
-(if (not (string= "ns" window-system))
+(if (not macosx)
     (if (fboundp 'menu-bar-mode) (menu-bar-mode -1)))
 
 ;; For multi-tty mode
@@ -74,32 +50,9 @@
 ;; Save bookmarks
 (setq bookmark-save-flag 1)
 
-;; Enable twitter integration
-(require 'twit)
-
 ;; Enable IDO mode
 (ido-mode t)
 (setq ido-enable-flex-matching t)
-
-;; Use Firefox on X and Safari on MacOS
-(if (string= "x" window-system)
-    (progn
-      (setq browse-url-generic-program (executable-find "firefox")
-            browse-url-browser-function 'browse-url-generic)))
-
-(if (string= "ns" window-system)
-  (progn
-    (setq browse-url-browser-function 'browse-url-safari)
-    (defun browse-url-safari (url &optional new-window)
-      "Open URL in a new Safari window."
-      (interactive (browse-url-interactive-arg "URL: "))
-      (unless
-          (string= ""
-                   (shell-command-to-string
-                    (concat "open -a WebKit " url)))
-        (message "Starting Safari...")
-        (start-process (concat "open -a WebKit " url) nil "open -a WebKit " url)
-        (message "Starting Safari... done")))))
 
 ;; Server start if we are not in a windowing environment
 (if (string= nil window-system)
