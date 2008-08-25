@@ -29,6 +29,9 @@
 ;; YA snippet
 (require 'yasnippet-bundle)
 
+;; Default content
+(require 'defaultcontent)
+
 ;; Default font
 (setq my-font "Droid Sans Mono-8.3")
 (cond
