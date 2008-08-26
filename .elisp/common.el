@@ -56,7 +56,3 @@
 ;; Enable IDO mode
 (ido-mode t)
 (setq ido-enable-flex-matching t)
-
-;; Server start if we are not in a windowing environment
-(if (string= nil window-system)
-    (server-start))
