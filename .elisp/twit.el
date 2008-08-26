@@ -238,7 +238,7 @@ error."
 			(set url-basic-auth-storage
 				 (cons (list "twitter.com:80"
 							 (cons "Twitter API"
-								   (base64-encode-string (format "%s:%s" twit-user (encode-coding-string (symbol-value twit-pass-var) 'utf-8)))))
+								   (base64-encode-string (format "%s:%s" twit-user (symbol-value twit-pass-var) ))))
 					   (symbol-value url-basic-auth-storage)))))
 	(void-variable nil)))
 
