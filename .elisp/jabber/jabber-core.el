@@ -79,8 +79,9 @@ This might be due to failed authentication.  Check `*jabber-authenticated*'."
   :type 'hook
   :group 'jabber-core)
 
-(defcustom jabber-lost-connection-hook nil
-  "*Hooks run after involuntary disconnection"
+(defcustom jabber-lost-connection-hooks nil
+  "*Hooks run after involuntary disconnection.
+The functions are called with one argument: the connection object."
   :type 'hook
   :group 'jabber-core)
 
@@ -269,7 +270,7 @@ With double prefix argument, specify more connection details."
 	(reason (plist-get state-data :disconnection-reason))
 	(ever-session-established (plist-get state-data :ever-session-established)))
     (unless expected
-      (run-hooks 'jabber-lost-connection-hook)
+      (run-hook-with-args 'jabber-lost-connection-hooks fsm)
       (message "%s@%s/%s: connection lost: `%s'"
 	       (plist-get state-data :username)
 	       (plist-get state-data :server)
@@ -741,21 +742,21 @@ With double prefix argument, specify more connection details."
   (interactive "P")
   (if arg
       (jabber-disconnect-one (jabber-read-account))
-      (unless *jabber-disconnecting*	; avoid reentry
-    (let ((*jabber-disconnecting* t))
-      (dolist (c jabber-connections)
-	(jabber-disconnect-one c t))
-      (setq jabber-connections nil)
+    (unless *jabber-disconnecting*	; avoid reentry
+      (let ((*jabber-disconnecting* t))
+	(run-hooks 'jabber-pre-disconnect-hook)
+	(dolist (c jabber-connections)
+	  (jabber-disconnect-one c t))
+	(setq jabber-connections nil)
 
-      (jabber-disconnected)
-      (when (interactive-p)
-	(message "Disconnected from Jabber server(s)"))))))
+	(jabber-disconnected)
+	(when (interactive-p)
+	  (message "Disconnected from Jabber server(s)"))))))
 
 (defun jabber-disconnect-one (jc &optional dont-redisplay)
   "Disconnect from one Jabber server.
 If DONT-REDISPLAY is non-nil, don't update roster buffer."
   (interactive (list (jabber-read-account)))
-  ;;(run-hooks 'jabber-pre-disconnect-hook)
   (fsm-send-sync jc :do-disconnect)
   (when (interactive-p)
     (message "Disconnected from %s"
