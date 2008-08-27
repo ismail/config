@@ -27,9 +27,6 @@
 ;; Org mode
 (load "orgmode.el")
 
-;; Python
-(load "ropy.el")
-
 ;; ECB
 (load "ecb-config.el")
 
