@@ -10,3 +10,6 @@
 
 (defconst macosx
     (eq system-type 'darwin))
+
+(if win32
+    (load "windows.el"))
