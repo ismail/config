@@ -100,4 +100,5 @@ set showcmd
 set wildmenu
 set incsearch
 set background=dark
+set paste
 
