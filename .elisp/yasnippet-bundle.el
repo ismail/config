@@ -35,7 +35,7 @@
 ;; For more information and detailed usage, refer to the project page:
 ;;      http://code.google.com/p/yasnippet/
 
-(require 'cl)
+(eval-when-compile (require 'cl))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; User customizable variables
@@ -174,6 +174,8 @@ Here's an example:
                     '(if (python-in-string/comment)
                          '(require-snippet-condition . force-in-comment)
                        t))))")
+(eval-when-compile
+  (make-variable-buffer-local 'yas/buffer-local-condition))
 
 (defvar yas/fallback-behavior 'call-other-command
   "The fall back behavior of YASnippet when it can't find a snippet
@@ -1225,7 +1227,7 @@ when the condition evaluated to non-nil."
                   (if template
                       (progn (yas/expand-snippet start end template)
                              'expanded) ; expanded successfully
-                    'interruptted))     ; interrupted by user
+                    'interrupted))      ; interrupted by user
               (if (eq yas/fallback-behavior 'return-nil)
                   nil                   ; return nil
                 (let* ((yas/minor-mode nil)
@@ -1877,6 +1879,7 @@ $0
 '(
   ("using" "using namespace ${std};
 $0" "using namespace ... " nil)
+  ("ns" "namespace " "namespace ..." nil)
   ("class" "class ${1:Name}
 {
 public:
@@ -1892,6 +1895,121 @@ public:
 '(
   ("fopen" "FILE *${fp} = fopen(${\"file\"}, \"${r}\");
 " "FILE *fp = fopen(..., ...);" nil)
+  )
+'cc-mode)
+
+;;; snippets for csharp-mode
+(yas/define-snippets 'csharp-mode
+'(
+  ("using.2" "using System.$1;
+" "using System....;" nil)
+  ("using.1" "using System;
+" "using System;" nil)
+  ("using" "using $1;
+" "using ...;" nil)
+  ("region" "#region $1
+$0
+#endregion
+" "#region ... #endregion" nil)
+  ("prop" "/// <summary>
+/// $5
+/// </summary>
+/// <value>$6</value>
+$1 $2 $3
+{
+    get {
+        return this.$4;
+    }
+    set {
+        this.$4 = value;
+    }
+}
+" "property ... ... { ... }" nil)
+  ("namespace" "namespace $1
+{
+$0
+}
+" "namespace .. { ... }" nil)
+  ("method" "/// <summary>
+/// ${5:Description}
+/// </summary>${2:$(if (string= (upcase text) \"VOID\") \"\" (format \"%s%s%s\" \"\\n/// <returns><c>\" text \"</c></returns>\"))}
+${1:public} ${2:void} ${3:MethodName}($4)
+{
+$0
+}
+" "public void Method { ... }" nil)
+  ("comment.3" "/// <exception cref=\"$1\">$2</exception>
+" "/// <exception cref=\"...\"> ... </exception>" nil)
+  ("comment.2" "/// <returns>$1</returns>
+" "/// <param name=\"...\"> ... </param>" nil)
+  ("comment.1" "/// <param name=\"$1\">$2</param>
+" "/// <param name=\"...\"> ... </param>" nil)
+  ("comment" "/// <summary>
+/// $1
+/// </summary>
+" "/// <summary> ... </summary>" nil)
+  ("class" "${5:public} class ${1:Name}
+{
+    #region Ctor & Destructor
+    /// <summary>
+    /// ${3:Standard Constructor}
+    /// </summary>
+    public $1($2)
+    {
+    }
+
+    /// <summary>
+    /// ${4:Default Destructor}
+    /// </summary>    
+    public ~$1()
+    {
+    }
+    #endregion
+}
+" "class ... { ... }" nil)
+  ("attrib.2" "/// <summary>
+/// $3
+/// </summary>
+private $1 ${2:$(if (> (length text) 0) (format \"_%s%s\" (downcase (substring text 0 1)) (substring text 1 (length text))) \"\")};
+
+/// <summary>
+/// ${3:Description}
+/// </summary>
+/// <value><c>$1</c></value>
+public ${1:Type} ${2:Name}
+{
+    get {
+        return this.${2:$(if (> (length text) 0) (format \"_%s%s\" (downcase (substring text 0 1)) (substring text 1 (length text))) \"\")};
+    }
+    set {
+        this.${2:$(if (> (length text) 0) (format \"_%s%s\" (downcase (substring text 0 1)) (substring text 1 (length text))) \"\")} = value;
+    }
+}
+" "private _attribute ....; public Property ... ... { ... }" nil)
+  ("attrib.1" "/// <summary>
+/// $3
+/// </summary>
+private $1 $2;
+
+/// <summary>
+/// $4
+/// </summary>
+/// <value>$5</value>
+public $1 $2
+{
+    get {
+        return this.$2;
+    }
+    set {
+        this.$2 = value;
+    }
+}
+" "private attribute ....; public property ... ... { ... }" nil)
+  ("attrib" "/// <summary>
+/// $3
+/// </summary>
+private $1 $2;
+" "private attribute ....;" nil)
   )
 'cc-mode)
 
@@ -1943,17 +2061,86 @@ public:
 ;;; snippets for erlang-mode
 (yas/define-snippets 'erlang-mode
 '(
+  ("undef" "-undef($1).
+$0
+" "-undef(...)." nil)
+  ("try" "try $1 of
+    $0
+catch
+after
+end
+" "try ... of ... catch after end" nil)
+  ("rec" "-record($1,{$2}).
+$0
+" "-record(...,{...})." nil)
+  ("rcv.after" "receive
+after
+    $1 -> $0
+end
+" "receive after ... -> ... end" nil)
+  ("rcv" "receive
+    $1 -> $0
+end
+" "receive ... -> ... end" nil)
   ("mod" "-module(${1:$(file-name-nondirectory 
                (file-name-sans-extension (buffer-file-name)))}).
 $0
 
 " "-module()." nil)
+  ("loop" "${1:loop}($2) ->
+    receive
+	${3:_} ->
+	    $1($2)
+    end.
+$0
+" "loop(...) -> receive _ -> loop(...) end." nil)
+  ("inc.lib" "-include_lib(\"$1\").
+$0
+" "-include_lib(\"...\")." nil)
+  ("inc" "-include(\"$1\").
+$0
+" "-include(\"...\")." nil)
   ("imp" "-import(${1:lists}, [${2:map/2, sum/1}]).
 $0
 " "-import([])." nil)
+  ("ifndef" "-ifndef($1).
+$0
+-endif.
+" "-ifndef(...). ... -endif." nil)
+  ("ifdef" "-ifdef($1).
+$0
+-endif.
+" "-ifdef(...). ... -endif." nil)
+  ("if" "if
+    $1 -> $2;
+    true -> $0
+end
+" "if ... -> ... ; true -> ... end" nil)
+  ("fun" "fun ($1) -> $0 end
+" "fun (...) -> ... end" nil)
   ("exp" "-export([${1:start/0}]).
 $0
 " "-export([])." nil)
+  ("def" "-define($1,$2).
+$0
+" "-define(...,...)." nil)
+  ("compile" "-compile([${1:export_all}]).
+$0
+" "-compile(...)." nil)
+  ("case" "case $1 of
+    $0
+end
+" "case ... of ... end" nil)
+  ("beh" "-behaviour(${1:gen_server}).
+$0
+" "-behaviour(...)." nil)
+  ("begin" "begin
+    $0
+end
+" "begin ... end" nil)
+  ("after" "after
+    $1 -> $0
+" "after ... ->" nil)
   )
 'text-mode)
 
@@ -2508,6 +2695,38 @@ end" "include Comparable; def <=> ... end" nil)
   $0
 =end" "=b" nil)
   ("#" "# => " "# =>" nil)
+  )
+'text-mode)
+
+;;; snippets for sql-mode
+(yas/define-snippets 'sql-mode
+'(
+  ("references" "REFERENCES ${1:TableName}([${2:ColumnName}])
+" "REFERENCES ..." nil)
+  ("create.1" "CREATE PROCEDURE [${1:dbo}].[${2:Name}] 
+(
+		$3		$4		= ${5:NULL}		${6:OUTPUT}
+)
+AS
+BEGIN
+$0
+END
+GO
+" "create procedure ..." nil)
+  ("create" "CREATE TABLE [${1:dbo}].[${2:TableName}] 
+(
+		${3:Id}		${4:INT IDENTITY(1,1)}		${5:NOT NULL}
+$0
+	CONSTRAINT [${6:PK_}] PRIMARY KEY ${7:CLUSTERED} ([$3]) 
+)
+GO
+" "create table ..." nil)
+  ("constraint.1" "CONSTRAINT [${1:FK_Name}] FOREIGN KEY ${2:CLUSTERED} ([${3:ColumnName}]) 
+" "CONSTRAINT [..] FOREIGN KEY ..." nil)
+  ("constraint" "CONSTRAINT [${1:PK_Name}] PRIMARY KEY ${2:CLUSTERED} ([${3:ColumnName}]) 
+" "CONSTRAINT [..] PRIMARY KEY ..." nil)
+  ("column" "	,	${1:Name}		${2:Type}			${3:NOT NULL}
+" ", ColumnName ColumnType NOT NULL..." nil)
   )
 'text-mode)
 
