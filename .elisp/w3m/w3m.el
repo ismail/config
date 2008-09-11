@@ -176,7 +176,7 @@
 
 (defconst emacs-w3m-version
   (eval-when-compile
-    (let ((rev "$Revision: 1.1378 $"))
+    (let ((rev "$Revision: 1.1381 $"))
       (and (string-match "\\.\\([0-9]+\\) \\$\\'" rev)
 	   (setq rev (- (string-to-number (match-string 1 rev)) 1136))
 	   (format "1.4.%d" (+ rev 50)))))
@@ -1563,19 +1563,17 @@ a new buffer if a user invokes it in a buffer not being running the
   :group 'w3m
   :type 'boolean)
 
-(defcustom w3m-use-favicon (featurep 'w3m-image)
+(defcustom w3m-use-favicon t
   "*Non-nil means show favicon images if they are available.
 It will be set to nil automatically if ImageMagick's `convert' program
 does not support the ico format."
   :get (lambda (symbol)
 	 (and (not noninteractive)
 	      (default-value symbol)
-	      (featurep 'w3m-image)
 	      (w3m-favicon-usable-p)))
   :set (lambda (symbol value)
 	 (custom-set-default symbol (and (not noninteractive)
 					 value
-					 (featurep 'w3m-image)
 					 (w3m-favicon-usable-p))))
   :group 'w3m
   :type 'boolean)
@@ -3819,11 +3817,10 @@ Are you sure you really want to show all images (maybe insecure)? "))))
       (w3m-message "There are some images considered unsafe;\
  use the prefix arg to force display"))))
 
-(defsubst w3m-resize-inline-image-internal (url rate)
+(defun w3m-resize-inline-image-internal (url rate)
   "Resize an inline image on the cursor position.
 URL is a url of an image.  RATE is a number of percent used when
 resizing an image."
-  (interactive "P")
   (let* ((buffer-read-only)
 	 (start (point))
 	 (end (or (next-single-property-change start 'w3m-image)
@@ -3883,27 +3880,37 @@ You are retrieving non-secure image. Continue?")))
 		(set-marker end nil)))))))))
 
 (defun w3m-zoom-in-image (&optional rate)
-  "Zoom in an image on the point."
+  "Zoom in an image on the point.
+Numeric prefix specifies how many percent the image is enlarged by
+\(30 means enlarging the image by 130%).  The default is the value of
+the `w3m-resize-image-scale' variable."
   (interactive "P")
   (unless (w3m-display-graphic-p)
     (error "Can't display images in this environment"))
+  (unless (w3m-imagick-convert-program-available-p)
+    (error "ImageMagick's `convert' program is required"))
   (let ((url (w3m-image)))
-    (unless rate
-      (setq rate w3m-resize-image-scale))
     (if url
-	(w3m-resize-inline-image-internal url (+ 100 rate))
+	(w3m-resize-inline-image-internal
+	 url
+	 (+ 100 (or rate w3m-resize-image-scale)))
       (w3m-message "No image at point"))))
 
 (defun w3m-zoom-out-image (&optional rate)
-  "Zoom out an image on the point."
+  "Zoom out an image on the point.
+Numeric prefix specifies how many percent the image is shrunk by
+\(30 means shrinking the image by 70%).  The default is the value of
+the `w3m-resize-image-scale' variable."
   (interactive "P")
   (unless (w3m-display-graphic-p)
     (error "Can't display images in this environment"))
+  (unless (w3m-imagick-convert-program-available-p)
+    (error "ImageMagick's `convert' program is required"))
   (let ((url (w3m-image)))
-    (unless rate
-      (setq rate w3m-resize-image-scale))
     (if url
-	(w3m-resize-inline-image-internal url (- 100 rate))
+	(w3m-resize-inline-image-internal
+	 url
+	 (- 100 (or rate w3m-resize-image-scale)))
       (w3m-message "No image at point"))))
 
 (defun w3m-decode-entities (&optional keep-properties)
@@ -4098,14 +4105,23 @@ It replaces the faces on the arrived anchors from `w3m-anchor' to
 
 (defun w3m-gmane-url-at-point ()
   "Return a url that indicates the thread page in Gmane.
-This function works only when the cursor stays in the References header
-or the Message-ID header, otherwise returns nil.  That it returns an
-invalid url if Gmane doesn't handle the group cannot be helped."
+This function works only when the cursor stays in the References
+header or the Message-ID header, otherwise returns nil.
+
+On the Message-ID header, the url that asks Gmane for the thread
+beginning with the current article will be generated.
+On the References header, the url that asks Gmane for the whole thread
+\(namely it begins with the article of the first ID in the header) will
+be generated.  In that case, Gmane might fail to find the thread since
+it is possible that the root article has been posted to another group.
+
+That it returns an invalid url for the article of the group which is
+not being archived in Gmane cannott be helped."
   (save-excursion
     (let ((fmt "http://news.gmane.org/group/thread=%s/force_load=t")
 	  (start (point))
 	  (inhibit-point-motion-hooks t)
-	  md case-fold-search)
+	  case-fold-search)
       (goto-char (point-min))
       (re-search-forward (concat "^\\(?:"
 				 (regexp-quote mail-header-separator)
@@ -4119,15 +4135,8 @@ invalid url if Gmane doesn't handle the group cannot be helped."
 	  (beginning-of-line)
 	  (while (and (memq (char-after) '(?\t ? ))
 		      (zerop (forward-line -1))))
-	  (when (or (looking-at "References:[\t\n ]*<\\([^\t\n <>]+\\)>")
-		    (prog1
-			(looking-at "Message-ID:[\t\n ]*<\\([^\t\n <>]+\\)>")
-		      (setq md (match-data))
-		      (goto-char (point-min))
-		      (unless (re-search-forward
-			       "^References:[\t\n ]*<\\([^\t\n <>]+\\)>"
-			       nil t)
-			(set-match-data md))))
+	  (when (looking-at
+		 "\\(?:Message-ID\\|References\\):[\t\n ]*<\\([^\t\n <>]+\\)>")
 	    (format
 	     fmt
 	     (w3m-url-encode-string (match-string-no-properties 1)))))))))
@@ -8053,11 +8062,14 @@ Otherwise, it defaults to `w3m-horizontal-shift-columns'."
 	     (not (and (eq last-command this-command)
 		       (or (eq (point) (point-min))
 			   (eq (point) (point-max)))))
-	     (or (string-match "\\`i?search-" (symbol-name this-command))
+	     (or (memq this-command '(beginning-of-buffer end-of-buffer))
+		 (string-match "\\`i?search-" (symbol-name this-command))
 		 (and (markerp (nth 1 w3m-current-position))
 		      (markerp (nth 2 w3m-current-position))
-		      (>= (point) (marker-position (nth 1 w3m-current-position)))
-		      (<= (point) (marker-position (nth 2 w3m-current-position))))))
+		      (>= (point)
+			  (marker-position (nth 1 w3m-current-position)))
+		      (<= (point)
+			  (marker-position (nth 2 w3m-current-position))))))
     (w3m-horizontal-on-screen))
   (setq w3m-horizontal-scroll-done nil))
 
@@ -9019,7 +9031,7 @@ defaults to the value of `w3m-home-page' or \"about:\"."
 			   (not (and (setq args (cdr (member "w3m" args)))
 				     (member (car args) directives)))))
 	       args))
-      (defalias 'w3m-examine-command-line-args 'ignore))
+      (defalias 'w3m-examine-command-line-args (lambda nil)))
     ;; Inhibit the startup screen.
     (when (and url
 	       ;; Since XEmacs provides `inhibit-startup-message' as
