@@ -8,7 +8,7 @@
 
 ;;;### (autoloads (w3m-buffer w3m-region w3m-find-file w3m-browse-url
 ;;;;;;  w3m w3m-gohome w3m-goto-url-new-session w3m-goto-url w3m-download
-;;;;;;  w3m-retrieve) "w3m" "w3m.el" (18632 59032))
+;;;;;;  w3m-retrieve) "w3m" "w3m.el" (18634 18334))
 ;;; Generated autoloads from w3m.el
 
 (autoload 'w3m-retrieve "w3m" "\
@@ -35,7 +35,9 @@ POST-DATA and REFERER will be sent to the web server with a request.
 \(fn URL &optional NO-UNCOMPRESS NO-CACHE POST-DATA REFERER HANDLER)" nil nil)
 
 (autoload 'w3m-download "w3m" "\
-Not documented
+Download contents of URL to a file named FILENAME.
+NO-CHACHE (which the prefix argument gives when called interactively)
+specifies not using the cached data.
 
 \(fn URL &optional FILENAME NO-CACHE HANDLER POST-DATA)" t nil)
 
