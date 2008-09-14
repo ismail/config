@@ -1,6 +1,3 @@
-;; Enable IDN support
-(require 'idna)
-
 ;; Enable w3m
 (load "w3m-config.el")
 
