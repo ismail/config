@@ -33,9 +33,6 @@
 ;; Jabber
 (load "jabber-config.el")
 
-;; Paths
-(load "path.el")
-
 ;; Fonts
 (load "fonts.el")
 
@@ -44,13 +41,3 @@
 
 ;; Load packages
 (load "packages.el")
-
-;; Emacs reloaded
-(defconst animate-n-steps 20)
-(defun emacs-reloaded ()
-(animate-string (concat ";; Initialization successful, welcome to "
-    (substring (emacs-version) 0 16)
-    ".")
-    0 0)
-(newline-and-indent)  (newline-and-indent))
-(add-hook 'after-init-hook 'emacs-reloaded)

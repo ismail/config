@@ -13,3 +13,6 @@
 
 (if win32
     (load "windows.el"))
+
+(if macosx
+    (load "macosx.el"))

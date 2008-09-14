@@ -1,5 +1,8 @@
+;; Enable IDN support
+(require 'idna)
+
 ;; Enable w3m
-(require 'w3m-load)
+(load "w3m-config.el")
 
 ;; YA snippet
 (require 'yasnippet-bundle)
