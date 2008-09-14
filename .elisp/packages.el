@@ -5,7 +5,9 @@
 (load "w3m-config.el")
 
 ;; YA snippet
-(require 'yasnippet-bundle)
+(require 'yasnippet)
+(yas/initialize)
+(yas/load-directory "~/.elisp/snippets")
 
 ;; Default content
 (require 'defaultcontent)
