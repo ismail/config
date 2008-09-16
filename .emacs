@@ -30,9 +30,6 @@
 ;; ECB
 (load "ecb-config.el")
 
-;; Jabber
-(load "jabber-config.el")
-
 ;; Fonts
 (load "fonts.el")
 
