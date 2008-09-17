@@ -1,4 +1,5 @@
  (require 'erc)
+ (require 'erc-nicklist)
  (require 'erc-nick-colors)
  (setq erc-auto-query (quote window))
  (setq erc-autojoin-channels-alist (quote (("freenode.net" "#dingil deviance"))))
