@@ -39,9 +39,6 @@ zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh_cache
 zstyle ':acceptline:*' rehash true
 
-export PS1="%{$fg[green]%}[%n@%m]%{$reset_color$fg[white]%}[%D{%H:%M:%S}]%{$reset_color%}%{$fg_bold[blue]%}
-[%~]>%{$reset_color%} "
-
 export PYTHONSTARTUP="/etc/pythonstart"
 alias cl="clear"
 alias ci="xmllint --valid --noout"
@@ -56,3 +53,16 @@ export PATH=~/bin:~/gwt:/usr/local/bin:/Developer/usr/bin:$PATH:/opt/local/bin
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 export LC_ALL=en_US.UTF-8
+
+autoload -Uz vcs_info
+
+precmd() {
+  psvar=()
+
+  vcs_info
+  [[ -n $vcs_info_msg_0_ ]] && psvar[1]="$vcs_info_msg_0_"
+}
+
+PS1_VC="%(1v.%F{red}%1v%f.)%{$reset_color%}"
+export PS1="%{$fg[green]%}[%n@%m]%{$reset_color$fg[white]%}[%D{%H:%M:%S}]%{$reset_color%}%{$fg_bold[blue]%}
+[%~$PS1_VC%{$fg_bold[blue]%}]>%{$reset_color%} "
