@@ -41,9 +41,6 @@ setopt NOPROMPT_SP
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh_cache
 
-export PS1="%{$fg[green]%}[%n@%m]%{$reset_color$fg[white]%}[%D{%H:%M:%S}]%{$reset_color%}%{$fg_bold[blue]%}
-[%~]>%{$reset_color%} "
-
 alias ls="ls --color"
 alias grep="grep --color"
 alias cl="clear"
@@ -65,3 +62,6 @@ keychain --nogui -q id_dsa
 [ -f $HOME/.keychain/$HOSTNAME-sh ] &&
 . $HOME/.keychain/$HOSTNAME-sh
 
+PS1_VC="%(1v.%F{red}%1v%f.)%{$reset_color%}"
+export PS1="%{$fg[green]%}[%n@%m]%{$reset_color$fg[white]%}[%D{%H:%M:%S}]%{$reset_color%}%{$fg_bold[blue]%}
+[%~$PS1_VC%{$fg_bold[blue]%}]>%{$reset_color%} "
