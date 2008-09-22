@@ -1,68 +1,10 @@
-autoload -U colors
-colors
-
-# Auto completion
-autoload -U compinit
-compinit
-
-# History
-export HISTFILE=~/.zsh_history
-export HISTSIZE=50000
-export SAVEHIST=50000
-export HISTCONTROL=ignoredups
-setopt SHARE_HISTORY
-setopt EXTENDED_GLOB
-
-# Key bindings
-bindkey -e             # emacs key bindings
-bindkey ' ' magic-space  # also do history expansion on space
-
-bindkey "^[[5~" up-line-or-history
-bindkey "^[[6~" down-line-or-history
-
-# Editor
-export VISUAL="nano"
-
-# Other options
-setopt NO_BEEP
-setopt CORRECT_ALL
-setopt AUTO_LIST
-setopt AUTO_PUSHD
-setopt PUSHD_IGNORE_DUPS
-setopt PUSHD_SILENT
-setopt INTERACTIVE_COMMENTS
-setopt NONOMATCH
-setopt NOPROMPT_SP
-setopt COMBININGCHARS
-
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path ~/.zsh_cache
-zstyle ':acceptline:*' rehash true
+source .zshrc-common
 
 export PYTHONSTARTUP="/etc/pythonstart"
-alias cl="clear"
 alias ci="xmllint --valid --noout"
-alias d="cd"
-alias scp="rsync --compress-level=3 --partial --progress --rsh=ssh -r"
 alias wi="~/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
-alias wk="ssh localhost -p 4400"
-alias p="ipython"
-alias p3="python3.0"
 
 export PATH=~/bin:~/gwt:/usr/local/bin:/Developer/usr/bin:$PATH:/opt/local/bin
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 export LC_ALL=en_US.UTF-8
-
-autoload -Uz vcs_info
-
-precmd() {
-  psvar=()
-
-  vcs_info
-  [[ -n $vcs_info_msg_0_ ]] && psvar[1]="$vcs_info_msg_0_"
-}
-
-PS1_VC="%(1v.%F{red}%1v%f.)%{$reset_color%}"
-export PS1="%{$fg[green]%}[%n@%m]%{$reset_color$fg[white]%}[%D{%H:%M:%S}]%{$reset_color%}%{$fg_bold[blue]%}
-[%~$PS1_VC%{$fg_bold[blue]%}]>%{$reset_color%} "
