@@ -62,6 +62,15 @@ keychain --nogui -q id_dsa
 [ -f $HOME/.keychain/$HOSTNAME-sh ] &&
 . $HOME/.keychain/$HOSTNAME-sh
 
+autoload -Uz vcs_info
+
+precmd() {
+  psvar=()
+
+  vcs_info
+  [[ -n $vcs_info_msg_0_ ]] && psvar[1]="$vcs_info_msg_0_"
+}
+
 PS1_VC="%(1v.%F{red}%1v%f.)%{$reset_color%}"
 export PS1="%{$fg[green]%}[%n@%m]%{$reset_color$fg[white]%}[%D{%H:%M:%S}]%{$reset_color%}%{$fg_bold[blue]%}
 [%~$PS1_VC%{$fg_bold[blue]%}]>%{$reset_color%} "
