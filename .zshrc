@@ -5,8 +5,6 @@ alias grep="grep --color"
 alias ada="/usr/gnat/bin/gnatmake"
 alias mac="ssh namtrac.ath.cx"
 
-export LC_ALL=en_US.UTF-8
-export PYTHONSTARTUP=/etc/pythonstart
 export PATH="/usr/lib/ccache:/usr/local/cuda/bin:$PATH"
 
 keychain --nogui -q id_dsa

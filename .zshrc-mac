@@ -1,7 +1,5 @@
 source .zshrc-common
 
-export PYTHONSTARTUP="/etc/pythonstart"
-alias ci="xmllint --valid --noout"
 alias wi="~/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
 
 export PATH=~/bin:~/gwt:/usr/local/bin:/Developer/usr/bin:$PATH:/opt/local/bin

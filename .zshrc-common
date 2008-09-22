@@ -56,6 +56,8 @@ precmd() {
 PS1_VC="%(1v.%F{red}%1v%f.)%{$reset_color%}"
 export PS1="%{$fg[green]%}[%n@%m]%{$reset_color$fg[white]%}[%D{%H:%M:%S}]%{$reset_color%}%{$fg_bold[blue]%}
 [%~$PS1_VC%{$fg_bold[blue]%}]>%{$reset_color%} "
+export LC_ALL=en_US.UTF-8
+export PYTHONSTARTUP=/etc/pythonstart
 
 alias cl="clear"
 alias scp="rsync --compress-level=3 --partial --progress --rsh=ssh -r"
