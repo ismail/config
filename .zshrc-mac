@@ -1,4 +1,4 @@
-source .zshrc-common
+source ~/.zshrc-common
 
 alias wi="~/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
 

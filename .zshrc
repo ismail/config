@@ -1,4 +1,4 @@
-source .zshrc-common
+source ~/.zshrc-common
 
 alias ls="ls --color"
 alias grep="grep --color"
