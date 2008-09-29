@@ -39,7 +39,6 @@ setopt PUSHD_SILENT
 setopt INTERACTIVE_COMMENTS
 setopt NONOMATCH
 setopt NOPROMPT_SP
-setopt COMBININGCHARS
 
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh_cache
