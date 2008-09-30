@@ -43,8 +43,6 @@ setopt NOPROMPT_SP
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh_cache
 
-autoload -Uz vcs_info
-
 export PS1="%{$fg[green]%}[%n@%m]%{$reset_color$fg[white]%}[%D{%H:%M:%S}]%{$reset_color%}%{$fg_bold[blue]%}
 [%~%{$fg_bold[blue]%}]>%{$reset_color%} "
 export LC_ALL=en_US.UTF-8
