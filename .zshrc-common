@@ -45,16 +45,8 @@ zstyle ':completion:*' cache-path ~/.zsh_cache
 
 autoload -Uz vcs_info
 
-precmd() {
-  psvar=()
-
-  vcs_info
-  [[ -n $vcs_info_msg_0_ ]] && psvar[1]="$vcs_info_msg_0_"
-}
-
-PS1_VC="%(1v.%F{red}%1v%f.)%{$reset_color%}"
 export PS1="%{$fg[green]%}[%n@%m]%{$reset_color$fg[white]%}[%D{%H:%M:%S}]%{$reset_color%}%{$fg_bold[blue]%}
-[%~$PS1_VC%{$fg_bold[blue]%}]>%{$reset_color%} "
+[%~%{$fg_bold[blue]%}]>%{$reset_color%} "
 export LC_ALL=en_US.UTF-8
 export PYTHONSTARTUP=/etc/pythonstart
 
