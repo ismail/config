@@ -90,7 +90,7 @@
 ;; or get fancier, to the extent you want and know how (autoloading,
 ;; keybinding, etc).
 
-;; You might wasnt to run M-x cutomize-group twit and set your twitter
+;; You might want to run M-x customize-group twit and set your twitter
 ; username/password. 
 
 ;; Notes:
@@ -166,6 +166,8 @@
 ;;            not properly updated through customization.  It's not
 ;;            100%, but it should be much better now. (JA)
 ;;            twit-show-recent-tweets doesn't change focus. (thanks Ben Atkin)
+;; * 0.0.18 - Fixed a bug where xml entities were not converted in
+;;            tweet messages (JonathanCreekmore)
 
 ;; Bugs:
 ;; * Following recent tweets does this really annoying thing where
@@ -532,7 +534,7 @@ It is in the format of (timestamp user-id message) ")
 										;(user-img (twit-get-user-image (xml-first-childs-value user-info 'profile_image_url)))
 						   (user-img nil)y
 						   (timestamp (xml-first-childs-value status-node 'created_at))
-						   (message (xml-first-childs-value status-node 'text)))
+						   (message (xml-substitute-special (xml-first-childs-value status-node 'text))))
 					  (if (= times-through 1)
 						  (progn
 						   (setq last-tweet (list timestamp user-id message))
@@ -795,3 +797,4 @@ Null prefix argument turns off the mode.
 (provide 'twit)
 
 ;;; twit.el ends here
+
