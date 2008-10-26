@@ -7,3 +7,6 @@ div[class*="slwyWc"] { display: none }
 /* Hide OpenDNS text ads */
 div[class*="blocked-ads"] { display: none }
 div[id*="adbox"] { display: none }
+
+/* Hide taraf.com.tr ads */
+div[class*="taraf_grafik_foto"] { display: none }
