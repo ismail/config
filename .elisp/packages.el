@@ -8,3 +8,9 @@
 
 ;; Enable twitter integration
 (require 'twit)
+
+;; Pysmell
+(require 'pysmell)
+(add-hook 'python-mode-hook (lambda () (pysmell-mode 1)))
+
+
