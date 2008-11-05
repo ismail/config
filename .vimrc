@@ -30,34 +30,6 @@ set hlsearch
 
 set modelines=0
 
-if v:lang =~ "^ko"
-   set fileencodings=euc-kr
-   set guifontset=-*-*-medium-r-normal--16-*-*-*-*-*-*-*
-elseif v:lang =~ "^ja_JP"
-   set fileencodings=euc-jp
-   set guifontset=-misc-fixed-medium-r-normal--14-*-*-*-*-*-*-*
-elseif v:lang =~ "^zh_TW"
-   set fileencodings=big5
-   set guifontset=-sony-fixed-medium-r-normal--16-150-75-75-c-80-iso8859-1,-taipei-fixed-medium-r-normal--16-150-75-75-c-160-big5-0
-elseif v:lang =~ "^zh_CN"
-   set fileencodings=gb2312
-   set guifontset=*-r-*
-endif
-if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
-   set fileencodings=utf-8,latin1
-endif
-
-" Only do this part when compiled with support for autocommands
-if has("autocmd")
-  " In text files, always limit the width of text to 78 characters
-  autocmd BufRead *.txt set tw=78
-  " When editing a file, always jump to the last cursor position
-  autocmd BufReadPost *
-  \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-  \   exe "normal g'\"" |
-  \ endif
-endif
-
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
@@ -68,31 +40,6 @@ if &term=="xterm"
      set t_Sf=^[3%dm
 endif
 
-" some extra commands for HTML editing
-nmap ,mh wbgueyei<<ESC>ea></<ESC>pa><ESC>bba
-nmap ,h1 _i<h1><ESC>A</h1><ESC>
-nmap ,h2 _i<h2><ESC>A</h2><ESC>
-nmap ,h3 _i<h3><ESC>A</h3><ESC>
-nmap ,h4 _i<h4><ESC>A</h4><ESC>
-nmap ,h5 _i<h5><ESC>A</h5><ESC>
-nmap ,h6 _i<h6><ESC>A</h6><ESC>
-nmap ,hb wbi<b><ESC>ea</b><ESC>bb
-nmap ,he wbi<em><ESC>ea</em><ESC>bb
-nmap ,hi wbi<i><ESC>ea</i><ESC>bb
-nmap ,hu wbi<u><ESC>ea</i><ESC>bb
-nmap ,hs wbi<strong><ESC>ea</strong><ESC>bb
-nmap ,ht wbi<tt><ESC>ea</tt><ESC>bb
-nmap ,hx wbF<df>f<df>
-
-" Enable this to automatically put extra space after ([ and before ])
-" This comes from kde-devel-vim.vim plugin
-" let EnableSmartParens=1
-
-nmap <C-N><C-N> :set invnumber <CR>
-nmap <C-T> :Tlist <CR>
-map <Up> gk
-map <Down> gj
-
 set wrap
 set linebreak
 set laststatus=2
@@ -101,4 +48,8 @@ set wildmenu
 set incsearch
 set background=dark
 set paste
-
+set guicursor+=a:blinkon0
+set gfn=Droid\ Sans\ Mono\ 8
+colorscheme slate
+set guioptions-=m
+set guioptions-=T
