@@ -53,3 +53,4 @@ set gfn=Droid\ Sans\ Mono\ 8
 colorscheme slate
 set guioptions-=m
 set guioptions-=T
+syntax on
