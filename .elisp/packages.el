@@ -13,4 +13,5 @@
 (require 'pysmell)
 (add-hook 'python-mode-hook (lambda () (pysmell-mode 1)))
 
-
+;; Dired config
+(load "dired-conf.el")
