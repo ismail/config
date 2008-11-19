@@ -5,7 +5,7 @@ alias grep="grep --color"
 alias ada="/usr/gnat/bin/gnatmake"
 alias mac="ssh namtrac.ath.cx"
 
-export PATH="/usr/lib/ccache:/usr/local/cuda/bin:$PATH"
+export PATH="/usr/lib/ccache:/usr/local/cuda/bin:/home/cartman/flex/bin:$PATH"
 
 keychain --nogui -q id_dsa
 [ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
