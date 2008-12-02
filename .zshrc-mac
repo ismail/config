@@ -2,7 +2,7 @@ source ~/.zshrc-common
 
 alias wi="~/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
 
-export PATH=~/bin:~/gwt:/usr/local/bin:/Developer/usr/bin:$PATH:/opt/local/bin
+export PATH=~/bin:~/flex/bin:~/gwt:/usr/local/bin:/Developer/usr/bin:$PATH:/opt/local/bin
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 export LC_ALL=en_US.UTF-8
