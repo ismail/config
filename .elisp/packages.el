@@ -13,5 +13,8 @@
 (require 'pysmell)
 (add-hook 'python-mode-hook (lambda () (pysmell-mode 1)))
 
+;; C-a/C-b for open line above/below respectively
+(load "open-line.el")
+
 ;; Dired config
 (load "dired-conf.el")
