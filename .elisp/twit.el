@@ -42,7 +42,8 @@
 ;; There are four main interactive functions:
 
 ;;   M-x twit-post RET will prompt for you to type your post directly
-;;   in the minibuffer.
+;;   in the minibuffer. A prefix argument will prompt you for your 
+;;   post in reply to a specific author that the cursor is nearest to.
 
 ;;   M-x twit-post-region RET will post the region and
 
@@ -166,8 +167,11 @@
 ;;            not properly updated through customization.  It's not
 ;;            100%, but it should be much better now. (JA)
 ;;            twit-show-recent-tweets doesn't change focus. (thanks Ben Atkin)
-;; * 0.0.18 - Fixed a bug where xml entities were not converted in
+;; * 0.0.18 - Fixed a bug where xml entities were not converted while
 ;;            tweet messages (JonathanCreekmore)
+;; * 0.0.19 - Fixed a bug where the previous tweets in the *Twit-recent* buffer
+;;            were saved on the undo list every time new tweets came in. (JonathanCreekmore)
+;; * 0.0.20 - Added support for "Reply to" in the twit-post function. (JonathanCreekmore)
 
 ;; Bugs:
 ;; * Following recent tweets does this really annoying thing where
@@ -208,7 +212,7 @@
 ;;; Variables
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defvar twit-version-number "0.0.17")
+(defvar twit-version-number "0.0.20")
 
 (defvar twit-status-mode-map (make-sparse-keymap))
 (defvar twit-followers-mode-map (make-sparse-keymap))
@@ -501,9 +505,9 @@ XML should not have any HTTP header information in its car."
 ;;; Helpers for the interactive functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defun twit-query-for-post ()
+(defun twit-query-for-post (prompt-heading initial-input)
   "Query for a Twitter.com post text in the minibuffer."
-  (read-string "Post (140 char max): "))
+  (read-string (concat prompt-heading " (140 char max): ") initial-input))
 
 (defvar twit-last-tweet '()
   "The last tweet that was posted.
@@ -513,6 +517,7 @@ It is in the format of (timestamp user-id message) ")
 (setq twit-last-tweet '())
 ; damn.. my latest addition to add the most recent tweet is HACKY.
 (defun twit-write-recent-tweets (xml-data)  ;(twit-parse-xml twit-friend-timeline-file)
+  (buffer-disable-undo)
   (delete-region (point-min) (point-max))
   (twit-insert-with-overlay-attributes (format-time-string "Last updated: %c\n")
 									   '((face . "twit-title-face")))
@@ -673,19 +678,51 @@ It is in the format of (timestamp user-id message) ")
 (defun twit-todochiku ()
   (todochiku-message "twit.el" (format "From %s:\n%s" (cadr twit-last-tweet) (caddr twit-last-tweet)) (todochiku-icon 'social)))
 
+(defun twit-grab-author-of-tweet ()
+  (let* ((find-overlays-specifying (lambda (prop)
+                                     (let ((overlays (overlays-at (point)))
+                                           found)
+                                       (while overlays
+                                         (let ((overlay (car overlays)))
+                                           (if (overlay-get overlay prop)
+                                               (setq found (cons overlay found))))
+                                         (setq overlays (cdr overlays)))
+                                       found)))
+         (find-overlays-matching (lambda (prop value)
+                                   (let ((overlays (funcall find-overlays-specifying prop))
+                                         match)
+                                     (when overlays
+                                       (dolist (overlay overlays)
+                                         (let ((val (overlay-get overlay prop)))
+                                           (if (equalp val value)
+                                               (setq match val)))))
+                                     match))))
+  (save-excursion
+    (while (and (not (funcall find-overlays-matching 'face "twit-author-face"))
+                (not (eq (point) (point-min))))
+      (goto-char (previous-overlay-change (point))))
+    (back-to-indentation)
+    (thing-at-point 'word))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Main interactive functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;###autoload
-(defun twit-post ()
+(defun twit-post (prefix)
   "Send a post to twitter.com.
 Prompt the first time for password and username \(unless
 `twit-user' and/or `twit-pass' is set\) and for the text of the
 post; thereafter just for post text.  Posts must be <= 140 chars
 long."
-  (interactive)
-  (let* ((post (twit-query-for-post)))
+  (interactive "P")
+  (let* ((reply-to (when prefix 
+                     (twit-grab-author-of-tweet)))
+         (post (twit-query-for-post (if reply-to
+                                        (concat "Reply to " reply-to)
+                                      "Post") 
+                                    (when reply-to
+                                      (concat "@" reply-to " ")))))
     (if (> (length post) 140)
 	(error twit-too-long-msg)
       (if (twit-post-function twit-update-url post)
@@ -768,11 +805,11 @@ long."
   (let ((b (get-buffer-create "*Twit-recent*")))
     (display-buffer b)
     (with-current-buffer b
-  (toggle-read-only 0)
-  (twit-write-recent-tweets (twit-parse-xml twit-friend-timeline-file))
-  ;; set up some sensible mode and useful bindings
-  (text-mode)
-  (toggle-read-only 1)
+      (toggle-read-only 0)
+      (twit-write-recent-tweets (twit-parse-xml twit-friend-timeline-file))
+      ;; set up some sensible mode and useful bindings
+      (text-mode)
+      (toggle-read-only 1)
 	  (use-local-map twit-status-mode-map))))
 
 ;;;###autoload
@@ -789,12 +826,12 @@ Null prefix argument turns off the mode.
 '(("\C-c\C-tp" . twit-post)
   ("\C-c\C-tr" . twit-post-region)
   ("\C-c\C-tb" . twit-post-buffer)
-  ("\C-c\C-tf" . twit-list-followers))
+  ("\C-c\C-tf" . twit-list-followers)
+  ("\C-c\C-ts" . twit-show-recent-tweets))
  :global t
- :group 'twit
  :version twit-version-number)
+ :group 'twit
 
 (provide 'twit)
 
 ;;; twit.el ends here
-
