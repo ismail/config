@@ -93,7 +93,7 @@
      ("elif" summary "Shorthand for 'else if' following an 'if' statement")
      ("del" summary "Delete specified objects, i.e., undo what assignment did")
      ("def" summary "Define a new function")
-     ("continue" summary "Skip to the next interation of enclosing for or whilte loop")
+     ("continue" summary "Skip to the next interation of enclosing for or while loop")
      ("class" summary "Define a new class")
      ("break" summary "Terminate 'for' or 'while loop")
      ("assert" summary "Raise AssertionError exception if <expr> is false")

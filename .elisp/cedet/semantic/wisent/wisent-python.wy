@@ -62,7 +62,7 @@
 %token <charquote>   BACKSLASH 	  "\\"
 %token <newline>     NEWLINE      "\n"
 %token <indentation> INDENT       "^\\s-+"
-%token <indentation> DEDENT       "[^:INDENT:]" 
+%token <indentation> DEDENT       "[^:INDENT:]"
 %token <indentation> INDENT_BLOCK "(INDENT DEDENT)"
 
 ;; -----------------------------
@@ -160,7 +160,7 @@
 
 %keyword CONTINUE	     "continue"
 %put     CONTINUE summary
-"Skip to the next interation of enclosing for or whilte loop"
+"Skip to the next interation of enclosing for or while loop"
 
 %keyword DEF	     "def"
 %put     DEF summary
