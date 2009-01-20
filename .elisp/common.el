@@ -58,5 +58,6 @@
 (setq ido-enable-flex-matching t)
 
 ;; Include current buffer name in the title bar
-(setq frame-title-format '(buffer-file-name "%f" ("%b")))
+(setq frame-title-format "%b")
+
 
