@@ -27,3 +27,7 @@
 (require 'color-theme)
 (color-theme-initialize)
 (color-theme-billw)
+
+;; GIT emacs
+(require 'git-emacs)
+
