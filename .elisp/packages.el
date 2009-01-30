@@ -28,6 +28,12 @@
 (color-theme-initialize)
 (color-theme-billw)
 
+;; Python mode
+(setq auto-mode-alist (cons '("\\.py$" . python-mode) auto-mode-alist))
+(setq interpreter-mode-alist (cons '("python" . python-mode)
+                                       interpreter-mode-alist))
+(autoload 'python-mode "python-mode" "Python editing mode." t)
+
 ;; GIT emacs
 (require 'git-emacs)
 
