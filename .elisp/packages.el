@@ -23,11 +23,6 @@
 (autoload 'csharp-mode "csharp-mode" "Major mode for editing C# code." t)
 (setq auto-mode-alist (cons '("\\.cs$" . csharp-mode) auto-mode-alist))
 
-;; Theme
-(require 'color-theme)
-(color-theme-initialize)
-(color-theme-billw)
-
 ;; Python mode
 (setq auto-mode-alist (cons '("\\.py$" . python-mode) auto-mode-alist))
 (setq interpreter-mode-alist (cons '("python" . python-mode)
