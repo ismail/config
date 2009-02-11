@@ -30,5 +30,5 @@
 (autoload 'python-mode "python-mode" "Python editing mode." t)
 
 ;; GIT emacs
-(require 'git-emacs)
+(require 'git)
 

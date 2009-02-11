@@ -1,10 +1,13 @@
 ;;; yasnippet.el --- Yet another snippet extension for Emacs.
 
 ;; Copyright 2008 pluskid
-;;
+
 ;; Author: pluskid <pluskid@gmail.com>
-;; Version: 0.5.9
-;; X-URL: http://code.google.com/p/yasnippet/
+;; Created: 02 Mar 2008
+;; Version: 0.5.10
+;; Keywords: snippet, textmate
+;; URL: http://code.google.com/p/yasnippet/
+;; EmacsWiki: YaSnippetMode
 
 ;; This file is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -35,6 +38,8 @@
 ;; For more information and detailed usage, refer to the project page:
 ;;      http://code.google.com/p/yasnippet/
 
+;;; Code:
+
 (eval-when-compile (require 'cl))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -44,7 +49,7 @@
   "If set to t, don't activate yas/minor-mode automatically.")
 (make-variable-buffer-local 'yas/dont-activate)
 
-(defvar yas/key-syntaxes (list "w" "w_" "w_." "^ ")
+(defvar yas/key-syntaxes (list "w" "w_" "w_." "w_.\\" "^ ")
   "A list of syntax of a key. This list is tried in the order
 to try to find a key. For example, if the list is '(\"w\" \"w_\").
 And in emacs-lisp-mode, where \"-\" has the syntax of \"_\":
@@ -202,7 +207,7 @@ to expand.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Internal variables
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defvar yas/version "0.5.9")
+(defvar yas/version "0.5.10")
 
 (defvar yas/snippet-tables (make-hash-table)
   "A hash table of snippet tables corresponding to each major-mode.")
@@ -914,7 +919,7 @@ Here's a list of currently recognized variables:
                                                      (point-max)))
                (setq bound (point))
                (goto-char (point-min))
-               (while (re-search-forward "^#\\([^ ]+\\) *: *\\(.*\\)$" bound t)
+               (while (re-search-forward "^#\\([^ ]+?\\) *: *\\(.*\\)$" bound t)
                  (when (string= "name" (match-string-no-properties 1))
                    (setq name (match-string-no-properties 2)))
                  (when (string= "condition" (match-string-no-properties 1))
@@ -1055,19 +1060,25 @@ all the parameters:
   (when (null snippet-roots)
     (setq snippet-roots '("snippets")))
   (when (null code)
-    (setq code "(yas/initialize)"))
+    (setq code (concat "(yas/initialize-bundle)"
+           "\n;;;###autoload"               ; break through so that won't
+           "(require 'yasnippet-bundle)"))) ; be treated as magic comment
 
   (let ((dirs (or (and (listp snippet-roots) snippet-roots)
                   (list snippet-roots)))
         (bundle-buffer nil))
     (with-temp-buffer
       (setq bundle-buffer (current-buffer))
+      (insert ";;; yasnippet-bundle.el --- "
+              "Yet another snippet extension (Auto compiled bundle)\n")
       (insert-file-contents yasnippet)
       (goto-char (point-max))
       (insert ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;\n")
       (insert ";;;;      Auto-generated code         ;;;;\n")
       (insert ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;\n")
-      (insert code "\n")
+      (insert "(defun yas/initialize-bundle ()\n"
+              "  \"Initialize YASnippet and load snippets in the bundle.\""
+              "  (yas/initialize)\n")
       (flet ((yas/define-snippets
               (mode snippets &optional parent)
               (with-current-buffer bundle-buffer
@@ -1100,11 +1111,16 @@ all the parameters:
         (dolist (dir dirs)
           (dolist (subdir (yas/directory-files dir nil))
             (yas/load-directory-1 subdir nil))))
+
+      (insert ")\n\n" code "\n")
       (insert "(provide '"
               (file-name-nondirectory
                (file-name-sans-extension
                 yasnippet-bundle))
               ")\n")
+      (insert ";;; "
+              (file-name-nondirectory yasnippet-bundle)
+              " ends here\n")
       (setq buffer-file-name yasnippet-bundle)
       (save-buffer))))
 
@@ -1883,3 +1899,5 @@ Use multiple times to bind different COMMANDs to the same KEY."
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; dropdown-list.el ends here
+
+;;; yasnippet.el ends here
