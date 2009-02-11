@@ -47,6 +47,7 @@ export PS1="%{$fg[green]%}[%n@%m]%{$reset_color$fg[white]%}[%D{%H:%M:%S}]%{$rese
 [%~%{$fg_bold[blue]%}]>%{$reset_color%} "
 export LC_ALL=en_US.UTF-8
 export PYTHONSTARTUP=/etc/pythonstart
+export PYTHONDONTWRITEBYTECODE=1
 
 alias cl="clear"
 alias scp="rsync --compress-level=3 --partial --progress --rsh=ssh -r"
