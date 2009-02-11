@@ -1,5 +1,5 @@
 ;;; Twit.el --- interface with twitter.com
-
+(defvar twit-version-number "0.0.21")
 ;; Copyright (c) 2007 Theron Tlax
 ;;           (c) 2008 Jonathan Arkell
 ;; Time-stamp: <2007-03-19 18:33:17 thorne>
@@ -172,6 +172,9 @@
 ;; * 0.0.19 - Fixed a bug where the previous tweets in the *Twit-recent* buffer
 ;;            were saved on the undo list every time new tweets came in. (JonathanCreekmore)
 ;; * 0.0.20 - Added support for "Reply to" in the twit-post function. (JonathanCreekmore)
+;; * 0.0.21 - The rate-limit timer is cancelled as well as the main
+;;            timer.
+;;            Regexp filtering of tweets.  (JonathanArkell)
 
 ;; Bugs:
 ;; * Following recent tweets does this really annoying thing where
@@ -185,7 +188,7 @@
 ;; Please report bugs to the twit emacs wiki page at:
 ;;   http://www.emacswiki.org/cgi-bin/wiki/TwIt
 ;;
-;;; Roadmap:
+;;; Roadmap (todo):
 ;; v1.0 release
 ;; - Change the layout to be a little nicer.  (almost there)
 ;; - make sure, 100% sure, that following tweets is rock solid
@@ -211,8 +214,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Variables
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defvar twit-version-number "0.0.20")
 
 (defvar twit-status-mode-map (make-sparse-keymap))
 (defvar twit-followers-mode-map (make-sparse-keymap))
@@ -244,7 +245,7 @@ error."
 			(set url-basic-auth-storage
 				 (cons (list "twitter.com:80"
 							 (cons "Twitter API"
-								   (base64-encode-string (format "%s:%s" twit-user (symbol-value twit-pass-var) ))))
+								   (base64-encode-string (format "%s:%s" twit-user (symbol-value twit-pass-var)))))
 					   (symbol-value url-basic-auth-storage)))))
 	(void-variable nil)))
 
@@ -301,12 +302,16 @@ The variable name is a bit of a misnomer, because it is not actually based on id
   :type 'string
   :group 'twit)
 
-
 (defcustom twit-debug
   nil
   "Whether or not to run twit.el in debug mode"
   :group 'twit
   :type 'boolean)
+
+(defcustom twit-filter-tweets-regex ""
+  "Filter all tweets with this regex."
+  :type 'regexp
+  :group 'twit)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -315,6 +320,7 @@ The variable name is a bit of a misnomer, because it is not actually based on id
 
 (defface twit-message-face
   '((default
+	  :family "helv"
 	  :height 1.1))
   "The font face to use for a twitter message."
   :group 'twit)
@@ -406,7 +412,7 @@ The variable name is a bit of a misnomer, because it is not actually based on id
 (defconst twit-too-long-msg 
   "Post not sent because length exceeds 140 characters")
 
-(defconst twit-standard-rate-limit 70)
+(defconst twit-standard-rate-limit 100)
 
 (defconst twit-rate-limit-offset 5
   "Number of seconds to add to a throttled rate limit for insurance.")
@@ -537,50 +543,49 @@ It is in the format of (timestamp user-id message) ")
 						   (location (xml-first-childs-value user-info 'location))
 						   (src-info (xml-first-childs-value status-node 'source))
 										;(user-img (twit-get-user-image (xml-first-childs-value user-info 'profile_image_url)))
-						   (user-img nil)y
+						   (user-img nil)
 						   (timestamp (xml-first-childs-value status-node 'created_at))
 						   (message (xml-substitute-special (xml-first-childs-value status-node 'text))))
-					  (if (= times-through 1)
-						  (progn
-						   (setq last-tweet (list timestamp user-id message))
-						   (setq twit-first-time-through nil)))
-					  ;; the string-match is a bit weird, as emacswiki.org won't
-					  ;; accept pages with the href in it per se
-					  (when (and src-info (string-match (concat "<a h" "ref=\"\\(.*\\)\">\\(.*\\)<" "/a>")
-														src-info))
-							;; remove the HTML link info; leave just the name (for now)
-							(setq src-info (match-string 2 src-info)))
-					  ;; Image first.  I wonder how this will work.
-					  (when (and user-img (not (bufferp user-img)))
-							(insert-image user-img))
-					  ;; First line: Name and message
-					  (setq overlay-start (point))
-					  (twit-insert-with-overlay-attributes (format "%25s" 
-																   (concat user-id
-																		   (if user-name
-																			   (concat " (" user-name ")")
-																			   "")))
-														   '((face . "twit-author-face")))
-					  (insert ": ")
-					  (twit-insert-with-overlay-attributes message
-														   '((face . "twit-message-face")))
-					  (insert "\n")
+					  (when (and (not (string-equal "" twit-filter-tweets-regex))
+								 (not (string-match twit-filter-tweets-regex message)))
+							(when (= times-through 1)
+								  (setq last-tweet (list timestamp user-id message))
+								  (setq twit-first-time-through nil))
+   							(when (and src-info (string-match (concat "<a h" "ref=\"\\(.*\\)\">\\(.*\\)<" "/a>") ; the string-match is a bit weird, as emacswiki.org won't accept pages with the href in it per se					 
+															  src-info))
+								  ;; remove the HTML link info; leave just the name (for now)
+								  (setq src-info (match-string 2 src-info)))
 					  
-					  (when (or timestamp location src-info)
-							(twit-insert-with-overlay-attributes
-							 (concat "                          "
-									 (when timestamp (concat " posted " timestamp))
-									 (when location (concat " from " location))
-									 (when src-info (concat " (via " src-info ")"))
-									 "\n")
-							 '((face . "twit-info-face"))))
-					  (setq overlay-end (point))
-					  (let ((o (make-overlay overlay-start overlay-end)))
-						(overlay-put o 'face (if (= 0 (% times-through 2))
-												 "twit-zebra-1-face"
-												 "twit-zebra-2-face"))
-						(add-to-list 'overlays o)))
-					(setq times-through (+ 1 times-through))))
+							(when (and user-img (not (bufferp user-img)))  ;Images aren't ready for primetime.  
+								  (insert-image user-img))
+					  
+							(setq overlay-start (point))
+							(twit-insert-with-overlay-attributes (format "%25s" 
+																		 (concat user-id
+																				 (if user-name
+																					 (concat " (" user-name ")")
+																					 "")))
+																 '((face . "twit-author-face")))
+							(insert ": ")
+							(twit-insert-with-overlay-attributes message
+																 '((face . "twit-message-face")))
+							(insert "\n")
+					  
+							(when (or timestamp location src-info)
+								  (twit-insert-with-overlay-attributes
+								   (concat "                          "
+										   (when timestamp (concat " posted " timestamp))
+										   (when location (concat " from " location))
+										   (when src-info (concat " (via " src-info ")"))
+										   "\n")
+								   '((face . "twit-info-face"))))
+							(setq overlay-end (point))
+							(let ((o (make-overlay overlay-start overlay-end)))
+							  (overlay-put o 'face (if (= 0 (% times-through 2))
+													   "twit-zebra-1-face"
+													   "twit-zebra-2-face"))
+							  (add-to-list 'overlays o))
+							(setq times-through (+ 1 times-through))))))
 	(if (not (equal last-tweet twit-last-tweet))
 		(progn (setq twit-last-tweet last-tweet)
 			   (setq twit-first-time-through nil)
@@ -796,11 +801,14 @@ long."
   (interactive)
   (if (featurep 'todochiku)
 	  (todochiku-message "Twit.el" "Twit.el Stopped Following Tweets" (todochiku-icon 'social)))
-  (cancel-timer twit-timer))
+  (cancel-timer twit-timer)
+  (cancel-timer twit-rate-limit-timer))
 
 ;;;###autoload
 (defun twit-show-recent-tweets ()
-  "Display a list of the most recent tweets from people you're following."
+  "Display a list of the most recent tweets from people you're following.
+
+Patch version from Ben Atkin."
   (interactive)
   (let ((b (get-buffer-create "*Twit-recent*")))
     (display-buffer b)
@@ -829,9 +837,21 @@ Null prefix argument turns off the mode.
   ("\C-c\C-tf" . twit-list-followers)
   ("\C-c\C-ts" . twit-show-recent-tweets))
  :global t
- :version twit-version-number)
  :group 'twit
+ :version twit-version-number)
 
 (provide 'twit)
 
 ;;; twit.el ends here
+
+; Suggestion : RichardRiley - use region if selected. Requires thingatpt+.
+
+;(defun twit-query-for-post (prompt-heading initial-input) 
+;  "Query for a Twitter.com post text in the minibuffer."
+;  (read-string 
+;   (concat prompt-heading " (140 char max): ") 
+;   (if initial-input initial-input 
+;     (if (zerop(length(region-or-word-at-point)))
+;	 "" 
+;         (region-or-word-at-point)
+;	 ))))
