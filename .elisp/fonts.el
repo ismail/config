@@ -1,10 +1,10 @@
 ;; Default font
-(setq my-font "Droid Sans Mono-8.3")
+(setq my-font "Anonymous-8.3")
 (cond
     (macosx
-        (setq my-font "Droid Sans Mono-15"))
+        (setq my-font "Anonymous-15"))
     (win32
-        (setq my-font "Droid Sans Mono-10")))
+        (setq my-font "Anonymous-10")))
 
 (set-frame-font my-font)
 (add-hook 'after-make-frame-functions
