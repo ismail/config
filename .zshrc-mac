@@ -1,6 +1,7 @@
 source ~/.zshrc-common
 
-alias wi="~/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
+alias wi="~/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -t"
+alias wix="~/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c"
 alias ipy="mono ~/IronPython\ 2.0/ipy.exe -D -X:TabCompletion -X:ColorfulConsole $@"
 
 export PATH=~/bin:~/flex/bin:~/gwt:/usr/local/bin:/Developer/usr/bin:$PATH:/opt/local/bin
