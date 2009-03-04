@@ -3,3 +3,4 @@ a { text-decoration: none }
 
 /* Hide Google text ads */
 div[class*="oM"] { display: none }
+div[class*="nH u8"] { display: none }
