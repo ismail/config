@@ -9,10 +9,6 @@
 ;; Enable twitter integration
 (require 'twit)
 
-;; Pysmell
-(require 'pysmell)
-(add-hook 'python-mode-hook (lambda () (pysmell-mode 1)))
-
 ;; C-a/C-b for open line above/below respectively
 (load "open-line.el")
 
@@ -31,7 +27,6 @@
 
 ;; GIT emacs
 (require 'git)
-
 
 ;; IPython
 (setq ipython-command "/usr/bin/ipython")
