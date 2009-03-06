@@ -83,6 +83,3 @@
   (set (make-local-variable 'ac-auto-start) t))
 (defadvice ac-cleanup (after advice-turn-off-auto-start activate)
   (set (make-local-variable 'ac-auto-start) nil))
-
-(add-hook 'python-mode-hook (lambda ()
-    (define-key py-mode-map "\t" 'python-tab)))
