@@ -56,4 +56,6 @@ alias wix="emacsclient -c"
 alias d="cd"
 alias p="ipython"
 alias p3="python3.0"
+alias m="matlab -nodesktop -nosplash"
 
+xrdb -merge ~/.Xdefaults
