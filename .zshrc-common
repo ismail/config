@@ -51,11 +51,7 @@ export PYTHONDONTWRITEBYTECODE=1
 
 alias cl="clear"
 alias scp="rsync --compress-level=3 --partial --progress --rsh=ssh -r"
-alias wi="emacsclient -t -c"
-alias wix="emacsclient -c"
 alias d="cd"
 alias p="ipython"
-alias p3="python3.0"
-alias m="matlab -nodesktop -nosplash"
+alias p3="python3.1"
 
-xrdb -merge ~/.Xdefaults

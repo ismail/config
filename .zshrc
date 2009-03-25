@@ -2,10 +2,9 @@ source ~/.zshrc-common
 
 alias ls="ls --color"
 alias grep="grep --color"
-alias ada="/usr/gnat/bin/gnatmake"
-alias mac="ssh namtrac.ath.cx"
+alias m="matlab -nodesktop -nosplash"
 
-export PATH="/usr/lib/ccache:/usr/local/cuda/bin:/home/cartman/flex/bin:$PATH"
+xrdb -merge ~/.Xdefaults
 
 keychain --nogui -q id_dsa
 [ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
