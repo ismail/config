@@ -9,10 +9,7 @@
 [user]
 	name = İsmail Dönmez
 	email = ismail.donmez@vestel.com.tr
-[color]
-	branch = auto
-	diff = auto
-	interactive = auto
-	status = auto
 [svn]
     brokenSymlinkWorkaround = false
+[color]
+	ui = auto
