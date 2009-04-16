@@ -1,7 +1,6 @@
 source ~/.zshrc-common
 
 alias ls="ls --color"
-alias grep="grep --color"
 alias m="matlab -nodesktop -nosplash"
 alias mac="ssh namtrac.ath.cx"
 

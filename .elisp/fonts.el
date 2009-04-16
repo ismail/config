@@ -1,5 +1,5 @@
 ;; Default font
-(setq my-font "Droid Sans Mono-8.3")
+(setq my-font "Droid Sans Mono-11.3")
 (cond
     (macosx
         (setq my-font "Droid Sans Mono-15"))
