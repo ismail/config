@@ -1,8 +1,6 @@
 source ~/.zshrc-common
 
-alias ipy="mono ~/IronPython\ 2.0/ipy.exe -D -X:TabCompletion -X:ColorfulConsole $@"
-
-export PATH=~/bin:/usr/local/bin:/Developer/usr/bin:$PATH:/opt/subversion/bin
+export PATH=~/bin:/usr/local/bin:/Developer/usr/bin:$PATH
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 export LC_ALL=en_US.UTF-8
