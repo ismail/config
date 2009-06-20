@@ -3,3 +3,9 @@
 *.log
 *~
 build
+bin
+obj
+*.suo
+*.dll
+*.exe
+
