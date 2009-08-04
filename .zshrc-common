@@ -28,6 +28,8 @@ bindkey "^[[7~" beginning-of-line
 bindkey "^[[8~" end-of-line
 bindkey "^[[5~" up-line-or-history
 bindkey "^[[6~" down-line-or-history
+bindkey "^?" backward-delete-char
+bindkey "^[[3~" delete-char
 
 # Other options
 setopt NO_BEEP
