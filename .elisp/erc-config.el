@@ -2,7 +2,7 @@
  (require 'erc-nicklist)
  (require 'erc-nick-colors)
  (setq erc-auto-query (quote window))
- (setq erc-autojoin-channels-alist (quote (("freenode.net" "#dingil deviance"))))
+ (setq erc-autojoin-channels-alist (quote (("freenode.net" "#dingil-mutfak"))))
  (setq rc-dcc-mode t)
  (setq erc-email-userid "ismail")
  (setq erc-generate-log-file-name-function (quote erc-generate-log-file-name-short))
