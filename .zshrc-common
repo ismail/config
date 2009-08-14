@@ -50,11 +50,12 @@ export PS1="%{$fg[green]%}[%n@%m]%{$reset_color$fg[white]%}[%D{%H:%M:%S}]%{$rese
 export LC_ALL=en_US.UTF-8
 export PYTHONSTARTUP=/etc/pythonstart
 export PYTHONDONTWRITEBYTECODE=1
+export PATH="/opt/mingw32ce/bin":$PATH
 
 alias cl="clear"
 alias scp="rsync --compress-level=3 --partial --progress --rsh=ssh -r"
 alias d="cd"
 alias p="ipython"
 alias p3="python3.1"
-alias grep="ack"
+alias grep="ack-grep"
 
