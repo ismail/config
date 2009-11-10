@@ -27,9 +27,6 @@
 ;; Org mode
 (load "orgmode.el")
 
-;; ECB
-(load "ecb-config.el")
-
 ;; Fonts
 (load "fonts.el")
 
