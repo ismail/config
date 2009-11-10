@@ -57,5 +57,3 @@ alias scp="rsync --compress-level=3 --partial --progress --rsh=ssh -r"
 alias d="cd"
 alias p="ipython"
 alias p3="python3.1"
-alias grep="ack-grep"
-

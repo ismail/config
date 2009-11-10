@@ -1,6 +1,7 @@
 [core]
-	excludesfile = ~/.gitignore
+	excludesfile = /home/cartman/.gitignore
 	quotepath = false
+	fileMode = false
 [alias]
 	st = status
 	ci = commit
