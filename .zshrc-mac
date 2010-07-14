@@ -1,6 +1,6 @@
 source ~/.zshrc-common
 
-export PATH=~/bin:/usr/local/bin:/Developer/usr/bin:$PATH
+export PATH=~/bin:/opt/subversion/bin:/usr/local/bin:/Developer/usr/bin:$PATH
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 export LC_ALL=en_US.UTF-8
