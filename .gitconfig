@@ -9,7 +9,7 @@
 	br = branch
 [user]
 	name = İsmail Dönmez
-	email = ismail@intelligentpapers.com
+	email = ismail@namtrac.org
 [svn]
     brokenSymlinkWorkaround = false
 [color]
