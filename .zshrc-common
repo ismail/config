@@ -56,3 +56,5 @@ alias cl="clear"
 alias scp="rsync --compress-level=3 --partial --progress --rsh=ssh -r"
 alias d="cd"
 alias grep="grep --color"
+alias gdb="gdb --quiet"
+

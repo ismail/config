@@ -1,6 +1,11 @@
 source ~/.zshrc-common
 
-export PATH=~/bin:/usr/local/mingw-cross/bin:/usr/local/mingw-cross/i686-mingw32/bin:/usr/local/git/bin:/Developer/android-sdk-mac_86/tools:/opt/subversion/bin:/usr/local/bin:/Developer/usr/bin:$PATH
+export PATH=~/bin:~/Sources/depot_tools:/usr/local/git/bin:/Developer/android-sdk-mac_86/tools:/opt/subversion/bin:/usr/local/bin:/Developer/usr/bin:$PATH
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 export LC_ALL=en_US.UTF-8
+
+alias gvim="open -a MacVim"
+alias vi="/Applications/MacVim.app/Contents/MacOS/Vim"
+alias vim=vi
+alias top="top -stats command,pid,user,time,cpu,rsize"

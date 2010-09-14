@@ -14,3 +14,9 @@
     brokenSymlinkWorkaround = false
 [color]
 	ui = auto
+[difftool "Kaleidoscope"]
+	cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
+[difftool]
+	prompt = false
+[diff]
+	tool = Kaleidoscope
