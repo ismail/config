@@ -2,7 +2,7 @@
 (setq my-font "Droid Sans Mono-11.3")
 (cond
     (macosx
-        (setq my-font "Droid Sans Mono-15"))
+        (setq my-font "Monaco-15"))
     (win32
         (setq my-font "Droid Sans Mono-10")))
 
