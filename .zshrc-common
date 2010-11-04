@@ -58,3 +58,5 @@ alias d="cd"
 alias grep="grep --color"
 alias gdb="gdb --quiet"
 alias curl="curl -#"
+alias screen="screen -U"
+
