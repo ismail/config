@@ -1,0 +1,12 @@
+[color]
+status.clean = none
+status.copied = none
+
+[pager]
+attend = annotate, cat, diff, export, glog, log, qdiff
+pager = LESS='FSRX' less
+
+[extensions]
+pager =
+color =
+
