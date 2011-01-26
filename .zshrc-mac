@@ -1,6 +1,6 @@
 source ~/.zshrc-common
 
-export PATH=~/bin:~/Sources/depot_tools:/usr/local/git/bin:/Developer/android-sdk-mac_86/tools:/opt/subversion/bin:/usr/local/bin:/Developer/usr/bin:$PATH
+export PATH=~/bin:/usr/local/apache-ant/bin:/usr/local/git/bin:/usr/local/android-ndk-r5:/usr/local/android-sdk/tools:/usr/local/android-sdk/platform-tools:/opt/subversion/bin:/usr/local/bin:/Developer/usr/bin:$PATH
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 export LC_ALL=en_US.UTF-8

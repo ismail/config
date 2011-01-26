@@ -20,3 +20,8 @@
 	prompt = false
 [diff]
 	tool = Kaleidoscope
+[sendemail]
+	smtpserver = smtp.gmail.com
+	smtpserverport = 587
+	smtpencryption = tls
+	smtpuser = ismail@namtrac.org
