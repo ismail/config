@@ -1,6 +1,7 @@
 source ~/.zshrc-common
 
 alias ls="ls --color"
+export PATH="/usr/local/android-sdk/tools:/usr/local/android-sdk/platform-tools:/sbin":$PATH
 alias m="matlab -nodesktop -nosplash"
 alias mac="ssh namtrac.ath.cx"
 
