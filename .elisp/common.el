@@ -13,9 +13,6 @@
 ;; No beeping
 (setq ring-bell-function (lambda () (message "*beep*")))
 
-;; Die trailing whitespace die
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
-
 ;; Compilation should scroll
 (setq compilation-scroll-output t)
 
