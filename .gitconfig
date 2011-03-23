@@ -1,5 +1,5 @@
 [core]
-	excludesfile = /home/cartman/.gitignore
+	excludesfile = /home/ismail/.gitignore
 	quotepath = false
 	fileMode = false
 [alias]
@@ -14,14 +14,13 @@
     brokenSymlinkWorkaround = false
 [color]
 	ui = auto
-[difftool "Kaleidoscope"]
-	cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
-[difftool]
-	prompt = false
-[diff]
-	tool = Kaleidoscope
 [sendemail]
 	smtpserver = smtp.gmail.com
 	smtpserverport = 587
 	smtpencryption = tls
 	smtpuser = ismail@namtrac.org
+[url "git://anongit.kde.org/"]
+     insteadOf = kde:
+[url "git@git.kde.org:"]
+     pushInsteadOf = kde:
+

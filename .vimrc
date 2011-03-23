@@ -28,7 +28,7 @@ set incsearch
 set background=dark
 set paste
 set guicursor+=a:blinkon0
-set guifont=Monaco:h14
+set guifont="Droid Sans Mono":h14
 colorscheme slate
 set guioptions-=m
 set guioptions-=T
