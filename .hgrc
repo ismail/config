@@ -9,4 +9,5 @@ pager = LESS='FSRX' less
 [extensions]
 pager =
 color =
+progress =
 
