@@ -86,7 +86,7 @@
 # shell                 zsh
 # shell                 bash
 # shell                 ksh
-  shell -$SHELL
+  shell zsh
 
 # shellaka '> |tcsh'
 # shelltitle '$ |bash'
