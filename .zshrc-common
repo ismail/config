@@ -63,3 +63,6 @@ alias gdb="gdb --quiet"
 alias curl="curl -#"
 alias screen="screen -U"
 export PATH=$HOME/go/bin:$HOME/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/android-ndk-r5b:/usr/local/android-sdk/tools:/usr/local/android-sdk/platform-tools:$PATH
+
+# Custom completions
+for i in $HOME/.zsh-comp/**/*(.); do source $i;done
