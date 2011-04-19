@@ -28,3 +28,6 @@
 ;; GIT emacs
 (require 'git)
 
+;; Go!
+(require 'go-mode-load)
+
