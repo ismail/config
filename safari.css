@@ -1,7 +1,0 @@
-/* workaround Safari underlining all links */
-a { text-decoration: none }
-
-/* Hide Google text ads */
-div[class*="nH u8"] { display: none }
-div[class*="oM"] { display: none }
-
