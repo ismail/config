@@ -1,11 +1,7 @@
 source ~/.zshrc-common
 
-export PATH=~/bin:/opt/gnu/bin:/usr/local/apache-ant/bin:/usr/local/git/bin:/usr/local/android-ndk-r5b:/usr/local/android-sdk/tools:/usr/local/android-sdk/platform-tools:/opt/subversion/bin:/usr/local/bin:/Developer/usr/bin:$PATH
+export PATH=/usr/local/apache-ant/bin:/usr/local/git/bin:/opt/subversion/bin:/Developer/usr/bin:$PATH
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 export LC_ALL=en_US.UTF-8
-export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:/usr/X11/lib/pkgconfig/
-
-alias clang++="clang++ -stdlib=libc++"
-#alias ls="ls --color"
 alias top="top -stats command,pid,user,time,cpu,rsize"
