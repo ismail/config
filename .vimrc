@@ -28,8 +28,8 @@ set incsearch
 set background=dark
 set paste
 set guicursor+=a:blinkon0
-set guifont="Droid Sans Mono":h14
-colorscheme slate
+set guifont="Droid Sans Mono":h16
+colorscheme solarized
 set guioptions-=m
 set guioptions-=T
 syntax on
