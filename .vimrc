@@ -28,7 +28,11 @@ set incsearch
 set background=dark
 set paste
 set guicursor+=a:blinkon0
-set guifont="Droid Sans Mono":h16
+if has("gui_macvim")
+    set guifont="Droid Sans Mono":h12
+else
+    set guifont="Droid Sans Mono":h16
+endif
 colorscheme solarized
 set guioptions-=m
 set guioptions-=T
