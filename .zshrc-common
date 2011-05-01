@@ -43,6 +43,7 @@ setopt NONOMATCH
 setopt NOPROMPT_SP
 setopt MULTIBYTE
 setopt COMBININGCHARS
+export CORRECT_IGNORE="_*"
 
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh_cache
