@@ -25,6 +25,9 @@
                                        interpreter-mode-alist))
 (autoload 'python-mode "python-mode" "Python editing mode." t)
 
+;; https://github.com/fgallina/python.el
+(require 'python)
+
 ;; GIT emacs
 (require 'git)
 
