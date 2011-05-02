@@ -1,6 +1,5 @@
 source ~/.zshrc-common
 
-alias ls="ls --color"
 export MALLOC_PERTURB_=$(($RANDOM % 255 + 1))
 
 keychain --nogui -q id_rsa
