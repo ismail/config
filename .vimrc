@@ -26,7 +26,6 @@ set showcmd
 set wildmenu
 set incsearch
 set background=dark
-set paste
 set guicursor+=a:blinkon0
 if has("gui_macvim")
     set guifont="Droid Sans Mono":h12

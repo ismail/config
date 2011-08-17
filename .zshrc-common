@@ -65,7 +65,7 @@ alias curl="curl -#"
 alias screen="screen -U"
 alias ls="ls --color"
 
-export PATH=$HOME/go/bin:$HOME/bin:/sbin:/usr/sbin:/usr/local/bin:/opt/local/bin:$PATH
+export PATH=/suse/bin:$HOME/local/node/bin:$HOME/bin:/sbin:/usr/sbin:/usr/local/bin:/opt/local/bin:$PATH
 
 # Setup ls colors
 if [ -e .dir_colors ]; then eval `dircolors .dir_colors`; fi
