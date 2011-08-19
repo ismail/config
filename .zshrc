@@ -5,6 +5,7 @@ export MALLOC_PERTURB_=$(($RANDOM % 255 + 1))
 alias lsrpm="rpm -qlp"
 alias opm="osc -Apm"
 alias wi="emacsclient -c"
+alias io="iotop -o -P -a"
 
 keychain --nogui -q id_rsa
 [ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
