@@ -1,3 +1,5 @@
+source ~/.zfuncs
+
 autoload -U colors
 colors
 
