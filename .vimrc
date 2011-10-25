@@ -28,7 +28,7 @@ set incsearch
 set background=dark
 set guicursor+=a:blinkon0
 if has("gui_macvim")
-    set guifont="Droid Sans Mono":h12
+    set guifont=Menlo\ Regular:h14
 else
     set guifont="Droid Sans Mono":h16
 endif

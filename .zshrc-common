@@ -49,6 +49,7 @@ export CORRECT_IGNORE="_*"
 
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh_cache
+zstyle ':completion:*' rehash true
 
 export PS1="%{$fg[green]%}[%n@%m]%{$reset_color$fg[white]%}[%D{%H:%M:%S}]%{$reset_color%}%{$fg_bold[blue]%}
 [%~%{$fg_bold[blue]%}]>%{$reset_color%} "
