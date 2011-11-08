@@ -3,7 +3,7 @@ bzit()
     if [ ! -z $1 ]; then
         wd=`pwd`
         cd $1 &&
-        find . -name "svn" | xargs rm -rf &&
+        find . -name ".svn" | xargs rm -rf &&
         rm -rf .git &&
         cd $wd &&
         tar cjf $1.tar.bz2 $1 &&
