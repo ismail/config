@@ -73,5 +73,3 @@ export PATH=/suse/bin:$HOME/local/node/bin:$HOME/bin:/sbin:/usr/sbin:/usr/local/
 # Setup ls colors
 if [ -e .dir_colors ]; then eval `dircolors .dir_colors`; fi
 
-# Custom completions
-for i in $HOME/.zsh_completion.d/**/*(.); do source $i;done

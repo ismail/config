@@ -8,8 +8,10 @@ alias isc="osc -Aibs"
 alias wi="emacsclient -c"
 alias io="sudo iotop -o -P -a"
 alias result="osc results -v"
+alias tel-ng="telnovell-ng3"
+alias kvm="qemu-kvm -cpu qemu64,+ssse3,+sse4.1,+sse4.2,+x2apic,+cx16,+mmxext"
 
-keychain --nogui -q id_rsa
+keychain -q id_rsa
 [ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
 [ -f $HOME/.keychain/$HOSTNAME-sh ] &&
 . $HOME/.keychain/$HOSTNAME-sh
