@@ -44,3 +44,6 @@ set expandtab
 :map <C-w> :tabclose<cr>
 
 filetype plugin on
+
+let g:clang_use_library=1
+
