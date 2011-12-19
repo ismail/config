@@ -1,13 +1,18 @@
 bzit()
 {
     if [ ! -z $1 ]; then
-        wd=`pwd`
-        cd $1 &&
+        pushd $1 &&
         find . -name ".svn" | xargs rm -rf &&
         rm -rf .git &&
-        cd $wd &&
+        popd &&
         tar cjf $1.tar.bz2 $1 &&
         rm -rf $1
     fi
 }
 
+unrpm()
+{
+    if [ -e $1 ]; then
+        rpm2cpio $1 | cpio -imdv
+    fi
+}
