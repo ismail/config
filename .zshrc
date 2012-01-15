@@ -1,6 +1,6 @@
 source ~/.zshrc-common
 
-export PATH=/kutu/stuff/depot_tools:/kutu/binaries/android-sdk/platform-tools:/kutu/binaries/android-sdk/tools:$PATH
+export PATH=/havana/stuff/depot_tools:/havana/binaries/android-sdk/platform-tools:/havana/binaries/android-sdk/tools:$PATH
 export MALLOC_PERTURB_=$(($RANDOM % 255 + 1))
 alias lsrpm="rpm -qlp"
 alias opm="osc -Apm"
