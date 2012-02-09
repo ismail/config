@@ -16,3 +16,8 @@ unrpm()
         rpm2cpio $1 | cpio -imdv
     fi
 }
+
+ydl()
+{
+    youtube-dl --prefer-free-formats "$1" -o %(stitle)s.%(ext)s
+}
