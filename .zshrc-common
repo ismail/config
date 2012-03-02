@@ -45,6 +45,7 @@ setopt NONOMATCH
 setopt NOPROMPT_SP
 setopt MULTIBYTE
 setopt COMBININGCHARS
+setopt HASH_EXECUTABLESONLY
 export CORRECT_IGNORE="_*"
 
 zstyle ':completion:*' use-cache on
