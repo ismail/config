@@ -21,3 +21,17 @@ ydl()
 {
     youtube-dl --prefer-free-formats "$1" -o %(stitle)s.%(ext)s
 }
+
+kde_release()
+{
+    cmake -DCMAKE_SKIP_RPATH=ON -DCMAKE_INSTALL_PREFIX=/usr \
+          -DLIBEXEC_INSTALL_DIR:PATH=/usr/lib64/kde4/libexec \
+          -DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE=release ..
+}
+
+kde_debug()
+{
+    cmake -DCMAKE_SKIP_RPATH=ON -DCMAKE_INSTALL_PREFIX=/usr \
+          -DLIBEXEC_INSTALL_DIR:PATH=/usr/lib64/kde4/libexec \
+          -DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE=debug ..
+}
