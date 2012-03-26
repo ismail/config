@@ -4,7 +4,7 @@
     (macosx
         (setq my-font "Monaco-15"))
     (win32
-        (setq my-font "Droid Sans Mono-10")))
+        (setq my-font "Consolas-12")))
 
 (set-frame-font my-font)
 (add-hook 'after-make-frame-functions
