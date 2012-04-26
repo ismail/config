@@ -35,3 +35,8 @@ kde_debug()
           -DLIBEXEC_INSTALL_DIR:PATH=/usr/lib64/kde4/libexec \
           -DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE=debug ..
 }
+
+bl()
+{
+    less /havana/build-cache/build-root-$1-$2/.build.log
+}
