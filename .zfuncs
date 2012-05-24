@@ -40,9 +40,3 @@ bl()
 {
     less /havana/build-cache/build-root-$1-$2/.build.log
 }
-
-futu()
-{
-    rtmpdump -r rtmp://tv.futubox.com:1935/live/ --playpath=z$1.stream --swfUrl="http://futubox.com/donottouch/FutuPlayerv3.11.swf" --pageUrl=http://futubox.com/channels/225/livetv --live | vlc -
-}
-
