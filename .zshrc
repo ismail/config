@@ -1,6 +1,6 @@
 source ~/.zshrc-common
 
-export PATH=/havana/stuff/depot_tools:/havana/binaries/android-sdk/platform-tools:/havana/binaries/android-sdk/tools:$PATH
+export PATH=/havana/sources/depot_tools:/havana/binaries/android-sdk/platform-tools:/havana/binaries/android-sdk/tools:$PATH
 export MALLOC_PERTURB_=$(($RANDOM % 255 + 1))
 alias lsrpm="rpm -qlp"
 alias opm="osc -Apm"
@@ -9,7 +9,7 @@ alias wi="emacsclient -c"
 alias io="sudo iotop -o -P -a"
 alias result="osc results -v"
 alias tel-ng="telnovell-ng3"
-alias kvm="qemu-kvm -cpu qemu64,+ssse3,+sse4.1,+sse4.2,+x2apic,+cx16,+mmxext"
+alias kvm="qemu-kvm -vga vmware -device piix3-usb-uhci -m 2G"
 alias sigidi="osc commit --skip-validation"
 
 keychain --nogui -q id_rsa
