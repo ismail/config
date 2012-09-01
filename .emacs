@@ -27,9 +27,6 @@
 ;; Org mode
 (load "orgmode.el")
 
-;; CEDET
-(load "meineide.el")
-
 ;; Fonts
 (load "fonts.el")
 

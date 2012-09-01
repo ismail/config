@@ -50,3 +50,8 @@ vstream()
 {
     vlc "$1" --sout '#transcode{vcodec=h264,acodec=mp3,ab=128,channels=2,samplerate=44100}:http{dst=:8080/go.mpg}'
 }
+
+find_broken_symlinks()
+{
+    find -L $1 -type l -exec ls -lF --color=yes '{}' +
+}
