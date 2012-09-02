@@ -60,7 +60,7 @@ export PYTHONSTARTUP=/etc/pythonstart
 export PYTHONDONTWRITEBYTECODE=1
 
 alias cl="clear"
-alias scp="rsync --compress-level=3 --partial --progress --rsh=ssh -r"
+alias scp="rsync --compress-level=3 --partial --inplace --progress --rsh=ssh -r"
 alias d="cd"
 alias ..="cd .."
 alias md="mkdir -p"
