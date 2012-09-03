@@ -42,6 +42,8 @@ set expandtab
 :nmap <C-t> :tabnew<cr>
 :imap <C-t> <ESC>:tabnew<cr>
 :map <C-w> :tabclose<cr>
+:highlight TrailWhitespace ctermbg=red guibg=red
+:match TrailWhitespace /\s\+$\| \+\ze\t/
 
 filetype plugin on
 
