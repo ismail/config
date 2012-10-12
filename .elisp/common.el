@@ -56,7 +56,3 @@
 
 ;; Include current buffer name in the title bar
 (setq frame-title-format "%b")
-
-;; Color theme
-(require 'color-theme-solarized)
-(color-theme-solarized-dark)

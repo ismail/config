@@ -9,7 +9,7 @@ alias wi="emacsclient -c"
 alias io="sudo iotop -o -P -a"
 alias result="osc results -v"
 alias tel-ng="telnovell-ng3"
-alias kvm="qemu-kvm -vga vmware -device piix3-usb-uhci -m 2G"
+alias kvm="qemu-kvm -device piix3-usb-uhci -m 2G"
 alias sigidi="osc commit --skip-validation"
 
 keychain --nogui -q id_rsa

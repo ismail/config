@@ -69,6 +69,7 @@ alias gdb="gdb --quiet"
 alias curl="curl -#"
 alias screen="screen -U"
 alias ls="ls --color"
+alias editor='emacsclient "$@" -a ""'
 
 export PATH=$HOME/bin:/sbin:/usr/sbin:/usr/local/bin:/opt/local/bin:$PATH:/suse/bin
 
