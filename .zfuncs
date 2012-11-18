@@ -41,6 +41,11 @@ bl()
     less /havana/build-cache/build-root-$1-$2/.build.log
 }
 
+tl()
+{
+    tail -f /havana/build-cache/build-root-$1-$2/.build.log
+}
+
 dupcheck()
 {
     files=`lsrpm $1|xargs|tr " " "|"` && grep -E -w $files $2
