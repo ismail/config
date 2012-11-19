@@ -14,6 +14,5 @@ register_qt4_printers (None)
 
 from libstdcxx import register_libstdcxx_printers
 register_libstdcxx_printers (None)
-
 end
 
