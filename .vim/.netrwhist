@@ -1,4 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_cnt =3
 let g:netrw_dirhist_1='/kutu/build-cache/build-root-openSUSE_Factory-x86_64'
 let g:netrw_dirhist_2='/havana/t'
+let g:netrw_dirhist_3='/suse/idoenmez/.config/chromium/Default/Extensions/niloccemoadcdkdjlinkgdfekeahmflj/1.1.3_0/sites'
