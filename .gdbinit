@@ -2,6 +2,8 @@ set detach-on-fork off
 set target-async on
 set non-stop on
 set pagination off
+set history save on
+set history expansion on
 
 python
 import os
