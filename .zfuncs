@@ -60,3 +60,12 @@ find_broken_symlinks()
 {
     find -L $1 -type l -exec ls -lF --color=yes '{}' +
 }
+
+mvim ()
+{
+    if [ -z "$@" ]; then
+        gvim --remote-tab-silent "New Document"
+    else
+        gvim --remote-tab-silent $@
+    fi
+}
