@@ -47,7 +47,7 @@ setopt MULTIBYTE
 setopt COMBININGCHARS
 setopt HASH_EXECUTABLESONLY
 setopt HIST_IGNORE_SPACE
-export CORRECT_IGNORE="_*"
+export CORRECT_IGNORE="_* .*"
 
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh_cache
