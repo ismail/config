@@ -48,4 +48,6 @@ set expandtab
 filetype plugin on
 
 let g:clang_use_library=1
+let g:clang_snippets=1
+
 
