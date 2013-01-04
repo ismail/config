@@ -13,7 +13,6 @@ set sts=4
 set et
 
 set hlsearch
-
 set modelines=0
 
 " Don't use Ex mode, use Q for formatting
@@ -26,18 +25,9 @@ set showcmd
 set wildmenu
 set incsearch
 set background=dark
-set guicursor+=a:blinkon0
-if has("gui_macvim")
-    set guifont=Menlo\ Regular:h14
-else
-    set guifont="Droid Sans Mono":h16
-endif
-colorscheme solarized
-set guioptions-=m
-set guioptions-=T
-syntax on
 set showtabline=2
 set expandtab
+syntax on
 
 :nmap <C-t> :tabnew<cr>
 :imap <C-t> <ESC>:tabnew<cr>
@@ -47,7 +37,24 @@ set expandtab
 
 filetype plugin on
 
+" clang_complete
 let g:clang_use_library=1
 let g:clang_snippets=1
 
+" GUI related stuff
+if has("gui_running")
+
+set guicursor+=a:blinkon0
+colorscheme solarized
+set guioptions-=m
+set guioptions-=T
+
+    if has("gui_gtk2")
+        set guifont="Droid Sans Mono":h16
+    elseif has("gui_win32")
+        set guifont=Consolas:h11:cANSI
+    elseif has("gui_macvim")
+        set guifont=Menlo\ Regular:h14
+    endif
+endif
 
