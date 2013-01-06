@@ -4,6 +4,8 @@ set bs=2
 set ai
 set viminfo='20,\"50	" read/write a .viminfo file -- limit to only 50
 set history=50			" keep 50 lines of command history
+set encoding=utf-8
+set fileencoding=utf-8
 
 set nowrap
 set ts=4
