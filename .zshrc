@@ -19,4 +19,3 @@ keychain --nogui -q id_rsa
 . $HOME/.keychain/$HOSTNAME-sh
 
 touch /tmp/noautobuild
-

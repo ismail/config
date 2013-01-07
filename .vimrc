@@ -6,7 +6,6 @@ set viminfo='20,\"50	" read/write a .viminfo file -- limit to only 50
 set history=50			" keep 50 lines of command history
 set encoding=utf-8
 set fileencoding=utf-8
-set lines=50 columns=120
 
 set nowrap
 set ts=4
@@ -47,6 +46,7 @@ let g:clang_snippets=1
 " GUI related stuff
 if has("gui_running")
 
+set lines=50 columns=120
 set guicursor+=a:blinkon0
 colorscheme solarized
 set guioptions-=m
