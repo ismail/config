@@ -69,3 +69,10 @@ mvim ()
         gvim --remote-tab-silent $@
     fi
 }
+
+browser ()
+{
+    f=`mktemp --suffix=.html`
+    cat /dev/stdin > $f
+    xdg-open $f
+}
