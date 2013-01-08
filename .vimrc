@@ -40,7 +40,12 @@ syntax on
 filetype plugin on
 
 " clang_complete
-let g:clang_use_library=1
+if has("unix")
+    let g:clang_use_library=1
+elseif has("win32")
+    let g:clang_exec = '"C:\clang\bin\clang.exe'
+    let g:clang_user_options = '2> NUL || exit 0"'
+endif
 let g:clang_snippets=1
 
 " GUI related stuff
