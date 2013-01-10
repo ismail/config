@@ -58,7 +58,7 @@ set guioptions-=m
 set guioptions-=T
 
     if has("gui_gtk2")
-        set guifont="Droid Sans Mono":h16
+        set guifont=Consolas\ 12
     elseif has("gui_win32")
         set guifont=Consolas:h11:cANSI
     elseif has("gui_macvim")
