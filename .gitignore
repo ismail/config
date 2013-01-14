@@ -1,12 +1,2 @@
-.DS\_Store
-*.pyc
-*.log
-*~
-build
-bin
-obj
-*.suo
-*.dll
-*.exe
-Makefile
-
+*.cache
+.vim/.netrwhist
