@@ -1,12 +1,7 @@
 bzit()
 {
     if [ ! -z $1 ]; then
-        pushd $1 &&
-        find . -name ".svn" | xargs rm -rf &&
-        rm -rf .git &&
-        popd &&
-        tar cjf $1.tar.bz2 $1 &&
-        rm -rf $1
+        tar --exclude-vcs -cjf $1.tar.bz2 $1
     fi
 }
 
