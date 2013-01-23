@@ -72,6 +72,13 @@ alias gdb="gdb --quiet"
 alias curl="curl -C- -#"
 alias screen="screen -U"
 alias ls="ls --color"
+alias l.='ls -d .* --color=auto'
+alias ifconfig-ext='curl ifconfig.me'
+alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
+alias open='xdg-open'
+alias clear='printf "\ec"'
+alias ccat='pygmentize -O bg=dark'
+alias wget='wget --content-disposition'
 
 export PATH=$HOME/bin:/sbin:/usr/sbin:/usr/local/bin:$PATH:/suse/bin
 

@@ -1,63 +1,56 @@
-bzit()
-{
+bzit() {
     if [ ! -z $1 ]; then
         tar --exclude-vcs -cjf $1.tar.bz2 $1
     fi
 }
 
-unrpm()
-{
+unrpm() {
     if [ -e $1 ]; then
         rpm2cpio $1 | cpio -imdv
     fi
 }
 
-ydl()
-{
+ydl() {
     youtube-dl --prefer-free-formats "$1" -o %(stitle)s.%(ext)s
 }
 
-kde_release()
-{
+mp3() {
+        youtube-dl --extract-audio --title --audio-format mp3 "$1"
+}
+
+kde_release() {
     cmake -DCMAKE_SKIP_RPATH=ON -DCMAKE_INSTALL_PREFIX=/usr \
           -DLIBEXEC_INSTALL_DIR:PATH=/usr/lib64/kde4/libexec \
           -DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE=release ..
 }
 
-kde_debug()
-{
+kde_debug() {
     cmake -DCMAKE_SKIP_RPATH=ON -DCMAKE_INSTALL_PREFIX=/usr \
           -DLIBEXEC_INSTALL_DIR:PATH=/usr/lib64/kde4/libexec \
           -DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE=debug ..
 }
 
-bl()
-{
+bl() {
     less /havana/build-cache/build-root-$1-$2/.build.log
 }
 
-tl()
-{
+tl() {
     tail -f /havana/build-cache/build-root-$1-$2/.build.log
 }
 
-dupcheck()
-{
+dupcheck() {
     files=`lsrpm $1|xargs|tr " " "|"` && grep -E -w $files $2
 }
 
-vstream()
-{
+vstream() {
     vlc "$1" --sout '#transcode{vcodec=h264,acodec=mp3,ab=128,channels=2,samplerate=44100}:http{dst=:8080/go.mpg}'
 }
 
-find_broken_symlinks()
-{
+find_broken_symlinks() {
     find -L $1 -type l -exec ls -lF --color=yes '{}' +
 }
 
-mvim ()
-{
+mvim () {
     if [ -z "$@" ]; then
         gvim --remote-tab-silent "New Document"
     else
@@ -65,8 +58,7 @@ mvim ()
     fi
 }
 
-browser ()
-{
+browser () {
     f=`mktemp --suffix=.html`
     cat /dev/stdin > $f
     xdg-open $f
@@ -89,3 +81,12 @@ extract () {
          echo "'$1' is not a valid file"
      fi
 }
+
+mcd () {
+  mkdir -p "$1" && cd "$1";
+}
+
+sniff () {
+    sudo ngrep -d ${1} -t '^(GET|POST) ' 'tcp and port 80';
+}
+
