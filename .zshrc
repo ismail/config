@@ -9,7 +9,6 @@ alias io="sudo iotop -o -P -a"
 alias result="osc results -v"
 alias tel-ng="telnovell-ng3"
 alias kvm="qemu-kvm -usb -device usb-ehci,id=ehci -vga vmware -m 2G"
-alias sigidi="osc commit --skip-validation"
 
 [ -x /usr/bin/keychain ] && keychain --nogui -q id_rsa
 [ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
