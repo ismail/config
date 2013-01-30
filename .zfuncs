@@ -90,3 +90,7 @@ sniff () {
     sudo ngrep -d ${1} -t '^(GET|POST) ' 'tcp and port 80';
 }
 
+dumpenv () {
+    sudo cat /proc/$1/environ | xargs --null --max-args=1
+}
+
