@@ -94,3 +94,6 @@ dumpenv () {
     sudo cat /proc/$1/environ | xargs --null --max-args=1
 }
 
+ftrace () {
+    strace -f -e trace=file $@
+}
