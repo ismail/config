@@ -4,6 +4,7 @@ export PATH=~/bin/depot_tools:/havana/binaries/android-sdk/platform-tools:/havan
 export MALLOC_PERTURB_=$(($RANDOM % 255 + 1))
 alias lsrpm="rpm -qlp"
 alias lsprovides="rpm -qp --provides"
+alias lsrequires="rpm -qp --requires"
 alias opm="osc -Apm"
 alias ibs="osc -Aibs"
 alias io="sudo iotop -o -P -a"
