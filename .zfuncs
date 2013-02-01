@@ -67,8 +67,10 @@ browser () {
 extract () {
     if [ -f $1 ] ; then
       case $1 in
-        *.tar.bz2|*.tar.gz|*.tar|*.tbz2|*.tgz)
+        *.tar.lzma|*.tar.bz2|*.tar.gz|*.tar|*.tbz2|*.tgz)
                      tar xvf $1     ;;
+        *.lzma)
+                     lzma -d $1     ;;
         *.bz2)       bunzip2 $1     ;;
         *.rar)       unrar e $1     ;;
         *.gz)        gunzip $1      ;;

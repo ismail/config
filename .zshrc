@@ -3,8 +3,9 @@ source ~/.zshrc-common
 export PATH=~/bin/depot_tools:/havana/binaries/android-sdk/platform-tools:/havana/binaries/android-sdk/tools:$PATH
 export MALLOC_PERTURB_=$(($RANDOM % 255 + 1))
 alias lsrpm="rpm -qlp"
+alias lsprovides="rpm -qp --provides"
 alias opm="osc -Apm"
-alias isc="osc -Aibs"
+alias ibs="osc -Aibs"
 alias io="sudo iotop -o -P -a"
 alias result="osc results -v"
 alias tel-ng="telnovell-ng3"
