@@ -137,7 +137,7 @@ function! s:ClangCompleteInit()
     let b:clang_parameters .= '++'
   endif
 
-  if expand('%:e') =~ 'h*'
+  if expand('%:e') =~ 'h.*'
     let b:clang_parameters .= '-header'
   endif
 
@@ -167,6 +167,17 @@ function! s:ClangCompleteInit()
     let l:initialized = s:initClangCompletePython(exists('g:clang_use_library'))
     let g:clang_use_library = l:initialized
   endif
+
+  if g:clang_use_library != 1
+    echoe 'clang_complete: Not using libclang is deprecated,'
+    echoe 'You should switch to libclang now and report all the bugs.'
+
+    if g:clang_compilation_database != ''
+      echoe 'The use of the compile_commands.json file is only available'
+      echoe 'when using libclang.'
+    endif
+  endif
+
 endfunction
 
 function! LoadUserOptions()
@@ -183,7 +194,7 @@ function! LoadUserOptions()
     endif
     if l:source == 'path'
       call s:parsePathOption()
-    elseif l:source == 'compile_commands.json' && g:clang_use_library == 1
+    elseif l:source == 'compile_commands.json'
       call s:findCompilationDatase(l:source)
     elseif l:source == '.clang_complete'
       call s:parseConfig()
@@ -260,7 +271,7 @@ function! s:initClangCompletePython(user_requested)
     python import sys
 
     exe 'python sys.path = ["' . s:plugin_path . '"] + sys.path'
-    exe 'pyfile ' . s:plugin_path . '/libclang.py'
+    exe 'pyfile ' . fnameescape(s:plugin_path) . '/libclang.py'
     py vim.command('let l:res = ' + str(initClangComplete(vim.eval('g:clang_complete_lib_flags'), vim.eval('g:clang_compilation_database'), vim.eval('g:clang_library_path'), vim.eval('a:user_requested'))))
     if l:res == 0
       return 0
