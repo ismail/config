@@ -10,9 +10,10 @@ compinit
 # History
 export HISTFILE=~/.zsh_history
 export SAVEHIST=50000
-export HISTCONTROL=ignoredups
 setopt SHARE_HISTORY
 setopt EXTENDED_GLOB
+setopt HIST_IGNORE_SPACE
+setopt HIST_IGNORE_ALL_DUPS
 
 # Key bindings
 bindkey -e             # emacs key bindings
@@ -43,7 +44,6 @@ setopt INTERACTIVE_COMMENTS
 setopt NONOMATCH
 setopt NOPROMPT_SP
 setopt MULTIBYTE
-setopt HIST_IGNORE_SPACE
 export CORRECT_IGNORE="_* .*"
 
 # Not all zsh versions support the options below
