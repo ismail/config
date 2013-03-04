@@ -5,6 +5,7 @@ export MALLOC_PERTURB_=$(($RANDOM % 255 + 1))
 alias lsrpm="rpm -qlp"
 alias lsprovides="rpm -qp --provides"
 alias lsrequires="rpm -qp --requires"
+alias open="xdg-open"
 alias opm="osc -Apm"
 alias ibs="osc -Aibs"
 alias io="sudo iotop -o -P -a"
