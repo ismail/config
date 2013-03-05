@@ -42,9 +42,6 @@ filetype plugin on
 " clang_complete
 let g:clang_use_library=1
 let g:clang_snippets=1
-if has("unix")
-let g:clang_library_path="/usr/lib64/"
-endif
 
 " GUI related stuff
 if has("gui_running")
