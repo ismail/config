@@ -1,6 +1,6 @@
 source ~/.zshrc-common
 
-export PATH=~/bin/depot_tools:/havana/binaries/android-sdk/platform-tools:/havana/binaries/android-sdk/tools:$PATH
+export PATH=/havana/sources/depot_tools:/havana/binaries/adt-bundle/sdk/platform-tools:/havana/binaries/adt-bundle/sdk/tools:$PATH
 export MALLOC_PERTURB_=$(($RANDOM % 255 + 1))
 alias lsrpm="rpm -qlp"
 alias lsprovides="rpm -qp --provides"
