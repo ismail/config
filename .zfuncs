@@ -38,10 +38,6 @@ tl() {
     tail -f /havana/build-cache/build-root-$1-$2/.build.log
 }
 
-dupcheck() {
-    files=`lsrpm $1|xargs|tr " " "|"` && grep -E -w $files $2
-}
-
 vstream() {
     vlc "$1" --sout '#transcode{vcodec=h264,acodec=mp3,ab=128,channels=2,samplerate=44100}:http{dst=:8080/go.mpg}'
 }
