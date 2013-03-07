@@ -7,6 +7,9 @@ colors
 autoload -U compinit
 compinit
 
+# Calculator
+autoload -U zcalc
+
 # History
 export HISTFILE=~/.zsh_history
 export SAVEHIST=50000
@@ -41,9 +44,13 @@ setopt AUTO_PUSHD
 setopt PUSHD_IGNORE_DUPS
 setopt PUSHD_SILENT
 setopt INTERACTIVE_COMMENTS
+setopt NO_BEEP
+setopt NO_FLOW_CONTROL
 setopt NONOMATCH
 setopt NOPROMPT_SP
+setopt NUMERIC_GLOB_SORT
 setopt MULTIBYTE
+setopt RM_STAR_WAIT
 export CORRECT_IGNORE="_* .*"
 
 # Not all zsh versions support the options below
