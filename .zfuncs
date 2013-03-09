@@ -31,11 +31,11 @@ kde_debug() {
 }
 
 bl() {
-    less /havana/build-cache/build-root-$1-$2/.build.log
+    less /havana/.build-cache/build-root-$1-$2/.build.log
 }
 
 tl() {
-    tail -f /havana/build-cache/build-root-$1-$2/.build.log
+    tail -f /havana/.build-cache/build-root-$1-$2/.build.log
 }
 
 vstream() {
