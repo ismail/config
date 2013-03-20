@@ -31,7 +31,7 @@ kde_debug() {
 }
 
 bl() {
-    less /havana/.build-cache/build-root-$1-$2/.build.log
+    most /havana/.build-cache/build-root-$1-$2/.build.log
 }
 
 tl() {
