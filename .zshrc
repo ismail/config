@@ -2,6 +2,8 @@ source ~/.zshrc-common
 
 export PATH=/havana/sources/depot_tools:/havana/binaries/adt-bundle/eclipse:/havana/binaries/adt-bundle/sdk/platform-tools:/havana/binaries/adt-bundle/sdk/tools:$PATH
 export MALLOC_PERTURB_=$(($RANDOM % 255 + 1))
+export PAGER="most -s +u +s"
+alias less="most -s +u +s"
 alias lsrpm="rpm -qlp"
 alias lsprovides="rpm -qp --provides"
 alias lsrequires="rpm -qp --requires"
