@@ -37,21 +37,21 @@ bindkey "^?" backward-delete-char
 bindkey "^[[3~" delete-char
 
 # Other options
-setopt NO_BEEP
-setopt CORRECT_ALL
 setopt AUTO_LIST
 setopt AUTO_PUSHD
-setopt PUSHD_IGNORE_DUPS
-setopt PUSHD_SILENT
+setopt BRACE_CCL
+setopt CORRECT_ALL
+export CORRECT_IGNORE="_* .*"
 setopt INTERACTIVE_COMMENTS
 setopt NO_BEEP
 setopt NO_FLOW_CONTROL
 setopt NONOMATCH
 setopt NOPROMPT_SP
 setopt NUMERIC_GLOB_SORT
-setopt MULTIBYTE
+setopt PUSHD_IGNORE_DUPS
+setopt PUSHD_SILENT
 setopt RM_STAR_WAIT
-export CORRECT_IGNORE="_* .*"
+setopt MULTIBYTE
 
 # Not all zsh versions support the options below
 for opt in COMBININGCHARS HASH_EXECUTABLESONLY; do
