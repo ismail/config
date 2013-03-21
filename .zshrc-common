@@ -78,7 +78,6 @@ alias dec="gpg -d"
 alias enc="gpg -ea -r"
 alias gdb="gdb --quiet"
 alias grep="grep --color"
-alias ifconfig-ext='curl ifconfig.me'
 alias l.='ls -d .* --color=auto'
 alias ls="ls --color"
 alias md="mkdir -p"

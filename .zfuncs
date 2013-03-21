@@ -95,3 +95,10 @@ dumpenv () {
 ftrace () {
     strace -f -e trace=file $@
 }
+
+ifgoogle () {
+    useragent="Mozilla/5.0 AppleWebKit/537.35 (KHTML, like Gecko) Chrome/27.0.1448.0 Safari/537.35"
+    url="https://www.google.com/search?q=whats+my+ip"
+    curl -s -A $useragent $url | grep -oP '(?<=Your public IP address is <em>).*?(?=</em>)'
+}
+
