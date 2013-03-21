@@ -85,6 +85,8 @@ alias open='xdg-open'
 alias clear='printf "\ec"'
 alias ccat='pygmentize -O bg=dark'
 alias wget='wget --content-disposition'
+alias enc="gpg -ea -r"
+alias dec="gpg -d"
 
 export PATH=$HOME/bin:/sbin:/usr/sbin:/usr/local/bin:$PATH:/suse/bin
 
