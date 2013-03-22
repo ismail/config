@@ -1,56 +1,10 @@
-bzit() {
-    if [ ! -z $1 ]; then
-        tar --exclude-vcs -cjf $1.tar.bz2 $1
-    fi
-}
-
-unrpm() {
-    if [ -e $1 ]; then
-        rpm2cpio $1 | cpio -imdv
-    fi
-}
-
-ydl() {
-    youtube-dl --prefer-free-formats "$1" -o %(stitle)s.%(ext)s
-}
-
-mp3() {
-        youtube-dl --extract-audio --title --audio-format mp3 "$1"
-}
-
-kde_release() {
-    cmake -DCMAKE_SKIP_RPATH=ON -DCMAKE_INSTALL_PREFIX=/usr \
-          -DLIBEXEC_INSTALL_DIR:PATH=/usr/lib64/kde4/libexec \
-          -DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE=release ..
-}
-
-kde_debug() {
-    cmake -DCMAKE_SKIP_RPATH=ON -DCMAKE_INSTALL_PREFIX=/usr \
-          -DLIBEXEC_INSTALL_DIR:PATH=/usr/lib64/kde4/libexec \
-          -DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE=debug ..
-}
-
 bl() {
     most /havana/.build-cache/build-root-$1-$2/.build.log
 }
 
-tl() {
-    tail -f /havana/.build-cache/build-root-$1-$2/.build.log
-}
-
-vstream() {
-    vlc "$1" --sout '#transcode{vcodec=h264,acodec=mp3,ab=128,channels=2,samplerate=44100}:http{dst=:8080/go.mpg}'
-}
-
-find_broken_symlinks() {
-    find -L $1 -type l -exec ls -lF --color=yes '{}' +
-}
-
-mvim () {
-    if [ -z "$@" ]; then
-        gvim --remote-tab-silent "New Document"
-    else
-        gvim --remote-tab-silent $@
+bzit() {
+    if [ ! -z $1 ]; then
+        tar --exclude-vcs -cjf $1.tar.bz2 $1
     fi
 }
 
@@ -58,6 +12,10 @@ browser () {
     f=`mktemp --suffix=.html`
     cat /dev/stdin > $f
     xdg-open $f
+}
+
+dumpenv () {
+    sudo cat /proc/$1/environ | xargs --null --max-args=1
 }
 
 extract () {
@@ -80,16 +38,8 @@ extract () {
      fi
 }
 
-mcd () {
-  mkdir -p "$1" && cd "$1";
-}
-
-sniff () {
-    sudo ngrep -d ${1} -t '^(GET|POST) ' 'tcp and port 80';
-}
-
-dumpenv () {
-    sudo cat /proc/$1/environ | xargs --null --max-args=1
+find_broken_symlinks() {
+    find -L $1 -type l -exec ls -lF --color=yes '{}' +
 }
 
 ftrace () {
@@ -102,7 +52,57 @@ ifgoogle () {
     curl -s -A $useragent $url | grep -oP '(?<=Your public IP address is <em>).*?(?=</em>)'
 }
 
+kde_release() {
+    cmake -DCMAKE_SKIP_RPATH=ON -DCMAKE_INSTALL_PREFIX=/usr \
+          -DLIBEXEC_INSTALL_DIR:PATH=/usr/lib64/kde4/libexec \
+          -DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE=release ..
+}
+
+kde_debug() {
+    cmake -DCMAKE_SKIP_RPATH=ON -DCMAKE_INSTALL_PREFIX=/usr \
+          -DLIBEXEC_INSTALL_DIR:PATH=/usr/lib64/kde4/libexec \
+          -DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE=debug ..
+}
+
 latest_dolphin () {
     curl -s "http://dolphin-emu.org/download/?ref=btn" | \
     perl -ne 'CORE::say $1 and exit if /download\/dev\/\S+\/">(\d\.\d-\d+)/'
+}
+
+mcd () {
+    mkdir -p "$1" && cd "$1";
+}
+
+mp3() {
+    youtube-dl --extract-audio --title --audio-format mp3 "$1"
+}
+
+mvim () {
+    if [ -z "$@" ]; then
+        gvim --remote-tab-silent "New Document"
+    else
+        gvim --remote-tab-silent $@
+    fi
+}
+
+sniff () {
+    sudo ngrep -d ${1} -t '^(GET|POST) ' 'tcp and port 80';
+}
+
+tl() {
+    tail -f /havana/.build-cache/build-root-$1-$2/.build.log
+}
+
+unrpm() {
+    if [ -e $1 ]; then
+        rpm2cpio $1 | cpio -imdv
+    fi
+}
+
+vstream() {
+    vlc "$1" --sout '#transcode{vcodec=h264,acodec=mp3,ab=128,channels=2,samplerate=44100}:http{dst=:8080/go.mpg}'
+}
+
+ydl() {
+    youtube-dl --prefer-free-formats "$1" -o %(stitle)s.%(ext)s
 }
