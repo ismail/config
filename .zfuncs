@@ -102,3 +102,7 @@ ifgoogle () {
     curl -s -A $useragent $url | grep -oP '(?<=Your public IP address is <em>).*?(?=</em>)'
 }
 
+latest_dolphin () {
+    curl -s "http://dolphin-emu.org/download/?ref=btn" | \
+    perl -ne 'CORE::say $1 and exit if /download\/dev\/\S+\/">(\d\.\d-\d+)/'
+}
