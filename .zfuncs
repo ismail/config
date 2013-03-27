@@ -69,6 +69,10 @@ latest_dolphin () {
     perl -ne 'CORE::say $1 and exit if /download\/dev\/\S+\/">(\d\.\d-\d+)/'
 }
 
+lupx () {
+    upx --best --lzma $@
+}
+
 mcd () {
     mkdir -p "$1" && cd "$1";
 }
