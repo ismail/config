@@ -1,0 +1,24 @@
+/* add '[pdf]' next to links to PDF files */
+a[href$=".pdf"]:after {
+    font-size: smaller;
+    content: " [pdf]";
+}
+
+a[href]:hover {
+    text-decoration: none !important;
+}
+
+a[href]:hover:after {
+    content: attr(href);
+    position: fixed; left: 0px; bottom: 0px;
+    padding: 0 2px !important;
+    max-width: 95%; overflow: hidden;
+    white-space: nowrap; text-overflow: ellipsis;
+    font:10pt sans-serif !important;
+    background-color: black  !important;
+    color: white !important;
+    opacity: 0.7;
+    z-index: 9999;
+}
+
+
