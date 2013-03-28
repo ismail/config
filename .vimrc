@@ -30,6 +30,7 @@ set incsearch
 set background=dark
 set showtabline=2
 set expandtab
+colorscheme solarized
 syntax on
 
 :nmap <C-t> :tabnew<cr>
@@ -49,7 +50,6 @@ if has("gui_running")
 
 set lines=50 columns=120
 set guicursor+=a:blinkon0
-colorscheme solarized
 set guioptions-=m
 set guioptions-=T
 
