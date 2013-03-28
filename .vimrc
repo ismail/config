@@ -13,6 +13,7 @@ set sw=4
 set sta
 set sts=4
 set et
+set t_Co=256
 
 set hlsearch
 set modelines=0
