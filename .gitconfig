@@ -10,7 +10,7 @@
     graphviz = "!f() { echo 'digraph git {' ; git log --pretty='format:  %h -> { %p }' \"$@\" | sed 's/[0-9a-f][0-9a-f]*/\"&\"/g' ; echo '}'; }; f"
 [user]
 	name = İsmail Dönmez
-	email = idoenmez@suse.de
+	email = ismail@donmez.ws 
 [svn]
     brokenSymlinkWorkaround = false
 [color]
