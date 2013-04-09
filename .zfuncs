@@ -108,5 +108,5 @@ vstream() {
 }
 
 ydl() {
-    youtube-dl --prefer-free-formats "$1" -o %(stitle)s.%(ext)s
+    youtube-dl --prefer-free-formats "$1" -o %(title)s.%(ext)s
 }
