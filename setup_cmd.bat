@@ -2,6 +2,7 @@
 
 doskey clear=cls
 doskey ls=dir
+doskey rm=del
 doskey ..=cd ..\..
 doskey ...=cd ..\..\..
 
