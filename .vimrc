@@ -21,6 +21,9 @@ set modelines=0
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
+set fileformat=unix
+set fileformats=unix,dos
+
 set wrap
 set linebreak
 set laststatus=2
