@@ -1,2 +1,3 @@
 *.cache
+*.pyc
 .vim/.netrwhist
