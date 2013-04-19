@@ -33,6 +33,8 @@ set incsearch
 set background=dark
 set showtabline=2
 set expandtab
+set title
+set ruler
 colorscheme solarized
 syntax on
 
@@ -43,6 +45,14 @@ syntax on
 :match TrailWhitespace /\s\+$\| \+\ze\t/
 
 filetype plugin on
+
+" For python omnicomplete
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
+" Omnicomplete changes
+set wildmenu
+set wildmode=list:longest
 
 " clang_complete
 let g:clang_use_library=1
