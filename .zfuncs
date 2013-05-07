@@ -18,6 +18,10 @@ dumpenv () {
     sudo cat /proc/$1/environ | xargs --null --max-args=1
 }
 
+encode_film() {
+    avconv -i $1 -c:v libx264 -preset medium -tune film $2
+}
+
 extract () {
     if [ -f $1 ] ; then
       case $1 in
