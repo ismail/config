@@ -93,6 +93,11 @@ sniff () {
     sudo ngrep -d ${1} -t '^(GET|POST) ' 'tcp and port 80';
 }
 
+sshproxy() {
+    # Usage sproxy port username@host
+    ssh -fND localhost:$1 $2
+}
+
 tl() {
     tail -f /havana/.build-cache/build-root-$1-$2/.build.log
 }
