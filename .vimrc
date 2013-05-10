@@ -35,6 +35,9 @@ set showtabline=2
 set expandtab
 set title
 set ruler
+set nobackup
+set nowritebackup
+set noswapfile
 colorscheme solarized
 syntax on
 
