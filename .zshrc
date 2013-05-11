@@ -1,6 +1,6 @@
 source ~/.zshrc-common
 
-export PATH=/havana/sources/depot_tools:/havana/binaries/adt-bundle/eclipse:/havana/binaries/adt-bundle/sdk/platform-tools:/havana/binaries/adt-bundle/sdk/tools:$PATH
+export PATH=/havana/sources/depot_tools:/havana/binaries/adt-bundle/eclipse:/havana/binaries/adt-bundle/sdk/platform-tools:/havana/binaries/adt-bundle/sdk/tools:~/.npm/bin:$PATH
 export MALLOC_PERTURB_=$(($RANDOM % 255 + 1))
 export PAGER="most"
 alias less="most"
@@ -13,7 +13,7 @@ alias ibs="osc -Aibs"
 alias io="sudo iotop -o -P -a"
 alias result="osc results -v"
 alias kvm="qemu-kvm -usb -device usb-ehci,id=ehci -vga vmware -m 4G"
-alias cg++="clang++ -stdlib=libc++"
+alias cg++="clang++ -stdlib=libc++ -lc++abi"
 
 [ -x /usr/bin/keychain ] && keychain --nogui -q id_rsa
 [ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
