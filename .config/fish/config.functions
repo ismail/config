@@ -1,0 +1,76 @@
+function bl
+    command most /havana/.build-cache/build-root-$argv[1]-$argv[2]/.build.log
+end
+
+function bzit
+    if test ! -z $argv[1]
+        command tar --exclude-vcs -cjf $argv[1].tar.bz2 $argv[1]
+    end
+end
+
+function browser
+    f=`mktemp --suffix=.html`
+    cat /dev/stdin > $f
+    xdg-open $f
+end
+
+function dumpenv
+    sudo cat /proc/$argv[1]/environ | xargs --null --max-args=1
+end
+
+function encode_film
+    avconv -i $argv[1] -c:v libx264 -preset medium -tune film $argv[2]
+end
+
+function find_broken_symlinks
+    find -L $argv[1] -type l -exec ls -lF --color=yes '{}' +
+end
+
+function ftrace
+    strace -f -e trace=file $argv
+end
+
+function ifgoogle
+    set useragent "Mozilla/5.0 AppleWebKit/537.35 (KHTML, like Gecko) Chrome/27.0.1448.0 Safari/537.35"
+    set url "https://www.google.com/search?q=whats+my+ip"
+    command curl -s -A $useragent $url | grep -oP '(?<=Your public IP address is <em>).*?(?=</em>)'
+end
+
+function lupx
+    upx --best --lzma $argv
+end
+
+function mp3
+    youtube-dl --extract-audio --title --audio-format mp3 "$argv[1]"
+end
+
+function mvim
+    if test -z $argv
+        gvim --remote-tab-silent "New Document"
+    else
+        gvim --remote-tab-silent $argv
+    end
+end
+
+function sshproxy
+    # Usage sproxy port username@host
+    ssh -fND localhost:$argv[1] $argv[2]
+end
+
+function tl
+    tail -f /havana/.build-cache/build-root-$argv[1]-$argv[2]/.build.log
+end
+
+function unrpm
+    if test -e $argv[1]
+        rpm2cpio $argv[1] | cpio -imdv
+    end
+end
+
+function vstream
+    vlc "$argv[1]" --sout '#transcode{vcodec=h264,acodec=mp3,ab=128,channels=2,samplerate=44100}:http{dst=:8080/go.mpg}'
+end
+
+function ydl
+    youtube-dl --prefer-free-formats "$argv[1]" -o "%(title)s.%(ext)s"
+end
