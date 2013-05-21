@@ -12,7 +12,7 @@ alias opm="osc -Apm"
 alias ibs="osc -Aibs"
 alias io="sudo iotop -o -P -a"
 alias result="osc results -v"
-alias kvm="qemu-kvm -usb -device usb-ehci,id=ehci -vga vmware -m 4G"
+alias kvm="qemu-system-x86_64 -enable-kvm -usb -device usb-ehci,id=ehci -vga vmware -m 4G"
 alias cg++="clang++ -stdlib=libc++ -lc++abi"
 
 [ -x /usr/bin/keychain ] && keychain --nogui -q id_rsa
