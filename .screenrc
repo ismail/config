@@ -12,7 +12,7 @@ startup_message off
 crlf off
 
 # Change default scrollback value for new windows
-defscrollback 1000
+defscrollback 1000000
 
 # Default shell
 shell zsh
