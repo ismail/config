@@ -93,6 +93,10 @@ mvim () {
     fi
 }
 
+randpass () {
+    curl -s "https://www.random.org/passwords/?num=1&len=24&format=plain&rnd=new"
+}
+
 sniff () {
     sudo ngrep -d ${1} -t '^(GET|POST) ' 'tcp and port 80';
 }
