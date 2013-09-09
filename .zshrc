@@ -1,6 +1,6 @@
 source ~/.zshrc-common
 
-export PATH=/havana/sources/depot_tools:/havana/binaries/adt-bundle/eclipse:/havana/binaries/adt-bundle/sdk/platform-tools:/havana/binaries/adt-bundle/sdk/tools:~/.npm/bin:$PATH
+export PATH=/havana/sources/depot_tools:/havana/binaries/android-sdk-linux/platform-tools:/havana/binaries/android-sdk-linux/tools:$PATH
 export MALLOC_PERTURB_=$(($RANDOM % 255 + 1))
 export PAGER="most"
 alias less="most"
