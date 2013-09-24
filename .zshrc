@@ -1,8 +1,10 @@
 source ~/.zshrc-common
 
 export PATH=/havana/sources/depot_tools:/havana/binaries/android-sdk-linux/platform-tools:/havana/binaries/android-sdk-linux/tools:$PATH
+export JAVA_HOME=/opt/oracle-java
 export MALLOC_PERTURB_=$(($RANDOM % 255 + 1))
 export PAGER="most"
+alias mfactor="msieve -s /dev/null -l /dev/null -v -e -n -t 8 -m"
 alias less="most"
 alias lsrpm="rpm -qlp"
 alias lsprovides="rpm -qp --provides"
