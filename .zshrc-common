@@ -38,8 +38,9 @@ bindkey "^?" backward-delete-char
 bindkey "^[[3~" delete-char
 
 # Other options
+setopt AUTOCD
 setopt AUTO_LIST
-setopt AUTO_PUSHD
+setopt AUTOPUSHD
 setopt BRACE_CCL
 setopt CORRECT_ALL
 export CORRECT_IGNORE="_* .*"
@@ -54,6 +55,8 @@ setopt PUSHD_IGNORE_DUPS
 setopt PUSHD_SILENT
 setopt RM_STAR_WAIT
 setopt MULTIBYTE
+setopt NOCHECKJOBS
+setopt NOHUP
 
 # Not all zsh versions support the options below
 for opt in COMBININGCHARS HASH_EXECUTABLESONLY; do
