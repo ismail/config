@@ -77,14 +77,14 @@ alias cl="clear"
 alias curl="curl -C- -#"
 alias d="cd"
 alias dec="gpg -d"
-alias enc="gpg -ea -r"
+alias enc="gpg -e"
 alias gdb="gdb --quiet"
 alias grep="grep --color"
 alias l.='ls -d .* --color=auto'
 alias md="mkdir -p"
 alias open='xdg-open'
 alias scp="rsync --compress-level=3 --partial --inplace --progress --rsh=ssh -r"
-alias screen="screen -U"
+alias screen="screen -U -A"
 alias servethis="python -c 'import SimpleHTTPServer; SimpleHTTPServer.test()'"
 alias verify="gpg --verify"
 alias wget='wget --content-disposition'
