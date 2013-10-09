@@ -1,3 +1,6 @@
+# First things first
+precmd() {print -Pn "\e]0;%n@%m: %~\a"}
+
 source ~/.zshrc-common
 
 export PATH=/havana/sources/depot_tools:/havana/binaries/android-sdk-linux/platform-tools:/havana/binaries/android-sdk-linux/tools:$PATH
