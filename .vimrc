@@ -56,10 +56,6 @@ autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 set wildmenu
 set wildmode=list:longest
 
-" clang_complete
-let g:clang_use_library=1
-let g:clang_snippets=1
-
 " GUI related stuff
 if has("gui_running")
 
