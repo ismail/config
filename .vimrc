@@ -1,3 +1,4 @@
+set relativenumber
 set number
 set nocompatible
 set bs=2
