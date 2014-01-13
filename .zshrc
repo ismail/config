@@ -12,6 +12,7 @@ alias open="xdg-open"
 alias io="sudo iotop -o -P -a"
 alias result="osc results -v"
 alias cg++="clang++ -stdlib=libc++ -lc++ -lc++abi"
+alias tlog="journalctl -eaf"
 
 [ -f ~/.zsh_custom ] && source ~/.zsh_custom
 [ -x /usr/bin/keychain ] && keychain --nogui -q id_rsa
