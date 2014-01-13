@@ -1,4 +1,5 @@
 location:Istanbul,TR
 units:metric
 background:\033[37m
+greeting_text:[+]
 
