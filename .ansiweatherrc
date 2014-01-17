@@ -1,5 +1,7 @@
 location:Istanbul,TR
 units:metric
+daylight:true
 background:\033[37m
 greeting_text:[+]
+sunrise_text:Sunrise
 

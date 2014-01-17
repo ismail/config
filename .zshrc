@@ -2,6 +2,7 @@
 precmd() {print -Pn "\e]0;%n@%m: %~\a"}
 
 source ~/.zshrc-common
+
 alias ls="ls --color"
 alias lsrpm="rpm -qlp"
 alias lsprovides="rpm -qp --provides"
@@ -15,7 +16,6 @@ alias cg++="clang++ -stdlib=libc++ -lc++ -lc++abi"
 alias ulog="journalctl -eaf"
 alias slog="sudo journalctl -eaf"
 
-[ -f ~/.zsh_custom ] && source ~/.zsh_custom
 [ -x /usr/bin/keychain ] && keychain --nogui -q id_rsa
 [ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
 [ -f $HOME/.keychain/$HOSTNAME-sh ] &&
