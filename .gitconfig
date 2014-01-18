@@ -25,5 +25,3 @@
      insteadOf = kde:
 [url "git@git.kde.org:"]
      pushInsteadOf = kde:
-[push]
-	default = simple
