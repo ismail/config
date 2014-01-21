@@ -68,11 +68,6 @@ kde_debug() {
           -DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE=debug ..
 }
 
-latest_dolphin () {
-    curl -s "http://dolphin-emu.org/download/?ref=btn" | \
-    perl -ne 'CORE::say $1 and exit if /download\/dev\/\S+\/">(\d\.\d-\d+)/'
-}
-
 lupx () {
     upx --best --lzma $@
 }
