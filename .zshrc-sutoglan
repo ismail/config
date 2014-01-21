@@ -1,0 +1,1 @@
+export PATH=/havana/clang/bin:/havana/tesseract/bin:$PATH
