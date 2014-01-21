@@ -51,7 +51,7 @@ ftrace () {
 }
 
 ifgoogle () {
-    useragent="Mozilla/5.0 AppleWebKit/537.35 (KHTML, like Gecko) Chrome/27.0.1448.0 Safari/537.35"
+    useragent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1795.0 Safari/537.36"
     url="https://www.google.com/search?q=whats+my+ip"
     curl -s -A $useragent $url | grep -oP '(?<=Your public IP address is <em>).*?(?=</em>)'
 }
