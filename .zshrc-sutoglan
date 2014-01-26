@@ -1,1 +1,2 @@
 export PATH=/havana/clang/bin:/havana/tesseract/bin:$PATH
+export TMPDIR=/havana/tmp
