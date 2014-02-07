@@ -13,8 +13,8 @@ alias open="xdg-open"
 alias io="sudo iotop -o -P -a"
 alias result="osc results -v"
 alias cg++="clang++ -stdlib=libc++ -lc++ -lc++abi"
-alias ulog="journalctl -eaf"
-alias slog="sudo journalctl -eaf"
+alias ulog="journalctl -eaf|grep -v 'gnome-session'"
+alias slog="sudo journalctl -eaf|grep -v 'gnome-session'"
 
 [ -x /usr/bin/keychain ] && keychain --nogui -q id_rsa
 [ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`

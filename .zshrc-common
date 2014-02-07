@@ -49,8 +49,6 @@ setopt AUTOCD
 setopt AUTO_LIST
 setopt AUTOPUSHD
 setopt BRACE_CCL
-setopt CORRECT_ALL
-export CORRECT_IGNORE="_* .*"
 setopt EXTENDED_GLOB
 setopt INTERACTIVE_COMMENTS
 setopt NO_BEEP
