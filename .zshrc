@@ -16,6 +16,10 @@ alias result="osc results -v"
 alias slog="sudo journalctl -eaf|grep -v 'gnome-session'"
 alias ulog="journalctl -eaf|grep -v 'gnome-session'"
 
+alias -s exe=wine
+alias -s py=python
+alias -s pl=perl
+
 [ -x /usr/bin/keychain ] && keychain --nogui -q id_rsa
 [ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
 [ -f $HOME/.keychain/$HOSTNAME-sh ] &&
