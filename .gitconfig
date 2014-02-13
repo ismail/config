@@ -26,3 +26,5 @@
      insteadOf = kde:
 [url "git@git.kde.org:"]
      pushInsteadOf = kde:
+[diff]
+	algorithm = patience
