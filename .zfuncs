@@ -68,6 +68,10 @@ kde_debug() {
           -DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE=debug ..
 }
 
+keygen() {
+    ssh-keygen -o -p -a 256
+}
+
 lupx () {
     upx --best --lzma $@
 }
