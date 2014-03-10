@@ -1,2 +1,3 @@
-export PATH=/havana/clang/bin:/havana/go/bin:$PATH
+export PATH=/havana/dist/llvm/bin:/havana/dist/go/bin:$PATH
 export TMPDIR=/havana/tmp
+~/bin/fixterm
