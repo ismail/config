@@ -1,3 +1,6 @@
 export PATH=/havana/dist/llvm/bin:/havana/dist/go/bin:$PATH
 export TMPDIR=/havana/tmp
-~/bin/fixterm
+
+if [ `tty` = "/dev/ttyO0" ]; then
+    ~/bin/fixterm
+fi
