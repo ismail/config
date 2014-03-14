@@ -73,3 +73,6 @@ set guioptions-=T
     endif
 endif
 
+" sudo write
+cnoremap sudow w !sudo tee % >/dev/null
+
