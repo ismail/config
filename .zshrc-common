@@ -100,6 +100,7 @@ alias wget='wget --content-disposition'
 
 export PATH=$HOME/bin:/sbin:/usr/sbin:/usr/local/bin:$PATH:/suse/bin
 export TERM=xterm-256color
+export GOPATH=$HOME/.go/
 
 # Setup ls colors
 if [ -e .dir_colors ]; then eval `dircolors .dir_colors`; fi

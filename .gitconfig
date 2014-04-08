@@ -2,7 +2,6 @@
 	excludesfile = /home/ismail/.gitignore
 	quotepath = false
 	fileMode = false
-	autocrlf = true
 [alias]
 	st = status
 	ci = commit
@@ -28,5 +27,5 @@
      pushInsteadOf = kde:
 [diff]
 	algorithm = patience
-[push]
-	default = simple
+#[push]
+#	default = simple
