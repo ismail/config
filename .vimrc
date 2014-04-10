@@ -59,10 +59,11 @@ set wildmode=list:longest
 " GUI related stuff
 if has("gui_running")
 
-set lines=50 columns=120
 set guicursor+=a:blinkon0
 set guioptions-=m
 set guioptions-=T
+set lines=50 columns=120
+set mousemodel=popup
 
     if has("gui_gtk2")
         set guifont=Consolas\ 12
