@@ -76,7 +76,6 @@ zstyle ':completion:*' rehash true
 export PS1="%{$fg[green]%}[%n@%m]%{$reset_color$fg[white]%}[%D{%H:%M:%S}]%{$reset_color%}%{$fg[blue]%}
 [%~%{$fg[blue]%}]>%{$reset_color%} "
 export LC_ALL=en_US.UTF-8
-export PYTHONSTARTUP=/etc/pythonstart
 export PYTHONDONTWRITEBYTECODE=1
 
 alias ..="cd .."
