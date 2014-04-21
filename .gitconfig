@@ -29,3 +29,5 @@
 	algorithm = patience
 #[push]
 #	default = simple
+[push]
+	default = simple
