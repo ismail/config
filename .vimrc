@@ -77,3 +77,6 @@ endif
 " sudo write
 cnoremap sudow w !sudo tee % >/dev/null
 
+" clang-format
+map <C-K> :pyf /opt/clang/share/clang/clang-format.py<CR>
+imap <C-K> <ESC>:pyf /opt/clang/share/clang/clang-format.py<CR>i
