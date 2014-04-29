@@ -1,1 +1,2 @@
 export PATH=//havana/binaries/android-sdk/tools:/havana/binaries/android-sdk/platform-tools:/opt/clang/bin:/havana/sources/chromium/depot_tools:$PATH
+alias ws='VBoxHeadless --vrde off --startvm "ws2012r2"'
