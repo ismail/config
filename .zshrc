@@ -20,3 +20,6 @@ alias ulog="journalctl -eaf|grep -v 'gnome-session'"
 [ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
 [ -f $HOME/.keychain/$HOSTNAME-sh ] &&
 . $HOME/.keychain/$HOSTNAME-sh
+
+custom_config="$HOME/.zshrc-`uname -n|cut -f1 -d'.'`"
+[ -f $custom_config ] && source $custom_config

@@ -1,8 +1,5 @@
 source ~/.zfuncs
 
-custom_config="$HOME/.zshrc-`uname -n|cut -f1 -d'.'`"
-[ -f $custom_config ] && source $custom_config
-
 autoload -U colors
 colors
 

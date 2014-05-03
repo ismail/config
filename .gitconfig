@@ -27,9 +27,5 @@
      pushInsteadOf = kde:
 [diff]
 	algorithm = patience
-#[push]
-#	default = simple
-[push]
-	default = simple
 [help]
 	autocorrect = 5
