@@ -47,6 +47,7 @@ syntax on
 :match TrailWhitespace /\s\+$\| \+\ze\t/
 
 filetype plugin on
+filetype indent on
 
 " For python omnicomplete
 autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
@@ -55,6 +56,9 @@ autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 " Omnicomplete changes
 set wildmenu
 set wildmode=list:longest
+
+" Golang
+autocmd FileType go compiler go
 
 " GUI related stuff
 if has("gui_running")
