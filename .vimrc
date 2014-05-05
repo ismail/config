@@ -41,6 +41,9 @@ set noswapfile
 colorscheme solarized
 syntax on
 
+" http://vim.wikia.com/wiki/Set_working_directory_to_the_current_file
+autocmd BufEnter * silent! lcd %:p:h
+
 :nmap <C-t> :tabnew<cr>
 :imap <C-t> <ESC>:tabnew<cr>
 :highlight TrailWhitespace ctermbg=red guibg=red
