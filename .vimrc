@@ -64,7 +64,6 @@ autocmd FileType go compiler go
 if has("gui_running")
 
 set guicursor+=a:blinkon0
-set guioptions-=m
 set guioptions-=T
 set lines=50 columns=120
 set mousemodel=popup
@@ -73,6 +72,8 @@ set mousemodel=popup
         set guifont=Consolas\ 12
     elseif has("gui_win32")
         set guifont=Consolas:h11:cANSI
+        set shell=powershell
+        set shellcmdflag=-command
     elseif has("gui_macvim")
         set guifont=Menlo\ Regular:h14
     endif
