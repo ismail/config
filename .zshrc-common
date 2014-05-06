@@ -86,6 +86,7 @@ alias enc="gpg -e"
 alias gdb="gdb --quiet"
 alias grep="grep --color"
 alias l.='ls -d .* --color=auto'
+alias ll="ls -al"
 alias md="mkdir -p"
 alias open='xdg-open'
 alias scp="rsync --compress-level=3 --partial --inplace --progress --rsh=ssh -r"
