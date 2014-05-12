@@ -68,6 +68,7 @@ if has("gui_running")
 
 set guicursor+=a:blinkon0
 set guioptions-=T
+set guioptions-=m
 set lines=50 columns=120
 set mousemodel=popup
 
