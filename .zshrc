@@ -3,7 +3,8 @@ precmd() {print -Pn "\e]0;%n@%m: %~\a"}
 
 source ~/.zshrc-common
 
-alias cg++="clang++ -stdlib=libc++ -lc++ -lc++abi"
+alias clang="clang -fuse-ld=gold"
+alias clang++="clang++ -fuse-ld=gold -stdlib=libc++ -lc++ -lc++abi"
 alias io="sudo iotop -o -P -a"
 alias ls="ls --color"
 alias lsrpm="rpm -qlp"

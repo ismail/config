@@ -1,3 +1,5 @@
 *.cache
 *.pyc
 .vim/.netrwhist
+.ssh/id_rsa
+
