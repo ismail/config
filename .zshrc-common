@@ -82,7 +82,7 @@ alias cl="clear"
 alias curl="curl -C- -#"
 alias d="cd"
 alias dec="gpg -d"
-alias enc="gpg -e"
+alias enc="gpg -a -e"
 alias gdb="gdb --quiet"
 alias grep="grep --color"
 alias l.='ls -d .* --color=auto'
