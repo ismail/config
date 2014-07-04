@@ -14,6 +14,10 @@ browser () {
     xdg-open $f
 }
 
+disable_alsr() {
+    echo 0 | sudo tee -a /proc/sys/kernel/randomize_va_space
+}
+
 dumpenv () {
     sudo cat /proc/$1/environ | xargs --null --max-args=1
 }
