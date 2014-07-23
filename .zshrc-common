@@ -27,7 +27,7 @@ bindkey -e             # emacs key bindings
 bindkey ' ' magic-space  # also do history expansion on space
 
 # Editor
-export VISUAL="nano"
+export VISUAL="vim"
 
 bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
