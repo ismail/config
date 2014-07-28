@@ -97,10 +97,16 @@ mvim () {
 }
 
 rands () {
-    if [ -z $1 ]; then
-        base64 </dev/urandom | tr -dc 'a-zA-Z0-9' | head -c32
+    if [ -e /dev/hwrng ]; then
+        DEVICE="/dev/hwrng"
     else
-        base64 </dev/urandom | tr -dc 'a-zA-Z0-9' | head -c$1
+        DEVICE="/dev/random"
+    fi
+
+    if [ -z $1 ]; then
+        base64 < $DEVICE | tr -dc 'a-zA-Z0-9' | head -c32
+    else
+        base64 < $DEVICE | tr -dc 'a-zA-Z0-9' | head -c$1
     fi
     print
 }
