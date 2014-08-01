@@ -1,1 +1,1 @@
-export PATH=/opt/clang/bin:/havana/binaries/bin:$PATH
+export PATH=/opt/clang/bin:/havana/binaries/bin:/havana/binaries/linaro-arm-linux-gnueabihf-4.9/bin:$PATH
