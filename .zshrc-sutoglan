@@ -1,6 +1,7 @@
 export PATH=/havana/dist/llvm/bin:/havana/dist/go/bin:$PATH
 export TMPDIR=/havana/tmp
-alias clang++="clang++ -fuse-ld=gold"
+alias clang="clang -mfloat-abi=hard -march=armv7-a -mtune=cortex-a8 -mfpu=vfpv3-d16 -fuse-ld=gold"
+alias clang++="clang++ -mfloat-abi=hard -march=armv7-a -mtune=cortex-a8 -mfpu=vfpv3-d16 -fuse-ld=gold"
 
 if [ `tty` = "/dev/ttyO0" ]; then
     ~/bin/fixterm
