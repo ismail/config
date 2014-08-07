@@ -1,0 +1,2 @@
+digg.com##LI[id="dr-nav-popular"][class="dr-list-item dr-nav-popular dr-feed-selected"]
+digg.com##LI[id="dr-nav-diggs"][class="dr-list-item dr-nav-diggs"]
