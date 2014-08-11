@@ -54,7 +54,7 @@ ftrace () {
     strace -f -e trace=file $@
 }
 
-ip () {
+myip () {
     curl -s whatismyip.akamai.com && echo
 }
 
