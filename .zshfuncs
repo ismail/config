@@ -137,21 +137,6 @@ restart () {
     sudo systemctl status $1 -l
 }
 
-rands () {
-    if [ -e /dev/hwrng ]; then
-        DEVICE="/dev/hwrng"
-    else
-        DEVICE="/dev/random"
-    fi
-
-    if [ -z $1 ]; then
-        base64 < $DEVICE | tr -dc 'a-zA-Z0-9' | head -c32
-    else
-        base64 < $DEVICE | tr -dc 'a-zA-Z0-9' | head -c$1
-    fi
-    print
-}
-
 remove () {
     dist=$(distro)
     case $dist in
@@ -184,6 +169,21 @@ search () {
 
 sniff () {
     sudo ngrep -d ${1} -t '^(GET|POST) ' 'tcp and port 80';
+}
+
+srand () {
+    if [ -e /dev/hwrng ]; then
+        DEVICE="/dev/hwrng"
+    else
+        DEVICE="/dev/random"
+    fi
+
+    if [ -z $1 ]; then
+        base64 < $DEVICE | tr -dc 'a-zA-Z0-9' | head -c32
+    else
+        base64 < $DEVICE | tr -dc 'a-zA-Z0-9' | head -c$1
+    fi
+    print
 }
 
 sshproxy() {
