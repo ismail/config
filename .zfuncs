@@ -54,7 +54,7 @@ ftrace () {
     strace -f -e trace=file $@
 }
 
-ip () {
+myip () {
     curl -s whatismyip.akamai.com && echo
 }
 
@@ -91,6 +91,14 @@ mvim () {
         gvim --remote-tab-silent "New Document"
     else
         gvim --remote-tab-silent $@
+    fi
+}
+
+upup () {
+    if [ -e /etc/SUSE-brand ]; then
+	    sudo zypper ref && sudo zypper dup
+    elif [ -e /etc/debian_version ]; then
+        sudo apt-get update && sudo apt-get dist-upgrade -y
     fi
 }
 
