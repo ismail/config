@@ -76,6 +76,7 @@ set mousemodel=popup
         set guifont=Consolas\ 12
     elseif has("gui_win32")
         set guifont=Consolas:h11:cANSI
+        set renderoptions=type:directx
         set shell=powershell
         set shellcmdflag=-command
     elseif has("gui_macvim")
