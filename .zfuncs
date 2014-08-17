@@ -94,6 +94,16 @@ mvim () {
     fi
 }
 
+start() {
+    sudo systemctl start $1
+    sudo systemctl status $1 -l
+}
+
+stop () {
+    sudo systemctl stop $1
+    sudo systemctl status $1 -l
+}
+
 upup () {
     if [ -e /etc/SUSE-brand ]; then
 	    sudo zypper ref && sudo zypper dup
