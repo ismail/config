@@ -1,3 +1,23 @@
+backoff () {
+    backoff=2
+    timeout=60
+
+    while [ $backoff -le $timeout ]; do
+        eval $@
+        if [ $? -eq 0 ]; then
+            break
+        fi
+
+        echo "Command failed, sleeping $backoff seconds before retrying."
+        sleep $backoff
+        let "backoff += 2"
+    done
+
+    if [ $backoff -ge $timeout ]; then
+        echo "Timeout reached while trying to run command."
+    fi
+}
+
 bl() {
     most /havana/.build-cache/build-root-$1-$2/.build.log
 }
