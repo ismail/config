@@ -1,19 +1,20 @@
 backoff () {
-    backoff=2
-    timeout=60
+    retry=1
+    timeout=10
 
-    while [ $backoff -le $timeout ]; do
+    while [ $retry -le $timeout ]; do
         eval $@
         if [ $? -eq 0 ]; then
             break
         fi
 
-        echo "Command failed, sleeping $backoff seconds before retrying."
-        sleep $backoff
-        let "backoff += 2"
+        sleeptime=`dc -e "2 $retry ^ p"`
+        echo "Command failed, sleeping $sleeptime seconds before retrying."
+        sleep $sleeptime
+        let "retry += 1"
     done
 
-    if [ $backoff -ge $timeout ]; then
+    if [ $retry -ge $timeout ]; then
         echo "Timeout reached while trying to run command."
     fi
 }
