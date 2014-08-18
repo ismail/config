@@ -40,7 +40,11 @@ disable_alsr() {
 }
 
 dumpenv () {
-    sudo cat /proc/$1/environ | xargs --null --max-args=1
+    if [ ! -z $1 ]; then
+        sudo cat /proc/$1/environ | xargs --null --max-args=1 | sort
+    else
+        echo "Pass a PID parameter."
+    fi
 }
 
 encode_film() {
