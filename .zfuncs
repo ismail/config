@@ -51,6 +51,10 @@ encode_film() {
     avconv -i $1 -c:v libx264 -preset medium -tune film $2
 }
 
+entropy() {
+    echo $(cat /proc/sys/kernel/random/entropy_avail)/$(cat /proc/sys/kernel/random/poolsize)
+}
+
 extract () {
     if [ -f $1 ] ; then
       case $1 in
