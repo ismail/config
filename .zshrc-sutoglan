@@ -2,9 +2,6 @@ export PATH=/havana/dist/llvm/bin:$PATH
 export TMPDIR=/havana/tmp
 export LD_LIBRARY_PATH=/havana/dist/llvm/lib:$LD_LIBRARY_PATH
 
-alias clang="clang -fuse-ld=gold"
-alias clang++="clang++ -stdlib=libc++ -fuse-ld=gold"
-
 if [ `tty` = "/dev/ttyO0" ]; then
     ~/bin/fixterm
 fi
