@@ -19,6 +19,7 @@ alias pbpaste='xclip -selection clipboard -o'
 alias result="osc results -v"
 alias slog="sudo journalctl -eaf|grep -v 'gnome-session'"
 alias ulog="journalctl -eaf|grep -v 'gnome-session'"
+alias vssh="vagrant up && vagrant ssh"
 export MALLOC_PERTURB_=69
 
 [ -x /usr/bin/keychain ] && keychain --nogui -q id_rsa
