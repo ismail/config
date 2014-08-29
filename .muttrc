@@ -13,6 +13,7 @@ set timeout=10
 set header_cache=~/.hcache
 set net_inc=5
 set delete=yes
+set user_agent=no
 
 set record="imaps://idoenmez@imap.suse.de/INBOX.Sent"
 set postponed="imaps://idoenmez@imap.suse.de/INBOX.Drafts"
@@ -21,6 +22,8 @@ set sort="threads"
 set strict_threads="yes"
 set sort_browser="reverse-date"
 set sort_aux="last-date-received"
+set date_format="!%d %b %R"
+set index_format="%Z %-50.50s %-15.15F [%-12.12d]"
 
 set spoolfile = +INBOX
 
