@@ -1,3 +1,5 @@
+source ~/.mutt/gpg.rc
+
 set folder="imaps://idoenmez@imap.suse.de"
 set imap_pass=`cat ~/.pass`
 set smtp_url="smtp://idoenmez@imap.suse.de:587/"
@@ -25,8 +27,15 @@ set sort_aux="last-date-received"
 set date_format="!%d %b %R"
 set index_format="%Z %-50.50s %-15.15F [%-12.12d]"
 
-set spoolfile = +INBOX
+set pgp_auto_decode=yes
+set pgp_use_gpg_agent=yes
+set pgp_sign_as=FB2C511C
+set pgp_timeout=3600
+set crypt_autosign=yes
+set crypt_replyencrypt=yes
+set crypt_verify_sig=yes
 
+set spoolfile = +INBOX
 set editor='vim + -c "set textwidth=72" -c "set wrap"'
 
 set sidebar_width=25
@@ -34,7 +43,6 @@ set sidebar_visible=yes
 set sidebar_delim='|'
 set sidebar_sort=yes
 #set sidebar_format='%B %N'
-set sidebar_shortpath=yes
 
 color sidebar_new yellow default
 
