@@ -1,0 +1,46 @@
+set folder="imaps://idoenmez@imap.suse.de"
+set imap_pass=`cat ~/.pass`
+set smtp_url="smtp://idoenmez@imap.suse.de:587/"
+set smtp_pass=`cat ~/.pass`
+set from="İsmail Dönmez <idoenmez@suse.de>"
+
+set ssl_starttls=yes
+set ssl_force_tls=yes
+unset imap_passive
+set imap_check_subscribed
+set mail_check=60
+set timeout=10
+set header_cache=~/.hcache
+set net_inc=5
+set delete=yes
+
+set record="imaps://idoenmez@imap.suse.de/INBOX.Sent"
+set postponed="imaps://idoenmez@imap.suse.de/INBOX.Drafts"
+
+set sort="threads"
+set strict_threads="yes"
+set sort_browser="reverse-date"
+set sort_aux="last-date-received"
+
+set spoolfile = +INBOX
+
+set editor='vim + -c "set textwidth=72" -c "set wrap"'
+
+set sidebar_width=25
+set sidebar_visible=yes
+set sidebar_delim='|'
+set sidebar_sort=yes
+#set sidebar_format='%B %N'
+set sidebar_shortpath=yes
+set sidebar_sort=yes
+
+color sidebar_new yellow default
+
+bind index,pager \CN sidebar-prev
+bind index,pager \CK sidebar-next
+bind index,pager \CO sidebar-open
+macro index,pager ut <tag-thread><limit>~T<enter><tag-thread> "show only current thread"
+macro index,pager ua <limit>all<enter> "show everything"
+
+ignore *
+unignore  Date To Cc Bcc From Subject
