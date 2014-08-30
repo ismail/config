@@ -25,3 +25,7 @@ term screen-256color
 
 # Status bar
 hardstatus off
+
+# Ctrl-Tab Ctrl-Shift-Tab for next/prev window
+bindkey "^[[1;5I" next
+bindkey "^[[1;6I" prev
