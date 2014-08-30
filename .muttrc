@@ -42,6 +42,7 @@ set sidebar_width=25
 set sidebar_visible=yes
 set sidebar_delim='|'
 set sidebar_sort=yes
+set sidebar_newmail_only=yes
 #set sidebar_format='%B %N'
 
 color sidebar_new yellow default
@@ -51,6 +52,8 @@ bind index,pager \CK sidebar-next
 bind index,pager \CO sidebar-open
 macro index,pager ut <tag-thread><limit>~T<enter><tag-thread> "show only current thread"
 macro index,pager ua <limit>all<enter> "show everything"
+macro index <esc>m "T~N<enter>;WNT~O<enter>;WO\CT~T<enter>" "mark all messages read"
+macro index <esc>r <redraw-screen>
 
 ignore *
 unignore  Date To Cc Bcc From Subject
