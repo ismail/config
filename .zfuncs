@@ -35,6 +35,10 @@ browser () {
     xdg-open $f
 }
 
+certinfo () {
+    openssl x509 -in $1 -text -noout
+}
+
 disable_alsr() {
     echo 0 | sudo tee -a /proc/sys/kernel/randomize_va_space
 }
