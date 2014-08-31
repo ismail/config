@@ -138,6 +138,8 @@ upup () {
 	    sudo zypper ref && sudo zypper dup
     elif [ -e /etc/debian_version ]; then
         sudo apt-get update && sudo apt-get dist-upgrade -y
+    elif [ -e /etc/redhat-release ]; then
+        sudo yum update
     fi
 }
 
