@@ -20,7 +20,7 @@ backoff () {
 }
 
 bl() {
-    most /havana/.build-cache/build-root-$1-$2/.build.log
+    less /var/tmp/build-root/$1-$2/.build.log
 }
 
 bzit() {
@@ -176,7 +176,7 @@ sslcheck() {
 }
 
 tl() {
-    tail -f /havana/.build-cache/build-root-$1-$2/.build.log
+    tail -f /var/tmp/build-root/$1-$2/.build.log
 }
 
 unrpm() {
