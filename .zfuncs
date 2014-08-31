@@ -179,10 +179,6 @@ tl() {
     tail -f /havana/.build-cache/build-root-$1-$2/.build.log
 }
 
-tunnel() {
-    nohup ssh -nNR 4444:localhost:22 idoenmez@wotan.suse.de &> /dev/null &
-}
-
 unrpm() {
     if [ -e $1 ]; then
         rpm2cpio $1 | cpio -imdv
