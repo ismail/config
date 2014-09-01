@@ -8,7 +8,7 @@ set from="İsmail Dönmez <idoenmez@suse.de>"
 
 set ssl_starttls=yes
 set ssl_force_tls=yes
-unset imap_passive
+set imap_passive=no
 set imap_check_subscribed
 set mail_check=60
 set timeout=10
@@ -23,6 +23,11 @@ set quit=no
 set send_charset="utf-8"
 set sleep_time=0
 set help=no
+set status_format="Mutt --*-- <%f> [%n/%m]"
+set mark_old=no
+set metoo=no
+set include=yes
+set indent_string="> "
 
 set record="imaps://idoenmez@imap.suse.de/INBOX.Sent"
 set postponed="imaps://idoenmez@imap.suse.de/INBOX.Drafts"
