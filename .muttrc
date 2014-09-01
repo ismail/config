@@ -17,6 +17,7 @@ set net_inc=5
 set delete=yes
 set user_agent=no
 set smart_wrap=yes
+set markers=no
 
 set record="imaps://idoenmez@imap.suse.de/INBOX.Sent"
 set postponed="imaps://idoenmez@imap.suse.de/INBOX.Drafts"
