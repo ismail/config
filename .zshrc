@@ -1,6 +1,4 @@
-# First things first
-precmd() {print -Pn "\e]0;%n@%m: %~\a"}
-
+source ~/.zsh.init
 source ~/.zshrc-common
 
 alias clang="clang -fuse-ld=gold"
