@@ -18,6 +18,7 @@ set delete=yes
 set user_agent=no
 set smart_wrap=yes
 set markers=no
+set confirmappend=no
 
 set record="imaps://idoenmez@imap.suse.de/INBOX.Sent"
 set postponed="imaps://idoenmez@imap.suse.de/INBOX.Drafts"
@@ -55,6 +56,9 @@ macro index,pager ut <tag-thread><limit>~T<enter><tag-thread> "show only current
 macro index,pager ua <limit>all<enter> "show everything"
 macro index <esc>m "T~N<enter>;WNT~O<enter>;WO\CT~T<enter>" "mark all messages read"
 macro index <esc>r <redraw-screen>
+
+set my_year=`date +%Y`
+macro index,pager a "<save-message>=INBOX.Archives.$my_year<enter>" "Archive Message"
 
 ignore *
 unignore  Date To Cc Bcc From Subject
