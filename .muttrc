@@ -20,6 +20,8 @@ set smart_wrap=yes
 set markers=no
 set confirmappend=no
 set quit=no
+set send_charset="utf-8"
+set sleep_time=0
 
 set record="imaps://idoenmez@imap.suse.de/INBOX.Sent"
 set postponed="imaps://idoenmez@imap.suse.de/INBOX.Drafts"
