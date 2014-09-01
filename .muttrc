@@ -37,7 +37,7 @@ set strict_threads="yes"
 set sort_browser="reverse-date"
 set sort_aux="last-date-received"
 set date_format="!%d %b %R"
-set index_format="%Z %-50.50s %-20.20F [%-12.12d]"
+set index_format="%Z %-60.60s %-20.20F [%-12.12d]"
 
 set pgp_auto_decode=yes
 set pgp_use_gpg_agent=yes
