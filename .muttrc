@@ -1,72 +1,77 @@
-source ~/.mutt/gpg.rc
-
+# Accounts
 set folder="imaps://idoenmez@imap.suse.de"
-set imap_pass=`cat ~/.pass`
-set smtp_url="smtp://idoenmez@imap.suse.de:587/"
-set smtp_pass=`cat ~/.pass`
 set from="İsmail Dönmez <idoenmez@suse.de>"
+set postponed="imaps://idoenmez@imap.suse.de/INBOX.Drafts"
+set record="imaps://idoenmez@imap.suse.de/INBOX.Sent"
+set smtp_url="smtp://idoenmez@imap.suse.de:587/"
+set imap_pass=`cat ~/.pass`
+set smtp_pass=`cat ~/.pass`
+set spoolfile = +INBOX
 
-set ssl_starttls=yes
-set ssl_force_tls=yes
-set imap_passive=no
-set imap_check_subscribed
-set mail_check=60
-set timeout=10
-set header_cache=~/.hcache
-set net_inc=5
-set delete=yes
-set user_agent=no
-set smart_wrap=yes
-set markers=no
+# General options
 set confirmappend=no
+set date_format="!%d %b %R"
+set delete=yes
+set editor='vim + -c "set textwidth=72" -c "set wrap"'
+set header_cache=~/.hcache
+set help=no
+set imap_check_subscribed
+set imap_passive=no
+set include=yes
+set indent_string="> "
+set index_format="%Z %-60.60s %-20.20F [%-12.12d]"
+set mail_check=60
+set markers=no
+set mark_old=no
+set metoo=no
+set net_inc=5
 set quit=no
 set send_charset="utf-8"
 set sleep_time=0
-set help=no
-set status_format="Mutt --*-- <%f> [%n/%m]"
-set mark_old=no
-set metoo=no
-set include=yes
-set indent_string="> "
-
-set record="imaps://idoenmez@imap.suse.de/INBOX.Sent"
-set postponed="imaps://idoenmez@imap.suse.de/INBOX.Drafts"
-
-set sort="threads"
-set strict_threads="yes"
-set sort_browser="reverse-date"
+set smart_wrap=yes
 set sort_aux="last-date-received"
-set date_format="!%d %b %R"
-set index_format="%Z %-60.60s %-20.20F [%-12.12d]"
+set sort_browser="reverse-date"
+set sort="threads"
+set status_format="Mutt --*-- <%f> [%n/%m]"
+set strict_threads="yes"
+set timeout=10
+set user_agent=no
 
-set pgp_auto_decode=yes
-set pgp_use_gpg_agent=yes
-set pgp_sign_as=FB2C511C
-set pgp_timeout=3600
+# Sidebar
+set sidebar_delim='|'
+set sidebar_newmail_only=yes
+set sidebar_sort=yes
+set sidebar_visible=yes
+set sidebar_width=25
+
+# SSL
+set ssl_force_tls=yes
+set ssl_starttls=yes
+
+# GnuPG
+source ~/.mutt/gpg.rc
 set crypt_autosign=yes
 set crypt_replyencrypt=yes
 set crypt_verify_sig=yes
+set pgp_auto_decode=yes
+set pgp_sign_as=FB2C511C
+set pgp_timeout=3600
+set pgp_use_gpg_agent=yes
 
-set spoolfile = +INBOX
-set editor='vim + -c "set textwidth=72" -c "set wrap"'
+# Headers
+ignore *
+unignore  Date To Cc Bcc From Subject
 
-set sidebar_width=25
-set sidebar_visible=yes
-set sidebar_delim='|'
-set sidebar_sort=yes
-set sidebar_newmail_only=yes
-
-color sidebar_new yellow default
-
-bind index,pager \CN sidebar-prev
+# Bindings
 bind index,pager \CK sidebar-next
+bind index,pager \CN sidebar-prev
 bind index,pager \CO sidebar-open
-macro index,pager ut <tag-thread><limit>~T<enter><tag-thread> "show only current thread"
-macro index,pager ua <limit>all<enter> "show everything"
+color sidebar_new yellow default
 macro index <esc>m "T~N<enter>;WNT~O<enter>;WO\CT~T<enter>" "mark all messages read"
+macro index,pager ua <limit>all<enter> "show everything"
+macro index,pager ut <tag-thread><limit>~T<enter><tag-thread> "show only current thread"
 
+# Archive function
 set my_year=`date +%Y`
 macro index,pager a "<save-message>=INBOX.Archives.$my_year<enter>" "Archive Message"
 
-ignore *
-unignore  Date To Cc Bcc From Subject
