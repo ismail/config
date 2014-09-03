@@ -47,6 +47,7 @@ set sidebar_width=25
 # SSL
 set ssl_force_tls=yes
 set ssl_starttls=yes
+set ssl_use_tlsv1_2=yes
 
 # GnuPG
 source ~/.mutt/gpg.rc
