@@ -173,9 +173,9 @@ sshproxy() {
 
 sslcheck() {
     if [ -z $2 ]; then
-        nmap --script ssl-enum-ciphers -p 443 $1
+        nmap --system-dns --script ssl-enum-ciphers -p 443 $1
     else
-        nmap --script ssl-enum-ciphers -p $2 $1
+        nmap --system-dns --script ssl-enum-ciphers -p $2 $1
     fi
 }
 
