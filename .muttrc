@@ -4,7 +4,7 @@ set from="İsmail Dönmez <idoenmez@suse.de>"
 set postponed="imaps://idoenmez@imap.suse.de/INBOX.Drafts"
 set record="imaps://idoenmez@imap.suse.de/INBOX.Sent"
 set smtp_url="smtp://idoenmez@imap.suse.de:587/"
-set imap_pass=`gpg -d ~/.pass`
+set imap_pass=`getpass imap_suse`
 set smtp_pass=$imap_pass
 set spoolfile = +INBOX
 
