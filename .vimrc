@@ -1,43 +1,40 @@
-set number
-set nocompatible
-set bs=2
 set ai
-set viminfo='20,\"50	" read/write a .viminfo file -- limit to only 50
-set history=50			" keep 50 lines of command history
+set background=dark
+set bs=2
 set encoding=utf-8
+set et
+set expandtab
 set fileencoding=utf-8
-
+set fileformats=unix,dos
+set fileformat=unix
+set history=50                  " keep 50 lines of command history
+set hlsearch
+set incsearch
+set laststatus=2
+set linebreak
+set modelines=0
+set nobackup
+set nocompatible
+set noswapfile
 set nowrap
-set ts=4
-set sw=4
+set nowritebackup
+set number
+set paste
+set paste
+set ruler
+set showcmd
+set showtabline=2
 set sta
 set sts=4
-set et
+set sw=4
 set t_Co=256
-
-set hlsearch
-set modelines=0
-
-" Don't use Ex mode, use Q for formatting
-map Q gq
-
-set fileformat=unix
-set fileformats=unix,dos
-
-set wrap
-set linebreak
-set laststatus=2
-set showcmd
-set wildmenu
-set incsearch
-set background=dark
-set showtabline=2
-set expandtab
 set title
-set ruler
-set nobackup
-set nowritebackup
-set noswapfile
+set ts=4
+set viminfo='20,\"50    " read/write a .viminfo file -- limit to only 50
+set wildmenu
+set wrap
+
+map Q gq
 colorscheme solarized
 syntax on
 
@@ -69,7 +66,6 @@ set guioptions-=T
 set guioptions-=m
 set lines=50 columns=120
 set mousemodel=popup
-
     if has("gui_gtk2")
         set guifont=Consolas\ 12
     elseif has("gui_win32")
