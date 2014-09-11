@@ -67,7 +67,7 @@ set guioptions-=m
 set lines=50 columns=120
 set mousemodel=popup
     if has("gui_gtk2")
-        set guifont=Consolas\ 12
+        set guifont=Consolas\ 13
     elseif has("gui_win32")
         set guifont=Consolas:h11:cANSI
         set renderoptions=type:directx
