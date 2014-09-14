@@ -83,6 +83,10 @@ find_broken_symlinks() {
     find -L $1 -type l -exec ls -lF --color=yes '{}' +
 }
 
+fork() {
+    (setsid "$@" &)
+}
+
 ftrace () {
     strace -f -e trace=file $@
 }
