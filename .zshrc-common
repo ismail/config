@@ -91,6 +91,7 @@ alias l.='ls -d .* --color=auto'
 alias ll="ls -al"
 alias md="mkdir -p"
 alias open='xdg-open'
+alias sc="systemctl"
 alias scp="rsync --compress-level=3 --copy-links --partial --inplace --progress --rsh=ssh -r"
 alias screen="screen -U -A"
 alias servethis="python -m http.server"
