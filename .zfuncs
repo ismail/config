@@ -220,7 +220,11 @@ sslcheck() {
     fi
 }
 
-unrpm() {
+status () {
+    sudo systemctl status $1
+}
+
+unrpm () {
     if [ -e $1 ]; then
         rpm2cpio $1 | cpio -imdv
     fi
