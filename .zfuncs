@@ -173,6 +173,36 @@ rands () {
     print
 }
 
+remove () {
+    dist=$(distro)
+    case $dist in
+        SUSE)
+            sudo zypper rm $1
+            ;;
+        DEBIAN)
+            sudo apt-get --purge remove $1
+            ;;
+        REDHAT)
+            sudo yum remove $1
+            ;;
+    esac
+}
+
+search () {
+    dist=$(distro)
+    case $dist in
+        SUSE)
+            sudo zypper search $1
+            ;;
+        DEBIAN)
+            sudo apt-cache search $1
+            ;;
+        REDHAT)
+            sudo yum search $1
+            ;;
+    esac
+}
+
 sniff () {
     sudo ngrep -d ${1} -t '^(GET|POST) ' 'tcp and port 80';
 }
