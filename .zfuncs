@@ -146,18 +146,6 @@ restart () {
     sudo systemctl status $1 -l
 }
 
-start() {
-    sudo systemctl start $1
-    sleep 1
-    sudo systemctl status $1 -l
-}
-
-stop () {
-    sudo systemctl stop $1
-    sleep 1
-    sudo systemctl status $1 -l
-}
-
 rands () {
     if [ -e /dev/hwrng ]; then
         DEVICE="/dev/hwrng"
@@ -220,8 +208,20 @@ sslcheck() {
     fi
 }
 
+start() {
+    sudo systemctl start $1
+    sleep 1
+    sudo systemctl status $1 -l
+}
+
 status () {
-    sudo systemctl status $1
+    sudo systemctl status $1 -l
+}
+
+stop () {
+    sudo systemctl stop $1
+    sleep 1
+    sudo systemctl status $1 -l
 }
 
 unrpm () {
