@@ -19,10 +19,6 @@ backoff () {
     fi
 }
 
-bl() {
-    less /var/tmp/build-root/$1-$2/.build.log
-}
-
 bzit() {
     if [ ! -z $1 ]; then
         tar --exclude-vcs -cjf $1.tar.bz2 $1
@@ -39,8 +35,18 @@ certinfo () {
     openssl x509 -in $1 -text -noout
 }
 
-disable_alsr() {
+disable_alsr () {
     echo 0 | sudo tee -a /proc/sys/kernel/randomize_va_space
+}
+
+distro () {
+    if [ -e /etc/SUSE-brand ]; then
+        echo "SUSE"
+    elif [ -e /etc/debian_version ]; then
+        echo "DEBIAN"
+    elif [ -e /etc/redhat-release ]; then
+        echo "REDHAT"
+    fi
 }
 
 dumpenv () {
@@ -91,20 +97,23 @@ ftrace () {
     strace -f -e trace=file $@
 }
 
+install () {
+    dist=$(distro)
+    case $dist in
+        SUSE)
+            sudo zypper in $1
+            ;;
+        DEBIAN)
+            sudo apt-get install $1
+            ;;
+        REDHAT)
+            sudo yum install $1
+            ;;
+    esac
+}
+
 myip () {
     curl -s whatismyip.akamai.com && echo
-}
-
-kde_release() {
-    cmake -DCMAKE_SKIP_RPATH=ON -DCMAKE_INSTALL_PREFIX=/usr \
-          -DLIBEXEC_INSTALL_DIR:PATH=/usr/lib64/kde4/libexec \
-          -DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE=release ..
-}
-
-kde_debug() {
-    cmake -DCMAKE_SKIP_RPATH=ON -DCMAKE_INSTALL_PREFIX=/usr \
-          -DLIBEXEC_INSTALL_DIR:PATH=/usr/lib64/kde4/libexec \
-          -DLIB_SUFFIX=64 -DCMAKE_BUILD_TYPE=debug ..
 }
 
 keygen() {
@@ -149,16 +158,6 @@ stop () {
     sudo systemctl status $1 -l
 }
 
-upup () {
-    if [ -e /etc/SUSE-brand ]; then
-	    sudo zypper ref && sudo zypper dup
-    elif [ -e /etc/debian_version ]; then
-        sudo apt-get update && sudo apt-get dist-upgrade -y
-    elif [ -e /etc/redhat-release ]; then
-        sudo yum update
-    fi
-}
-
 rands () {
     if [ -e /dev/hwrng ]; then
         DEVICE="/dev/hwrng"
@@ -191,14 +190,25 @@ sslcheck() {
     fi
 }
 
-tl() {
-    tail -f /var/tmp/build-root/$1-$2/.build.log
-}
-
 unrpm() {
     if [ -e $1 ]; then
         rpm2cpio $1 | cpio -imdv
     fi
+}
+
+upup () {
+    dist=$(distro)
+    case $dist in
+        SUSE)
+            sudo zypper ref && sudo zypper dup
+            ;;
+        DEBIAN)
+            sudo apt-get update && sudo apt-get dist-upgrade -y
+            ;;
+        REDHAT)
+            sudo yum update
+            ;;
+    esac
 }
 
 vstream() {
