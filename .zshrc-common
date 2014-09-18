@@ -1,4 +1,4 @@
-source ~/.zfuncs
+source ~/.zshfuncs
 
 autoload -U colors
 colors

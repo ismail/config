@@ -1,4 +1,4 @@
-source ~/.zsh.init
+source ~/.zshinit
 source ~/.zshrc-common
 
 alias clang="clang -fuse-ld=gold"
