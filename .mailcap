@@ -1,0 +1,4 @@
+text/html; w3m -I %{charset} -T text/html; copiousoutput;
+image/*; mutt-open %s
+application/pdf; mutt-open %s
+application/octet-stream; mutt-open %s
