@@ -19,8 +19,6 @@ set noswapfile
 set nowrap
 set nowritebackup
 set number
-set paste
-set paste
 set ruler
 set showcmd
 set showtabline=2
