@@ -234,7 +234,7 @@ upup () {
     dist=$(distro)
     case $dist in
         SUSE)
-            sudo zypper ref && sudo zypper dup
+            sudo zypper ref && sudo zypper dup --auto-agree-with-licenses
             ;;
         DEBIAN)
             sudo apt-get update && sudo apt-get dist-upgrade -y
