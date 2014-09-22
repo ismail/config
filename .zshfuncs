@@ -101,13 +101,13 @@ install () {
     dist=$(distro)
     case $dist in
         SUSE)
-            sudo zypper in $1
+            sudo zypper in "$@"
             ;;
         DEBIAN)
-            sudo apt-get install $1
+            sudo apt-get install "$@"
             ;;
         REDHAT)
-            sudo yum install $1
+            sudo yum install "$@"
             ;;
     esac
 }
@@ -165,13 +165,13 @@ remove () {
     dist=$(distro)
     case $dist in
         SUSE)
-            sudo zypper rm $1
+            sudo zypper rm "$@"
             ;;
         DEBIAN)
-            sudo apt-get --purge remove $1
+            sudo apt-get --purge remove "$@"
             ;;
         REDHAT)
-            sudo yum remove $1
+            sudo yum remove "$@"
             ;;
     esac
 }
@@ -180,13 +180,13 @@ search () {
     dist=$(distro)
     case $dist in
         SUSE)
-            sudo zypper search $1
+            sudo zypper search "$@"
             ;;
         DEBIAN)
-            sudo apt-cache search $1
+            sudo apt-cache search "$@"
             ;;
         REDHAT)
-            sudo yum search $1
+            sudo yum search "$@"
             ;;
     esac
 }
