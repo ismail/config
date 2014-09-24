@@ -120,6 +120,10 @@ keygen() {
     ssh-keygen -o -p -a 256
 }
 
+longurl () {
+    curl -w "%{url_effective}\n" -L -s -S $1 -o /dev/null
+}
+
 lupx () {
     upx --best --lzma $@
 }
