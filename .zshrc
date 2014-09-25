@@ -1,8 +1,11 @@
 source ~/.zshinit
 source ~/.zshrc-common
 
+custom_config="$HOME/.zshrc-`uname -n|cut -f1 -d'.'`"
+[ -f $custom_config ] && source $custom_config
+
 alias clang="clang -fuse-ld=gold"
-alias clang++="clang++ -fuse-ld=gold -stdlib=libc++"
+alias clang++="clang++ -fuse-ld=gold -stdlib=libc++ $CLANG_EXTRAS"
 alias io="sudo iotop -o -P -a"
 alias ls="ls --color"
 alias lsdeb="dpkg -c"
@@ -24,6 +27,3 @@ export MALLOC_PERTURB_=69
 [ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
 [ -f $HOME/.keychain/$HOSTNAME-sh ] &&
 . $HOME/.keychain/$HOSTNAME-sh
-
-custom_config="$HOME/.zshrc-`uname -n|cut -f1 -d'.'`"
-[ -f $custom_config ] && source $custom_config

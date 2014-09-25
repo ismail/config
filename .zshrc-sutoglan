@@ -1,6 +1,6 @@
 export PATH=/havana/dist/llvm/bin:$PATH
 export TMPDIR=/havana/tmp
-export LD_LIBRARY_PATH=/havana/dist/llvm/lib:$LD_LIBRARY_PATH
+export CLANG_EXTRAS="-Wl,-rpath,/havana/dist/llvm/lib"
 
 if [ `tty` = "/dev/ttyO0" ]; then
     ~/bin/fixterm
