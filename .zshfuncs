@@ -35,6 +35,13 @@ certinfo () {
     openssl x509 -in $1 -text -noout
 }
 
+currency () {
+    if [ ! -z $1 ]; then
+        currency=`echo $1 | tr '[:lower:]' '[:upper:]'`
+        curl -s "https://www.google.com/finance/chart?safe=off&es_sm=93&q=CURRENCY:$currency&tkr=1&p=1D&chst=vkc&chs=640x480&chsc=1" -o - | gm display - &> /dev/null
+    fi
+}
+
 disable_alsr () {
     echo 0 | sudo tee -a /proc/sys/kernel/randomize_va_space
 }
