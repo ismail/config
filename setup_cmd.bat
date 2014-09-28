@@ -9,4 +9,4 @@ doskey servethis=python -m http.server
 doskey enc=gpg -ea -r
 doskey dec=gpg -d
 
-"C:\Program Files (x86)\clink\0.4\clink" inject --profile "C:\Users\ismail\AppData\Local\clink"
+"C:\Program Files (x86)\clink\0.4.2\clink" inject --profile "C:\Users\ismail\AppData\Local\clink"
