@@ -72,26 +72,6 @@ entropy() {
     echo $(cat /proc/sys/kernel/random/entropy_avail)/$(cat /proc/sys/kernel/random/poolsize)
 }
 
-extract () {
-    if [ -f $1 ] ; then
-      case $1 in
-        *.tar.lzma|*.tar.bz2|*.tar.gz|*.tar|*.tbz2|*.tgz)
-                     tar xvf $1     ;;
-        *.lzma)
-                     lzma -d $1     ;;
-        *.bz2)       bunzip2 $1     ;;
-        *.rar)       unrar e $1     ;;
-        *.gz)        gunzip $1      ;;
-        *.zip)       unzip $1       ;;
-        *.Z)         uncompress $1  ;;
-        *.7z)        7z x $1        ;;
-        *)     echo "'$1' cannot be extracted via extract()" ;;
-         esac
-     else
-         echo "'$1' is not a valid file"
-     fi
-}
-
 find_broken_symlinks() {
     find -L $1 -type l -exec ls -lF --color=yes '{}' +
 }
@@ -251,13 +231,33 @@ upup () {
             sudo apt-get update && sudo apt-get dist-upgrade -y
             ;;
         REDHAT)
-            sudo yum update
+            sudo yum update -y
             ;;
     esac
 }
 
 vstream() {
     vlc "$1" --sout '#transcode{vcodec=h264,acodec=mp3,ab=128,channels=2,samplerate=44100}:http{dst=:8080/go.mpg}'
+}
+
+x () {
+    if [ -f $1 ] ; then
+      case $1 in
+        *.tar.lzma|*.tar.xz|*.tar.bz2|*.tar.gz|*.tar|*.tbz2|*.tgz)
+                     tar xvf $1     ;;
+        *.lzma)
+                     lzma -d $1     ;;
+        *.bz2)       bunzip2 $1     ;;
+        *.rar)       unrar e $1     ;;
+        *.gz)        gunzip $1      ;;
+        *.zip)       unzip $1       ;;
+        *.Z)         uncompress $1  ;;
+        *.7z)        7z x $1        ;;
+        *)     echo "'$1' cannot be extracted via extract()" ;;
+         esac
+     else
+         echo "'$1' is not a valid file"
+     fi
 }
 
 ydl() {
