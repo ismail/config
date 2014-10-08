@@ -56,6 +56,14 @@ distro () {
     fi
 }
 
+download () {
+    if [ ! -z $1 ]; then
+        curl -O -J -L -C- -# "$@"
+    else
+        echo "Pass an URL parameter."
+    fi
+}
+
 dumpenv () {
     if [ ! -z $1 ]; then
         sudo cat /proc/$1/environ | xargs --null --max-args=1 | sort
