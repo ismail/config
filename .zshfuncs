@@ -223,6 +223,10 @@ stop () {
     sudo systemctl status $1 -l
 }
 
+synconf () {
+    pull ~/config ~/hacks
+}
+
 unrpm () {
     if [ -e $1 ]; then
         rpm2cpio $1 | cpio -imdv
