@@ -89,6 +89,8 @@ alias gdb="gdb --quiet"
 alias grep="grep --color"
 alias l.='ls -d .* --color=auto'
 alias ll="ls -al"
+alias lstcp="ss -lnpt"
+alias lsudp="ss -lnpu"
 alias md="mkdir -p"
 alias open='xdg-open'
 alias please='sudo $(fc -ln -1)'
