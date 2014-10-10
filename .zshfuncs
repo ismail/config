@@ -135,6 +135,11 @@ mcd () {
     mkdir -p "$1" && cd "$1";
 }
 
+move () {
+    copy $1 $2
+    rm $1
+}
+
 mp3() {
     youtube-dl --extract-audio --title --audio-format mp3 "$1"
 }
