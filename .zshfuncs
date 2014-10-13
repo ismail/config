@@ -240,6 +240,10 @@ synconf () {
     pull ~/config ~/hacks
 }
 
+tm () {
+    tmux new-session -s $1 -d "$*"
+}
+
 unrpm () {
     if [ -e $1 ]; then
         rpm2cpio $1 | cpio -imdv
