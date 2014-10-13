@@ -25,6 +25,7 @@ set markers=no
 set mark_old=no
 set metoo=no
 set net_inc=5
+set query_command = "mutt_ldap.py '%s'"
 set quit=ask-yes
 set send_charset="utf-8"
 set sleep_time=0
@@ -69,6 +70,7 @@ unignore  Date To Cc Bcc From Subject
 bind index,pager \CK sidebar-next
 bind index,pager \CN sidebar-prev
 bind index,pager \CO sidebar-open
+bind editor <Tab> complete-query
 color sidebar_new yellow default
 macro index <esc>m "T~N<enter>;WNT~O<enter>;WO\CT~T<enter>" "mark all messages read"
 macro index,pager ua <limit>all<enter> "show everything"
