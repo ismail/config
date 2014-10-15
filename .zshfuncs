@@ -241,7 +241,7 @@ synconf () {
 }
 
 tm () {
-    tmux new-session -d "$*"
+    tmux new-session -d "$* && sleep infinity"
 }
 
 unrpm () {
