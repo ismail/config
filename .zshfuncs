@@ -241,7 +241,7 @@ synconf () {
 }
 
 tm () {
-    tmux new-session -s $1 -d "$*"
+    tmux new-session -d "$*"
 }
 
 unrpm () {
@@ -254,7 +254,7 @@ upup () {
     dist=$(distro)
     case $dist in
         SUSE)
-            sudo zypper ref && sudo zypper dup --auto-agree-with-licenses
+            sudo zypper ref && sudo zypper -n dup --auto-agree-with-licenses
             ;;
         DEBIAN)
             sudo apt-get update && sudo apt-get dist-upgrade -y
