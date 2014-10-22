@@ -1,8 +1,8 @@
 [core]
 	excludesfile = /home/ismail/.gitignore
 	quotepath = false
-	fileMode = false
 	autocrlf = false
+	filemode = false
 [alias]
 	st = status
 	ci = commit
