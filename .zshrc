@@ -19,6 +19,7 @@ alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 alias result="osc results -v"
 alias slog="sudo journalctl --system -b --all"
+alias strings="strings -a"
 alias ulog="journalctl --user -b --all | grep -v 'gnome-session'"
 alias vssh="vagrant up && vagrant ssh"
 export MALLOC_PERTURB_=69
