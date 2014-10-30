@@ -33,3 +33,5 @@
 	autocorrect = 5
 [push]
 	default = simple
+[credential]
+	helper = cache
