@@ -4,6 +4,7 @@ source ~/.zshrc-common
 custom_config="$HOME/.zshrc-`uname -n|cut -f1 -d'.'`"
 [ -f $custom_config ] && source $custom_config
 
+alias chroot="sudo systemd-nspawn -D"
 alias clang="clang -fuse-ld=gold"
 alias clang++="clang++ -fuse-ld=gold -stdlib=libc++ $CLANG_EXTRAS"
 alias io="sudo iotop -o -P -a"
