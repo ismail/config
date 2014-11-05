@@ -28,7 +28,7 @@ bzit() {
 browser () {
     f=`mktemp --suffix=.html`
     cat /dev/stdin > $f
-    xdg-open $f
+    xdg-open $f &> /dev/null
 }
 
 certinfo () {
