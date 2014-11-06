@@ -1,9 +1,3 @@
 digg.com##LI[id="dr-nav-diggs"][class="dr-list-item dr-nav-diggs"]
 digg.com##LI[id="dr-nav-popular"][class="dr-list-item dr-nav-popular"]
 digg.com##LI[id="dr-nav-digg-deeper"][class="dr-list-item dr-nav-digg-deeper"]
-
-@@||tweetdeck.twitter.com/$document
-@@||elinux.org/$document
-@@|http://www.hulu.com/|$document
-@@||www.mediamarkt.com.tr/$document
-@@||www.bittorrent.com/$document
