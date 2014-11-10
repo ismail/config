@@ -44,6 +44,11 @@ copy () {
 }
 
 crun () {
+    if [ -z $1 ]; then
+        echo "Please pass a C/C++ file"
+        return
+    fi
+
     f=`mktemp /tmp/prog.XXXXXX`
     extension="${1##*.}"
     if [ $extension = "cpp" ]; then
