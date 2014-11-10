@@ -112,4 +112,4 @@ stty start undef
 # Setup ls colors
 if [ -e .dir_colors ]; then eval `dircolors .dir_colors`; fi
 
-source ~/.zsh/*.zsh
+source ~/.zsh/*.plugin.zsh
