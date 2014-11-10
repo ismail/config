@@ -1,3 +1,5 @@
+export MY_CC=gcc
+export MY_CXX=g++
 export DISPLAY=localhost:0.0
 export GOPATH=C:/Users/ismail/gocode
 alias ping=/cygdrive/c/Windows/system32/PING

@@ -43,6 +43,18 @@ copy () {
     fi
 }
 
+crun () {
+    f=`mktemp /tmp/prog.XXXXXX`
+    extension="${1##*.}"
+    if [ $extension = "cpp" ]; then
+        $MY_CXX -std=c++11 $1 -o $f
+    else
+        $MY_CC -std=c11 $1 -o $f
+    fi
+    $f
+    rm -f $f
+}
+
 currency () {
     if [ ! -z $1 ]; then
         currency=`echo $1 | tr '[:lower:]' '[:upper:]'`
