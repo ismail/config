@@ -47,7 +47,11 @@ crun () {
     f=`mktemp /tmp/prog.XXXXXX`
     extension="${1##*.}"
     if [ $extension = "cpp" ]; then
-        $MY_CXX -std=c++11 $1 -o $f
+        if [ $MY_CXX = "clang++" ]; then
+            $MY_CXX -std=c++11 $CLANG_EXTRAS $1 -o $f
+        else
+            $MY_CXX -std=c++11 $1 -o $f
+        fi
     else
         $MY_CC -std=c11 $1 -o $f
     fi
