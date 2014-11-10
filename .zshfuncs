@@ -200,9 +200,9 @@ srand () {
     fi
 
     if [ -z $1 ]; then
-        base64 < $DEVICE | tr -dc 'a-zA-Z0-9' | head -c32
+        base64 < $DEVICE | head -c32
     else
-        base64 < $DEVICE | tr -dc 'a-zA-Z0-9' | head -c$1
+        base64 < $DEVICE | head -c$1
     fi
     print
 }
