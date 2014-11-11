@@ -1,3 +1,5 @@
+al-monitor.com##DIV[id="sharetag"][class="shareTag hidden-phone"]
+
 digg.com##LI[id="dr-nav-diggs"][class="dr-list-item dr-nav-diggs"]
 digg.com##LI[id="dr-nav-popular"][class="dr-list-item dr-nav-popular"]
 digg.com##LI[id="dr-nav-digg-deeper"][class="dr-list-item dr-nav-digg-deeper"]
