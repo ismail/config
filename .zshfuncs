@@ -293,7 +293,7 @@ vstream() {
 x () {
     if [ -f $1 ] ; then
       case $1 in
-        *.tar.lzma|*.tar.xz|*.tar.bz2|*.tar.gz|*.tar|*.tbz2|*.tgz)
+        *.tar.lzma|*.tar.xz|*.tar.bz2|*.tar.gz|*.tar|*.tbz2|*.tgz|*.tbz)
                      tar xvf $1     ;;
         *.lzma)
                      lzma -d $1     ;;
