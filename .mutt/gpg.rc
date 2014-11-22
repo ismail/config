@@ -12,4 +12,3 @@ set pgp_list_pubring_command="gpg --no-verbose --batch --quiet --with-colons --l
 set pgp_list_secring_command="gpg --no-verbose --batch --quiet --with-colons --list-secret-keys %r"
 set pgp_getkeys_command="gpg --recv-keys %r"
 set pgp_good_sign="^\\[GNUPG:\\] GOODSIG"
-
