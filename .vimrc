@@ -69,8 +69,8 @@ set mousemodel=popup
     elseif has("gui_win32")
         set guifont=Consolas:h11:cANSI
         set renderoptions=type:directx
-        set shell=powershell
-        set shellcmdflag=-command
+        set shell=cmd
+        set shellcmdflag=/c
     elseif has("gui_macvim")
         set guifont=Menlo\ Regular:h14
     endif
