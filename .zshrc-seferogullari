@@ -1,9 +1,9 @@
-export PATH=/opt/clang/bin:/havana/binaries/bin:/havana/binaries/linaro-arm-linux-gnueabihf-4.9/bin:/havana/binaries/texlive/2014/bin/x86_64-linux:/opt/wine-compholio/bin:$HOME/go/bin:$PATH
+export PATH=/opt/clang/bin:/havana/binaries/bin:/havana/binaries/linaro-arm-linux-gnueabihf-4.9/bin:/havana/binaries/texlive/2014/bin/x86_64-linux:/opt/wine-compholio/bin:$HOME/go/bin:/home/ismail/.perl5/bin:$PATH
 export CLANG_EXTRAS="-Wl,-rpath,/opt/clang/lib64,--enable-new-dtags"
 alias ihatenvidia="nvidia-settings -a '[gpu:0]/GPUPowerMizerMode=1'"
 export NODE_PATH=/usr/lib/node_modules/
+export VDPAU_DRIVER=r600
 
-PATH="/home/ismail/.perl5/bin${PATH+:}${PATH}"; export PATH;
 PERL5LIB="/home/ismail/.perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/ismail/.perl5${PERL_LOCAL_LIB_ROOT+:}${PERL_LOCAL_LIB_ROOT}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/ismail/.perl5\""; export PERL_MB_OPT;
