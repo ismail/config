@@ -36,3 +36,5 @@ ZoomShortcuts=no
 ClipShortcuts=no
 WindowShortcuts=no
 AltFnShortcuts=no
+Transparency=off
+ScrollbackLines=100000
