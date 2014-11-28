@@ -66,12 +66,14 @@ set lines=50 columns=120
 set mousemodel=popup
     if has("gui_gtk2")
         set guifont=Consolas\ 13
+        set shellcmdflag+=i
     elseif has("gui_win32")
         set guifont=Consolas:h11:cANSI
         set renderoptions=type:directx
         set shell=cmd
         set shellcmdflag=/c
     elseif has("gui_macvim")
+        set shellcmdflag+=i
         set guifont=Menlo\ Regular:h14
     endif
 endif
