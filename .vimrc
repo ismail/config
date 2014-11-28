@@ -80,5 +80,6 @@ endif
 cnoremap sudow w !sudo tee % >/dev/null
 
 " clang-format
+let g:clang_format_path = "/opt/clang/bin/clang-format"
 map <C-K> :pyf /opt/clang/share/clang/clang-format.py<CR>
 imap <C-K> <ESC>:pyf /opt/clang/share/clang/clang-format.py<CR>i
