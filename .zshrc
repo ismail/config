@@ -5,7 +5,7 @@ custom_config="$HOME/.zshrc-`uname -n|cut -f1 -d'.'`"
 [ -f $custom_config ] && source $custom_config
 
 alias chroot="sudo systemd-nspawn -D"
-alias clang="clang -std=c11 -fuse-ld=gold"
+alias clang="clang -std=c11 -fuse-ld=gold $CLANG_EXTRAS"
 alias clang++="clang++ -std=c++14 -stdlib=libc++ -fuse-ld=gold $CLANG_EXTRAS"
 alias -s js=node
 alias io="sudo iotop -o -P -a"
