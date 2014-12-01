@@ -87,7 +87,9 @@ distro () {
 
 download () {
     if [ ! -z $1 ]; then
-        curl -O -J -L -C- -# "$@"
+        for url in $@; do
+            curl -O -J -L -C- -# "$url"
+        done
     else
         echo "Pass an URL parameter."
     fi
