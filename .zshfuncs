@@ -53,7 +53,7 @@ crun () {
     extension="${1##*.}"
     if [ $extension = "cpp" ]; then
         if [ $MY_CXX = "clang++" ]; then
-            $MY_CXX -std=c++14 $CLANG_EXTRAS $1 -o $f
+            $MY_CXX -std=c++14 -fsanitize=undefined $CLANG_EXTRAS $1 -o $f
         else
             $MY_CXX -std=c++14 $1 -o $f
         fi
