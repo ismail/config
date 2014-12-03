@@ -23,6 +23,7 @@ alias pbpaste='xclip -selection clipboard -o'
 alias result="osc results -v"
 alias slog="sudo journalctl --system -b -0 --all"
 alias strings="strings -a"
+alias tlog="sudo journalctl --system --all --follow"
 alias ulog="journalctl --user -b -0 --all"
 alias vssh="vagrant up && vagrant ssh"
 export MALLOC_PERTURB_=69
