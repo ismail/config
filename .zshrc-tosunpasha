@@ -4,3 +4,9 @@ export DISPLAY=localhost:0.0
 export CLANG_EXTRAS="-D_HAS_EXCEPTIONS=0 -target i686-pc-windows-msvc"
 export GOPATH=C:/Users/ismail/gocode
 alias ping=/cygdrive/c/Windows/system32/PING
+
+cl() {
+    obj=`basename $1 | sed 's,\..*,.obj,'`
+    cl.exe /EHsc- /nologo `cygpath -w $1`
+    rm -f $obj &> /dev/null
+}
