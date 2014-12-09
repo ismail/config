@@ -27,3 +27,7 @@ hostname=`hostname -s`
 if [ -f config/.zshrc-$hostname ]; then
     ln -sf config/.zshrc-$hostname
 fi
+
+if [ `uname -o` = "Cygwin" ]; then
+    ln -sf config/.minttyrc
+fi
