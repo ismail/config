@@ -19,7 +19,8 @@ ln -sf ../config/.ssh/config
 popd
 
 pushd .gnupg
-ln -sf ../config/.gnupg/gpg{-agent}.conf .
+ln -sf ../config/.gnupg/gpg.conf
+ln -sf ../config/.gnupg/gpg-agent.conf
 popd
 
 hostname=`hostname -s`
