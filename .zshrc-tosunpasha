@@ -4,7 +4,7 @@ export DISPLAY=localhost:0.0
 export CLANG_EXTRAS="-D_HAS_EXCEPTIONS=0 -target i686-pc-windows-msvc"
 export GOPATH=C:/Users/ismail/gocode
 alias ping=/cygdrive/c/Windows/system32/PING
-export PATH="/cygdrive/c/SysInternals/bin:$PATH"
+export PATH="/cygdrive/c/SysInternals:$PATH"
 
 cl() {
     obj=`basename $1 | sed 's,\..*,.obj,'`
