@@ -15,11 +15,11 @@ for f in $files; do
 done
 
 pushd .ssh
-ln -s ../config/.ssh/config
+ln -sf ../config/.ssh/config
 popd
 
 pushd .gnupg
-ln -s ../config/.gnupg/gpg{-agent}.conf
+ln -sf ../config/.gnupg/gpg{-agent}.conf .
 popd
 
 hostname=`hostname -s`
