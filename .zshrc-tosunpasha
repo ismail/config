@@ -7,6 +7,11 @@ alias ping=/cygdrive/c/Windows/system32/PING
 export PATH="/cygdrive/c/SysInternals:$PATH"
 
 cl() {
+    if [ x$1 = x ]; then
+        echo "Please give a file name as parameter".
+        return
+    fi
+
     obj=`basename $1 | sed 's,\..*,.obj,'`
     cl.exe /EHsc- /nologo `cygpath -w $1`
     rm -f $obj &> /dev/null
