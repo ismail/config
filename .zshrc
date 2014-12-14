@@ -1,4 +1,3 @@
-source ~/.zshinit
 source ~/.zshrc-common
 
 custom_config="$HOME/.zshrc-`uname -n|cut -f1 -d'.'`"
