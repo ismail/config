@@ -14,7 +14,7 @@
 [user]
 	name = İsmail Dönmez
 	email = ismail@i10z.com
-	signingkey = ismail@donmez.ws
+	signingkey = ismail@i10z.com
 [svn]
     brokenSymlinkWorkaround = false
 [color]
