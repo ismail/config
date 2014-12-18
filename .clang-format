@@ -1,0 +1,3 @@
+BasedOnStyle: WebKit
+Standard: Cpp11
+UseTab: Never
