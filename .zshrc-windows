@@ -8,13 +8,18 @@ export PATH="/cygdrive/c/SysInternals:$PATH"
 
 cl() {
     if [ x$1 = x ]; then
-        echo "Please give a file name as parameter".
-        return
+        input=`mktemp /tmp/XXXXXX.cpp`
+        cat /dev/stdin > $input
+    else
+        input=$1
     fi
 
-    obj=`basename $1 | sed 's,\..*,.obj,'`
-    exe=`basename $1 | sed 's,\..*,.exe,'`
-    cl.exe /EHsc- /nologo `cygpath -w $1` > /dev/null &&
-    ./$exe
+    obj=`basename $input | sed 's,\..*,.obj,'`
+    exe=`basename $input | sed 's,\..*,.exe,'`
+    cl.exe /EHsc- /nologo `cygpath -w $input` | grep --color=never error || ./$exe
     rm -f $obj $exe
+
+    if [ x$1 = x ]; then
+        rm $input
+    fi
 }
