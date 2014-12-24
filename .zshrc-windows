@@ -13,6 +13,8 @@ cl() {
     fi
 
     obj=`basename $1 | sed 's,\..*,.obj,'`
-    cl.exe /EHsc- /nologo `cygpath -w $1`
-    rm -f $obj &> /dev/null
+    exe=`basename $1 | sed 's,\..*,.exe,'`
+    cl.exe /EHsc- /nologo `cygpath -w $1` > /dev/null &&
+    ./$exe
+    rm -f $obj $exe
 }
