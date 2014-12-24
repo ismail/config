@@ -27,7 +27,7 @@ alias ulog="journalctl --user -b -0 --all"
 alias vssh="vagrant up && vagrant ssh"
 export MALLOC_PERTURB_=69
 
-[ -x /usr/bin/keychain ] && keychain --nogui -q id_rsa id_ed25519
+[ -x /usr/bin/keychain ] && keychain --nogui --agents ssh -q id_rsa id_ed25519
 [ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
 [ -f $HOME/.keychain/$HOSTNAME-sh ] &&
 . $HOME/.keychain/$HOSTNAME-sh
