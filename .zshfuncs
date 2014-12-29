@@ -289,7 +289,7 @@ upup () {
 }
 
 vstream() {
-    vlc "$1" --sout '#transcode{vcodec=h264,acodec=mp3,ab=128,channels=2,samplerate=44100}:http{dst=:8080/go.mp4}'
+    vlc "$1" --sout '#transcode{vcodec=h264,acodec=mp3,ab=128,channels=2,samplerate=44100}:http{dst=:8080/live.mpg}'
 }
 
 x () {
