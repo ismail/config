@@ -43,27 +43,6 @@ copy () {
     fi
 }
 
-crun () {
-    if [ -z $1 ]; then
-        echo "Please pass a C/C++ file"
-        return
-    fi
-
-    f=`mktemp /tmp/prog.XXXXXX`
-    extension="${1##*.}"
-    if [ $extension = "cpp" ]; then
-        if [ $MY_CXX = "clang++" ]; then
-            $MY_CXX -std=c++14 -fsanitize=undefined $CLANG_EXTRAS $1 -o $f
-        else
-            $MY_CXX -std=c++14 $1 -o $f
-        fi
-    else
-        $MY_CC -std=c11 $1 -o $f
-    fi
-    $f
-    rm -f $f
-}
-
 currency () {
     if [ ! -z $1 ]; then
         currency=`echo $1 | tr '[:lower:]' '[:upper:]'`
@@ -145,6 +124,10 @@ keygen() {
 }
 
 lastmod () {
+    if [ -z $1 ]; then
+        return 0
+    fi
+
     d=`curl -s -I $1 | grep "Last-Modified" | sed s,"Last-Modified: ",,g`
     d1=$(date +%s)
     d2=$(date -d "$d" +%s)

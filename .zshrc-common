@@ -103,8 +103,6 @@ alias verify="gpg --verify"
 alias wget='wget --content-disposition'
 
 export GOPATH=$HOME/.go/
-export MY_CC=clang
-export MY_CXX=clang++
 export PATH=$HOME/bin:/sbin:/usr/sbin:/usr/local/bin:$PATH:/suse/bin
 export TERM=screen-256color
 
