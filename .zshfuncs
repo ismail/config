@@ -19,12 +19,6 @@ backoff () {
     fi
 }
 
-bzit() {
-    if [ ! -z $1 ]; then
-        tar --exclude-vcs -cjf $1.tar.bz2 $1
-    fi
-}
-
 browser () {
     f=`mktemp --suffix=.html`
     cat /dev/stdin > $f
@@ -204,10 +198,6 @@ search () {
     esac
 }
 
-sniff () {
-    sudo ngrep -d ${1} -t '^(GET|POST) ' 'tcp and port 80';
-}
-
 srand () {
     if [ -e /dev/hwrng ]; then
         DEVICE="/dev/hwrng"
@@ -299,7 +289,7 @@ upup () {
 }
 
 vstream() {
-    vlc "$1" --sout '#transcode{vcodec=h264,acodec=mp3,ab=128,channels=2,samplerate=44100}:http{dst=:8080/go.mpg}'
+    vlc "$1" --sout '#transcode{vcodec=h264,acodec=mp3,ab=128,channels=2,samplerate=44100}:http{dst=:8080/go.mp4}'
 }
 
 x () {
@@ -323,6 +313,13 @@ x () {
          echo "'$1' is not a valid file"
      fi
 }
+
+xzit() {
+    if [ ! -z $1 ]; then
+        tar --exclude-vcs -cJf $1.tar.xz $1
+    fi
+}
+
 
 ydl() {
     youtube-dl --prefer-free-formats "$1" -o %(title)s.%(ext)s
