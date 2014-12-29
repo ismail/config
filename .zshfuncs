@@ -140,12 +140,16 @@ install () {
     esac
 }
 
-myip () {
-    curl -s whatismyip.akamai.com && echo
-}
-
 keygen() {
     ssh-keygen -o -p -a 256
+}
+
+lastmod () {
+    d=`curl -s -I $1 | grep "Last-Modified" | sed s,"Last-Modified: ",,g`
+    d1=$(date +%s)
+    d2=$(date -d "$d" +%s)
+    diff=$(( (d1 - d2) / 86400 ))
+    echo "Last modified: $diff days ago."
 }
 
 longurl () {
@@ -175,6 +179,10 @@ mvim () {
     else
         gvim --remote-tab-silent $@
     fi
+}
+
+myip () {
+    curl -s whatismyip.akamai.com && echo
 }
 
 restart () {
