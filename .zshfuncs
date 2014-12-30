@@ -123,6 +123,12 @@ lastmod () {
     fi
 
     d=`curl -s -I $1 | grep "Last-Modified" | sed s,"Last-Modified: ",,g`
+
+    if [ -z $d ]; then
+        echo "No Last-Modified header available."
+        return
+    fi
+
     d1=$(date +%s)
     d2=$(date -d "$d" +%s)
     diff=$((d1 - d2))
