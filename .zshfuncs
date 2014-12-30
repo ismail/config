@@ -125,8 +125,16 @@ lastmod () {
     d=`curl -s -I $1 | grep "Last-Modified" | sed s,"Last-Modified: ",,g`
     d1=$(date +%s)
     d2=$(date -d "$d" +%s)
-    diff=$(( (d1 - d2) / 86400 ))
-    echo "Last modified: $diff days ago."
+    diff=$((d1 - d2))
+    if [ $diff -gt 86400 ]; then
+        echo "Last modified: $(($diff/86400)) days ago."
+    elif [ $diff -gt 3600 ]; then
+        echo "Last modified: $(($diff/3600)) hours ago."
+    elif [ $diff -gt 60 ]; then
+        echo "Last modified: $(($diff/60)) minutes ago."
+    else
+        echo "Last modified: $diff seconds ago."
+    fi
 }
 
 longurl () {
