@@ -1,6 +1,9 @@
 # Lots of things depend on PATH, so first set it up
 export PATH=$HOME/bin:/usr/local/bin:/usr/bin:/usr/sbin:$PATH
 
+# Always start at home
+cd $HOME
+
 source ~/.zshrc-common
 
 custom_config="$HOME/.zshrc-`uname -n|cut -f1 -d'.'`"
