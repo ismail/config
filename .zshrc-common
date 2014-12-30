@@ -103,7 +103,7 @@ alias verify="gpg --verify"
 alias wget='wget --content-disposition'
 
 export GOPATH=$HOME/.go/
-export PATH=$HOME/bin:/sbin:/usr/sbin:/usr/local/bin:$PATH:/suse/bin
+export PATH=$HOME/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:$PATH:/suse/bin
 export TERM=screen-256color
 
 # Stop mapping CTRL-S/Q
@@ -111,4 +111,4 @@ stty stop undef
 stty start undef
 
 # Setup ls colors
-if [ -e .dir_colors ]; then eval `dircolors .dir_colors`; fi
+if [ -e ~/.dir_colors ]; then eval `dircolors ~/.dir_colors`; fi
