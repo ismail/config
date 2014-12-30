@@ -14,7 +14,9 @@ cl() {
 
     obj=`basename $input | sed 's,\..*,.obj,'`
     exe=`basename $input | sed 's,\..*,.exe,'`
-    cl.exe /EHsc- /nologo `cygpath -w $input` | grep --color=never error || ./$exe
+    cl.exe /EHsc- /nologo `cygpath -w $input` | sed '1d'
+    [ -f ./$exe ] && ./$exe
+
     rm -f $obj $exe
 
     if [ x$1 = x ]; then
