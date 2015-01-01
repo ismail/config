@@ -8,7 +8,7 @@ backoff () {
             break
         fi
 
-        sleeptime=`dc -e "2 $retry ^ p"`
+        sleeptime=$(( 2**$retry ))
         echo "Command failed, sleeping $sleeptime seconds before retrying."
         sleep $sleeptime
         let "retry += 1"
