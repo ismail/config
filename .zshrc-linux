@@ -10,4 +10,4 @@ PERL_MB_OPT="--install_base \"/home/ismail/.perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/ismail/.perl5"; export PERL_MM_OPT;
 
 export PYTHONPATH=$HOME/.local/lib/python3.4/site-packages/:$PYTHONPATH
-[ -f ~/.Xdefaults ] && xrdb ~/.Xdefaults
+[ -f ~/.Xdefaults -a ! -z $DISPLAY ] && xrdb ~/.Xdefaults
