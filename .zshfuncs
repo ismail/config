@@ -44,6 +44,12 @@ currency () {
     fi
 }
 
+cyg () {
+    if [ `whence cygpath` ]; then
+        reply=("$(cygpath -m $REPLY)")
+    fi
+}
+
 disable_alsr () {
     echo 0 | sudo tee -a /proc/sys/kernel/randomize_va_space
 }
