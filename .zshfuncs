@@ -103,11 +103,16 @@ ftrace () {
 }
 
 gensshmoduli () {
-    f=`mktemp /tmp/moduliXXXXXX`
+    if [ -z $1 ]; then
+        echo "Pass requested number of bits as the first parameter."
+        return
+    fi
+
+    f=`mktemp /tmp/moduli.$1.candidate.XXXXXX`
     ssh-keygen -G $f -b $1
-    ssh-keygen -T moduli -f $f
+    ssh-keygen -T moduli.$1.tested -f $f
     rm $f
-    echo "$1 bit SSH moduli is ready under moduli file."
+    echo "$1 bit SSH moduli is ready under moduli.$1.tested file."
 }
 
 install () {
