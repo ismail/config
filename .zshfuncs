@@ -77,9 +77,7 @@ dumpenv () {
 }
 
 encode_film() {
-    f=`basename $1`
-    f=`echo $f | sed 's,\..*,.mp4,'`
-    avconv -i $1 -c:v libx264 -preset medium -tune film $f
+    avconv -i $1 -c:v libx264 -preset medium -tune film ${1:t:r}.mp4
 }
 
 entropy() {

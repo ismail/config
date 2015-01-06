@@ -12,8 +12,9 @@ cl() {
         input=$1
     fi
 
-    obj=`basename $input | sed 's,\..*,.obj,'`
-    exe=`basename $input | sed 's,\..*,.exe,'`
+    obj=${input:t:r}.obj
+    exe=${input:t:r}.exe
+
     cl.exe /EHsc- /nologo `cygpath -w $input` | sed '1d'
     [ -f ./$exe ] && ./$exe
 
