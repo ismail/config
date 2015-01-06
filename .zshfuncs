@@ -102,6 +102,14 @@ ftrace () {
     strace -f -e trace=file $@
 }
 
+gensshmoduli () {
+    f=`mktemp /tmp/moduliXXXXXX`
+    ssh-keygen -G $f -b $1
+    ssh-keygen -T moduli -f $f
+    rm $f
+    echo "$1 bit SSH moduli is ready under moduli file."
+}
+
 install () {
     dist=$(distro)
     case $dist in
