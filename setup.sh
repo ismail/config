@@ -8,8 +8,8 @@ mkdir -p .gnupg
 files=(
     .dir_colors .gdb .gdbinit .gitconfig .gitignore .hgrc
     .irbrc .mailcap .mutt .muttrc .screenrc .terminfo
-    .tmux.conf .urlview .vim .vimrc .Xdefaults .zshfuncs
-    .zshrc .zshrc-common
+    .tmux.conf .urlview .vim .vimrc .Xdefaults .zshenv
+    .zsh_fpath .zshfuncs .zshrc .zshrc-common
 )
 
 for f in $files; do

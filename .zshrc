@@ -1,6 +1,3 @@
-# Lots of things depend on PATH, so first set it up
-export PATH=$HOME/bin:/usr/local/bin:/usr/bin:/usr/sbin:/sbin:$PATH
-
 # Always start at home
 cd $HOME
 

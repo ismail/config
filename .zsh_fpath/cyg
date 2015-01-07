@@ -1,0 +1,6 @@
+cyg () {
+    if [ `whence cygpath` ]; then
+        reply=("$(cygpath -m $REPLY)")
+    fi
+}
+
