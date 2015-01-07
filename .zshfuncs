@@ -130,8 +130,8 @@ install () {
     esac
 }
 
-keygen() {
-    ssh-keygen -o -p -a 256
+keygen () {
+    ssh-keygen -o -a 65536 -t ed25519
 }
 
 lastmod () {
