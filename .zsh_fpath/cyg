@@ -3,4 +3,3 @@ cyg () {
         reply=("$(cygpath -m $REPLY)")
     fi
 }
-
