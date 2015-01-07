@@ -6,8 +6,10 @@ mkdir -p .ssh
 mkdir -p .gnupg
 
 files=(
-    .dir_colors .gdb .gdbinit .gitconfig .gitignore .hgrc .irbrc .mailcap .mutt .muttrc
-    .screenrc .tmux.conf .urlview .vim .vimrc .Xdefaults .zshfuncs .zshrc .zshrc-common
+    .dir_colors .gdb .gdbinit .gitconfig .gitignore .hgrc
+    .irbrc .mailcap .mutt .muttrc .screenrc .terminfo
+    .tmux.conf .urlview .vim .vimrc .Xdefaults .zshfuncs
+    .zshrc .zshrc-common
 )
 
 for f in $files; do
