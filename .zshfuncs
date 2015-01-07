@@ -29,14 +29,6 @@ certinfo () {
     openssl x509 -in $1 -text -noout
 }
 
-copy () {
-    if [ -d $2 ]; then
-        pv $1 > $2/${1##*/}
-    else
-        pv $1 > $2
-    fi
-}
-
 currency () {
     if [ ! -z $1 ]; then
         currency=`echo $1 | tr '[:lower:]' '[:upper:]'`
@@ -187,11 +179,6 @@ lupx () {
 
 mcd () {
     mkdir -p "$1" && cd "$1";
-}
-
-move () {
-    copy $1 $2
-    rm $1
 }
 
 mp3() {
