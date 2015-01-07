@@ -103,7 +103,7 @@ alias verify="gpg --verify"
 alias wget='wget --content-disposition'
 
 export GOPATH=$HOME/.go/
-export TERM=screen-256color
+export TERM=screen-256color-it
 
 # Stop mapping CTRL-S/Q
 stty stop undef
