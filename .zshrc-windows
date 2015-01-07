@@ -1,12 +1,12 @@
 export DISPLAY=localhost:0.0
-export CLANG_EXTRAS="-D_HAS_EXCEPTIONS=0 -target i686-pc-windows-msvc"
+export CLANG_EXTRAS="-D_HAS_EXCEPTIONS=0"
 export GOPATH=C:/Users/ismail/gocode
 alias ping=/cygdrive/c/Windows/system32/PING
 export PATH="/cygdrive/c/SysInternals:$PATH"
 
 cl() {
     if [ x$1 = x ]; then
-        input=`mktemp /tmp/XXXXXX.cpp`
+        input=$(mktemp /tmp/XXXXXX.cpp)
         cat /dev/stdin > $input
     else
         input=$1
@@ -15,7 +15,7 @@ cl() {
     obj=${input:t:r}.obj
     exe=${input:t:r}.exe
 
-    cl.exe /EHsc- /nologo `cygpath -w $input` | sed '1d'
+    cl.exe /EHsc- /nologo $input(+cyg) | sed '1d'
     [ -f ./$exe ] && ./$exe
 
     rm -f $obj $exe

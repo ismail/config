@@ -1,5 +1,5 @@
 export PATH=/opt/clang/bin:/havana/binaries/bin:/havana/binaries/linaro-arm-linux-gnueabihf-4.9/bin:/havana/binaries/texlive/2014/bin/x86_64-linux:/opt/wine-compholio/bin:$HOME/go/bin:/home/ismail/.perl5/bin:$HOME/.local/bin:$PATH
-export CLANG_EXTRAS="-Wl,-rpath,/opt/clang/lib64,--enable-new-dtags"
+export CLANG_EXTRAS="-stdlib=libc++ -fuse-ld=gold -Wl,-rpath,/opt/clang/lib64,--enable-new-dtags"
 alias ihatenvidia="nvidia-settings -a '[gpu:0]/GPUPowerMizerMode=1'"
 export NODE_PATH=/usr/lib/node_modules/
 export VDPAU_DRIVER=r600
