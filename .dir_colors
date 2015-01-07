@@ -95,6 +95,7 @@ TERM screen-256color
 TERM screen-256color-bce
 TERM screen-256color-s
 TERM screen-256color-bce-s
+TERM screen-256color-it
 TERM screen-bce
 TERM screen-w
 TERM screen.linux
