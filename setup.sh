@@ -18,6 +18,7 @@ done
 
 pushd .ssh
 ln -sf ../config/.ssh/config
+cp ../config/.ssh/known_hosts .
 popd
 
 pushd .gnupg
