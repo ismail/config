@@ -26,12 +26,13 @@ ln -sf ../config/.gnupg/gpg.conf
 ln -sf ../config/.gnupg/gpg-agent.conf
 popd
 
-hostname=$(hostname -s)
-if [ -f config/.zshrc-$hostname ]; then
-    ln -sf config/.zshrc-$hostname
-fi
-
-if [ $(uname -o) = "Cygwin" ]; then
-    ln -sf config/.minttyrc
-    ln -sf ~/.terminfo/s ~/.terminfo/73
-fi
+case $(uname -s) in
+    Linux*)
+        ln -sf config/.zshrc-linux
+        ;;
+    CYGWIN_NT*)
+        ln -sf config/.minttyrc
+        ln -sf config/.zshrc-windows
+        ln -sf ~/.terminfo/s ~/.terminfo/73
+        ;;
+esac
