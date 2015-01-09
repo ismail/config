@@ -29,6 +29,7 @@ popd
 case $(uname -s) in
     Linux*)
         ln -sf config/.zshrc-linux
+        ln -sf config/.zshfuncs-linux
         ;;
     CYGWIN_NT*)
         ln -sf config/.minttyrc
