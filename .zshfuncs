@@ -187,7 +187,7 @@ x () {
         *.zip)       unzip $1       ;;
         *.7z)        7z x $1        ;;
         *.deb)       ar x $1 && tar xvf data.tar.xz ;;
-        *)     echo "'$1' cannot be extracted via extract()" ;;
+        *)     echo "'$1' cannot be extracted via x()" ;;
          esac
      else
          echo "'$1' is not a valid file"
