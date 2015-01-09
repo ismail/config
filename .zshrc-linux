@@ -20,7 +20,7 @@ alias ulog="journalctl --user -b -0 --all"
 alias vssh="vagrant up && vagrant ssh"
 
 export CLANG_EXTRAS="-stdlib=libc++ -fuse-ld=gold -Wl,-rpath,/opt/clang/lib64,--enable-new-dtags"
-export PATH=/opt/clang/bin:/havana/binaries/bin:/havana/binaries/linaro-arm-linux-gnueabihf-4.9/bin:/havana/binaries/texlive/2014/bin/x86_64-linux:/opt/wine-compholio/bin:$HOME/go/bin:/home/ismail/.perl5/bin:$HOME/.local/bin:$PATH
+export PATH=/opt/clang/bin:/havana/binaries/bin:/havana/binaries/texlive/2014/bin/x86_64-linux:$HOME/go/bin:/home/ismail/.perl5/bin:$HOME/.local/bin:/sbin:/usr/sbin:$PATH
 export PYTHONPATH=$HOME/.local/lib/python3.4/site-packages/:$PYTHONPATH
 export MALLOC_PERTURB_=69
 export NODE_PATH=/usr/lib/node_modules/
@@ -32,4 +32,3 @@ PERL_MB_OPT="--install_base \"/home/ismail/.perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/ismail/.perl5"; export PERL_MM_OPT;
 
 [ -f ~/.Xdefaults -a ! -z $DISPLAY ] && xrdb ~/.Xdefaults
-
