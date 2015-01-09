@@ -34,6 +34,7 @@ case $(uname -s) in
     CYGWIN_NT*)
         ln -sf config/.minttyrc
         ln -sf config/.zshrc-windows
+        ln -sf config/.zshfuncs-windows
         ln -sf ~/.terminfo/s ~/.terminfo/73
         ;;
     Darwin*)
