@@ -5,6 +5,11 @@ alias ping=/cygdrive/c/Windows/system32/PING
 export PATH="/cygdrive/c/SysInternals:$PATH"
 
 cl() {
+    if [ -z "$(whence cl.exe)" ]; then
+        echo "cl.exe is not in PATH, did you run the vs(64) script?"
+        return
+    fi
+
     if [ x$1 = x ]; then
         input=$(mktemp /tmp/XXXXXX.cpp)
         cat /dev/stdin > $input
