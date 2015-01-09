@@ -35,4 +35,7 @@ case $(uname -s) in
         ln -sf config/.zshrc-windows
         ln -sf ~/.terminfo/s ~/.terminfo/73
         ;;
+    Darwin*)
+        ln -sf config/.zshrc-mac
+        ;;
 esac

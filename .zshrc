@@ -10,6 +10,9 @@ case $(uname -s) in
     CYGWIN_NT*)
         os=windows
         ;;
+    Darwin*)
+        os=mac
+        ;;
 esac
 
 custom_config="$HOME/.zshrc-$os"
