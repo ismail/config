@@ -1,6 +1,28 @@
-export PATH=/opt/clang/bin:/havana/binaries/bin:/havana/binaries/linaro-arm-linux-gnueabihf-4.9/bin:/havana/binaries/texlive/2014/bin/x86_64-linux:/opt/wine-compholio/bin:$HOME/go/bin:/home/ismail/.perl5/bin:$HOME/.local/bin:$PATH
-export CLANG_EXTRAS="-stdlib=libc++ -fuse-ld=gold -Wl,-rpath,/opt/clang/lib64,--enable-new-dtags"
 alias ihatenvidia="nvidia-settings -a '[gpu:0]/GPUPowerMizerMode=1'"
+alias chroot="sudo systemd-nspawn -D"
+alias -s js=node
+alias io="sudo iotop -o -P -a"
+alias lsmaster="ls -1 ~/.ssh/master-*"
+alias lsrpm="rpm -qlp"
+alias lsprovides="rpm -qp --provides"
+alias lsrequires="rpm -qp --requires"
+alias lstcp="ss -lnpt"
+alias lsudp="ss -lnpu"
+alias open="xdg-open"
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+alias please='sudo $(fc -ln -1)'
+alias result="osc results -v"
+alias sc="systemctl"
+alias slog="sudo journalctl --system -b -0 --all"
+alias tlog="sudo journalctl --system --all --follow"
+alias ulog="journalctl --user -b -0 --all"
+alias vssh="vagrant up && vagrant ssh"
+
+export CLANG_EXTRAS="-stdlib=libc++ -fuse-ld=gold -Wl,-rpath,/opt/clang/lib64,--enable-new-dtags"
+export PATH=/opt/clang/bin:/havana/binaries/bin:/havana/binaries/linaro-arm-linux-gnueabihf-4.9/bin:/havana/binaries/texlive/2014/bin/x86_64-linux:/opt/wine-compholio/bin:$HOME/go/bin:/home/ismail/.perl5/bin:$HOME/.local/bin:$PATH
+export PYTHONPATH=$HOME/.local/lib/python3.4/site-packages/:$PYTHONPATH
+export MALLOC_PERTURB_=69
 export NODE_PATH=/usr/lib/node_modules/
 export VDPAU_DRIVER=r600
 
@@ -9,5 +31,5 @@ PERL_LOCAL_LIB_ROOT="/home/ismail/.perl5${PERL_LOCAL_LIB_ROOT+:}${PERL_LOCAL_LIB
 PERL_MB_OPT="--install_base \"/home/ismail/.perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/ismail/.perl5"; export PERL_MM_OPT;
 
-export PYTHONPATH=$HOME/.local/lib/python3.4/site-packages/:$PYTHONPATH
 [ -f ~/.Xdefaults -a ! -z $DISPLAY ] && xrdb ~/.Xdefaults
+

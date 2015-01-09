@@ -7,9 +7,6 @@ colors
 autoload -U compinit
 compinit
 
-# Calculator
-autoload -U zcalc
-
 # History
 HISTFILE=~/.zsh_history
 HISTSIZE=100000
@@ -24,9 +21,6 @@ setopt SHARE_HISTORY
 # Key bindings
 bindkey -e             # emacs key bindings
 bindkey ' ' magic-space  # also do history expansion on space
-
-# Editor
-export VISUAL="vim"
 
 bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
@@ -73,10 +67,13 @@ zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh_cache
 zstyle ':completion:*' rehash true
 
+export GOPATH=$HOME/.go/
+export LC_ALL=en_US.UTF-8
 export PS1="%{$fg[green]%}[%n@%m]%{$reset_color$fg[white]%}[%D{%H:%M:%S}]%{$reset_color%}%{$fg[blue]%}
 [%~%{$fg[blue]%}]>%{$reset_color%} "
-export LC_ALL=en_US.UTF-8
 export PYTHONDONTWRITEBYTECODE=1
+export TERM=screen-256color-it
+export VISUAL="vim"
 
 alias ..="cd .."
 alias ccat='pygmentize'
@@ -90,20 +87,12 @@ alias gdb="gdb --quiet"
 alias grep="grep --color"
 alias l.='ls -d .* --color=auto'
 alias ll="ls -al"
-alias lstcp="ss -lnpt"
-alias lsudp="ss -lnpu"
+alias ls="ls --color"
 alias md="mkdir -p"
-alias open='xdg-open'
-alias please='sudo $(fc -ln -1)'
-alias sc="systemctl"
 alias scp="rsync --compress-level=3 --copy-links --partial --inplace --progress --rsh=ssh -r"
-alias screen="screen -U -A"
 alias servethis="python -m http.server"
 alias verify="gpg --verify"
 alias wget='wget --content-disposition'
-
-export GOPATH=$HOME/.go/
-export TERM=screen-256color-it
 
 # Stop mapping CTRL-S/Q
 stty stop undef
