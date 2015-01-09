@@ -1,6 +1,6 @@
 export PATH=/havana/dist/llvm/bin:$PATH
 export TMPDIR=/havana/tmp
-export CLANG_EXTRAS="-Wl,-rpath,/havana/dist/llvm/lib,--enable-new-dtags"
+export CLANG_EXTRAS="-stdlib=libc++ -fuse-ld=gold -Wl,-rpath,/havana/dist/llvm/lib,--enable-new-dtags"
 
 if [ `tty` = "/dev/ttyO0" ]; then
     ~/bin/fixterm
