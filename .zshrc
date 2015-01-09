@@ -18,6 +18,9 @@ esac
 custom_config="$HOME/.zshrc-$os"
 [ -f $custom_config ] && source $custom_config
 
+custom_funcs="$HOME/.zshfuncs-$os"
+[ -f $custom_funcs ] && source $custom_funcs
+
 alias clang="clang -std=c11 $CLANG_EXTRAS"
 alias clang++="clang++ -std=c++14 $CLANG_EXTRAS"
 

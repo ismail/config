@@ -19,35 +19,8 @@ backoff () {
     fi
 }
 
-browser () {
-    f=`mktemp --suffix=.html`
-    cat /dev/stdin > $f
-    xdg-open $f &> /dev/null
-}
-
 certinfo () {
     openssl x509 -in $1 -text -noout
-}
-
-currency () {
-    if [ ! -z $1 ]; then
-        currency=`echo $1 | tr '[:lower:]' '[:upper:]'`
-        curl -s "https://www.google.com/finance/chart?safe=off&es_sm=93&q=CURRENCY:$currency&tkr=1&p=1D&chst=vkc&chs=640x480&chsc=1" -o - | gm display - &> /dev/null
-    fi
-}
-
-disable_alsr () {
-    echo 0 | sudo tee -a /proc/sys/kernel/randomize_va_space
-}
-
-distro () {
-    if [ -e /etc/SUSE-brand ]; then
-        echo "SUSE"
-    elif [ -e /etc/debian_version ]; then
-        echo "DEBIAN"
-    elif [ -e /etc/redhat-release ]; then
-        echo "REDHAT"
-    fi
 }
 
 download () {
@@ -60,32 +33,8 @@ download () {
     fi
 }
 
-dumpenv () {
-    if [ ! -z $1 ]; then
-        sudo cat /proc/$1/environ | xargs --null --max-args=1 | sort
-    else
-        echo "Pass a PID parameter."
-    fi
-}
-
 encode_film() {
     avconv -i $1 -c:v libx264 -preset medium -tune film ${1:t:r}.mp4
-}
-
-entropy() {
-    echo $(cat /proc/sys/kernel/random/entropy_avail)/$(cat /proc/sys/kernel/random/poolsize)
-}
-
-find_broken_symlinks() {
-    find -L $1 -type l -exec ls -lF --color=yes '{}' +
-}
-
-fork() {
-    (setsid "$@" &)
-}
-
-ftrace () {
-    strace -f -e trace=file $@
 }
 
 gensshmoduli () {
@@ -99,21 +48,6 @@ gensshmoduli () {
     ssh-keygen -T moduli.$1.tested -f $f
     rm $f
     echo "$1 bit SSH moduli is ready under moduli.$1.tested file."
-}
-
-install () {
-    dist=$(distro)
-    case $dist in
-        SUSE)
-            sudo zypper in "$@"
-            ;;
-        DEBIAN)
-            sudo apt-get install "$@"
-            ;;
-        REDHAT)
-            sudo yum install "$@"
-            ;;
-    esac
 }
 
 keygen () {
@@ -179,52 +113,8 @@ mp3() {
     youtube-dl --extract-audio --title --audio-format mp3 "$1"
 }
 
-mvim () {
-    if [ -z "$@" ]; then
-        gvim --remote-tab-silent "New Document"
-    else
-        gvim --remote-tab-silent $@
-    fi
-}
-
 myip () {
     curl -s whatismyip.akamai.com && echo
-}
-
-restart () {
-    sudo systemctl restart $1
-    sleep 1
-    sudo systemctl status $1 -l
-}
-
-remove () {
-    dist=$(distro)
-    case $dist in
-        SUSE)
-            sudo zypper rm "$@"
-            ;;
-        DEBIAN)
-            sudo apt-get --purge remove "$@"
-            ;;
-        REDHAT)
-            sudo yum remove "$@"
-            ;;
-    esac
-}
-
-search () {
-    dist=$(distro)
-    case $dist in
-        SUSE)
-            sudo zypper search "$@"
-            ;;
-        DEBIAN)
-            sudo apt-cache search "$@"
-            ;;
-        REDHAT)
-            sudo yum search "$@"
-            ;;
-    esac
 }
 
 srand () {
@@ -272,49 +162,12 @@ sslcheck() {
     fi
 }
 
-start() {
-    sudo systemctl start $1
-    sleep 1
-    sudo systemctl status $1 -l
-}
-
-status () {
-    sudo systemctl status $1 -l
-}
-
-stop () {
-    sudo systemctl stop $1
-    sleep 1
-    sudo systemctl status $1 -l
-}
-
 synconf () {
     pull ~/config ~/hacks
 }
 
 tm () {
     tmux new-session -d "$*; sleep infinity"
-}
-
-unrpm () {
-    if [ -e $1 ]; then
-        rpm2cpio $1 | cpio -imdv
-    fi
-}
-
-upup () {
-    dist=$(distro)
-    case $dist in
-        SUSE)
-            sudo zypper ref && sudo zypper -n dup --auto-agree-with-licenses
-            ;;
-        DEBIAN)
-            sudo apt-get update && sudo apt-get dist-upgrade -y
-            ;;
-        REDHAT)
-            sudo yum update -y
-            ;;
-    esac
 }
 
 vstream() {
@@ -348,7 +201,6 @@ xzit() {
         tar --exclude-vcs -cJf $1.tar.xz $1
     fi
 }
-
 
 ydl() {
     youtube-dl "$1" -o %(title)s.%(ext)s
