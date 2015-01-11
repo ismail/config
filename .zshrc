@@ -21,6 +21,10 @@ custom_config="$HOME/.zshrc-$os"
 custom_funcs="$HOME/.zshfuncs-$os"
 [ -f $custom_funcs ] && source $custom_funcs
 
+# Lastly the local config
+local_config="$HOME/.zshrc-local"
+[ -f $local_config ] && source $local_config
+
 alias clang="clang -std=c11 $CLANG_EXTRAS"
 alias clang++="clang++ -std=c++14 $CLANG_EXTRAS"
 
