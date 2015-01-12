@@ -25,8 +25,8 @@ custom_funcs="$HOME/.zshfuncs-$os"
 local_config="$HOME/.zshrc-local"
 [ -f $local_config ] && source $local_config
 
-alias clang="clang -std=c11 $CLANG_EXTRAS"
-alias clang++="clang++ -std=c++14 $CLANG_EXTRAS"
+alias clang="clang -std=c11 $EXTRA_CLANG_FLAGS"
+alias clang++="clang++ -std=c++14 $EXTRA_CLANG_FLAGS"
 
 [ -x /usr/bin/keychain ] && keychain --nogui --agents ssh -q id_rsa id_ed25519
 [ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
