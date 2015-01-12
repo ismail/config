@@ -162,6 +162,18 @@ sslcheck() {
     fi
 }
 
+sshfingerprint () {
+    if [ -z $1 ]; then
+        echo "Pass an hostname to get the SSH fingerprint."
+        return
+    fi
+
+    t=$(mktemp)
+    ssh-keyscan -t rsa,ed25519 "$1" &> $t
+    ssh-keygen -l -f $t
+    rm $t
+}
+
 synconf () {
     pull ~/config ~/hacks
 }
