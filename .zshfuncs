@@ -33,7 +33,7 @@ download () {
     fi
 }
 
-encode_film() {
+encode_film () {
     avconv -i $1 -c:v libx264 -preset medium -tune film ${1:t:r}.mp4
 }
 
@@ -109,7 +109,7 @@ mcd () {
     mkdir -p "$1" && cd "$1";
 }
 
-mp3() {
+mp3 () {
     youtube-dl --extract-audio --title --audio-format mp3 "$1"
 }
 
@@ -132,7 +132,7 @@ srand () {
     print
 }
 
-ssh() {
+ssh () {
     # Taken from https://www.spatof.org/blog/tmux-ssh-rename-window.html
     # Do nothing if we are not inside tmux or ssh is called without arguments
     if [[ $# == 0 || -z $TMUX ]]; then
@@ -154,7 +154,7 @@ ssh() {
     fi
 }
 
-sslcheck() {
+sslcheck () {
     if [ -z $2 ]; then
         nmap --system-dns --script ssl-enum-ciphers -p 443 $1
     else
@@ -182,7 +182,7 @@ tm () {
     tmux new-session -d "$*; sleep infinity"
 }
 
-vstream() {
+vstream () {
     vlc "$1" --sout '#transcode{vcodec=h264,acodec=mp3,ab=128,channels=2,samplerate=44100}:http{dst=:8080/live.mpg}'
 }
 
@@ -206,12 +206,12 @@ x () {
      fi
 }
 
-xzit() {
+xzit () {
     if [ ! -z $1 ]; then
         tar --exclude-vcs -cJf $1.tar.xz $1
     fi
 }
 
-ydl() {
+ydl () {
     youtube-dl "$1" -o %(title)s.%(ext)s
 }

@@ -33,15 +33,15 @@ dumpenv () {
     fi
 }
 
-entropy() {
+entropy () {
     echo $(cat /proc/sys/kernel/random/entropy_avail)/$(cat /proc/sys/kernel/random/poolsize)
 }
 
-find_broken_symlinks() {
+find_broken_symlinks () {
     find -L $1 -type l -exec ls -lF --color=yes '{}' +
 }
 
-fork() {
+fork () {
     (setsid "$@" &)
 }
 
