@@ -168,10 +168,19 @@ sshfingerprint () {
         return
     fi
 
-    t=$(mktemp)
-    ssh-keyscan -t rsa,ed25519 "$1" &> $t
-    ssh-keygen -l -f $t
-    rm $t
+    for host in "$@"; do
+        t=$(mktemp)
+        data=("${(s/:/)host}")
+        host=$data[1]
+        port=$data[2]
+        if [ -z $port ]; then
+            ssh-keyscan -t rsa,ed25519 $host &> $t
+        else
+            ssh-keyscan -p $port -t rsa,ed25519 $host &> $t
+        fi
+        ssh-keygen -l -f $t
+        rm $t
+    done
 }
 
 synconf () {
