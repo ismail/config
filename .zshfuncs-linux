@@ -49,6 +49,21 @@ ftrace () {
     strace -f -e trace=file $@
 }
 
+install () {
+    dist=$(distro)
+    case $dist in
+        SUSE)
+            sudo zypper in "$@"
+            ;;
+        DEBIAN)
+            sudo apt-get install "$@"
+            ;;
+        REDHAT)
+            sudo yum install "$@"
+            ;;
+    esac
+}
+
 restart () {
     sudo systemctl restart $1
     sleep 1
