@@ -49,7 +49,7 @@ ftrace () {
     strace -f -e trace=file $@
 }
 
-install () {
+installpkg () {
     dist=$(distro)
     case $dist in
         SUSE)
@@ -70,7 +70,7 @@ restart () {
     sudo systemctl status $1 -l
 }
 
-remove () {
+removepkg () {
     dist=$(distro)
     case $dist in
         SUSE)
@@ -85,7 +85,7 @@ remove () {
     esac
 }
 
-search () {
+searchpkg () {
     dist=$(distro)
     case $dist in
         SUSE)
