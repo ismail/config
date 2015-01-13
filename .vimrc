@@ -28,7 +28,7 @@ set sw=4
 set t_Co=256
 set title
 set ts=4
-set viminfo='20,\"50    " read/write a .viminfo file -- limit to only 50
+set viminfo='10,\"100,:20,%,n~/.viminfo
 set wildmenu
 set wrap
 
@@ -85,3 +85,7 @@ cnoremap sudow w !sudo tee % >/dev/null
 let g:clang_format_path = "/opt/clang/bin/clang-format"
 map <C-K> :pyf /opt/clang/share/clang/clang-format.py<CR>
 imap <C-K> <ESC>:pyf /opt/clang/share/clang/clang-format.py<CR>i
+
+" Save & Restore file positions
+au BufWinLeave * mkview
+au BufWinEnter * silent loadview
