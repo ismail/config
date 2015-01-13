@@ -1,5 +1,7 @@
-*.cache
-*.pyc
+.gnupg/private-keys-v1.d
+.gnupg/secring.gpg
+.terminfo/73
 .vim/.netrwhist
+.vim/view
 .ssh/id_rsa
-
+.ssh/id_ed25519
