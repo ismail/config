@@ -23,6 +23,20 @@ certinfo () {
     openssl x509 -in $1 -text -noout
 }
 
+digany () {
+    if [ -z $1 ]; then
+        echo "Pass a domain parameter."
+        return
+    fi
+
+    server=8.8.8.8
+    if [ ! -z $2 ]; then
+        server=$2
+    fi
+
+    dig @$server +nocmd $1 any +multiline +noall +answer
+}
+
 download () {
     if [ ! -z $1 ]; then
         for url in $@; do
