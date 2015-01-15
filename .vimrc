@@ -87,5 +87,5 @@ map <C-K> :pyf /opt/clang/share/clang/clang-format.py<CR>
 imap <C-K> <ESC>:pyf /opt/clang/share/clang/clang-format.py<CR>i
 
 " Save & Restore file positions
-au BufWinLeave * mkview
-au BufWinEnter * silent loadview
+au BufWinLeave ?* mkview
+au BufWinEnter ?* silent loadview
