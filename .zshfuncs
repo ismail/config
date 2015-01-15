@@ -215,6 +215,20 @@ sshfingerprint () {
     done
 }
 
+svn () {
+    case $1 in;
+        log)
+            command svn "$@" | less
+            ;;
+        diff)
+            command svn diff | vimdiff -
+            ;;
+        *)
+            command svn "$@"
+            ;;
+    esac
+}
+
 synconf () {
     pull ~/config ~/hacks
 }
