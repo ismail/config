@@ -64,7 +64,7 @@ set pgp_use_gpg_agent=yes
 
 # Headers
 ignore *
-unignore  Date To Cc Bcc From Subject
+unignore  Date From Subject
 
 # Bindings
 bind index,pager \CK sidebar-next
