@@ -13,6 +13,7 @@ set confirmappend=no
 set date_format="!%d %b %R"
 set delete=yes
 set editor='vim + -c "set textwidth=80" -c "set wrap"'
+set forward_format="Fwd: [%a: %s]"
 set header_cache=~/.hcache
 set help=no
 set imap_check_subscribed
