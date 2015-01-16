@@ -15,11 +15,13 @@
 #define S_cyan          #2aa198
 #define S_green         #859900
 
-XTerm*borderWidth           :0
-XTerm*scaleHeight           :1.01
-XTerm*scrollBar             :false
-XTerm*selectToClipboard     :true
-XTerm*termName              :screen-256color-it
+XTerm*borderWidth:          0
+XTerm*charClass:            33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+XTerm*on3Clicks:            regex [[:alpha:]]+://([[:alnum:]!#+,./=?@_~-]|(%[[:xdigit:]][[:xdigit:]]))+
+XTerm*scaleHeight:          1.01
+XTerm*scrollBar:            false
+XTerm*selectToClipboard:    true
+XTerm*termName:             screen-256color-it
 
 XTerm*background:            S_base03
 XTerm*foreground:            S_base0
