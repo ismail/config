@@ -15,6 +15,11 @@
 #define S_cyan          #2aa198
 #define S_green         #859900
 
+Xterm*borderWidth           : 0
+XTerm*scaleHeight           :1.01
+XTerm*scrollBar             :false
+XTerm*selectToClipboard     :true
+
 XTerm*background:            S_base03
 XTerm*foreground:            S_base0
 XTerm*fading:                40
@@ -22,8 +27,6 @@ XTerm*fadeColor:             S_base03
 XTerm*cursorColor:           S_base1
 XTerm*pointerColorBackground:S_base01
 XTerm*pointerColorForeground:S_base1
-XTerm*scrollBar             :false
-XTerm*selectToClipboard     :true
 
 XTerm*color0:                S_base02
 XTerm*color8:                S_base03
