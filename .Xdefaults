@@ -22,35 +22,22 @@ XTerm*fadeColor:             S_base03
 XTerm*cursorColor:           S_base1
 XTerm*pointerColorBackground:S_base01
 XTerm*pointerColorForeground:S_base1
+XTerm*scrollBar             :false
+XTerm*selectToClipboard     :true
 
-!! black dark/light
 XTerm*color0:                S_base02
 XTerm*color8:                S_base03
-
-!! red dark/light
 XTerm*color1:                S_red
 XTerm*color9:                S_orange
-
-!! green dark/light
 XTerm*color2:                S_green
 XTerm*color10:               S_base01
-
-!! yellow dark/light
 XTerm*color3:                S_yellow
 XTerm*color11:               S_base00
-
-!! blue dark/light
 XTerm*color4:                S_blue
 XTerm*color12:               S_base0
-
-!! magenta dark/light
 XTerm*color5:                S_magenta
 XTerm*color13:               S_violet
-
-!! cyan dark/light
 XTerm*color6:                S_cyan
 XTerm*color14:               S_base1
-
-!! white dark/light
 XTerm*color7:                S_base2
 XTerm*color15:               S_base3
