@@ -54,11 +54,14 @@ set ssl_starttls=yes
 set ssl_use_tlsv1=yes
 
 # GnuPG
-source ~/.mutt/gpg.rc
 set crypt_autosign=yes
 set crypt_replyencrypt=yes
+set crypt_use_gpgme = yes
 set crypt_verify_sig=yes
 set pgp_auto_decode=yes
+set pgp_autosign = yes
+set pgp_replysign = yes
+set pgp_replyencrypt = yes
 set pgp_sign_as=0x381FA1D72D72DA97
 set pgp_timeout=3600
 set pgp_use_gpg_agent=yes
