@@ -40,5 +40,6 @@ case $(uname -s) in
         ;;
     Darwin*)
         ln -sf config/.zshrc-mac
+        ln -sf config/.hushlogin
         ;;
 esac
