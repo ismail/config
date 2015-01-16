@@ -15,10 +15,11 @@
 #define S_cyan          #2aa198
 #define S_green         #859900
 
-Xterm*borderWidth           : 0
+XTerm*borderWidth           :0
 XTerm*scaleHeight           :1.01
 XTerm*scrollBar             :false
 XTerm*selectToClipboard     :true
+XTerm*termName              :screen-256color-it
 
 XTerm*background:            S_base03
 XTerm*foreground:            S_base0
