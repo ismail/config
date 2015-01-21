@@ -270,3 +270,7 @@ xzit () {
 ydl () {
     youtube-dl "$1" -o %(title)s.%(ext)s
 }
+
+zman () {
+    PAGER="less -g -s '+/^       "$1"'" man zshall
+}
