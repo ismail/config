@@ -37,6 +37,8 @@ bindkey "^[[3~" delete-char
 bindkey '^[[A' history-beginning-search-backward # Up
 bindkey '^[[B' history-beginning-search-forward # Down
 bindkey '^L' push-line # Push command into buffer
+bindkey "^R" history-incremental-pattern-search-backward
+bindkey "^S" history-incremental-pattern-search-forward
 
 # Other options
 setopt AUTOCD
