@@ -35,7 +35,7 @@ case $(uname -s) in
         ln -sf config/.minttyrc
         ln -sf config/.zshrc-windows
         ln -sf config/.zshfuncs-windows
-        rm ~/.terminfo/73
+        rm -f ~/.terminfo/73
         ln -sf ~/.terminfo/s ~/.terminfo/73
         ;;
     Darwin*)
