@@ -194,24 +194,8 @@ sshfingerprint () {
             ssh-keyscan -p $port -t rsa,ed25519 $host &> $t
         fi
 
-        result=$(ssh-keygen -l -f $t)
-        result=("${(s/ /)result}")
-
-        strength=$result[1]
-        fingerpint=$result[2]
-        hash=$result[3]
-
-        if [ -z $port ]; then
-            host=$result[4]
-        else
-            host=$result[4]:$port
-        fi
-
-        cipher=$result[5]
-
-        echo ""$strength"-bit $fingerpint $hash $host $cipher"
-
-        rm $t
+        ssh-keygen -l -f $t
+        rm -f $t
     done
 }
 
