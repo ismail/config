@@ -247,7 +247,11 @@ x () {
 
 xzit () {
     if [ ! -z $1 ]; then
-        tar --exclude-vcs -cJf $1.tar.xz $1
+        echo "Creating tar package..."
+        tar --exclude-vcs -cf $1.tar $1
+        echo "Compressing with xz..."
+        xz -6 -T0 $1.tar
+        echo "$1.tar.xz is ready!"
     fi
 }
 
