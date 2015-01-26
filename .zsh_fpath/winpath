@@ -1,0 +1,5 @@
+winpath () {
+    if [ ! -z $(whence winepath) ]; then
+            reply=("$(winepath -w $REPLY)")
+    fi
+}
