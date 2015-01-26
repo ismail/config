@@ -27,6 +27,7 @@ export PYTHONPATH=$HOME/.local/lib/python3.4/site-packages/:$PYTHONPATH
 export MALLOC_PERTURB_=69
 export NODE_PATH=/usr/lib/node_modules/
 export VDPAU_DRIVER=r600
+export WINEDEBUG=-all
 
 PERL5LIB="/home/ismail/.perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/ismail/.perl5${PERL_LOCAL_LIB_ROOT+:}${PERL_LOCAL_LIB_ROOT}"; export PERL_LOCAL_LIB_ROOT;
