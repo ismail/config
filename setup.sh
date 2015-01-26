@@ -22,6 +22,7 @@ cp ../config/.ssh/known_hosts .
 popd
 
 pushd .gnupg
+ln -sf ../config/.gnupg/dirmngr.conf
 ln -sf ../config/.gnupg/gpg.conf
 ln -sf ../config/.gnupg/gpg-agent.conf
 popd
