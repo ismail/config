@@ -84,3 +84,6 @@ macro index,pager ut <tag-thread><limit>~T<enter><tag-thread> "show only current
 set my_year=`date +%Y`
 macro index,pager a "<save-message>=INBOX.Archives.$my_year<enter>" "Archive Message"
 
+# HTML mail
+auto_view text/html
+alternative_order text/enriched text/plain text text/html
