@@ -36,9 +36,6 @@ map Q gq
 colorscheme solarized
 syntax on
 
-" http://vim.wikia.com/wiki/Set_working_directory_to_the_current_file
-autocmd BufEnter * silent! lcd %:p:h
-
 :nmap <C-t> :tabnew<cr>
 :imap <C-t> <ESC>:tabnew<cr>
 
@@ -85,7 +82,3 @@ cnoremap sudow w !sudo tee % >/dev/null
 let g:clang_format_path = "/opt/clang/bin/clang-format"
 map <C-K> :pyf /opt/clang/share/clang/clang-format.py<CR>
 imap <C-K> <ESC>:pyf /opt/clang/share/clang/clang-format.py<CR>i
-
-" Save & Restore file positions
-au BufWinLeave ?* mkview
-au BufWinEnter ?* silent loadview
