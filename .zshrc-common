@@ -90,7 +90,7 @@ alias gdb="gdb --quiet"
 alias grep="grep --color"
 alias l.='ls -d .* --color=auto'
 alias ll="ls -al"
-alias ls=" ls --color"
+alias ls=" ls -v --color"
 alias lsrar="rar l"
 alias lstar="tar -tvf"
 alias lszip="unzip -l"
