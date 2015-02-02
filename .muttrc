@@ -12,7 +12,7 @@ set spoolfile = +INBOX
 set confirmappend=no
 set date_format="!%d %b %R"
 set delete=yes
-set editor='vim + -c "set textwidth=80" -c "set wrap"'
+set editor="vim -i $HOME/.viminfo.mutt +/^$ ++1 -c 'set tw=80 noai nohlsearch expandtab nosmartindent ft=mail'"
 set forward_format="Fwd: [%a: %s]"
 set header_cache=~/.hcache
 set help=no
