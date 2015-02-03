@@ -17,6 +17,8 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
 setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
+HISTIGNORE="(cd|ls|mpv) *"
+zshaddhistory() { [[ $1 = ${~HISTIGNORE} ]] && return 1; }
 
 # Key bindings
 bindkey -e             # emacs key bindings
@@ -79,18 +81,18 @@ export VISUAL="vim"
 
 alias ..="cd .."
 alias ccat='pygmentize'
-alias cd=" cd"
+alias cd="cd"
 alias clear='printf "\ec"'
 alias cls="clear"
 alias curl="curl -C- -#"
-alias d=" cd"
+alias d="cd"
 alias dec="gpg -d"
 alias enc="gpg -a -e -r 0x381FA1D72D72DA97"
 alias gdb="gdb --quiet"
 alias grep="grep --color"
 alias l.='ls -d .* --color=auto'
 alias ll="ls -al"
-alias ls=" ls -v --color"
+alias ls="ls -v --color"
 alias lsrar="rar l"
 alias lstar="tar -tvf"
 alias lszip="unzip -l"

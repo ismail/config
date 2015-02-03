@@ -9,7 +9,6 @@ alias lsprovides="rpm -qp --provides"
 alias lsrequires="rpm -qp --requires"
 alias lstcp="ss -lnpt"
 alias lsudp="ss -lnpu"
-alias mpv=" mpv"
 alias open="xdg-open"
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
