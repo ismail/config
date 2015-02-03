@@ -18,7 +18,7 @@ setopt HIST_REDUCE_BLANKS
 setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
 HISTIGNORE="(cd|ls|mpv) *"
-zshaddhistory() { [[ $1 = ${~HISTIGNORE} ]] && return 1; }
+zshaddhistory() { [[ $1 != ${~HISTIGNORE} ]]; }
 
 # Key bindings
 bindkey -e             # emacs key bindings
