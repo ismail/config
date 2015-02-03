@@ -100,6 +100,7 @@ alias md="mkdir -p"
 alias rr="source ~/.zshrc"
 alias scp="rsync --compress-level=3 --copy-links --partial --inplace --progress --rsh=ssh -r"
 alias servethis="python -m http.server"
+alias syncdir="rsync -avPHSx --delete"
 alias verify="gpg --verify"
 alias wget='wget --content-disposition'
 
