@@ -1,3 +1,6 @@
+# This is very slow on Cygwin
+setopt NOCORRECT
+
 export DISPLAY=localhost:0.0
 export EXTRA_CLANG_FLAGS="-D_HAS_EXCEPTIONS=0 -target i686-pc-windows-msvc"
 export GOPATH=C:/Users/ismail/gocode
