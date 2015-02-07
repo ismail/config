@@ -242,7 +242,9 @@ xzit () {
 }
 
 ydl () {
-    youtube-dl "$1" -o %(title)s.%(ext)s
+    for url in "$@"; do
+        youtube-dl "$url" -o %(title)s.%(ext)s
+    done
 }
 
 zman () {
