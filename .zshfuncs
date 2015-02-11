@@ -131,6 +131,15 @@ myip () {
     curl -s whatismyip.akamai.com && echo
 }
 
+rdp () {
+    common_opts="+aero +clipboard +compression +decorations +fonts +themes +wallpaper +window-drag"
+    if [ ! -z $(whence cygpath) ]; then
+        wfreerdp "$@" $common_opts /drive:x,C:/
+    else
+        xfreerdp "$@" $common_opts /drive:x,/havana
+    fi
+}
+       
 srand () {
     if [ -e /dev/hwrng ]; then
         DEVICE="/dev/hwrng"
