@@ -64,6 +64,10 @@ installpkg () {
     esac
 }
 
+rdp () {
+    xfreerdp "$@" +aero +clipboard +compression +decorations +fonts +themes +wallpaper +window-drag /gdi:hw /rfx /rfx-mode:video /drive:x,/havana
+}
+
 restart () {
     sudo systemctl restart $1
     sleep 1
