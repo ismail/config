@@ -1,5 +1,6 @@
 set detach-on-fork off
 set disable-randomization off
+set follow-fork-mode child
 set target-async on
 set non-stop on
 set pagination off
