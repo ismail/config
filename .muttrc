@@ -56,7 +56,7 @@ set ssl_use_tlsv1=yes
 # GnuPG
 set crypt_autosign=yes
 set crypt_replyencrypt=yes
-set crypt_use_gpgme = yes
+set crypt_use_gpgme=`which cygpath &> /dev/null && echo no || echo yes`
 set crypt_verify_sig=yes
 set pgp_auto_decode=yes
 set pgp_autosign = yes
@@ -64,7 +64,8 @@ set pgp_replysign = yes
 set pgp_replyencrypt = yes
 set pgp_sign_as=0x381FA1D72D72DA97
 set pgp_timeout=3600
-set pgp_use_gpg_agent=yes
+set pgp_use_gpg_agent=`which cygpath &> /dev/null && echo no || echo yes`
+source `which cygpath &> /dev/null && echo ~/.mutt-gpg.rc || echo /dev/null`
 
 # Headers
 ignore *

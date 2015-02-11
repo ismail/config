@@ -34,6 +34,7 @@ case $(uname -s) in
         ;;
     CYGWIN_NT*)
         ln -sf config/.minttyrc
+        ln -sf config/.mutt-gpg.rc
         ln -sf config/.zshrc-windows
         ln -sf config/.zshfuncs-windows
         rm -f ~/.terminfo/73
