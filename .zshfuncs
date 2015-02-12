@@ -132,7 +132,7 @@ myip () {
 }
 
 rdp () {
-    common_opts="+aero +clipboard +compression +decorations +fonts +themes +wallpaper +window-drag"
+    common_opts=(+aero +clipboard +compression +decorations +fonts +themes +wallpaper +window-drag)
     if [ ! -z $(whence cygpath) ]; then
         wfreerdp "$@" $common_opts /drive:x,C:/
     else
