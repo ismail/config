@@ -7,7 +7,6 @@ zstyle ':completion:*:-command-:*' ignored-patterns '(#i)*.exe' '(#i)*.dll'
 export DISPLAY=localhost:0.0
 export EXTRA_CLANG_FLAGS="-D_HAS_EXCEPTIONS=0 -target i686-pc-windows-msvc"
 export GOPATH=C:/Users/ismail/gocode
-alias ping=/cygdrive/c/Windows/system32/PING
 alias reset="stty sane && cls"
 alias sudo="cygstart --action=runas"
 export PATH="/cygdrive/c/SysInternals:$PATH"
