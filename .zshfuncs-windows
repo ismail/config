@@ -23,3 +23,11 @@ cl() {
         rm $input
     fi
 }
+
+pbcopy () {
+    cat /dev/clipboard && echo
+}
+
+pbpaste () {
+    cat /dev/stdin > /dev/clipboard
+}
