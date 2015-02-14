@@ -27,6 +27,7 @@ cl() {
 download_llvm64 () {
     rev=$(curl -s https://api.bintray.com/packages/ismail/llvm/llvm-win64 | jq ".latest_version" | sed s,'"',,g)
     download https://bintray.com/artifact/download/ismail/llvm/LLVM-$rev-win64.exe
+    chmod +x LLVM-$rev-win64.exe
 }
 
 pbcopy () {
