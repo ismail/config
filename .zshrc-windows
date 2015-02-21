@@ -5,7 +5,7 @@ setopt NOCORRECT
 zstyle ':completion:*:-command-:*' ignored-patterns '(#i)*.exe' '(#i)*.dll'
 
 export DISPLAY=localhost:0.0
-export EXTRA_CLANG_FLAGS="-D_HAS_EXCEPTIONS=0 -fno-exceptions"
+export EXTRA_CLANG_FLAGS="-D_HAS_EXCEPTIONS=0 -fno-exceptions -Xclang -fno-sized-deallocation"
 export GOPATH=C:/Users/ismail/gocode
 export PATH="/cygdrive/c/SysInternals:$PATH"
 
