@@ -111,6 +111,13 @@ lastmod () {
     echo "${(j:, :)result} ago."
 }
 
+llir () {
+    t=$(mktemp)
+    clang -c -S -emit-llvm ${=EXTRA_CLANG_FLAGS} $1(+cyg) -o $t(+cyg)
+    cat $t
+    rm $t
+}
+
 longurl () {
     curl -w "%{url_effective}\n" -L -s -S $1 -o /dev/null
 }
