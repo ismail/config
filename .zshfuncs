@@ -113,7 +113,7 @@ lastmod () {
 
 llir () {
     t=$(mktemp)
-    clang -c -S -emit-llvm ${=EXTRA_CLANG_FLAGS} $1(+cyg) -o $t(+cyg)
+    clang++ -c -S -emit-llvm -std=c++11 $1(+cyg) -o $t(+cyg)
     cat $t
     rm $t
 }
