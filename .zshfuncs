@@ -77,7 +77,7 @@ lastmod () {
     local -a result
 
     if [ -z $d ]; then
-        echo "No Last-Modified header available."
+        echo "Last-Modified header is not available :("
         return
     fi
 
