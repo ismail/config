@@ -64,6 +64,10 @@ gensshmoduli () {
     echo "$1 bit SSH moduli is ready under moduli.$1.tested file."
 }
 
+hr () {
+    print ${(l:COLUMNS::=:)}
+}
+
 keygen () {
     ssh-keygen -o -a 65536 -t ed25519
 }
