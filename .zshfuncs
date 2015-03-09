@@ -117,9 +117,21 @@ lastmod () {
 
 llir () {
     t=$(mktemp)
-    clang++ -c -S -emit-llvm -std=c++11 $1(+cyg) -o $t(+cyg)
+    suffix=${1:e}
+    case $suffix in
+        C|c++|cpp|cxx )
+            clang++ -c -S -emit-llvm -std=c++11 $1(+cyg) -o $t(+cyg)
+            ;;
+        c )
+            clang -c -S -emit-llvm -std=c11 $1(+cyg) -o $t(+cyg)
+            ;;
+        * )
+            echo "Unknown file extension $suffix"
+            ;;
+    esac
+
     cat $t
-    rm $t
+    rm -f $t
 }
 
 longurl () {
