@@ -151,7 +151,7 @@ mp3 () {
 }
 
 myip () {
-    curl -s whatismyip.akamai.com && echo
+    curl -s whatismyip.akamai.com
 }
 
 rdp () {
