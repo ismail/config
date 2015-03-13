@@ -2,7 +2,7 @@
 setopt NOCORRECT
 
 # Ignore some file types
-zstyle ':completion:*:-command-:*' ignored-patterns '(#i)*.exe' '(#i)*.dll' '(#i)*.acm' '(#i)*.drv' '(#i)*.ime' '(#i)*.tlb' '(#i)*.mof'
+zstyle ':completion:*:-command-:*' ignored-patterns '(#i)*.exe' '(#i)*.dll' '(#i)*.acm' '(#i)*.drv' '(#i)*.ime' '(#i)*.tlb' '(#i)*.mof' '(#i)*.ax' '(#i)*.com' '(#i)*.cpl' '(#i)*.wsf' '(#i)*.dat'
 
 export DISPLAY=localhost:0.0
 export EXTRA_CLANG_FLAGS="-fno-exceptions -Xclang -fno-sized-deallocation"
