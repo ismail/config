@@ -69,7 +69,7 @@ source `which cygpath &> /dev/null && echo ~/.mutt-gpg.rc || echo /dev/null`
 
 # Headers
 ignore *
-unignore  Date From Subject
+unignore  Date From To CC Subject
 
 # Bindings
 bind index,pager \CK sidebar-next
