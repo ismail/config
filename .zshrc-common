@@ -97,6 +97,7 @@ alias dirsync="rsync -avPHSx --delete"
 alias enc="gpg -a -e -r 0x381FA1D72D72DA97"
 alias gdb="gdb --quiet"
 alias grep="grep --color"
+alias jmake="make -j$(nproc)"
 alias l.='ls -d .* --color=auto'
 alias ll="ls -al"
 alias ls="ls -v --color"
