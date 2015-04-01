@@ -5,3 +5,7 @@ feedly.com###feedlyTabsHolder.unpinned
 digg.com##LI[id="dr-nav-diggs"][class="dr-list-item dr-nav-diggs"]
 digg.com##LI[id="dr-nav-popular"][class="dr-list-item dr-nav-popular"]
 digg.com##LI[id="dr-nav-digg-deeper"][class="dr-list-item dr-nav-digg-deeper"]
+
+twitter.com###page-container > .dashboard-left.dashboard > .has-content.js-wtf-module.wtf-module.roaming-module.module > .flex-module
+twitter.com###page-container > .dashboard-left.dashboard > .trends.module.Trends
+twitter.com###page-container > .dashboard-left.dashboard > .roaming-module.module.Footer > .flex-module
