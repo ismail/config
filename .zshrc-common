@@ -109,7 +109,7 @@ alias preview="mpv -autofit-larger 480x720 -vo opengl:scale-down=mitchell -ao nu
 alias rr="source ~/.zshrc"
 alias scp="rsync --archive --compress-level=3 --copy-links --partial --inplace --progress --rsh=ssh -r"
 alias servethis="python -m http.server"
-alias tl="less +F"
+alias tf="less +F"
 alias verify="gpg --verify"
 alias wget='wget --content-disposition'
 
