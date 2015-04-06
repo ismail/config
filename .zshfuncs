@@ -154,6 +154,15 @@ myip () {
     curl -s whatismyip.akamai.com
 }
 
+randfile () {
+    if [ -z $1 ]; then
+        echo "You need to pass a file extension."
+        return
+    fi
+
+    =ls */***.$1 | shuf -n 1
+}
+
 rdp () {
     common_opts=(+aero +clipboard +compression +decorations +fonts +themes +wallpaper +window-drag)
     if [ ! -z $(whence cygpath) ]; then
