@@ -160,7 +160,12 @@ randfile () {
         return
     fi
 
-    =ls */***.$1 | shuf -n 1
+    result=$(=ls */***.$1 2>/dev/null | shuf -n 1)
+    if [ -z $result ]; then
+        echo "No results."
+    else
+        echo $result
+    fi
 }
 
 rdp () {
