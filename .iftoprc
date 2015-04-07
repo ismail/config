@@ -1,4 +1,5 @@
 dns-resolution: no
+line-display: one-line-both
 port-resolution: no
 sort: 40s
-line-display: one-line-both
+use-bytes: yes
