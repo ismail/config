@@ -88,6 +88,7 @@ export VISUAL="vim"
 alias ..="cd .."
 alias ccat='pygmentize'
 alias cd="cd"
+alias checksum="b2sum -a blake2sp"
 alias clear='printf "\ec"'
 alias cls="clear"
 alias curl="curl -C- -#"
