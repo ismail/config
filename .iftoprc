@@ -1,0 +1,4 @@
+dns-resolution: no
+port-resolution: no
+sort: 40s
+line-display: one-line-both
