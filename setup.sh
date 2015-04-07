@@ -31,6 +31,7 @@ case $(uname -s) in
     Linux*)
         ln -sf config/.zshrc-linux
         ln -sf config/.zshfuncs-linux
+        ln -sf config/.iftoprc
         ;;
     CYGWIN_NT*)
         ln -sf config/.minttyrc
