@@ -160,7 +160,7 @@ randfile () {
         return
     fi
 
-    result=$(=ls **/*.$1 2>/dev/null | shuf -n 1)
+    result=$(=ls **/*.$1 2>/dev/null | shuf --random-source=/dev/urandom -n 1)
     if [ -z $result ]; then
         echo "No results."
     else
