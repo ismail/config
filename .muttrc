@@ -26,6 +26,7 @@ set markers=no
 set mark_old=no
 set metoo=no
 set net_inc=5
+set pager_stop=yes
 set query_command = "mutt_ldap.py '%s'"
 set quit=ask-yes
 set send_charset="utf-8"
@@ -72,6 +73,8 @@ ignore *
 unignore  Date From To CC Subject
 
 # Bindings
+bind pager <up> previous-line
+bind pager <down> next-line
 bind index,pager \CK sidebar-next
 bind index,pager \CN sidebar-prev
 bind index,pager \CO sidebar-open
