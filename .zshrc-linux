@@ -32,9 +32,4 @@ export VDPAU_DRIVER=r600
 export WINEDEBUG=-all
 export WINEDLLOVERRIDES="*msvcr120=n"
 
-PERL5LIB="/home/ismail/.perl5/lib/perl5${PERL5LIB+:}${PERL5LIB}"; export PERL5LIB;
-PERL_LOCAL_LIB_ROOT="/home/ismail/.perl5${PERL_LOCAL_LIB_ROOT+:}${PERL_LOCAL_LIB_ROOT}"; export PERL_LOCAL_LIB_ROOT;
-PERL_MB_OPT="--install_base \"/home/ismail/.perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/ismail/.perl5"; export PERL_MM_OPT;
-
 [ -f ~/.Xdefaults -a ! -z $DISPLAY ] && xrdb ~/.Xdefaults
