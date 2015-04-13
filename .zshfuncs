@@ -77,7 +77,7 @@ lastmod () {
         return 0
     fi
 
-    d=`curl -s -I $1 | grep "Last-Modified" | sed s,"Last-Modified: ",,g`
+    d=`curl -L -s -I $1 | grep "Last-Modified" | sed s,"Last-Modified: ",,g`
     local -a result
 
     if [ -z $d ]; then
