@@ -48,7 +48,7 @@ download () {
 }
 
 encode_film () {
-    avconv -i $1 -c:v libx264 -preset medium -tune film ${1:t:r}.mp4
+    ffmpeg -i $1 -c:v libx264 -preset medium -tune film ${1:t:r}.mp4
 }
 
 gensshmoduli () {
