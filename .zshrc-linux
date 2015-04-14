@@ -24,6 +24,7 @@ alias ulog="journalctl --user -b -0 --all"
 alias vssh="vagrant up && vagrant ssh"
 
 export EXTRA_CLANG_FLAGS="-stdlib=libc++ -fuse-ld=gold -Wl,-rpath,/opt/clang/lib64,--enable-new-dtags"
+export JAVA_HOME=/havana/binaries/oracle-jdk
 export PATH=/opt/clang/bin:/havana/binaries/bin:$HOME/.cabal/bin:$HOME/go/bin:/home/ismail/.perl5/bin:$HOME/.local/bin:/sbin:/usr/sbin:$PATH
 export PYTHONPATH=$HOME/.local/lib/python3.4/site-packages/:$PYTHONPATH
 export MALLOC_PERTURB_=44
