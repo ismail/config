@@ -31,9 +31,9 @@ download_llvm64 () {
 }
 
 pbcopy () {
-    cat /dev/clipboard && echo
+    cat > /dev/clipboard
 }
 
 pbpaste () {
-    cat /dev/stdin > /dev/clipboard
+    cat /dev/clipboard
 }
