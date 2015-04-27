@@ -47,7 +47,7 @@ download () {
     fi
 }
 
-encode_film () {
+encode-film () {
     ffmpeg -i $1 -c:v libx264 -preset medium -tune film ${1:t:r}.mp4
 }
 

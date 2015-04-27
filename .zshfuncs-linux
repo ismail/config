@@ -11,7 +11,7 @@ currency () {
     fi
 }
 
-disable_alsr () {
+disable-alsr () {
     echo 0 | sudo tee -a /proc/sys/kernel/randomize_va_space
 }
 
@@ -37,7 +37,7 @@ entropy () {
     echo $(cat /proc/sys/kernel/random/entropy_avail)/$(cat /proc/sys/kernel/random/poolsize)
 }
 
-find_broken_symlinks () {
+find-broken-symlinks () {
     find -L $1 -type l -exec ls -lF --color=yes '{}' +
 }
 
