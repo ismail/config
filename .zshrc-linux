@@ -18,6 +18,7 @@ alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
 alias please='sudo $(fc -ln -1)'
 alias results="osc results -v"
+alias rpminfo="rpm -qip"
 alias sc="systemctl"
 alias slog="sudo journalctl --system -b -0 --all"
 alias tlog="sudo journalctl --system --all --follow"
