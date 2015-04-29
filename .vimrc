@@ -53,6 +53,9 @@ set wildmode=list:longest
 " Golang
 autocmd FileType go compiler go
 
+" Easier copy paste
+vnoremap <C-c> "+y
+
 " GUI related stuff
 if has("gui_running")
 
