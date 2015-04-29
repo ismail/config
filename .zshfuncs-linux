@@ -64,10 +64,6 @@ installpkg () {
     esac
 }
 
-mkiso () {
-    mkisofs -r -J -iso-level 4 -V $1 -o $1.iso $1
-}
-
 restart () {
     sudo systemctl restart $1
     sleep 1
