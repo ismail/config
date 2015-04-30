@@ -65,7 +65,11 @@ installpkg () {
 }
 
 pcp () {
-    pv $1 > $2/$1
+    if [ -d $2 ]; then
+        pv $1 > $2/$1
+    else
+        pv $1 > $2
+    fi
 }
 
 restart () {
