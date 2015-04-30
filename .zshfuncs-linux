@@ -25,6 +25,10 @@ distro () {
     fi
 }
 
+drop-caches () {
+    echo 3 | sudo tee -a /proc/sys/vm/drop_caches
+}
+
 dumpenv () {
     if [ ! -z $1 ]; then
         sudo cat /proc/$1/environ | xargs --null --max-args=1 | sort
