@@ -142,6 +142,10 @@ lupx () {
     upx --best --lzma $@
 }
 
+mkiso () {
+    mkisofs -udf -r -J -iso-level 4 -V $1 -o $1.iso $1
+}
+
 mp3 () {
     youtube-dl --extract-audio --title --audio-format mp3 "$1"
 }
