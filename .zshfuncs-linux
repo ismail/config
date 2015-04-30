@@ -70,6 +70,9 @@ pcp () {
     else
         pv $1 > $2
     fi
+    echo -n "Syncing..."
+    sync
+    echo "Done."
 }
 
 restart () {
