@@ -64,6 +64,10 @@ installpkg () {
     esac
 }
 
+pcp () {
+    pv $1 > $2/$1
+}
+
 restart () {
     sudo systemctl restart $1
     sleep 1
