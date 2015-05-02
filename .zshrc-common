@@ -74,6 +74,7 @@ done
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh_cache
 zstyle ':completion:*' menu select
+zstyle ':completion:*' rehash true
 zstyle ':completion:*' verbose yes
 
 export GOPATH=$HOME/.go/
