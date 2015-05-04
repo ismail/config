@@ -1,12 +1,12 @@
 browser () {
-    f=`mktemp --suffix=.html`
+    f=$(mktemp --suffix=.html)
     cat /dev/stdin > $f
     xdg-open $f &> /dev/null
 }
 
 currency () {
     if [ ! -z $1 ]; then
-        currency=`echo $1 | tr '[:lower:]' '[:upper:]'`
+        currency=$(echo $1 | tr '[:lower:]' '[:upper:]')
         curl -s "https://www.google.com/finance/chart?safe=off&es_sm=93&q=CURRENCY:$currency&tkr=1&p=1D&chst=vkc&chs=640x480&chsc=1" -o - | gifview &> /dev/null
     fi
 }
