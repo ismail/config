@@ -1,5 +1,6 @@
 alias ihatenvidia="nvidia-settings -a '[gpu:0]/GPUPowerMizerMode=1'"
 alias chroot="TERM=screen-256color sudo systemd-nspawn -D"
+alias fsi="fsi.exe --nologo"
 alias -s go="go run"
 alias -s js=node
 alias io="sudo iotop -o -P -a"
