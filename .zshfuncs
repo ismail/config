@@ -176,7 +176,16 @@ rdp () {
         xfreerdp "$@" $common_opts /drive:x,/havana
     fi
 }
-       
+
+remote-size () {
+    length=$(curl -s -I -L $1 | grep Content-Length | cut -f2 -d":" | tr -d ' \r\n')
+    if [ -z $length ]; then
+        echo "No Content-Length header."
+    else
+        echo $(( $length / (1024*1024) ))"MB"
+    fi
+}
+
 srand () {
     if [ -e /dev/hwrng ]; then
         DEVICE="/dev/hwrng"
