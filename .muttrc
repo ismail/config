@@ -25,6 +25,7 @@ set mail_check=30
 set markers=no
 set mark_old=no
 set metoo=no
+set narrow_tree=yes
 set net_inc=5
 set pager_stop=yes
 set query_command = "mutt_ldap.py '%s'"
