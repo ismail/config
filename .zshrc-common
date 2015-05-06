@@ -79,7 +79,7 @@ zstyle ':completion:*' verbose yes
 export GOPATH=$HOME/.go/
 export LC_ALL=en_US.UTF-8
 export PROMPT_EOL_MARK=""
-export PS1="%{$fg[yellow]%}%~
+export PS1="%{$fg[red]%}%m%{$reset_color%} ☁ %{$fg[yellow]%}%~
 %{$fg[magenta]%}%Bλ%b%{$reset_color%} "
 export PYTHONDONTWRITEBYTECODE=1
 export TERM=screen-256color-it
