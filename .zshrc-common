@@ -1,4 +1,6 @@
- source ~/.zshfuncs
+precmd() { print "" }
+
+source ~/.zshfuncs
 
 autoload -U colors
 colors
