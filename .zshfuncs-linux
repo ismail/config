@@ -68,41 +68,6 @@ installpkg () {
     esac
 }
 
-pcp () {
-    items=( $@ )
-    dest=${items[-1]}
-    items=( ${items[1,-2]} )
-    count=${#items}
-
-    for item in $items; do
-        if [ ! -e $item ]; then
-            echo "$item does not exist."
-            return
-        fi
-    done
-
-    if [ $count -gt 1 ]; then
-        if [ ! -d $dest ]; then
-            echo "Destination" $dest "is not a directory."
-            return
-        fi
-
-        for item in $items; do
-            echo "Copying $item..."
-            pv $item > $dest/$item
-        done
-    else
-        echo "Copying ${items[1]}..."
-        if [ -d $dest ]; then
-            pv ${items[1]} > $dest/${items[1]}
-        else
-            pv ${items[1]} > $dest
-        fi
-    fi
-
-    sync
-}
-
 restart () {
     sudo systemctl restart $1
     sleep 1
