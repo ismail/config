@@ -252,7 +252,7 @@ x () {
         *.lzma)
                      lzma -d $1     ;;
         *.bz2)       bunzip2 $1     ;;
-        *.rar)       unrar e $1     ;;
+        *.rar|*.r[0-9]*)       unrar e $1     ;;
         *.gz)        gunzip $1      ;;
         *.zip)       unzip $1       ;;
         *.7z|*.iso)  7z x $1        ;;
