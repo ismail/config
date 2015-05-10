@@ -1,0 +1,17 @@
+#!/bin/sh -e
+
+# Setup ip forwarding
+echo 1 > /proc/sys/net/ipv4/ip_forward
+
+# openvpn
+iptables -t nat -A POSTROUTING -s 10.8.0.0/24 -o eth0 -j MASQUERADE
+
+# ocserv
+iptables -t nat -A POSTROUTING -s 10.10.0.0/24 -o eth0 -j MASQUERADE
+/opt/ocserv/sbin/ocserv -d 1 -c /opt/ocserv/etc/ocserv.conf
+
+# ngrokd
+rm -f /var/log/ngrokd.log*
+(/home/ismail/ngrok/bin/ngrokd -domain="i10z.com" -httpAddr="" -httpsAddr="" -tlsCrt="/etc/nginx/ssl/i10z.com/ssl-unified.crt" -tlsKey="/etc/nginx/ssl/i10z.com/ssl.key" -tunnelAddr=":4443" -log=/var/log/ngrokd.log -log-level=INFO &)
+
+exit 0
