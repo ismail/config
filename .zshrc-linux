@@ -4,6 +4,7 @@ alias fsi="fsharpi --nologo"
 alias -s go="go run"
 alias -s js=node
 alias io="sudo iotop -o -P -a"
+alias iosc="osc -A https://api.suse.de/"
 alias ipconfig="ip -statistics -human link ls"
 alias lsmaster="ls -1 ~/.ssh/master-* | awk -F'/' '{print \$(NF)}'"
 alias lsrpm="rpm -qlp"
