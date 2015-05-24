@@ -1,3 +1,9 @@
+7zit () {
+    if [ ! -z $1 ]; then
+        7z a -t7z -m0=lzma2 -mx=9 -mmt$(nproc) -ms=on $1.7z $1
+    fi
+}
+
 backoff () {
     retry=1
     timeout=10
