@@ -57,6 +57,12 @@ encode-film () {
     ffmpeg -i $1 -c:v libx264 -preset medium -tune film ${1:t:r}.mp4
 }
 
+ftpmirror () {
+    [[ -z $1 || -z $2 ]] && echo "Need two arguments" && return
+
+    lftp -e 'mirror -c -v --delete-first --only-missing --loop --parallel=2 -O $2' $1 
+}
+
 gensshmoduli () {
     if [ -z $1 ]; then
         echo "Pass requested number of bits as the first parameter."
