@@ -104,6 +104,7 @@ alias jmake="make -j$(nproc)"
 alias l.='ls -d .* --color=auto'
 alias ll="ls -al"
 alias ls="ls -v --color"
+alias ls7zip="7z l"
 alias lsrar="rar l"
 alias lstar="tar -tvf"
 alias lszip="unzip -l"
