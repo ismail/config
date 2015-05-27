@@ -15,8 +15,6 @@ alias lsudp="ss -anpu"
 alias obs="osc build --ccache --jobs=8 --cpio-bulk-download --download-api-only"
 alias open="xdg-open"
 alias perf="sudo perf"
-alias pbcopy='xclip -selection clipboard'
-alias pbpaste='xclip -selection clipboard -o'
 alias please='sudo $(fc -ln -1)'
 alias results="osc results -v"
 alias rpminfo="rpm -qip"
