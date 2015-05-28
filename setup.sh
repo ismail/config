@@ -31,6 +31,7 @@ case $(uname -s) in
     Linux*)
         ln -sf config/.iftoprc
         ln -sf config/.mpv
+        ln -sf config/.toprc
         ln -sf config/.zshrc-linux
         ln -sf config/.zshfuncs-linux
         ;;
