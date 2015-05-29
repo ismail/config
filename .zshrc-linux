@@ -30,7 +30,7 @@ export PATH=/opt/clang/bin:/havana/binaries/bin:$HOME/.cabal/bin:$HOME/go/bin:/s
 export MALLOC_PERTURB_=44
 export NODE_PATH=/usr/lib/node_modules/
 export VDPAU_DRIVER=r600
-export WINEDEBUG=-all
+export WINEDEBUG=fixme-all
 export WINEDLLOVERRIDES="*msvcr120=n"
 
 [ -f ~/.Xdefaults -a ! -z $DISPLAY ] && xrdb ~/.Xdefaults
