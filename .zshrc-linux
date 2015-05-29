@@ -33,4 +33,7 @@ export VDPAU_DRIVER=r600
 export WINEDEBUG=fixme-all
 export WINEDLLOVERRIDES="*msvcr120=n"
 
+# Vendor completions
+fpath=(/usr/share/zsh/site-functions $fpath)
+
 [ -f ~/.Xdefaults -a ! -z $DISPLAY ] && xrdb ~/.Xdefaults

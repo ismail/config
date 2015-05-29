@@ -32,3 +32,7 @@ alias clang++="clang++ -std=c++14 $EXTRA_CLANG_FLAGS"
 [ -z "$HOSTNAME" ] && HOSTNAME=`uname -n`
 [ -f $HOME/.keychain/$HOSTNAME-sh ] &&
 . $HOME/.keychain/$HOSTNAME-sh
+
+# Update completion
+autoload -U compinit
+compinit
