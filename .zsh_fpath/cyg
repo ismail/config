@@ -1,5 +1,5 @@
 cyg () {
-    if [ ! -z $(whence cygpath) ]; then
+    if [ ! -z $COMSPEC ]; then
         reply=("$(cygpath -m $REPLY)")
     fi
 }
