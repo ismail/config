@@ -182,7 +182,7 @@ randfile () {
 
 rdp () {
     common_opts=(+aero +clipboard +compression +decorations +fonts +themes +wallpaper +window-drag)
-    if [ ! -z $(whence cygpath) ]; then
+    if [ ! -z $COMSPEC ]; then
         wfreerdp "$@" $common_opts /drive:x,C:/
     else
         xfreerdp "$@" $common_opts /drive:x,/havana
