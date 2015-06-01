@@ -114,12 +114,6 @@ stty start undef
 # Setup ls colors
 if [ -e ~/.dir_colors ]; then eval `dircolors ~/.dir_colors`; fi
 
-# Setup dirstack
-DIRSTACKFILE=~/.zdirs
-if [ -f $DIRSTACKFILE ]; then
-    dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )
-fi
-
 # less(1) options
 export LESS="-I -R"
 export LESS_TERMCAP_mb=$'\E[01;31m'       # begin blinking
