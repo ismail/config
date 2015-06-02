@@ -7,7 +7,7 @@ colors
 
 # History
 HISTFILE=~/.zsh_history
-HISTSIZE=100
+HISTSIZE=1000
 SAVEHIST=$(( $HISTSIZE * 10 ))
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
