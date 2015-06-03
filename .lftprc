@@ -1,0 +1,2 @@
+set ftp:sync-mode off
+set ftp:use-mdtm off

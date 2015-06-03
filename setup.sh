@@ -7,7 +7,7 @@ mkdir -p .gnupg
 
 files=(
     .dir_colors .gdb .gdbinit .gitconfig .gitignore .hgrc
-    .irbrc .mailcap .mutt_certificates .muttrc .screenrc 
+    .irbrc .lftprc .mailcap .mutt_certificates .muttrc .screenrc 
     .terminfo .tmux.conf .urlview .vim .vimrc .Xdefaults 
     .zshenv .zsh_fpath .zshfuncs .zshrc .zshrc-common
 )
