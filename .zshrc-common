@@ -14,8 +14,6 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_REDUCE_BLANKS
 setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
-HISTIGNORE="(preview|mpv*) *"
-zshaddhistory() { [[ $1 != ${~HISTIGNORE} ]]; }
 
 # Key bindings
 bindkey -e             # emacs key bindings
@@ -44,6 +42,7 @@ setopt AUTOCD
 setopt AUTO_LIST
 setopt AUTOPUSHD
 setopt BRACE_CCL
+setopt COMBINING_CHARS
 setopt CORRECT
 setopt EXTENDED_GLOB
 setopt INTERACTIVE_COMMENTS
@@ -57,11 +56,6 @@ setopt RM_STAR_WAIT
 setopt MULTIBYTE
 setopt NOCHECKJOBS
 setopt NOHUP
-
-# Not all zsh versions support the options below
-for opt in COMBININGCHARS HASH_EXECUTABLESONLY; do
-    [[ -n ${options[$opt]} ]] && setopt $opt
-done
 
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh_cache
@@ -106,10 +100,6 @@ alias servethis="python -m http.server"
 alias tf="less +F"
 alias verify="gpg --verify"
 alias wget='wget --content-disposition'
-
-# Stop mapping CTRL-S/Q
-stty stop undef
-stty start undef
 
 # Setup ls colors
 [[ -f ~/.lscolors ]] && . ~/.lscolors
