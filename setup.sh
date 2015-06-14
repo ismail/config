@@ -6,11 +6,14 @@ mkdir -p .ssh
 mkdir -p .gnupg
 
 files=(
-    .dir_colors .gdb .gdbinit .gitconfig .gitignore .hgrc
+    .gdb .gdbinit .gitconfig .gitignore .hgrc
     .irbrc .lftprc .mailcap .mutt_certificates .muttrc .screenrc 
     .terminfo .tmux.conf .urlview .vim .vimrc .Xdefaults 
     .zshenv .zsh_fpath .zshfuncs .zshrc .zshrc-common
 )
+
+# ls(1) colors
+dircolors config/.dir_colors > ~/.lscolors
 
 for f in $files; do
     ln -sf config/$f

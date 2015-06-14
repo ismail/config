@@ -112,7 +112,7 @@ stty stop undef
 stty start undef
 
 # Setup ls colors
-if [ -e ~/.dir_colors ]; then eval `dircolors ~/.dir_colors`; fi
+[[ -f ~/.lscolors ]] && . ~/.lscolors
 
 # less(1) options
 export LESS="-I -R"
