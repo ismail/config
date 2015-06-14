@@ -1,6 +1,3 @@
-# Always start at home
-cd $HOME
-
 source ~/.zshrc-common
 
 case $(uname -s) in
