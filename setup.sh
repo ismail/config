@@ -40,6 +40,7 @@ case $(uname -s) in
         ln -sf config/.mutt-gpg.rc
         ln -sf config/.zshrc-windows
         ln -sf config/.zshfuncs-windows
+        sed -i s,"ControlMaster auto","ControlMaster no", ~/.ssh/config
         rm -f ~/.terminfo/73
         ln -sf ~/.terminfo/s ~/.terminfo/73
         ;;
