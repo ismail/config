@@ -25,11 +25,13 @@ local_config="$HOME/.zshrc-local"
 alias clang="clang -std=c11 $EXTRA_CLANG_FLAGS"
 alias clang++="clang++ -std=c++14 $EXTRA_CLANG_FLAGS"
 
-[ -x =keychain ] && keychain -Q --nogui --agents ssh -q id_ed25519 id_rsa
-[ -z "$HOSTNAME" ] && HOSTNAME=$(uname -n)
-[ -f $HOME/.keychain/$HOSTNAME-sh ] &&
-. $HOME/.keychain/$HOSTNAME-sh
+[ -f ~/.ssh-agent ] && . ~/.ssh-agent
+if [ ! -e /proc/$SSH_AGENT_PID/cwd ]; then
+    ssh-agent | sed '$ d' > ~/.ssh-agent
+    . ~/.ssh-agent
+    ssh-add ~/.ssh/id_{ed25519,rsa}
+fi
 
 # Update completion
 autoload -U compinit
-compinit
+compinit -C
