@@ -27,7 +27,7 @@ alias clang++="clang++ -std=c++14 $EXTRA_CLANG_FLAGS"
 
 [ -f ~/.ssh-agent ] && . ~/.ssh-agent
 if [ ! -e /proc/$SSH_AGENT_PID/cmdline ]; then
-    ssh-agent | sed '$ d' > ~/.ssh-agent
+    ssh-agent | head -n -1 > ~/.ssh-agent
     . ~/.ssh-agent
     ssh-add ~/.ssh/id_{ed25519,rsa}
 fi
