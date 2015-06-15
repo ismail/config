@@ -1,16 +1,10 @@
 source ~/.zshrc-common
 
-case $(uname -s) in
-    Linux*)
-        os=linux
-        ;;
-    CYGWIN_NT*)
-        os=windows
-        ;;
-    Darwin*)
-        os=mac
-        ;;
-esac
+if [ ! -z $COMSPEC ]; then
+    os=windows
+else
+    os=linux
+fi
 
 custom_config="$HOME/.zshrc-$os"
 [ -f $custom_config ] && source $custom_config
