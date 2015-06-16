@@ -29,7 +29,7 @@ compinit -C
 [ -e ~/.noagent ] && return
 
 [ -z $SSH_AUTH_SOCK -a -f ~/.ssh-agent ] && . ~/.ssh-agent
-if [ ! -e $SSH_AUTH_SOCK ]; then
+if [ "x$SSH_AUTH_SOCK" = "x" ]; then
     ssh-agent | head -n -1 > ~/.ssh-agent
     . ~/.ssh-agent
 fi
