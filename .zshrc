@@ -23,6 +23,9 @@ alias clang++="clang++ -std=c++14 $EXTRA_CLANG_FLAGS"
 autoload -U compinit
 compinit -C
 
+# After this point its only ssh-agent related code
+# and nothing else
+#
 [ -e ~/.noagent ] && return
 
 [ -z $SSH_AUTH_SOCK -a -f ~/.ssh-agent ] && . ~/.ssh-agent
@@ -32,5 +35,3 @@ if [ ! -e $SSH_AUTH_SOCK ]; then
 fi
 
 ssh-add -l &>/dev/null || ssh-add ~/.ssh/id_ed25519
-
-
