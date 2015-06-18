@@ -2,6 +2,8 @@ source ~/.zshrc-common
 
 if [ ! -z $COMSPEC ]; then
     os=windows
+elif [ ! -z $__CF_USER_TEXT_ENCODING ]; then
+    os=mac
 else
     os=linux
 fi
