@@ -35,5 +35,3 @@ if [ ! -e /proc/$SSH_AGENT_PID/cmdline ]; then
     ssh-agent | head -n -1 > ~/.ssh-agent
     . ~/.ssh-agent
 fi
-
-ssh-add -l &>/dev/null || ssh-add ~/.ssh/id_ed25519
