@@ -21,6 +21,14 @@ local_config="$HOME/.zshrc-local"
 alias clang="clang -std=c11 $EXTRA_CLANG_FLAGS"
 alias clang++="clang++ -std=c++14 $EXTRA_CLANG_FLAGS"
 
+# Highlight options
+zle_highlight=(
+    isearch:fg=yellow,underline
+    region:standout
+    special:standout
+    suffix:none
+)
+
 # Update completion
 autoload -U compinit
 compinit -C
