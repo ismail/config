@@ -6,6 +6,7 @@ call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'jamessan/vim-gnupg'
 Plugin 'rhysd/wandbox-vim'
 Plugin 'openssl.vim'
 
