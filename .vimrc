@@ -1,3 +1,7 @@
+if has('win32') || has('win64')
+    set runtimepath^=~/.vim
+endif
+
 set nocompatible
 filetype off
 
