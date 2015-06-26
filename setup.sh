@@ -1,4 +1,5 @@
 #!/usr/bin/env zsh
+set -euo pipefail
 
 cd ~
 
@@ -16,7 +17,8 @@ files=(
 dircolors config/.dir_colors > ~/.lscolors
 
 [ ! -d ~/.vim/bundle/Vundle.vim ] &&
-git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    rm -f ~/.vim &&
+    git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 for f in $files; do
     ln -sf config/$f
