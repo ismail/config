@@ -11,7 +11,6 @@ Plugin 'rhysd/wandbox-vim'
 Plugin 'openssl.vim'
 
 call vundle#end()
-filetype plugin indent on
 
 set ai
 set background=dark
