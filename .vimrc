@@ -12,6 +12,7 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'ervandew/supertab'
 Plugin 'jamessan/vim-gnupg'
+Plugin 'kien/ctrlp.vim'
 Plugin 'rhysd/wandbox-vim'
 Plugin 'openssl.vim'
 
