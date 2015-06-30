@@ -13,6 +13,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'ervandew/supertab'
 Plugin 'jamessan/vim-gnupg'
 Plugin 'kien/ctrlp.vim'
+Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'rhysd/wandbox-vim'
 Plugin 'openssl.vim'
 
@@ -53,7 +54,7 @@ set wildmenu
 set wrap
 
 map Q gq
-colorscheme solarized
+colorscheme PaperColor
 syntax on
 
 :nmap <C-t> :tabnew<cr>
