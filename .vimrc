@@ -1,4 +1,4 @@
-if has('win32') || has('win64')
+if has('win64')
     set runtimepath^=~/.vim
 endif
 
@@ -13,6 +13,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'ervandew/supertab'
 Plugin 'jamessan/vim-gnupg'
 Plugin 'kien/ctrlp.vim'
+Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'rhysd/wandbox-vim'
 Plugin 'openssl.vim'
 
@@ -52,8 +53,12 @@ set viminfo='10,\"100,:20,%,n~/.viminfo
 set wildmenu
 set wrap
 
+colorscheme PaperColor
+if has("win64")
+    colorscheme solarized
+endif
+
 map Q gq
-colorscheme solarized
 syntax on
 
 :nmap <C-t> :tabnew<cr>
