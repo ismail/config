@@ -79,7 +79,7 @@ alias clear='printf "\ec"'
 alias cls="clear"
 alias curl="curl -C- -#"
 alias d="cd"
-alias dec="gpg -d"
+alias dec="gpg -q -d"
 alias dirsync="=rsync --archive --partial --progress --sparse --update --delete"
 alias enc="gpg -a -e -r 0x381FA1D72D72DA97"
 alias gdb="gdb --quiet"
