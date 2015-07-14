@@ -98,6 +98,7 @@ alias rr="source ~/.zshrc"
 alias rsync="rsync --archive --compress-level=3 --copy-links --partial --inplace --progress"
 alias scp="rsync --archive --compress-level=3 --copy-links --partial --inplace --progress --rsh=ssh -r"
 alias servethis="python -m http.server"
+alias strace="strace -s 1024"
 alias tf="less +F"
 alias verify="gpg --verify"
 alias wget='wget --content-disposition'
