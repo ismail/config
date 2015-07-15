@@ -19,8 +19,6 @@ Plugin 'openssl.vim'
 
 call vundle#end()
 
-colorscheme PaperColor-Dark
-
 set ai
 set background=dark
 set bs=2
@@ -54,6 +52,8 @@ set ts=4
 set viminfo='10,\"100,:20,%,n~/.viminfo
 set wildmenu
 set wrap
+
+colorscheme PaperColor
 
 map Q gq
 syntax on
