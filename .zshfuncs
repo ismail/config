@@ -269,6 +269,7 @@ x () {
         *.zip)       unzip $1       ;;
         *.7z|*.iso)  7z x $1        ;;
         *.deb)       ar x $1 && tar xvf data.tar.xz ;;
+        *.rpm)       unrpm $1 ;;
         *)     echo "'$1' cannot be extracted via x()" ;;
          esac
      else
