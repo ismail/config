@@ -2,7 +2,7 @@
 zstyle ':completion:*:-command-:*' ignored-patterns '(#i)*.(acm|ax|bin|com|cpl|dat|dll|drv|exe|ime|mof|tlb|wsf)'
 
 export DISPLAY=localhost:0.0
-export EXTRA_CLANG_FLAGS="-target x86_64-pc-windows-msvc -fcolor-diagnostics -fansi-escape-codes"
+export EXTRA_CLANG_FLAGS="-target x86_64-pc-windows-msvc -fcolor-diagnostics -fansi-escape-codes -fms-compatibility-version=19"
 export GOPATH=C:/Users/ismail/gocode
 export PATH="/cygdrive/c/SysInternals:/cygdrive/c/Program Files (x86)/Microsoft SDKs/F#/3.1/Framework/v4.0/:$PATH"
 
