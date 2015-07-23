@@ -12,7 +12,7 @@ alias lsprovides="rpm -qp --provides"
 alias lsrequires="rpm -qp --requires"
 alias lstcp="ss -anpt"
 alias lsudp="ss -anpu"
-alias obs="osc build --ccache --jobs=8 --cpio-bulk-download --download-api-only"
+alias obs="osc build --ccache --cpio-bulk-download --download-api-only"
 alias open="xdg-open"
 alias perf="sudo perf"
 alias please='sudo $(fc -ln -1)'
