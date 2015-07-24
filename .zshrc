@@ -38,8 +38,13 @@ compinit -C
 #
 [ -e ~/.noagent ] && return
 
-if [ ! -f ~/.ssh-agent ]; then
-    ssh-agent | head -n -1 > ~/.ssh-agent
+if [ ! -f ~/.ssh/agent ]; then
+    ssh-agent | head -n -1 > ~/.ssh/agent
+else
+    . ~/.ssh/agent
+    if [ ! -e /proc/$SSH_AGENT_PID/status ]; then
+        ssh-agent | head -n -1 > ~/.ssh/agent
+    fi
 fi
 
-. ~/.ssh-agent
+. ~/.ssh/agent
