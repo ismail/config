@@ -26,11 +26,11 @@ alias vssh="vagrant up && vagrant ssh"
 
 export EXTRA_CLANG_FLAGS="-stdlib=libc++ -fuse-ld=gold -Wl,-rpath,/opt/clang/lib64,--enable-new-dtags"
 export JAVA_HOME=/havana/binaries/oracle-jdk
-export PATH=/opt/clang/bin:/havana/binaries/bin:$HOME/.cabal/bin:$HOME/go/bin:/sbin:/usr/sbin:$PATH
+export LIBVA_DRIVER_NAME=vdpau
 export MALLOC_CHECK_=3
 export MALLOC_PERTURB_=63
 export NODE_PATH=/usr/lib/node_modules/
-export VDPAU_DRIVER=r600
+export PATH=/opt/clang/bin:/havana/binaries/bin:$HOME/.cabal/bin:$HOME/go/bin:/sbin:/usr/sbin:$PATH
 export WINEDEBUG=fixme-all
 export WINEDLLOVERRIDES="*msvcr120=n"
 
