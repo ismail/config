@@ -16,6 +16,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'rhysd/wandbox-vim'
 Plugin 'openssl.vim'
+Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()
 
@@ -107,3 +108,7 @@ cnoremap sudow w !sudo tee % >/dev/null
 let g:clang_format_path = "/opt/clang/bin/clang-format"
 map <C-K> :pyf /opt/clang/share/clang/clang-format.py<CR>
 imap <C-K> <ESC>:pyf /opt/clang/share/clang/clang-format.py<CR>i
+
+" YouCompleteMe
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_global_ycm_extra_conf = '~/.ycm.py'
