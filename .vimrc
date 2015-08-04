@@ -16,7 +16,10 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'rhysd/wandbox-vim'
 Plugin 'openssl.vim'
+
+if has("unix")
 Plugin 'Valloric/YouCompleteMe'
+endif
 
 call vundle#end()
 
