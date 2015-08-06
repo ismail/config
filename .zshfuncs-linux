@@ -4,6 +4,14 @@ browser () {
     xdg-open $f &> /dev/null
 }
 
+changelog () {
+    if [ ! -z $1 ]; then
+        rpm -q --changelog $1 | less
+    else
+        echo "Pass a package name parameter."
+    fi
+}
+
 currency () {
     if [ ! -z $1 ]; then
         currency=$(echo $1 | tr '[:lower:]' '[:upper:]')
