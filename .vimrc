@@ -46,7 +46,7 @@ set nowritebackup
 set number
 set ruler
 set showcmd
-set showtabline=0
+set showtabline=1
 set sta
 set sts=4
 set sw=4
