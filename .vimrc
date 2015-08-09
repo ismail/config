@@ -17,8 +17,8 @@ Plugin 'NLKNguyen/papercolor-theme'
 Plugin 'rhysd/wandbox-vim'
 Plugin 'openssl.vim'
 
-if has("unix")
-Plugin 'Valloric/YouCompleteMe'
+if has("unix") && !has("win32unix")
+    Plugin 'Valloric/YouCompleteMe'
 endif
 
 call vundle#end()
