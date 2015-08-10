@@ -14,12 +14,7 @@ digany () {
         return
     fi
 
-    server=8.8.8.8
-    if [ ! -z $2 ]; then
-        server=$2
-    fi
-
-    dig @$server +nocmd $1 any +multiline +noall +answer
+    dig @${server:-8.8.8.8} +nocmd $1 any +multiline +noall +answer
 }
 
 download () {
