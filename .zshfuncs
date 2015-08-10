@@ -218,11 +218,7 @@ srand () {
 }
 
 sslcheck () {
-    if [ -z $2 ]; then
-        nmap --system-dns --script ssl-enum-ciphers -p 443 $1
-    else
-        nmap --system-dns --script ssl-enum-ciphers -p $2 $1
-    fi
+    nmap --unprivileged --system-dns --script ssl-enum-ciphers -p ${2:-443} $1
 }
 
 sshfingerprint () {
