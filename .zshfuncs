@@ -14,7 +14,7 @@ digany () {
         return
     fi
 
-    dig @${server:-8.8.8.8} +nocmd $1 any +multiline +noall +answer
+    dig @${2:-8.8.8.8} +nocmd $1 any +multiline +noall +answer
 }
 
 download () {
