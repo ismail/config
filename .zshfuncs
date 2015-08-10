@@ -4,27 +4,6 @@
     fi
 }
 
-backoff () {
-    retry=1
-    timeout=10
-
-    while [ $retry -le $timeout ]; do
-        eval $@
-        if [ $? -eq 0 ]; then
-            break
-        fi
-
-        sleeptime=$(( 2**$retry ))
-        echo "Command failed, sleeping $sleeptime seconds before retrying."
-        sleep $sleeptime
-        let "retry += 1"
-    done
-
-    if [ $retry -ge $timeout ]; then
-        echo "Timeout reached while trying to run command."
-    fi
-}
-
 certinfo () {
     openssl x509 -in $1 -text -noout
 }
@@ -199,6 +178,27 @@ remote-size () {
         echo "No Content-Length header."
     else
         echo $(( $length / (1024*1024) ))"MB"
+    fi
+}
+
+retry-if-fails () {
+    retry=1
+    timeout=10
+
+    while [ $retry -le $timeout ]; do
+        eval $@
+        if [ $? -eq 0 ]; then
+            break
+        fi
+
+        sleeptime=$(( 2**$retry ))
+        echo "Command failed, sleeping $sleeptime seconds before retrying."
+        sleep $sleeptime
+        let "retry += 1"
+    done
+
+    if [ $retry -ge $timeout ]; then
+        echo "Timeout reached while trying to run command."
     fi
 }
 
