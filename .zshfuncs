@@ -27,6 +27,10 @@ download () {
     fi
 }
 
+enc () {
+    [[ ! -z $1 ]] && gpg -a -e -r $GPG_ID $1 && rm $1
+}
+
 encode-film () {
     ffmpeg -i $1 -c:v libx264 -preset medium -tune film ${1:t:r}.mp4
 }

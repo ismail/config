@@ -1,3 +1,6 @@
+# Set GPG ID before doing anything else
+export GPG_ID=0x381FA1D72D72DA97
+
 source ~/.zshrc-common
 
 if [ ! -z $COMSPEC ]; then
