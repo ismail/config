@@ -265,7 +265,7 @@ x () {
         *.bz2)       bunzip2 $1     ;;
         *.rar|*.r[0-9]*)       unrar e $1     ;;
         *.gz)        gunzip $1      ;;
-        *.7z|*.iso|*.xz|*.zip)  7z x $1        ;;
+        *.7z|*.cab|*.iso|*.xz|*.zip)  7z x $1        ;;
         *.deb)       ar x $1 && tar xvf data.tar.xz ;;
         *.rpm)       unrpm $1 ;;
         *)     echo "'$1' cannot be extracted via x()" ;;
