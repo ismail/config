@@ -89,7 +89,7 @@ alias l.='ls -d .* --color=auto'
 alias ll="ls -al"
 alias ls="ls -F -v --color --show-control-chars"
 alias ls7zip="7z l"
-alias lsrar="rar l"
+alias lsrar="lz7zip"
 alias lstar="tar -tvf"
 alias lszip="unzip -l"
 alias perms="stat -c '%A %a %n'"
