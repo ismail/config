@@ -14,6 +14,7 @@ alias lstcp="ss -anpt"
 alias lsudp="ss -anpu"
 alias obs="osc build --ccache --cpio-bulk-download --download-api-only"
 alias open="xdg-open"
+alias pdf="mupdf -A 8 -r 144"
 alias perf="sudo perf"
 alias please='sudo $(fc -ln -1)'
 alias results="osc results -v"
