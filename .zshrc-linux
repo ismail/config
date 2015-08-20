@@ -22,7 +22,6 @@ alias rpminfo="rpm -qip"
 alias sc="systemctl"
 alias slog="sudo journalctl --system -b -0 --all"
 alias tcli="transmission-cli"
-alias tlog="sudo journalctl --system --all --follow"
 alias ulog="journalctl --user -b -0 --all"
 alias vssh="vagrant up && vagrant ssh"
 
