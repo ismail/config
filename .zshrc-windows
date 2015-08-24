@@ -6,5 +6,6 @@ export EXTRA_CLANG_FLAGS="-target x86_64-pc-windows-msvc -fcolor-diagnostics -fa
 export GOPATH=C:/Users/ismail/gocode
 export PATH="/cygdrive/c/SysInternals:/cygdrive/c/Program Files (x86)/Microsoft SDKs/F#/3.1/Framework/v4.0/:$PATH"
 
+alias pdf="mupdf -A 8 -r 180"
 alias reset="stty sane && cls"
 alias sudo="cygstart --action=runas"
