@@ -181,6 +181,7 @@ remote-size () {
 }
 
 retry-if-fails () {
+    set +e
     retry=1
     timeout=10
 
