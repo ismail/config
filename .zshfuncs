@@ -181,9 +181,9 @@ remote-size () {
 }
 
 retry-if-fails () {
-    set +e
+    [[ -o errexit ]] && errexit_set="1"; set +e
     retry=1
-    timeout=10
+    timeout=6
 
     while [ $retry -le $timeout ]; do
         eval $@
@@ -200,6 +200,8 @@ retry-if-fails () {
     if [ $retry -ge $timeout ]; then
         echo "Timeout reached while trying to run command."
     fi
+
+    [[ $errexit_set = "1" ]] && set -e
 }
 
 srand () {
