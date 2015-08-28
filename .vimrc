@@ -10,7 +10,6 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'ervandew/supertab'
 Plugin 'jamessan/vim-gnupg'
 Plugin 'kien/ctrlp.vim'
 Plugin 'NLKNguyen/papercolor-theme'
