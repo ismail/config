@@ -114,3 +114,4 @@ imap <C-K> <ESC>:pyf /opt/clang/share/clang/clang-format.py<CR>i
 " YouCompleteMe
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_global_ycm_extra_conf = '~/.ycm.py'
+let g:ycm_filetype_whitelist = { 'c': 1, 'cpp' : 1, 'cc' : 1, 'h' : 1 }
