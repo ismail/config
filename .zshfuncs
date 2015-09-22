@@ -146,6 +146,7 @@ mp3 () {
 
 myip () {
     curl -s whatismyip.akamai.com
+    echo
 }
 
 randfile () {
