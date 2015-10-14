@@ -120,7 +120,7 @@ llir () {
             ;;
     esac
 
-    pygmentize $t
+    cat $t
     rm -f $t
 }
 
