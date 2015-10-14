@@ -109,7 +109,7 @@ llir () {
     suffix=${1:e}
     case $suffix in
         C|c++|cpp|cxx )
-            clang++ -c -S -emit-llvm -std=c++11 $1(+cyg) -o -
+            clang++ -c -S -emit-llvm -std=c++14 $1(+cyg) -o -
             ;;
         c )
             clang -c -S -emit-llvm -std=c11 $1(+cyg) -o -
