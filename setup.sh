@@ -50,7 +50,7 @@ case $(uname -s) in
         sed -i s,"ControlMaster auto","ControlMaster no", ~/.ssh/config
         rm -rf ~/.terminfo
         mkdir -p ~/.terminfo/74
-        cp .tmux-256color ~/.terminfo/74/tmux-256color
+        cp config/.tmux-256color ~/.terminfo/74/tmux-256color
         ;;
     Darwin*)
         ln -sf config/.zshrc-mac
