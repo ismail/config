@@ -65,7 +65,7 @@ export LC_ALL=en_US.UTF-8
 export PROMPT_EOL_MARK=""
 export PS1="%{$fg[cyan]%}%m%{$reset_color%} β %{$fg[yellow]%}%~
 %{$fg[magenta]%}%Bλ%b%{$reset_color%} "
-export TERM=screen-256color-it
+export TERM=tmux-256color
 export VISUAL="vim"
 
 alias ..="cd .."
