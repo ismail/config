@@ -5,7 +5,7 @@ Locale=en_US
 Charset=UTF-8
 Columns=126
 Rows=44
-Term=screen-256color-it
+Term=tmux-256color
 BellTaskbar=no
 ConfirmExit=no
 Font=Consolas
@@ -40,5 +40,4 @@ BackgroundColour=0,43,54
 CursorColour=192,192,192
 Scrollbar=none
 CopyAsRTF=no
-HideMouse=false
-
+HideMouse=no
