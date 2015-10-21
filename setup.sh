@@ -9,8 +9,8 @@ mkdir -p .gnupg
 files=(
     .gdb .gdbinit .gitconfig .gitignore .hgrc
     .irbrc .lftprc .mailcap .mutt_certificates .muttrc .screenrc 
-    .terminfo .tmux.conf .urlview .vimrc .Xdefaults 
-    .zshenv .zsh_fpath .zshfuncs .zshrc .zshrc-common
+    .tmux.conf .urlview .vimrc .Xdefaults .zshenv
+    .zsh_fpath .zshfuncs .zshrc .zshrc-common
 )
 
 # ls(1) colors
@@ -48,8 +48,9 @@ case $(uname -s) in
         ln -sf config/.mutt-gpg.rc
         ln -sf config/.zshrc-windows
         sed -i s,"ControlMaster auto","ControlMaster no", ~/.ssh/config
-        rm -f ~/.terminfo/73
-        ln -sf ~/.terminfo/s ~/.terminfo/73
+        rm -rf ~/.terminfo
+        mkdir -p ~/.terminfo/74
+        cp .tmux-256color ~/.terminfo/74/tmux-256color
         ;;
     Darwin*)
         ln -sf config/.zshrc-mac
