@@ -45,7 +45,7 @@ gensshmoduli () {
     bits=8192
     if [ ! -z $1 ]; then
         if [ $1 -ge 2048 ]; then
-            if [ $(( $1 & ($1 -1) )) -eq 0 ]; then
+            if [ $(( $1 & ($1 - 1) )) -eq 0 ]; then
                 bits=$i
             else
                 echo "$1 is not a power of 2."
