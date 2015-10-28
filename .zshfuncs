@@ -57,7 +57,7 @@ gensshmoduli () {
         fi
     fi
 
-    echo "Producing $1 bits moduli..."
+    echo "Producing $bits bits moduli..."
     f=$(mktemp /tmp/moduli.$1.candidate.XXXXXX)
     ssh-keygen -G $f -b $1
     ssh-keygen -T moduli.$1.tested -f $f
