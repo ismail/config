@@ -58,11 +58,11 @@ gensshmoduli () {
     fi
 
     echo "Producing $bits bits moduli..."
-    f=$(mktemp /tmp/moduli.$1.candidate.XXXXXX)
-    ssh-keygen -G $f -b $1
-    ssh-keygen -T moduli.$1.tested -f $f
+    f=$(mktemp /tmp/moduli.$bits.candidate.XXXXXX)
+    ssh-keygen -G $f -b $bits
+    ssh-keygen -T moduli.$bits.tested -f $f
     rm $f
-    echo "$1 bit SSH moduli is ready under moduli.$1.tested file."
+    echo "$bits bit SSH moduli is ready under moduli.$bits.tested file."
 }
 
 hr () {
