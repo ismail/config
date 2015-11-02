@@ -1,3 +1,14 @@
-BasedOnStyle: WebKit
+BasedOnStyle: Google
+AlignAfterOpenBracket: 'true'
+AlignConsecutiveAssignments: 'true'
+AlignOperands: 'true'
+AlignTrailingComments: 'true'
+AllowShortBlocksOnASingleLine: 'true'
+AllowShortFunctionsOnASingleLine: Inline
+AllowShortIfStatementsOnASingleLine: 'false'
+AllowShortLoopsOnASingleLine: 'false'
+AlwaysBreakTemplateDeclarations: 'true'
+BreakBeforeBraces: Stroustrup
+Cpp11BracedListStyle: 'true'
 Standard: Cpp11
 UseTab: Never
