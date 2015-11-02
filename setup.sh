@@ -7,7 +7,7 @@ mkdir -p .ssh
 mkdir -p .gnupg
 
 files=(
-    .gdb .gdbinit .gitconfig .gitignore .hgrc
+    .clang_format .gdb .gdbinit .gitconfig .gitignore .hgrc
     .irbrc .lftprc .mailcap .mutt_certificates .muttrc .screenrc 
     .tmux.conf .urlview .vimrc .Xdefaults .zshenv
     .zsh_fpath .zshfuncs .zshrc .zshrc-common
