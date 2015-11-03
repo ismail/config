@@ -20,7 +20,7 @@ digany () {
 download () {
     if [ ! -z $1 ]; then
         for url in $@; do
-            curl -O -J -L -C- -# "$url"
+            curl -O -J -L -C- "$url"
         done
     else
         echo "Pass an URL parameter."
