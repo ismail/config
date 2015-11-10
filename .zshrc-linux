@@ -33,7 +33,6 @@ export MALLOC_PERTURB_=63
 export NODE_PATH=/usr/lib/node_modules/
 export PATH=/opt/clang/bin:/havana/binaries/bin:$HOME/.cabal/bin:$HOME/go/bin:/sbin:/usr/sbin:$PATH
 export WINEDEBUG=fixme-all
-export WINEDLLOVERRIDES="*msvcr120=n"
 
 # Setup perl paths
 [[ -d ~/perl5 ]] && eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
