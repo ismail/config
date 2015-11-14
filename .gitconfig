@@ -2,13 +2,11 @@
 	excludesfile = /home/ismail/.gitignore
 	quotepath = false
 	autocrlf = false
-	filemode = false
 [alias]
 	st = status
 	ci = commit
 	co = checkout
 	br = branch
-    graphviz = "!f() { echo 'digraph git {' ; git log --pretty='format:  %h -> { %p }' \"$@\" | sed 's/[0-9a-f][0-9a-f]*/\"&\"/g' ; echo '}'; }; f"
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	wdiff = diff --color-words
 [user]
@@ -23,11 +21,7 @@
 	smtpserver = smtp.gmail.com
 	smtpserverport = 587
 	smtpencryption = tls
-	smtpuser = ismail@donmez.ws
-[url "git://anongit.kde.org/"]
-     insteadOf = kde:
-[url "git@git.kde.org:"]
-     pushInsteadOf = kde:
+	smtpuser = ismail@i10z.com
 [diff]
 	algorithm = patience
 [help]
