@@ -256,7 +256,12 @@ sshfingerprint () {
 }
 
 synconf () {
-    pull ~/config ~/hacks
+    local -a dirs
+    [ -d ~/config ] && dirs+=("~/config")
+    [ -d ~/hacks ] && dirs+=("~/hacks")
+    [ -d ~/randomworks ] && dirs+=("~/randomworks")
+
+    pull ${=dirs}
 }
 
 tm () {
