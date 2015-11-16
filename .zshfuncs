@@ -257,9 +257,9 @@ sshfingerprint () {
 
 synconf () {
     local -a dirs
-    [ -d ~/config ] && dirs+=("~/config")
-    [ -d ~/hacks ] && dirs+=("~/hacks")
-    [ -d ~/randomworks ] && dirs+=("~/randomworks")
+    [ -d ~/github/config ] && dirs+=("~/github/config")
+    [ -d ~/github/hacks ] && dirs+=("~/github/hacks")
+    [ -d ~/github/randomworks ] && dirs+=("~/github/randomworks")
 
     pull ${=dirs}
 }
