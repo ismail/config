@@ -82,7 +82,7 @@ alias dirsync="=rsync --archive --partial --progress --sparse --update --delete"
 alias forgetkeys="ssh-add -D"
 alias gdb="gdb --quiet"
 alias grep="grep --color"
-alias jmake="make -j$(nproc)"
+alias jmake="make -j$(( $(nproc)/2 ))"
 alias l.='ls -d .* --color=auto'
 alias ll="ls -al"
 alias ls="ls -F -v --color --show-control-chars"
