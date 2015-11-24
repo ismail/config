@@ -1,0 +1,13 @@
+if [ -z $PYTHONHOME ]; then
+    echo "Enabling local Python..."
+    export LD_LIBRARY_PATH=/opt/python/lib64
+    export PYTHONHOME=/opt/python
+    export PYTHONPATH=/opt/python:/opt/python/lib64/python3.5/lib-dynload
+    export PATH=/opt/python/bin:$PATH
+else
+    echo "Disabling local Python..."
+    unset LD_LIBRARY_PATH
+    unset PYTHONHOME
+    unset PYTHONPATH
+    export PATH=${PATH#"/opt/python/bin:"}
+fi
