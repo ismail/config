@@ -5,21 +5,19 @@ endif
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin()
 
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'jamessan/vim-gnupg'
-Plugin 'kien/ctrlp.vim'
-Plugin 'rhysd/wandbox-vim'
-Plugin 'openssl.vim'
+Plug 'altercation/vim-colors-solarized'
+Plug 'jamessan/vim-gnupg'
+Plug 'kien/ctrlp.vim'
+Plug 'rhysd/wandbox-vim'
+Plug 'openssl.vim'
 
 if has("unix") && !has("win32unix")
-    Plugin 'Valloric/YouCompleteMe'
+    Plug 'Valloric/YouCompleteMe'
 endif
 
-call vundle#end()
+call plug#end()
 
 set ai
 set background=dark
