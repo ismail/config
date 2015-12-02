@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 set -euo pipefail
 
-curdir=$(pwd)
+srcdir=$(pwd)
 cd $HOME
 
 mkdir -p .ssh
@@ -15,43 +15,44 @@ files=(
 )
 
 # ls(1) colors
-dircolors $curdir/.dir_colors > ~/.lscolors
+dircolors $srcdir/.dir_colors > ~/.lscolors
 
-[ ! -d ~/.vim/bundle/Vundle.vim ] &&
-    rm -f ~/.vim &&
-    git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+[ ! -d ~/.vim/autoload/plug.vim ] &&
+    rm -rf ~/.vim &&
+    curl -s -fLo ~/.vim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 for f in $files; do
-    ln -sf $curdir/$f
+    ln -sf $srcdir/$f
 done
 
 pushd .ssh
-ln -sf $curdir/.ssh/config
-cp $curdir/.ssh/known_hosts .
+ln -sf $srcdir/.ssh/config
+[ ! -f known_hosts ] && cp $srcdir/.ssh/known_hosts .
 popd
 
 pushd .gnupg
-ln -sf $curdir/.gnupg/dirmngr.conf
-ln -sf $curdir/.gnupg/gpg.conf
-ln -sf $curdir/.gnupg/gpg-agent.conf
+ln -sf $srcdir/.gnupg/dirmngr.conf
+ln -sf $srcdir/.gnupg/gpg.conf
+ln -sf $srcdir/.gnupg/gpg-agent.conf
 popd
 
 case $(uname -s) in
     Linux*)
-        ln -sf $curdir/.iftoprc
-        ln -sf $curdir/.mpv
-        ln -sf $curdir/.toprc
-        ln -sf $curdir/.zshrc-linux
-        ln -sf $curdir/.zshfuncs-linux
+        ln -sf $srcdir/.iftoprc
+        ln -sf $srcdir/.mpv
+        ln -sf $srcdir/.toprc
+        ln -sf $srcdir/.zshrc-linux
+        ln -sf $srcdir/.zshfuncs-linux
         ;;
     CYGWIN_NT*)
-        ln -sf $curdir/.minttyrc
-        ln -sf $curdir/.mutt-gpg.rc
-        ln -sf $curdir/.zshrc-windows
+        ln -sf $srcdir/.minttyrc
+        ln -sf $srcdir/.mutt-gpg.rc
+        ln -sf $srcdir/.zshrc-windows
         sed -i s,"ControlMaster auto","ControlMaster no", ~/.ssh/config
         ;;
     Darwin*)
-        ln -sf $curdir/.zshrc-mac
-        ln -sf $curdir/.hushlogin
+        ln -sf $srcdir/.zshrc-mac
+        ln -sf $srcdir/.hushlogin
         ;;
 esac
