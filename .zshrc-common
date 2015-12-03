@@ -55,6 +55,10 @@ setopt MULTIBYTE
 setopt NOCHECKJOBS
 setopt NOHUP
 
+for opt in GLOB_STAR_SHORT; do
+    [[ -n ${options[$opt]} ]] && setopt $opt
+done
+
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh_cache
 zstyle ':completion:*' menu select
