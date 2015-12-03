@@ -9,7 +9,7 @@ call plug#begin()
 
 Plug 'altercation/vim-colors-solarized'
 Plug 'jamessan/vim-gnupg'
-Plug 'kien/ctrlp.vim'
+Plug 'junegunn/fzf'
 Plug 'rhysd/wandbox-vim'
 Plug 'openssl.vim'
 
