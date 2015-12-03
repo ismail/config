@@ -9,12 +9,14 @@ call plug#begin()
 
 Plug 'altercation/vim-colors-solarized'
 Plug 'jamessan/vim-gnupg'
-Plug 'junegunn/fzf'
 Plug 'rhysd/wandbox-vim'
 Plug 'openssl.vim'
 
-if has("unix") && !has("win32unix")
+if has("unix")
+    Plug 'junegunn/fzf'
+if !has("win32unix")
     Plug 'Valloric/YouCompleteMe'
+endif
 endif
 
 call plug#end()
