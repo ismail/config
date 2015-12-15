@@ -21,8 +21,8 @@ custom_funcs="$HOME/.zshfuncs-$os"
 local_config="$HOME/.zshrc-local"
 [ -f $local_config ] && source $local_config
 
-alias clang="clang -std=c11 -Weverything -Wno-c++98-compat $EXTRA_CLANG_FLAGS"
-alias clang++="clang++ -std=c++14 -Weverything -Wno-c++98-compat $EXTRA_CLANG_FLAGS"
+alias clang="clang -std=c11 -Wall -Wextra -Wno-c++98-compat $EXTRA_CLANG_FLAGS"
+alias clang++="clang++ -std=c++14 -Wall -Wextra -Wno-c++98-compat $EXTRA_CLANG_FLAGS"
 
 # Highlight options
 zle_highlight=(
