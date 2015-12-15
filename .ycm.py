@@ -1,8 +1,7 @@
 import ycm_core
 
 flags = [
-'-Wall',
-'-Wextra',
+'-Weverything',
 '-Wno-missing-prototypes',
 '-fopenmp',
 ]
