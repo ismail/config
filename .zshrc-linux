@@ -23,6 +23,7 @@ alias sc="systemctl"
 alias slog="sudo journalctl --system -b -0 --all"
 alias tcli="transmission-cli"
 alias ulog="journalctl --user -b -0 --all"
+alias vmstat="vmstat -w"
 alias vssh="vagrant up && vagrant ssh"
 
 export EXTRA_CLANG_FLAGS="-stdlib=libc++ -fuse-ld=lld -Wl,-rpath,/opt/clang/lib64,--enable-new-dtags"
