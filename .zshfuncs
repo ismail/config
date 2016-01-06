@@ -74,7 +74,7 @@ keygen () {
     ssh-keygen -o -a 65536 -t ed25519
 }
 
-lastmod () {
+last-modified () {
     if [ -z $1 ]; then
         return 0
     fi

@@ -1,8 +1,8 @@
 import ycm_core
 
 flags = [
-'-Weverything',
-'-Wno-missing-prototypes',
+'-Wall',
+'-Wextra',
 '-fopenmp',
 ]
 
@@ -11,7 +11,6 @@ def FlagsForFile( filename, **kwargs ):
         flags.append("-std=c11")
     elif filename.endswith(".cxx") or filename.endswith(".cpp"):
         flags.append("-std=c++14")
-        flags.append("-Wno-c++98-compat")
 
     return {
         'flags': flags,
