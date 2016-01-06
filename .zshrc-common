@@ -79,7 +79,6 @@ alias cd="cd"
 alias checksum="b2sum -a blake2sp"
 alias clear='printf "\ec"'
 alias cls="clear"
-alias curl="curl -sS"
 alias d="cd"
 alias dec="gpg -q -d"
 alias dirsync="=rsync --archive --partial --progress --sparse --update --delete"
