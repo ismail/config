@@ -13,11 +13,8 @@ Plug 'jamessan/vim-gnupg'
 Plug 'rhysd/wandbox-vim'
 Plug 'openssl.vim'
 
-if has("unix")
-    Plug 'junegunn/fzf'
-if !has("win32unix")
+if has("unix") && !has("win32unix")
     Plug 'Valloric/YouCompleteMe'
-endif
 endif
 
 call plug#end()
