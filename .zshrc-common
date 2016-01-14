@@ -74,6 +74,7 @@ export VISUAL="vim"
 
 alias ..="cd .."
 alias addkeys="ssh-add -l | grep id_ed25519 &> /dev/null || ssh-add ~/.ssh/id_ed25519"
+alias bc="bc -q"
 alias ccat='pygmentize'
 alias cd="cd"
 alias checksum="b2sum -a blake2sp"
