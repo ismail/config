@@ -304,7 +304,7 @@ xzit () {
 
 ydl () {
     for url in "$@"; do
-        youtube-dl "$url" -o %(title)s.%(ext)s
+        youtube-dl -f "bestvideo+bestaudio/best" "$url" -o %(title)s.%(ext)s
     done
 }
 
