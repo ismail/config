@@ -36,6 +36,11 @@ encode-film () {
     ffmpeg -i $1 -c:v libx264 -preset medium -tune film ${1:t:r}.mp4
 }
 
+epoch-to-date () {
+    zmodload zsh/datetime
+    strftime "%d-%B-%Y %H:%M:%S" $1
+}
+
 ftpmirror () {
     [[ -z $1 || -z $2 ]] && echo "Need two arguments" && return
 
