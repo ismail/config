@@ -1,4 +1,5 @@
 (package-initialize)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 
 ;; Install packages if necessary
 (require 'cl)
@@ -43,9 +44,10 @@
 (set-default-font "Consolas 11")
 
 ;; Setup solarized theme
-(load-theme 'solarized-dark t)
-(setq solarized-distinct-fringe-background t)
-(setq solarized-high-contrast-mode-line t)
-(setq solarized-use-less-bold t)
+(when (display-graphic-p)
+    (load-theme 'solarized-dark t)
+    (setq solarized-distinct-fringe-background t)
+    (setq solarized-high-contrast-mode-line t)
+    (setq solarized-use-less-bold t))
 
 (require 'clang-format)
