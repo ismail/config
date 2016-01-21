@@ -40,10 +40,10 @@
 ;; No tabs
 (setq-default indent-tabs-mode nil)
 
-;;disable backup
+;; Disable backup
 (setq backup-inhibited t)
 
-;;disable auto save
+;; Disable auto save
 (setq auto-save-default nil)
 
 ;; Consolas!
