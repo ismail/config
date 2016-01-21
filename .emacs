@@ -52,6 +52,10 @@
 ;; Restore window layout on startup
 (desktop-save-mode 1)
 
+;; Enable IDO
+(require 'ido)
+(ido-mode t)
+
 ;; Setup solarized theme
 (when (display-graphic-p)
     (load-theme 'solarized-dark t)
