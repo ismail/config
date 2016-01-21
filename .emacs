@@ -49,6 +49,9 @@
 ;; Consolas!
 (set-default-font "Consolas 11")
 
+;; Restore window layout on startup
+(desktop-save-mode 1)
+
 ;; Setup solarized theme
 (when (display-graphic-p)
     (load-theme 'solarized-dark t)
