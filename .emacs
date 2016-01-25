@@ -5,7 +5,7 @@
 (require 'cl)
 
 (defvar my-packages
-  '(clang-format solarized-theme)
+  '(clang-format solarized-theme wandbox)
   "A list of packages to ensure are installed at launch.")
 
 (defun my-packages-installed-p ()
