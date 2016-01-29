@@ -138,13 +138,13 @@ upup () {
     dist=$(distro)
     case $dist in
         SUSE)
-            sudo zypper ref && sudo zypper -n dup --auto-agree-with-licenses
+            sudo zypper ref && sudo zypper dup --auto-agree-with-licenses
             ;;
         DEBIAN)
-            sudo apt-get update && sudo apt-get dist-upgrade -y
+            sudo apt-get update && sudo apt-get dist-upgrade
             ;;
         REDHAT)
-            sudo yum update -y
+            sudo yum update
             ;;
     esac
 }
