@@ -61,3 +61,5 @@
     (setq solarized-use-less-bold t))
 
 (require 'clang-format)
+
+(server-start)
