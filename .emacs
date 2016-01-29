@@ -49,9 +49,6 @@
 ;; Consolas!
 (set-default-font "Consolas 11")
 
-;; Restore window layout on startup
-(desktop-save-mode 1)
-
 ;; Enable IDO
 (require 'ido)
 (ido-mode t)
