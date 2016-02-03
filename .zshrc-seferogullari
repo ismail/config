@@ -1,4 +1,4 @@
-PATH=/opt/intel/bin:/havana/mingw-w64-6.0.0/bin:$PATH
+PATH=/opt/intel/bin:/havana/mingw-w64-6.0.0/bin:/opt/gcc6/bin:$PATH
 INTEL_ROOT="/opt/intel/compilers_and_libraries_2016.1.150/linux"
 win=x86_64-w64-mingw32
 
@@ -15,6 +15,26 @@ disable-ccache () {
      export PATH=${PATH#"/home/ismail/.ccache-dist:"}
 }
 
+pause-vm () {
+    [[ -z $1 ]] && return
+    VBoxManage controlvm $1 pause
+}
+
+resume-vm () {
+    [[ -z $1 ]] && return
+    VBoxManage controlvm $1 resume
+}
+
+suspend-vm () {
+    [[ -z $1 ]] && return
+    VBoxManage controlvm $1 savestate
+}
+
+start-vm () {
+    [[ -z $1 ]] && return
+    setsid VBoxHeadless -s $1 &> /dev/null
+}
+
 qtconsole () {
     source ~/.pystable &> /dev/null
     LD_PRELOAD=/havana/sources/qt5noblink/qt5noblink.so setsid jupyter qtconsole
@@ -23,4 +43,9 @@ qtconsole () {
 
 toggle-python () {
     source ~/.pystable
+}
+
+vm-state () {
+    [[ -z $1 ]] && return
+    VBoxManage showvminfo $1 | grep -E "^State"
 }
