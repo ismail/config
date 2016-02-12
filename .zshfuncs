@@ -8,15 +8,6 @@ certinfo () {
     openssl x509 -in $1 -text -noout
 }
 
-digany () {
-    if [ -z $1 ]; then
-        echo "Pass a domain parameter."
-        return
-    fi
-
-    dig @${2:-8.8.8.8} +nocmd $1 any +multiline +noall +answer
-}
-
 download () {
     userAgent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Safari/537.36 Edge/13.10586"
     if [ ! -z $1 ]; then
@@ -30,10 +21,6 @@ download () {
 
 enc () {
     [[ ! -z $1 ]] && gpg -a -e -r $GPG_ID $1 && rm $1
-}
-
-encode-film () {
-    ffmpeg -i $1 -c:v libx264 -preset medium -tune film ${1:t:r}.mp4
 }
 
 epoch-to-date () {
@@ -69,14 +56,6 @@ gensshmoduli () {
     ssh-keygen -T moduli.$bits.tested -f $f
     rm $f
     echo "$bits bit SSH moduli is ready under moduli.$bits.tested file."
-}
-
-hr () {
-    print ${(l:COLUMNS::=:)}
-}
-
-keygen () {
-    ssh-keygen -o -a 65536 -t ed25519
 }
 
 last-modified () {
@@ -122,27 +101,8 @@ last-modified () {
     echo "${(j:, :)result} ago."
 }
 
-llir () {
-    suffix=${1:e}
-    case $suffix in
-        C|c++|cpp|cxx )
-            clang++ -c -S -emit-llvm -std=c++14 $1(+cyg) -o -
-            ;;
-        c )
-            clang -c -S -emit-llvm -std=c11 $1(+cyg) -o -
-            ;;
-        * )
-            echo "Unknown file extension $suffix"
-            ;;
-    esac
-}
-
 longurl () {
     curl -w "%{url_effective}\n" -I -L -s -S $1 -o /dev/null
-}
-
-lupx () {
-    upx --best --lzma $@
 }
 
 mkiso () {
@@ -153,13 +113,8 @@ mkiso () {
     fi
 }
 
-mp3 () {
-    youtube-dl --extract-audio --title --audio-format mp3 "$1"
-}
-
 myip () {
     curl -s whatismyip.akamai.com
-    echo
 }
 
 randfile () {
@@ -173,15 +128,6 @@ randfile () {
         echo "No results."
     else
         echo $result
-    fi
-}
-
-rdp () {
-    common_opts=(+aero +clipboard +compression +decorations +fonts +themes +wallpaper +window-drag)
-    if [ ! -z $COMSPEC ]; then
-        wfreerdp "$@" $common_opts /drive:x,C:/
-    else
-        xfreerdp "$@" $common_opts /drive:x,/havana
     fi
 }
 
@@ -237,29 +183,6 @@ sslcheck () {
     nmap --unprivileged --system-dns --script ssl-enum-ciphers -p ${2:-443} $1
 }
 
-sshfingerprint () {
-    if [ -z $1 ]; then
-        echo "Pass an hostname to get the SSH fingerprint."
-        return
-    fi
-
-    for host in "$@"; do
-        t=$(mktemp)
-        data=("${(s/:/)host}")
-        host=$data[1]
-        port=$data[2]
-
-        if [ -z $port ]; then
-            ssh-keyscan -t rsa,ed25519 $host &> $t
-        else
-            ssh-keyscan -p $port -t rsa,ed25519 $host &> $t
-        fi
-
-        ssh-keygen -l -f $t
-        rm -f $t
-    done
-}
-
 synconf () {
     local -a dirs
     [ -d ~/github/config ] && dirs+=("~/github/config")
@@ -267,14 +190,6 @@ synconf () {
     [ -d ~/github/randomworks ] && dirs+=("~/github/randomworks")
 
     pull ${=dirs}
-}
-
-tm () {
-    tmux new-session -d "$*; sleep infinity"
-}
-
-vstream () {
-    vlc "$1" --sout '#transcode{vcodec=h264,acodec=mp3,ab=128,channels=2,samplerate=44100}:http{dst=:8080/live.mpg}'
 }
 
 x () {
@@ -293,16 +208,6 @@ x () {
         *)     echo "'$1' cannot be extracted via x()" ;;
          esac
      fi
-}
-
-xzit () {
-    if [ ! -z $1 ]; then
-        echo "Creating tar package..."
-        tar --format=gnu --exclude-vcs -cf $1.tar $1
-        echo "Compressing with xz..."
-        xz -6 -T0 $1.tar
-        echo "$1.tar.xz is ready!"
-    fi
 }
 
 ydl () {

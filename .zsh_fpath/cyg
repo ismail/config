@@ -1,5 +1,0 @@
-cyg () {
-    if [ ! -z $COMSPEC ]; then
-        reply=("$(cygpath -m $REPLY)")
-    fi
-}

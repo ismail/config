@@ -21,13 +21,6 @@ custom_funcs="$HOME/.zshfuncs-$os"
 local_config="$HOME/.zshrc-local"
 [ -f $local_config ] && source $local_config
 
-disabled_warnings=(-Wno-c++98-compat -Wno-c++98-compat-pedantic)
-disabled_warnings+=(-Wno-missing-prototypes -Wno-missing-variable-declarations)
-disabled_warnings+=(-Wno-missing-braces -Wno-language-extension-token)
-
-alias clang="clang -std=c11 -Weverything $disabled_warnings -O2 -g $EXTRA_CLANG_FLAGS"
-alias clang++="clang++ -std=c++14 -Weverything $disabled_warnings -O2 -g $EXTRA_CLANG_FLAGS"
-
 # Highlight options
 zle_highlight=(
     isearch:fg=yellow,underline

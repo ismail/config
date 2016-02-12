@@ -1,37 +1,21 @@
-alias ihatenvidia="nvidia-settings -a '[gpu:0]/GPUPowerMizerMode=1'"
-alias chroot="TERM=screen-256color sudo systemd-nspawn -D"
-alias fsi="fsharpi --nologo"
-alias -s go="go run"
-alias -s js=node
 alias io="sudo iotop -o -P -a"
 alias iosc="osc -A https://api.suse.de/"
 alias ipconfig="ip -statistics -human link ls"
 alias lsmaster="ls -1 ~/.ssh/master-* | awk -F'/' '{print \$(NF)}'"
-alias lsrpm="rpm -qlp"
-alias lsprovides="rpm -qp --provides"
-alias lsrequires="rpm -qp --requires"
 alias lstcp="ss -anpt"
 alias lsudp="ss -anpu"
 alias obs="osc build --ccache --cpio-bulk-download --download-api-only"
 alias open="xdg-open"
-alias pdf="mupdf -A 8 -r 144"
-alias perf="sudo perf"
 alias please='sudo $(fc -ln -1)'
 alias results="osc results -v"
-alias rpminfo="rpm -qip"
-alias sc="systemctl"
 alias slog="sudo journalctl --system -b -0 --all"
 alias tcli="transmission-cli"
 alias ulog="journalctl --user -b -0 --all"
-alias vmstat="vmstat -w"
-alias vssh="vagrant up && vagrant ssh"
 
-export EXTRA_CLANG_FLAGS="-stdlib=libc++ -fuse-ld=lld -Wl,-rpath,/opt/clang/lib64,--enable-new-dtags"
 export JAVA_HOME=/havana/binaries/oracle-jdk
 export LIBVA_DRIVER_NAME=nvidia
 export MALLOC_CHECK_=2
 export MALLOC_PERTURB_=63
-export NODE_PATH=/usr/lib/node_modules/
 export PATH=/opt/clang/bin:/havana/binaries/bin:$HOME/.cabal/bin:$HOME/go/bin:/sbin:/usr/sbin:$PATH
 export WINEDEBUG=fixme-all
 
