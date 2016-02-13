@@ -1,32 +1,50 @@
 [core]
-	excludesfile = /home/ismail/.gitignore
-	quotepath = false
-	autocrlf = false
+    excludesfile = /home/ismail/.gitignore
+    quotepath = false
+    autocrlf = false
+
 [alias]
-	st = status
-	ci = commit
-	co = checkout
-	br = branch
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-	wdiff = diff --color-words
+    st = status
+    ci = commit
+    co = checkout
+    br = branch
+    lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    wdiff = diff --color-words
+
 [user]
-	name = İsmail Dönmez
-	email = ismail@i10z.com
-	signingkey = ismail@i10z.com
+    name = İsmail Dönmez
+    email = ismail@i10z.com
+    signingkey = ismail@i10z.com
+
 [svn]
     brokenSymlinkWorkaround = false
+
 [color]
-	ui = true
+    ui = true
+
 [sendemail]
-	smtpserver = smtp.gmail.com
-	smtpserverport = 587
-	smtpencryption = tls
-	smtpuser = ismail@i10z.com
+    smtpserver = smtp.gmail.com
+    smtpserverport = 587
+    smtpencryption = tls
+    smtpuser = ismail@i10z.com
+
 [diff]
-	algorithm = patience
+    algorithm = patience
+
 [help]
-	autocorrect = 5
+    autocorrect = 5
+
 [push]
-	default = simple
+    default = simple
+
 [credential]
-	helper = cache
+    helper = cache
+
+[transfer]
+    fsckobjects = true
+
+[fetch]
+    fsckobjects = true
+
+[receive]
+    fsckobjects = true
