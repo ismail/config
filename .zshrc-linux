@@ -1,6 +1,5 @@
 alias io="sudo iotop -o -P -a"
 alias iosc="osc -A https://api.suse.de/"
-alias ipconfig="ip -statistics -human link ls"
 alias lsmaster="ls -1 ~/.ssh/master-* | awk -F'/' '{print \$(NF)}'"
 alias lstcp="ss -anpt"
 alias lsudp="ss -anpu"
