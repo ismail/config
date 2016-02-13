@@ -1,6 +1,9 @@
 # Set GPG ID before doing anything else
 export GPG_ID=0x381FA1D72D72DA97
 
+# Add local bin to path
+export PATH=$HOME/bin:$PATH
+
 source ~/.zshrc-common
 
 if [ ! -z $COMSPEC ]; then
