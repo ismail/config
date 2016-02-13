@@ -36,6 +36,10 @@ zle_highlight=(
 autoload -U compinit
 compinit -C
 
+# mingw shortcuts
+win32=i686-x86_64-w64-mingw32
+win64=x86_64-w64-mingw32
+
 # After this point its only ssh-agent related code
 # and nothing else
 #

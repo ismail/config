@@ -1,6 +1,5 @@
 PATH=/opt/intel/bin:/havana/mingw-w64-6.0.0/bin:/opt/gcc6/bin:$PATH
 INTEL_ROOT="/opt/intel/compilers_and_libraries_2016.1.150/linux"
-win=x86_64-w64-mingw32
 
 alias 7z="7z.exe"
 alias icc="icc -std=c11 -Wl,-rpath,$INTEL_ROOT/bin/intel64,-rpath,$INTEL_ROOT/compiler/lib/intel64_lin,--enable-new-dtags"
