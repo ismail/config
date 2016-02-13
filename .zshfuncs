@@ -113,24 +113,6 @@ mkiso () {
     fi
 }
 
-myip () {
-    curl -s whatismyip.akamai.com
-}
-
-randfile () {
-    if [ -z $1 ]; then
-        echo "You need to pass a file extension."
-        return
-    fi
-
-    result=$(=ls **/*.$1 2>/dev/null | shuf --random-source=/dev/urandom -n 1)
-    if [ -z $result ]; then
-        echo "No results."
-    else
-        echo $result
-    fi
-}
-
 remote-size () {
     length=$(curl -s -I -L $1 | grep Content-Length | cut -f2 -d":" | tr -d ' \r\n')
     if [ -z $length ]; then
@@ -162,21 +144,6 @@ retry-if-fails () {
     fi
 
     [[ $errexit_set = "1" ]] && set -e
-}
-
-srand () {
-    if [ -e /dev/hwrng ]; then
-        DEVICE="/dev/hwrng"
-    else
-        DEVICE="/dev/random"
-    fi
-
-    if [ -z $1 ]; then
-        base64 < $DEVICE | head -c32
-    else
-        base64 < $DEVICE | head -c$1
-    fi
-    print
 }
 
 sslcheck () {
