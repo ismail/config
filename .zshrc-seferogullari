@@ -15,26 +15,6 @@ disable-ccache () {
      export PATH=${PATH#"/home/ismail/.ccache-dist:"}
 }
 
-pause-vm () {
-    [[ -z $1 ]] && return
-    VBoxManage controlvm $1 pause
-}
-
-resume-vm () {
-    [[ -z $1 ]] && return
-    VBoxManage controlvm $1 resume
-}
-
-suspend-vm () {
-    [[ -z $1 ]] && return
-    VBoxManage controlvm $1 savestate
-}
-
-start-vm () {
-    [[ -z $1 ]] && return
-    setsid VBoxHeadless -s $1 &> /dev/null
-}
-
 qtconsole () {
     source ~/.pystable &> /dev/null
     LD_PRELOAD=/havana/sources/qt5noblink/qt5noblink.so setsid jupyter qtconsole
@@ -45,7 +25,22 @@ toggle-python () {
     source ~/.pystable
 }
 
+vm-pause () {
+    [[ ! -z $1 ]] && VBoxManage controlvm $1 pause
+}
+
+vm-resume () {
+    [[ ! -z $1 ]] && VBoxManage controlvm $1 resume
+}
+
+vm-suspend () {
+    [[ ! -z $1 ]] && VBoxManage controlvm $1 savestate
+}
+
+vm-start () {
+    [[ ! -z $1 ]] && setsid VBoxHeadless -s $1 &> /dev/null
+}
+
 vm-state () {
-    [[ -z $1 ]] && return
-    VBoxManage showvminfo $1 | grep -E "^State"
+    [[ ! -z $1 ]] && VBoxManage showvminfo $1 | grep -E "^State"
 }
