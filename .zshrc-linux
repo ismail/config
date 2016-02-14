@@ -1,12 +1,7 @@
-alias iosc="osc -A https://api.suse.de/"
-alias lsmaster="ls -1 ~/.ssh/master-* | awk -F'/' '{print \$(NF)}'"
 alias obs="osc build --ccache --cpio-bulk-download --download-api-only"
 alias open="xdg-open"
 alias please='sudo $(fc -ln -1)'
-alias results="osc results -v"
-alias slog="sudo journalctl --system -b -0 --all"
 alias tcli="transmission-cli"
-alias ulog="journalctl --user -b -0 --all"
 
 export JAVA_HOME=/havana/binaries/oracle-jdk
 export LIBVA_DRIVER_NAME=nvidia

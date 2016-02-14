@@ -73,32 +73,16 @@ export PS1="%{$fg[cyan]%}%m%{$reset_color%} β %{$fg[yellow]%}%~
 export TERM=tmux-256color
 export VISUAL="vim"
 
-alias ..="cd .."
 alias addkeys="ssh-add -l | grep id_ed25519 &> /dev/null || ssh-add ~/.ssh/id_ed25519"
-alias bc="bc -q"
-alias ccat='pygmentize'
 alias clear='printf "\ec"'
-alias dec="gpg -q -d"
 alias dirsync="=rsync --archive --partial --progress --sparse --update --delete"
 alias forgetkeys="ssh-add -D"
-alias gdb="gdb --quiet"
-alias grep="grep --color"
-alias l.='ls -d .* --color=auto'
-alias ll="ls -al"
 alias ls="ls -F -v --color --show-control-chars"
-alias ls7zip="7z l"
-alias lsrar="7z l"
-alias lstar="tar -tvf"
-alias lszip="unzip -l"
-alias mv="mv -i"
-alias pdf="mupdf -A 8"
 alias perms="stat -c '%A %a %n'"
 alias preview="mpv -autofit-larger 480x720 -vo opengl-hq -border=no --no-resume-playback"
 alias rsync="rsync --archive --compress-level=3 --copy-links --partial --inplace --progress"
 alias scp="rsync --archive --compress-level=3 --copy-links --partial --inplace --progress --rsh=ssh -r"
-alias strace="strace -s 1024"
 alias tf="less +F"
-alias verify="gpg --verify"
 alias wget='wget --content-disposition'
 
 # Setup ls colors
