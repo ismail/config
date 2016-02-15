@@ -68,8 +68,7 @@ zstyle ':completion:*' verbose yes
 export GOPATH=$HOME/.go/
 export LC_ALL=en_US.UTF-8
 export PROMPT_EOL_MARK=""
-export PS1="%{$fg[cyan]%}%m%{$reset_color%} β %{$fg[yellow]%}%~
-%{$fg[green]%}λ%{$reset_color%} "
+export PS1="%{$fg[cyan]%}%m %{$fg[yellow]%}%~%{$reset_color%} > "
 export TERM=tmux-256color
 export VISUAL="vim"
 
