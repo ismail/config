@@ -4,18 +4,6 @@ browser () {
     xdg-open $f &> /dev/null
 }
 
-catenv () {
-    if [ ! -z $1 ]; then
-        sudo cat /proc/$1/environ | xargs --null --max-args=1 | sort
-    else
-        echo "Pass a PID parameter."
-    fi
-}
-
-disable-alsr () {
-    echo 0 | sudo tee -a /proc/sys/kernel/randomize_va_space
-}
-
 distro () {
     if [ -e /etc/SUSE-brand ]; then
         echo "SUSE"
@@ -24,14 +12,6 @@ distro () {
     elif [ -e /etc/redhat-release ]; then
         echo "REDHAT"
     fi
-}
-
-drop-caches () {
-    echo 3 | sudo tee -a /proc/sys/vm/drop_caches
-}
-
-entropy () {
-    echo $(cat /proc/sys/kernel/random/entropy_avail)/$(cat /proc/sys/kernel/random/poolsize)
 }
 
 find-broken-symlinks () {
@@ -55,12 +35,6 @@ installpkg () {
             sudo yum install "$@"
             ;;
     esac
-}
-
-restart () {
-    sudo systemctl restart $1
-    sleep 1
-    sudo systemctl status $1 -l
 }
 
 removepkg () {
@@ -91,22 +65,6 @@ searchpkg () {
             sudo yum search "$@"
             ;;
     esac
-}
-
-start() {
-    sudo systemctl start $1
-    sleep 1
-    sudo systemctl status $1 -l
-}
-
-status () {
-    sudo systemctl status $1 -l
-}
-
-stop () {
-    sudo systemctl stop $1
-    sleep 1
-    sudo systemctl status $1 -l
 }
 
 upup () {
