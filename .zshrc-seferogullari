@@ -2,7 +2,6 @@ PATH=/opt/intel/bin:/havana/mingw-w64-6.0.0/bin:/opt/gcc6/bin:$PATH
 ICC_VERSION=2016.2.181
 INTEL_ROOT="/opt/intel/compilers_and_libraries_$ICC_VERSION/linux"
 
-alias 7z="7z.exe"
 alias icc="icc -Wl,-rpath,$INTEL_ROOT/bin/intel64 -Wl,-rpath,$INTEL_ROOT/compiler/lib/intel64_lin"
 alias icpc="icpc -Wl,-rpath,$INTEL_ROOT/bin/intel64 -Wl,-rpath,$INTEL_ROOT/compiler/lib/intel64_lin"
 alias pimp-nvidia="nvidia-settings -a '[gpu:0]/GPUPowerMizerMode=1'"
