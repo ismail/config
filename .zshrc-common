@@ -73,7 +73,6 @@ export TERM=tmux-256color
 export VISUAL="vim"
 
 alias addkeys="ssh-add -l | grep id_ed25519 &> /dev/null || ssh-add ~/.ssh/id_ed25519"
-alias clear='printf "\ec"'
 alias dirsync="=rsync --archive --partial --progress --sparse --update --delete"
 alias forgetkeys="ssh-add -D"
 alias ls="ls -F -v --color --show-control-chars"
