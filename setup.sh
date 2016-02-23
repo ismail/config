@@ -10,7 +10,8 @@ mkdir -p .gnupg
 files=(
     .clang-format .gdb .gdbinit .gitconfig .gitignore .hgrc
     .irbrc .lftprc .mailcap .mutt_certificates .muttrc .screenrc 
-    .tmux.conf .urlview .vimrc .Xdefaults .zshfuncs .zshrc .zshrc-common
+    .tmux.conf .urlview .vimrc .wgetrc .Xdefaults .zshfuncs
+    .zshrc .zshrc-common
 )
 
 # ls(1) colors
