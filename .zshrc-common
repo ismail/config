@@ -81,7 +81,6 @@ alias perms="stat -c '%A %a %n'"
 alias preview="mpv -autofit-larger 480x720 -vo opengl-hq -border=no --no-resume-playback"
 alias rsync="rsync --archive --compress-level=3 --copy-links --partial --inplace --progress"
 alias scp="rsync --archive --compress-level=3 --copy-links --partial --inplace --progress --rsh=ssh -r"
-alias tf="less +F"
 alias wget='wget --content-disposition'
 
 # Setup ls colors
