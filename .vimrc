@@ -8,7 +8,6 @@ filetype off
 call plug#begin()
 
 Plug 'altercation/vim-colors-solarized'
-Plug 'elixir-lang/vim-elixir'
 Plug 'fatih/vim-go'
 Plug 'jamessan/vim-gnupg'
 Plug 'rhysd/wandbox-vim'
