@@ -77,7 +77,7 @@ alias dirsync="=rsync --archive --partial --progress --sparse --update --delete"
 alias forgetkeys="ssh-add -D"
 alias ls="ls -F -v --color --show-control-chars"
 alias perms="stat -c '%A %a %n'"
-alias preview="mpv -autofit-larger 480x720 -vo opengl-hq -border=no --no-resume-playback"
+alias preview="mpv -autofit-larger 480x720 -vo opengl -border=no --no-resume-playback"
 alias rscp="rsync --archive --compress-level=3 --copy-links --partial --inplace --progress --rsh=ssh -r"
 
 # Setup ls colors
