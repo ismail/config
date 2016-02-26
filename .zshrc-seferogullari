@@ -40,6 +40,6 @@ vm-start () {
     [[ ! -z $1 ]] && setsid VBoxHeadless -s $1 &> /dev/null
 }
 
-vm-state () {
+vm-status () {
     [[ ! -z $1 ]] && VBoxManage showvminfo $1 | grep -E "^State"
 }
