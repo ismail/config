@@ -46,3 +46,5 @@ XTerm*color6:                S_cyan
 XTerm*color14:               S_base1
 XTerm*color7:                S_base2
 XTerm*color15:               S_base3
+
+*VT100*translations: #override Alt <Btn1Up>: exec-formatted("google-chrome '%t'", CLIPBOARD)
