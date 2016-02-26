@@ -86,7 +86,7 @@ set guioptions-=T
 set guioptions-=m
 set lines=50 columns=120
 set mousemodel=popup
-    if has("gui_gtk2")
+    if has("gui_gtk2") || has("gui_gtk3")
         set guifont=Consolas\ 13
         set shellcmdflag+=i
     elseif has("gui_win32")
