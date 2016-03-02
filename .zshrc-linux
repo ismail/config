@@ -1,7 +1,5 @@
 alias obs="osc build --ccache --cpio-bulk-download --download-api-only"
-alias open="xdg-open"
 alias please='sudo $(fc -ln -1)'
-alias tcli="transmission-cli"
 
 export JAVA_HOME=/havana/binaries/oracle-jdk
 export LIBVA_DRIVER_NAME=nvidia
