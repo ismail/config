@@ -6,14 +6,6 @@ alias icc="icc -Wl,-rpath,$INTEL_ROOT/bin/intel64 -Wl,-rpath,$INTEL_ROOT/compile
 alias icpc="icpc -Wl,-rpath,$INTEL_ROOT/bin/intel64 -Wl,-rpath,$INTEL_ROOT/compiler/lib/intel64_lin"
 alias pimp-nvidia="nvidia-settings -a '[gpu:0]/GPUPowerMizerMode=1'"
 
-enable-ccache () {
-    export PATH=/home/ismail/.ccache-dist:$PATH    
-}
-
-disable-ccache () {
-     export PATH=${PATH#"/home/ismail/.ccache-dist:"}
-}
-
 qtconsole () {
     source ~/.pystable &> /dev/null
     LD_PRELOAD=/havana/sources/qt5noblink/qt5noblink.so setsid jupyter qtconsole
