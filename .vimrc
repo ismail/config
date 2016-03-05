@@ -8,9 +8,9 @@ filetype off
 call plug#begin()
 
 Plug 'altercation/vim-colors-solarized'
-Plug 'fatih/vim-go'
 Plug 'jamessan/vim-gnupg'
 Plug 'rhysd/wandbox-vim'
+Plug 'rust-lang/rust.vim'
 Plug 'openssl.vim'
 
 if has("unix") && !has("win32unix")
@@ -112,3 +112,6 @@ imap <C-K> <ESC>:pyf /opt/clang/share/clang/clang-format.py<CR>i
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_global_ycm_extra_conf = '~/.ycm.py'
 let g:ycm_filetype_whitelist = { 'c': 1, 'cpp' : 1, 'cc' : 1, 'h' : 1 }
+
+" Rust
+let g:rustfmt_autosave = 1
