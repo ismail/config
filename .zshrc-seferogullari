@@ -1,4 +1,4 @@
-PATH=/opt/intel/bin:/havana/mingw-w64-6.0.0/bin:/opt/gcc6/bin:/usr/local/bin:$PATH
+PATH=/opt/intel/bin:/havana/mingw-w64-6.0.0/bin:/opt/gcc6/bin:/usr/local/bin:$HOME/.cargo/bin:$PATH
 ICC_VERSION=2016.2.181
 INTEL_ROOT="/opt/intel/compilers_and_libraries_$ICC_VERSION/linux"
 
