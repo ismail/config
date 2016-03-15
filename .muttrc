@@ -41,13 +41,6 @@ set strict_threads="yes"
 set timeout=10
 set user_agent=no
 
-# Sidebar
-set sidebar_delim='|'
-set sidebar_newmail_only=yes
-set sidebar_sort=yes
-set sidebar_visible=yes
-set sidebar_width=25
-
 # SSL
 set ssl_use_sslv2=no
 set ssl_use_sslv3=no
@@ -76,11 +69,9 @@ unignore  Date From To CC Subject
 # Bindings
 bind pager <up> previous-line
 bind pager <down> next-line
-bind index,pager \CK sidebar-next
-bind index,pager \CN sidebar-prev
-bind index,pager \CO sidebar-open
 bind editor <Tab> complete-query
-color sidebar_new yellow default
+bind index <Esc><Tab> next-unread-mailbox
+bind pager <Esc><Tab> next-unread-mailbox
 macro index <esc>m "T~N<enter>;WNT~O<enter>;WO\CT~T<enter>" "mark all messages read"
 macro index,pager ua <limit>all<enter> "show everything"
 macro index,pager ut <tag-thread><limit>~T<enter><tag-thread> "show only current thread"
