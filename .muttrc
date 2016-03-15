@@ -64,7 +64,7 @@ source `which cygpath &> /dev/null && echo ~/.mutt-gpg.rc || echo /dev/null`
 
 # Headers
 ignore *
-unignore  Date From To CC Subject
+unignore  Date From CC Subject
 
 # Bindings
 bind pager <up> previous-line
