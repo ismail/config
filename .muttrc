@@ -69,9 +69,9 @@ unignore  Date From CC Subject
 # Bindings
 bind pager <up> previous-line
 bind pager <down> next-line
-bind editor <Tab> complete-query
-bind index <Esc><Tab> next-unread-mailbox
-bind pager <Esc><Tab> next-unread-mailbox
+bind editor <tab> complete-query
+bind index <esc><tab> next-unread-mailbox
+bind pager <esc><tab> next-unread-mailbox
 macro index <esc>m "T~N<enter>;WNT~O<enter>;WO\CT~T<enter>" "mark all messages read"
 macro index,pager ua <limit>all<enter> "show everything"
 macro index,pager ut <tag-thread><limit>~T<enter><tag-thread> "show only current thread"
