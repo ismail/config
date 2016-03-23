@@ -17,6 +17,7 @@
 
 XTerm*borderWidth:          0
 XTerm*charClass:            33:48,35:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+XTerm*decTerminalID:        vt340
 XTerm*scaleHeight:          1.01
 XTerm*scrollBar:            false
 XTerm*selectToClipboard:    true
@@ -27,6 +28,7 @@ XTerm*foreground:            S_base0
 XTerm*fading:                40
 XTerm*fadeColor:             S_base03
 XTerm*cursorColor:           S_base1
+XTerm*numColorRegisters:     256
 XTerm*pointerColorBackground:S_base01
 XTerm*pointerColorForeground:S_base1
 
