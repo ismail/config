@@ -20,9 +20,11 @@ Xcursor.size:               16
 
 XTerm*borderWidth:          0
 XTerm*charClass:            33:48,35:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+XTerm*colorBDMode:          true
 XTerm*colorMode:            true
 XTerm*cursorBlink:          false
 XTerm*cursorUnderLine:      true
+XTerm*cutNewLine:           true
 XTerm*decTerminalID:        vt340
 XTerm*faceName:             "Consolas"
 XTerm*faceNameDoublesize:   "Consolas"
