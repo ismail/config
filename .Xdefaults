@@ -25,7 +25,6 @@ XTerm*faceName:             "Consolas"
 XTerm*faceNameDoublesize:   "Consolas"
 XTerm*faceSize:             13
 XTerm*locale:               true
-XTerm*scaleHeight:          1.01
 XTerm*scrollBar:            false
 XTerm*selectToClipboard:    true
 XTerm*termName:             xterm-256color
