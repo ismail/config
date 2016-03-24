@@ -1,4 +1,3 @@
-set confirm off
 set detach-on-fork off
 set disable-randomization off
 set follow-fork-mode child
