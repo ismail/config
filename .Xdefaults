@@ -24,7 +24,7 @@ XTerm*colorBDMode:          true
 XTerm*colorMode:            true
 XTerm*cursorBlink:          false
 XTerm*cursorUnderLine:      true
-XTerm*cutNewLine:           true
+XTerm*cutNewLine:           false
 XTerm*decTerminalID:        vt340
 XTerm*faceName:             "Consolas"
 XTerm*faceNameDoublesize:   "Consolas"
