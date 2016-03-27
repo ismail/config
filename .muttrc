@@ -1,8 +1,8 @@
 # Accounts
 set folder="imaps://idoenmez@imap.suse.de"
 set from="İsmail Dönmez <idoenmez@suse.de>"
-set postponed="imaps://idoenmez@imap.suse.de/INBOX.Drafts"
-set record="imaps://idoenmez@imap.suse.de/INBOX.Sent"
+set postponed="imaps://idoenmez@imap.suse.de/INBOX/Drafts"
+set record="imaps://idoenmez@imap.suse.de/INBOX/Sent"
 set smtp_url="smtp://idoenmez@imap.suse.de:587/"
 set imap_pass=`getpass imap_suse`
 set smtp_pass=$imap_pass
@@ -78,7 +78,7 @@ macro index,pager ut <tag-thread><limit>~T<enter><tag-thread> "show only current
 
 # Archive function
 set my_year=`date +%Y`
-macro index,pager a "<save-message>=INBOX.Archives.$my_year<enter>" "Archive Message"
+macro index,pager a "<save-message>=INBOX/Archives/$my_year<enter>" "Archive Message"
 
 # HTML mail
 auto_view text/html
