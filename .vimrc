@@ -90,7 +90,7 @@ set mousemodel=popup
         set guifont=Consolas\ 13
         set shellcmdflag+=i
     elseif has("gui_win32")
-        set guifont=Consolas:h11:cANSI
+        set guifont=Consolas:h11:cANSI:qCLEARTYPE
         set renderoptions=type:directx
         set shell=cmd
         set shellcmdflag=/c
