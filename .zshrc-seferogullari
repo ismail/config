@@ -12,6 +12,16 @@ fork () {
     echo "Forked to background, run tail -f $f"
 }
 
+sign-executable () {
+    f=$(mktemp /tmp/signedXXXXXXXXXX.exe) &&
+    osslsigncode sign -certs ~/csr/IsmailDonmez.pem \
+                      -key ~/csr/IsmailDonmez.key \
+                      -h sha512 -t http://time.certum.pl \
+                      -n "i10z Open Source Builds" -i http://i10z.com \
+                      -in $1 -out $f &&
+    mv $f $1
+}
+
 qtconsole () {
     source ~/.pystable &> /dev/null
     LD_PRELOAD=/havana/sources/qt5noblink/qt5noblink.so setsid jupyter qtconsole
