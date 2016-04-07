@@ -26,6 +26,9 @@
 [help]
     autocorrect = 5
 
+[http]
+    sslVerify = true
+
 [push]
     default = simple
 
