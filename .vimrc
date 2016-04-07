@@ -5,16 +5,6 @@ endif
 set nocompatible
 filetype off
 
-call plug#begin()
-
-Plug 'altercation/vim-colors-solarized'
-Plug 'jamessan/vim-gnupg'
-Plug 'rhysd/wandbox-vim'
-Plug 'rust-lang/rust.vim'
-Plug 'openssl.vim'
-
-call plug#end()
-
 set ai
 set background=dark
 set bs=2

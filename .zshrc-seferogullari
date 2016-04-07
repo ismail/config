@@ -13,13 +13,15 @@ fork () {
 }
 
 sign-executable () {
-    f=$(mktemp /tmp/signedXXXXXXXXXX.exe) &&
-    osslsigncode sign -certs ~/csr/IsmailDonmez.pem \
-                      -key ~/csr/IsmailDonmez.key \
-                      -h sha256 -t http://time.certum.pl \
-                      -n "i10z Open Source Builds" -i https://i10z.com \
-                      -in $1 -out $f &&
-    mv $f $1
+    for i in "$@"; do
+        f=$(mktemp /tmp/signedXXXXXXXXXX.exe) &&
+        osslsigncode sign -certs ~/csr/IsmailDonmez.pem \
+                          -key ~/csr/IsmailDonmez.key \
+                          -h sha256 -t http://time.certum.pl \
+                          -n "i10z Open Source Builds" -i https://i10z.com \
+                          -in $i -out $f &&
+        mv $f $i;
+    done
 }
 
 qtconsole () {
