@@ -13,10 +13,6 @@ Plug 'rhysd/wandbox-vim'
 Plug 'rust-lang/rust.vim'
 Plug 'openssl.vim'
 
-if has("unix") && !has("win32unix")
-    Plug 'Valloric/YouCompleteMe'
-endif
-
 call plug#end()
 
 set ai
