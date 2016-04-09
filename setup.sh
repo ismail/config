@@ -17,11 +17,6 @@ files=(
 # ls(1) colors
 dircolors $srcdir/.dir_colors > ~/.lscolors
 
-[ ! -d ~/.vim/autoload/plug.vim ] &&
-    rm -rf ~/.vim &&
-    curl -s -fLo ~/.vim/autoload/plug.vim --create-dirs \
-        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
 for f in $files; do
     ln -sf $srcdir/$f
 done
