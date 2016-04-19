@@ -69,7 +69,7 @@ export GOPATH=$HOME/.go/
 export LC_ALL=C.UTF-8
 export PROMPT_EOL_MARK=""
 export PS1="%{$fg[cyan]%}%m %{$fg[yellow]%}%~%{$reset_color%} > "
-export TERM=xterm-256color
+export TERM=tmux-256color
 export VISUAL="vim"
 
 alias addkeys="ssh-add -l | grep id_ed25519 &> /dev/null || ssh-add ~/.ssh/id_ed25519"
