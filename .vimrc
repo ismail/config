@@ -35,8 +35,6 @@ set viminfo='10,\"100,:20,%,n~/.viminfo
 set wildmenu
 set wrap
 
-colorscheme solarized
-
 map Q gq
 syntax on
 
@@ -62,6 +60,9 @@ vnoremap <C-c> "+y
 
 " GUI related stuff
 if has("gui_running")
+
+let base16colorspace=256
+colorscheme base16-atelierheath
 
 set guicursor+=a:blinkon0
 set guioptions-=T
