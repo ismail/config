@@ -34,8 +34,8 @@ set ts=4
 set viminfo='10,\"100,:20,%,n~/.viminfo
 set wildmenu
 set wrap
-"
-"map Q gq
+
+map Q gq
 syntax on
 
 if has("termtruecolor")
