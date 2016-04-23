@@ -34,9 +34,14 @@ set ts=4
 set viminfo='10,\"100,:20,%,n~/.viminfo
 set wildmenu
 set wrap
-
-map Q gq
+"
+"map Q gq
 syntax on
+
+if has("termtruecolor")
+    set term=xterm-256color
+    set guicolors
+endif
 
 :nmap <C-t> :tabnew<cr>
 :imap <C-t> <ESC>:tabnew<cr>
