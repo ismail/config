@@ -60,15 +60,15 @@ vnoremap <C-c> "+y
 
 " GUI related stuff
 if has("gui_running")
+    let base16colorspace=256
+    colorscheme base16-atelierheath
 
-let base16colorspace=256
-colorscheme base16-atelierheath
+    set guicursor+=a:blinkon0
+    set guioptions-=T
+    set guioptions-=m
+    set lines=50 columns=120
+    set mousemodel=popup
 
-set guicursor+=a:blinkon0
-set guioptions-=T
-set guioptions-=m
-set lines=50 columns=120
-set mousemodel=popup
     if has("gui_gtk2") || has("gui_gtk3")
         set guifont=Consolas\ 13
         set shellcmdflag+=i
