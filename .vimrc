@@ -70,11 +70,16 @@ if has("gui_running")
     if has("gui_gtk2") || has("gui_gtk3")
         set guifont=Consolas\ 13
         set shellcmdflag+=i
+        let g:clang_format_path = "/opt/clang/bin/clang-format"
+        map <C-K> :pyf /opt/clang/share/clang/clang-format.py<CR>
+        imap <C-K> <ESC>:pyf /opt/clang/share/clang/clang-format.py<CR>i
     elseif has("gui_win32")
         set guifont=Consolas:h11:cANSI:qCLEARTYPE
         set renderoptions=type:directx
-        set shell=cmd
-        set shellcmdflag=/c
+        set shell=powershell
+        set shellcmdflag=-command
+        map <C-K> :py3f C:/Program Files/LLVM/share/clang/clang-format.py<CR>
+        imap <C-K> <ESC>:py3f C:/Program Files/LLVM/share/clang/clang-format.py<CR>i
     elseif has("gui_macvim")
         set shellcmdflag+=i
         set guifont=Menlo\ Regular:h14
@@ -83,11 +88,6 @@ endif
 
 " sudo write
 cnoremap sudow w !sudo tee % >/dev/null
-
-" clang-format
-let g:clang_format_path = "/opt/clang/bin/clang-format"
-map <C-K> :pyf /opt/clang/share/clang/clang-format.py<CR>
-imap <C-K> <ESC>:pyf /opt/clang/share/clang/clang-format.py<CR>i
 
 " Rust
 let g:rustfmt_autosave = 1
