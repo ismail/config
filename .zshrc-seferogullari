@@ -59,3 +59,6 @@ vm-start () {
 vm-status () {
     [[ ! -z $1 ]] && VBoxManage showvminfo $1 | grep -E "^State"
 }
+
+# For st.suckless.org
+tput smkx
