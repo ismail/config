@@ -120,8 +120,8 @@ remote-size () {
 
 retry-if-fails () {
     [[ -o errexit ]] && errexit_set="1"; set +e
-    retry=1
-    timeout=6
+    retry=0
+    timeout=10
 
     while [ $retry -le $timeout ]; do
         eval $@
@@ -129,15 +129,16 @@ retry-if-fails () {
             break
         fi
 
+        let "retry += 1"
+        if [ $retry -ge $timeout ]; then
+            echo "Timeout reached while trying to run command."
+            break
+        fi
+
         sleeptime=$(( 2**$retry ))
         echo "Command failed, sleeping $sleeptime seconds before retrying."
         sleep $sleeptime
-        let "retry += 1"
     done
-
-    if [ $retry -ge $timeout ]; then
-        echo "Timeout reached while trying to run command."
-    fi
 
     [[ $errexit_set = "1" ]] && set -e
 }
