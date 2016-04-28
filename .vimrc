@@ -43,18 +43,8 @@ if has("termtruecolor")
     set guicolors
 endif
 
-:nmap <C-t> :tabnew<cr>
-:imap <C-t> <ESC>:tabnew<cr>
-
 filetype plugin on
 filetype indent on
-
-" Omnicomplete changes
-set wildmenu
-set wildmode=list:longest
-
-" Golang
-autocmd FileType go compiler go
 
 " GUI related stuff
 if has("gui_running")
@@ -84,9 +74,3 @@ if has("gui_running")
         set guifont=Menlo\ Regular:h14
     endif
 endif
-
-" sudo write
-cnoremap sudow w !sudo tee % >/dev/null
-
-" Rust
-let g:rustfmt_autosave = 1
