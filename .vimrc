@@ -65,8 +65,8 @@ if has("gui_running")
     elseif has("gui_win32")
         set guifont=Consolas:h11:cANSI:qCLEARTYPE
         set renderoptions=type:directx
-        set shell=powershell
-        set shellcmdflag=-command
+        set shell=cmd
+        set shellcmdflag=/c
         map <C-K> :py3f C:/Program Files/LLVM/share/clang/clang-format.py<CR>
         imap <C-K> <ESC>:py3f C:/Program Files/LLVM/share/clang/clang-format.py<CR>i
     elseif has("gui_macvim")
