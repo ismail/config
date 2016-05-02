@@ -38,9 +38,9 @@ set wrap
 map Q gq
 syntax on
 
-if has("termtruecolor")
+if has("termguicolors")
     set term=xterm-256color
-    set guicolors
+    set termguicolors
 endif
 
 filetype plugin on
