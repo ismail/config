@@ -55,6 +55,7 @@ if has("gui_running")
     set guioptions-=T
     set guioptions-=m
     set lines=50 columns=120
+    set mousemodel=popup
 
     if has("gui_gtk2") || has("gui_gtk3")
         set guifont=Consolas\ 13
