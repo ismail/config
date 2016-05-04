@@ -1,5 +1,5 @@
 PATH=/opt/intel/bin:/opt/gcc6/bin:/usr/local/bin:$HOME/.cargo/bin:$PATH
-ICC_VERSION=2016.2.181
+ICC_VERSION=2016.3.210
 ICC_BETA_VERSION=2017.0.042
 INTEL_ROOT="/opt/intel/compilers_and_libraries_$ICC_VERSION/linux"
 INTEL_BETA_ROOT="/opt/intel-beta/compilers_and_libraries_$ICC_BETA_VERSION/linux"
