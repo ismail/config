@@ -31,9 +31,7 @@ sign-executable () {
 }
 
 qtconsole () {
-    source ~/.pystable &> /dev/null
     LD_PRELOAD=/havana/sources/qt5noblink/qt5noblink.so setsid jupyter qtconsole
-    source ~/.pystable &> /dev/null
 }
 
 toggle-python () {
