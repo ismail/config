@@ -152,6 +152,7 @@ synconf () {
     [ -d ~/github/config ] && dirs+=("~/github/config")
     [ -d ~/github/hacks ] && dirs+=("~/github/hacks")
     [ -d ~/github/randomworks ] && dirs+=("~/github/randomworks")
+    [ -d ~/github/notebooks ] && dirs+=("~/github/notebooks")
 
     pull ${=dirs}
 }
