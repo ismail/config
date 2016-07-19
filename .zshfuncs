@@ -109,6 +109,10 @@ mkiso () {
     fi
 }
 
+nomark () {
+    pandoc -s -f markdown -t man $1 | groff -T utf8 -man -
+}
+
 remote-size () {
     length=$(curl -s -I -L $1 | grep Content-Length | cut -f2 -d":" | tr -d ' \r\n')
     if [ -z $length ]; then
