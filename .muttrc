@@ -27,6 +27,7 @@ set mark_old=no
 set metoo=no
 set narrow_tree=yes
 set net_inc=5
+set pager_index_lines=0
 set pager_stop=yes
 set query_command = "mutt_ldap.py '%s'"
 set quit=ask-yes
