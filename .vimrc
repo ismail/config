@@ -65,7 +65,7 @@ if has("gui_running")
         imap <C-K> <ESC>:pyf /opt/clang/share/clang/clang-format.py<CR>i
     elseif has("gui_win32")
         set guifont=Consolas:h11:cANSI:qCLEARTYPE
-        set renderoptions=type:directx
+        set renderoptions=type:directx,geom:1,renmode:5,taamode:1
         set shell=cmd
         set shellcmdflag=/c
         map <C-K> :py3f C:/Program Files/LLVM/share/clang/clang-format.py<CR>
