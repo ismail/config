@@ -103,7 +103,7 @@ longurl () {
 
 mkiso () {
     if [ ! -z $1 ]; then
-        mkisofs -udf -r -J -iso-level 4 -V $1 -o $1.iso $1
+        mkisofs -udf -r -J -iso-level 4 -V $1 -o ${1%/}.iso $1
     else
         echo "Please pass a directory name."
     fi
