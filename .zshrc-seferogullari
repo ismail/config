@@ -1,8 +1,11 @@
-PATH=/havana/texlive/bin:/havana/intel/bin:/havana/gcc6/bin:/usr/local/bin:$HOME/.cargo/bin:$PATH
+PATH=/opt/intel/bin:/usr/local/bin:$PATH
 
+alias fsi="fsharpi --nologo"
+alias fsc="fsharpc --nologo"
 alias gdb="gdb --quiet"
 alias isc="osc -Aibs"
 alias pimp-nvidia="nvidia-settings -a '[gpu:0]/GPUPowerMizerMode=1'"
+alias tremote="transmission-remote"
 
 fork () {
     f=$(mktemp /tmp/forkXXXXXXXXXX.log) &&
