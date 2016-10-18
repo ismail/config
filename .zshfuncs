@@ -139,8 +139,9 @@ retry-if-fails () {
             break
         fi
 
-        sleeptime=$(( 2**$retry ))
-        echo "Command failed, sleeping $sleeptime seconds before retrying."
+        random_secs=$(( (( RANDOM % 1000 ) + 1) / 1000.0 ))
+        sleeptime=$(( 2**$retry + $random_secs ))
+        printf "Command failed, sleeping %.2f seconds before retrying.\n" $sleeptime
         sleep $sleeptime
     done
 
