@@ -39,19 +39,3 @@ compinit -C
 # mingw shortcuts
 win32=i686-x86_64-w64-mingw32
 win64=x86_64-w64-mingw32
-
-# After this point its only ssh-agent related code
-# and nothing else
-#
-[ -e ~/.noagent ] && return
-
-if [ ! -f ~/.ssh/agent ]; then
-    ssh-agent | head -n -1 > ~/.ssh/agent
-else
-    . ~/.ssh/agent
-    if [ ! -e /proc/$SSH_AGENT_PID/status ]; then
-        ssh-agent | head -n -1 > ~/.ssh/agent
-    fi
-fi
-
-. ~/.ssh/agent
