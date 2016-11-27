@@ -32,6 +32,7 @@ set pager_stop=yes
 set query_command = "mutt_ldap.py '%s'"
 set quit=ask-yes
 set send_charset="utf-8"
+set signature="~/.signature"
 set sleep_time=0
 set smart_wrap=yes
 set sort_aux="last-date-received"
