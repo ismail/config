@@ -34,6 +34,7 @@ popd
 
 case $(uname -s) in
     Linux*)
+        ln -sf $srcdir/.gtkrc-2.0
         ln -sf $srcdir/.iftoprc
         ln -sf $srcdir/.mpv
         ln -sf $srcdir/.pam_environment
