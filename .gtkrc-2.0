@@ -1,0 +1,6 @@
+style "chrome-gtk-frame"
+{
+    ChromeGtkFrame::frame-color = "#2d3234"
+    ChromeGtkFrame::inactive-frame-color = "#33393B"
+}
+class "ChromeGtkFrame" style "chrome-gtk-frame"
