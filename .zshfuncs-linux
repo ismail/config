@@ -81,3 +81,18 @@ upup () {
             ;;
     esac
 }
+
+function workon {
+    if [[ -z $VENV_DIR ]]; then
+        echo "Please set the VENV_DIR variable."
+        return
+    elif [[ -z $1 ]]; then
+        echo "Usage: workon <virtualenvname>"
+        return
+    elif [[ ! -d $VENV_DIR/$1 ]]; then
+        echo "No virtual environment named $1"
+        return
+    fi
+
+    source $VENV_DIR/$1/bin/activate
+}
