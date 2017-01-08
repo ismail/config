@@ -148,6 +148,19 @@ retry-if-fails () {
     [[ $errexit_set = "1" ]] && set -e
 }
 
+sign-executable () {
+    for i in "$@"; do
+        f=$(mktemp /tmp/signedXXXXXXXXXX.exe) &&
+        osslsigncode sign -certs ~/csr/IsmailDonmez.pem \
+                          -key ~/csr/IsmailDonmez.key \
+                          -h sha256 -t http://time.certum.pl \
+                          -n "i10z Open Source Builds" -i https://i10z.com \
+                          -in $i -out $f &&
+        mv $f $i;
+        chmod +x $i
+    done
+}
+
 sslcheck () {
     nmap --unprivileged --system-dns --script ssl-enum-ciphers -p ${2:-443} $1
 }
