@@ -150,6 +150,7 @@ retry-if-fails () {
 
 sign-executable () {
     for i in "$@"; do
+        printf "Signing $i... "
         f=$(mktemp /tmp/signedXXXXXXXXXX.exe) &&
         osslsigncode sign -certs ~/csr/IsmailDonmez.pem \
                           -key ~/csr/IsmailDonmez.key \
