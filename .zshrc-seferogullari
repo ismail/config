@@ -1,3 +1,4 @@
+VENV_DIR=~/.py-virtualenvironments
 PATH=/opt/intel/bin:/usr/local/bin:~/.cargo/bin:$PATH
 
 alias fsi="fsharpi --nologo"
