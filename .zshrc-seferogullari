@@ -1,4 +1,4 @@
-PATH=/opt/intel/bin:/usr/local/bin:$PATH
+PATH=/opt/intel/bin:/usr/local/bin:~/.cargo/bin:$PATH
 
 alias fsi="fsharpi --nologo"
 alias fsc="fsharpc --nologo"
