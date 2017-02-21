@@ -10,7 +10,7 @@
     ui = true
 
 [core]
-    excludesfile = /home/ismail/.gitignore
+    excludesfile = ~/.gitignore
     quotepath = false
     autocrlf = false
 
@@ -28,6 +28,7 @@
 
 [http]
     sslVerify = true
+    cookiefile = ~/.gitcookies
 
 [push]
     default = simple
