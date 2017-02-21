@@ -67,7 +67,6 @@ zstyle ':completion:*' cache-path ~/.zsh_cache
 zstyle ':completion:*' menu select
 zstyle ':completion:*' verbose yes
 
-export GOPATH=$HOME/.go/
 export LC_ALL=C.UTF-8
 export PROMPT_EOL_MARK=""
 export PS1="%{%(#~$fg[red]~$fg[cyan])%}%m %{$fg[yellow]%}%~%{$reset_color%} %(#~#~>) "
