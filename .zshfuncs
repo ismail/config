@@ -8,13 +8,13 @@ certinfo () {
     openssl x509 -in $1 -text -noout
 }
 
-dockerup {
+dockerup () {
     for i in $(=docker images | grep -v REPOSITORY |awk '{print $1":"$2}'); do
         docker pull $i;
     done
 }
 
-download {
+download () {
     userAgent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Safari/537.36 Edge/13.10586"
     if [ ! -z $1 ]; then
         for url in $@; do
