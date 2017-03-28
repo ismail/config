@@ -45,7 +45,7 @@
 [user]
     name = İsmail Dönmez
     email = ismail@i10z.com
-    signingkey = ismail@i10z.com
+    signingkey = BE04133F8FEC6368
 
 [receive]
     fsckobjects = true
