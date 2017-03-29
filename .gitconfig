@@ -52,3 +52,5 @@
 
 [transfer]
     fsckobjects = true
+[commit]
+	gpgsign = true
