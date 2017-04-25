@@ -52,5 +52,9 @@
 
 [transfer]
     fsckobjects = true
+
 [commit]
 	gpgsign = true
+
+[status]
+	showUntrackedFiles = all
