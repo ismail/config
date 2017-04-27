@@ -5,6 +5,6 @@ export JAVA_HOME=/havana/binaries/oracle-jdk
 export LIBVA_DRIVER_NAME=nvidia
 export MALLOC_CHECK_=2
 export MALLOC_PERTURB_=63
-export PATH=$HOME/.cabal/bin:$HOME/go/bin:$HOME/.cargo/bin:/sbin:/usr/sbin:$PATH
+export PATH=$HOME/.cabal/bin:$HOME/go/bin:$HOME/.cargo/bin:/usr/local/bin:/sbin:/usr/sbin:$PATH
 export TZ=:/etc/localtime
 export WINEDEBUG=fixme-all
