@@ -1,25 +1,8 @@
 (package-initialize)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-
-;; Install packages if necessary
-(require 'cl)
-
-(defvar my-packages
-  '(clang-format solarized-theme wandbox)
-  "A list of packages to ensure are installed at launch.")
-
-(defun my-packages-installed-p ()
-  (loop for p in my-packages
-        when (not (package-installed-p p)) do (return nil)
-        finally (return t)))
-
-(unless (my-packages-installed-p)
-  ;; check for new packages (package versions)
-  (package-refresh-contents)
-  ;; install the missing packages
-  (dolist (p my-packages)
-    (when (not (package-installed-p p))
-      (package-install p))))
+(require 'package)
+(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+                         ("melpa" . "https://melpa.org/packages/")
+                         ("org" . "http://orgmode.org/elpa/")))
 
 ;; No blinking cursor
 (blink-cursor-mode 0)
@@ -47,19 +30,13 @@
 (setq auto-save-default nil)
 
 ;; Consolas!
-(set-default-font "Consolas 11")
+(set-default-font "Consolas 13")
 
 ;; Enable IDO
 (require 'ido)
 (ido-mode t)
 
-;; Setup solarized theme
-(when (display-graphic-p)
-    (load-theme 'solarized-dark t)
-    (setq solarized-distinct-fringe-background t)
-    (setq solarized-high-contrast-mode-line t)
-    (setq solarized-use-less-bold t))
-
-(require 'clang-format)
+;; Setup theme
+(require 'base16-atelier-heath-theme)
 
 (server-start)
