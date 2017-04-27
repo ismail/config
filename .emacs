@@ -37,6 +37,7 @@
 (ido-mode t)
 
 ;; Setup theme
-(require 'base16-atelier-heath-theme)
+(when (display-graphic-p)
+    (require 'base16-atelier-heath-theme))
 
 (server-start)
