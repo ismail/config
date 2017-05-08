@@ -40,11 +40,16 @@
 (set-language-environment "UTF-8")
 
 ;; Setup theme
-(when (display-graphic-p)
-        (require 'base16-atelier-heath-theme)
-        (menu-bar-mode 1))
+(require 'base16-atelier-heath-theme)
 
-(server-start)
+;; Frame size
+(add-to-list 'default-frame-alist '(height . 50))
+(add-to-list 'default-frame-alist '(width . 120))
+
+;; Start server if needed
+(load "server")
+(unless (server-running-p) (server-start))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
