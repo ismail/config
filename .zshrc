@@ -41,3 +41,6 @@ compinit -C
 # mingw shortcuts
 win32=i686-x86_64-w64-mingw32
 win64=x86_64-w64-mingw32
+
+# base16 colors for shell
+source ~/.base16-atelier-heath.sh

@@ -1,19 +1,53 @@
-#define S_base03        #002b36
-#define S_base02        #073642
-#define S_base01        #586e75
-#define S_base00        #657b83
-#define S_base0         #839496
-#define S_base1         #93a1a1
-#define S_base2         #eee8d5
-#define S_base3         #fdf6e3
-#define S_yellow        #b58900
-#define S_orange        #cb4b16
-#define S_red           #dc322f
-#define S_magenta       #d33682
-#define S_violet        #6c71c4
-#define S_blue          #268bd2
-#define S_cyan          #2aa198
-#define S_green         #859900
+! Base16 Atelier Heath
+! Scheme: Bram de Haan (http://atelierbramdehaan.nl)
+
+#define base00 #1b181b
+#define base01 #292329
+#define base02 #695d69
+#define base03 #776977
+#define base04 #9e8f9e
+#define base05 #ab9bab
+#define base06 #d8cad8
+#define base07 #f7f3f7
+#define base08 #ca402b
+#define base09 #a65926
+#define base0A #bb8a35
+#define base0B #918b3b
+#define base0C #159393
+#define base0D #516aec
+#define base0E #7b59c0
+#define base0F #cc33cc
+
+*.foreground:   base05
+*.background:   base00
+*.cursorColor:  base05
+
+*.color0:       base00
+*.color1:       base08
+*.color2:       base0B
+*.color3:       base0A
+*.color4:       base0D
+*.color5:       base0E
+*.color6:       base0C
+*.color7:       base05
+
+*.color8:       base03
+*.color9:       base08
+*.color10:      base0B
+*.color11:      base0A
+*.color12:      base0D
+*.color13:      base0E
+*.color14:      base0C
+*.color15:      base07
+
+! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
+! use 'shell' template to set these if necessary
+*.color16:      base09
+*.color17:      base0F
+*.color18:      base01
+*.color19:      base02
+*.color20:      base04
+*.color21:      base06
 
 Xcursor.theme:              DMZ
 Xcursor.size:               16
@@ -34,31 +68,5 @@ XTerm*locale:               true
 XTerm*scrollBar:            false
 XTerm*selectToClipboard:    true
 XTerm*termName:             xterm-256color
-
-XTerm*background:            S_base03
-XTerm*foreground:            S_base0
-XTerm*fading:                40
-XTerm*fadeColor:             S_base03
-XTerm*cursorColor:           S_base1
-XTerm*numColorRegisters:     256
-XTerm*pointerColorBackground:S_base01
-XTerm*pointerColorForeground:S_base1
-
-XTerm*color0:                S_base02
-XTerm*color8:                S_base03
-XTerm*color1:                S_red
-XTerm*color9:                S_orange
-XTerm*color2:                S_green
-XTerm*color10:               S_base01
-XTerm*color3:                S_yellow
-XTerm*color11:               S_base00
-XTerm*color4:                S_blue
-XTerm*color12:               S_base0
-XTerm*color5:                S_magenta
-XTerm*color13:               S_violet
-XTerm*color6:                S_cyan
-XTerm*color14:               S_base1
-XTerm*color7:                S_base2
-XTerm*color15:               S_base3
 
 *VT100*translations: #override Alt <Btn1Up>: exec-formatted("google-chrome '%t'", CLIPBOARD)
