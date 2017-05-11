@@ -30,7 +30,7 @@
 (setq auto-save-default nil)
 
 ;; Consolas!
-(set-default-font "Consolas 13")
+(set-default-font "Consolas-11:antialias=natural")
 
 ;; Enable IDO
 (require 'ido)
@@ -56,7 +56,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(delete-selection-mode nil)
- '(package-selected-packages (quote (org-plus-contrib magit base16-theme))))
+ '(package-selected-packages (quote (go-mode org-plus-contrib magit base16-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
