@@ -37,6 +37,10 @@ installpkg () {
     esac
 }
 
+refresh-gpg-agent-tty {
+    gpg-connect-agent <<< "UPDATESTARTUPTTY" > /dev/null
+}
+
 removepkg () {
     dist=$(distro)
     case $dist in
