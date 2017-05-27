@@ -22,6 +22,10 @@ ftrace () {
     strace -f -e trace=file $@
 }
 
+gpg-refresh-agent-tty () {
+    gpg-connect-agent <<< "UPDATESTARTUPTTY" > /dev/null
+}
+
 installpkg () {
     dist=$(distro)
     case $dist in
@@ -35,10 +39,6 @@ installpkg () {
             sudo yum install "$@"
             ;;
     esac
-}
-
-refresh-gpg-agent-tty () {
-    gpg-connect-agent <<< "UPDATESTARTUPTTY" > /dev/null
 }
 
 removepkg () {
