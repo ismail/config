@@ -9,7 +9,7 @@ certinfo () {
 }
 
 dockerup () {
-    for i in $(=docker images | grep -v REPOSITORY |awk '{print $1":"$2}'); do
+    for i in $(=docker images | awk 'NR>1 && !/d4w/ {print $1":"$2}'); do
         docker pull $i;
     done
 }
