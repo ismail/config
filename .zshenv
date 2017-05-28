@@ -1,1 +1,1 @@
-stty -ixon
+[[ $- == *i* ]] && stty -ixon -ixoff
