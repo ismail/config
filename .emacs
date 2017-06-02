@@ -36,7 +36,7 @@
 (setq auto-save-default nil)
 
 ;; Consolas!
-(set-default-font "Consolas-13:antialias=natural")
+(set-default-font "Consolas-14:antialias=natural")
 
 ;; Enable IDO
 (require 'ido)
@@ -49,8 +49,8 @@
 (require 'base16-atelier-heath-theme)
 
 ;; Frame size
-(add-to-list 'default-frame-alist '(height . 50))
-(add-to-list 'default-frame-alist '(width . 120))
+(add-to-list 'default-frame-alist '(height . 45))
+(add-to-list 'default-frame-alist '(width . 110))
 
 ;; Start server if needed
 (load "server")

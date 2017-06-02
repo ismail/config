@@ -62,7 +62,7 @@ XTerm*cutNewLine:           false
 XTerm*decTerminalID:        vt340
 XTerm*faceName:             "Consolas"
 XTerm*faceNameDoublesize:   "Consolas"
-XTerm*faceSize:             13
+XTerm*faceSize:             14
 XTerm*geometry:             119x50
 XTerm*locale:               true
 XTerm*scrollBar:            false
