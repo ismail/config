@@ -17,22 +17,19 @@ setopt SHARE_HISTORY
 bindkey -e             # emacs key bindings
 bindkey ' ' magic-space  # also do history expansion on space
 
-bindkey "^[[H" beginning-of-line
-bindkey "^[[F" end-of-line
-bindkey "^[OH" beginning-of-line
-bindkey "^[OF" end-of-line
-bindkey "^[[1~" beginning-of-line
-bindkey "^[[4~" end-of-line
-bindkey "^[[7~" beginning-of-line
-bindkey "^[[8~" end-of-line
-bindkey "^[[5~" up-line-or-history
-bindkey "^[[6~" down-line-or-history
-bindkey "^?" backward-delete-char
-bindkey "^[[3~" delete-char
-bindkey '^[[A' history-beginning-search-backward # Up
-bindkey '^[[B' history-beginning-search-forward # Down
-bindkey '^[OA' history-beginning-search-backward
-bindkey '^[OB' history-beginning-search-forward
+bindkey "${terminfo[khome]}" beginning-of-line
+bindkey "${terminfo[kend]}"  end-of-line
+bindkey "${terminfo[kbs]}"   backward-delete-char
+bindkey "${terminfo[kdch1]}" delete-char
+bindkey "${terminfo[kich1]}" overwrite-mode
+bindkey "${terminfo[kcud1]}" down-line-or-history
+bindkey "${terminfo[kcub1]}" backward-char
+bindkey "${terminfo[kcuf1]}" forward-char
+
+bindkey '\e[A' history-beginning-search-backward # Up
+bindkey '\e[B' history-beginning-search-forward # Down
+bindkey '\eOA' history-beginning-search-backward
+bindkey '\eOB' history-beginning-search-forward
 bindkey '^L' push-line # Push command into buffer
 bindkey "^R" history-incremental-pattern-search-backward
 bindkey "^S" history-incremental-pattern-search-forward
