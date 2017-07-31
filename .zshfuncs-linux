@@ -1,9 +1,9 @@
-activate {
+activate () {
     if [[ -z $VENV_DIR ]]; then
         echo "Please set the VENV_DIR variable."
         return
     elif [[ -z $1 ]]; then
-        echo "Usage: workon <virtualenvname>"
+        echo "Usage: activate <virtualenvname>"
         return
     elif [[ ! -d $VENV_DIR/$1 ]]; then
         echo "No virtual environment named $1"
