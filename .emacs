@@ -56,6 +56,11 @@
 (load "server")
 (unless (server-running-p) (server-start))
 
+;; Org-mode for Python
+(setq org-babel-python-command "python3")
+(org-babel-do-load-languages
+    'org-babel-load-languages '((python . t)))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
