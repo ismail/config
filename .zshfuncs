@@ -33,7 +33,7 @@ epoch-to-date () {
 ftpmirror () {
     [[ -z $1 || -z $2 ]] && echo "Need two arguments" && return
 
-    lftp -e 'mirror -c -v --delete-first --parallel=2 --use-pget-n=5 -O $2; quit' $1 
+    lftp -e "mirror -c -v --delete-first --parallel=2 --use-pget-n=5 -O $2; quit" $1 
 }
 
 gensshmoduli () {
