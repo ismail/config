@@ -5,5 +5,6 @@ export LIBVA_DRIVER_NAME=nvidia
 export MALLOC_CHECK_=2
 export MALLOC_PERTURB_=171
 export PATH=/usr/local/bin:/sbin:/usr/sbin:$PATH
+export PIP_REQUIRE_VIRTUALENV=true
 export TZ=:/etc/localtime
 export WINEDEBUG=fixme-all
