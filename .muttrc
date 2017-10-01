@@ -53,7 +53,7 @@ set ssl_use_tlsv1=yes
 # GnuPG
 set crypt_autosign=yes
 set crypt_replyencrypt=yes
-set crypt_use_gpgme=`which cygpath &> /dev/null && echo no || echo yes`
+set crypt_use_gpgme=yes
 set crypt_verify_sig=yes
 set pgp_auto_decode=yes
 set pgp_autosign = yes
