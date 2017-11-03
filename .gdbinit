@@ -6,6 +6,7 @@ set history save
 set history expansion
 set non-stop on
 set pagination off
+set print elements 0
 set print pretty on
 set print array off
 set print array-indexes on
