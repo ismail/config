@@ -45,6 +45,9 @@
 ;; UTF-8
 (set-language-environment "UTF-8")
 
+;; Yep
+(global-auto-revert-mode 1)
+
 ;; Setup theme
 (require 'base16-atelier-heath-theme)
 
@@ -60,6 +63,9 @@
 (setq org-babel-python-command "python3")
 (org-babel-do-load-languages
     'org-babel-load-languages '((python . t)))
+
+;; Switch between implementation and header
+(global-set-key (kbd "C-c o") 'ff-find-other-file)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
