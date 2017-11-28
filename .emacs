@@ -75,7 +75,7 @@
  '(delete-selection-mode nil)
  '(package-selected-packages
    (quote
-    (clang-format fsharp-mode wandbox groovy-mode go-mode magit base16-theme))))
+    (cmake-mode clang-format fsharp-mode wandbox groovy-mode go-mode magit base16-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
