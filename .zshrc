@@ -1,9 +1,6 @@
 # Set GPG ID before doing anything else
 export GPG_ID=0x381FA1D72D72DA97
 
-# Add local bin to path
-export PATH=$HOME/bin:$PATH
-
 source ~/.zshrc-common
 
 if [ ! -z $COMSPEC ]; then
@@ -20,13 +17,13 @@ custom_config="$HOME/.zshrc-$os"
 custom_funcs="$HOME/.zshfuncs-$os"
 [ -f $custom_funcs ] && source $custom_funcs
 
-local_config="$HOME/.zshrc-local"
-[ -f $local_config ] && source $local_config
-
 host_config="$HOME/.zshrc-$(hostname)"
 [ -f $host_config ] && source $host_config
 
-# Highlight options
+local_config="$HOME/.zshrc-local"
+[ -f $local_config ] && source $local_config
+
+# Highlight options, such as ctrl-r highlight
 zle_highlight=(
     isearch:fg=yellow,underline
     region:standout
