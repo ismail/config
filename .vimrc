@@ -58,11 +58,8 @@ if has("gui_running")
     set mousemodel=popup
 
     if has("gui_gtk2") || has("gui_gtk3")
-        set guifont=Consolas\ 13
+        set guifont=Consolas\ 14
         set shellcmdflag+=i
-        let g:clang_format_path = "/opt/clang/bin/clang-format"
-        map <C-K> :pyf /opt/clang/share/clang/clang-format.py<CR>
-        imap <C-K> <ESC>:pyf /opt/clang/share/clang/clang-format.py<CR>i
     elseif has("gui_win32")
         set guifont=Consolas:h11:cANSI:qCLEARTYPE
         set renderoptions=type:directx,geom:1,renmode:5,taamode:1
