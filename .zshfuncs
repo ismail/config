@@ -8,12 +8,6 @@ certinfo () {
     openssl x509 -in $1 -text -noout
 }
 
-dockerup () {
-    for i in $(=docker images | awk 'NR>1 && !/d4w/ {print $1":"$2}'); do
-        docker pull $i;
-    done
-}
-
 download () {
     userAgent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2486.0 Safari/537.36 Edge/13.10586"
     if [ ! -z $1 ]; then
@@ -154,20 +148,6 @@ retry-if-fails () {
     [[ $errexit_set = "1" ]] && set -e
 }
 
-sign-executable () {
-    for i in "$@"; do
-        printf "Signing $i... "
-        f=$(mktemp /tmp/signedXXXXXXXXXX.exe) &&
-        osslsigncode sign -certs ~/csr/IsmailDonmez.pem \
-                          -key ~/csr/IsmailDonmez.key \
-                          -h sha256 -t http://time.certum.pl \
-                          -n "i10z Open Source Builds" -i https://i10z.com \
-                          -in $i -out $f &&
-        mv $f $i;
-        chmod +x $i
-    done
-}
-
 sslcheck () {
     nmap --unprivileged --system-dns --script ssl-enum-ciphers -p ${2:-443} $1
 }
@@ -177,7 +157,6 @@ synconf () {
     [ -d ~/github/config ] && dirs+=("~/github/config")
     [ -d ~/github/hacks ] && dirs+=("~/github/hacks")
     [ -d ~/github/randomworks ] && dirs+=("~/github/randomworks")
-    [ -d ~/github/notebooks ] && dirs+=("~/github/notebooks")
 
     pull ${=dirs}
 }
