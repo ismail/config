@@ -40,6 +40,7 @@ case $(uname -s) in
         ln -sf $srcdir/.toprc
         ln -sf $srcdir/.zshrc-linux
         ln -sf $srcdir/.zshfuncs-linux
+        ln -sf $srcdir/.zshrc-$(hostname)
         ;;
     CYGWIN_NT*)
         ln -sf $srcdir/.minttyrc
