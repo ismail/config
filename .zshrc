@@ -42,5 +42,6 @@ win64=x86_64-w64-mingw32
 # base16 colors for shell
 source ~/.base16-atelier-heath.sh
 
+PATH=~/bin:$PATH
 # Remove any duplicates
 export -U PATH
