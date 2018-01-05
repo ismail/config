@@ -1,7 +1,6 @@
 alias obs="osc build --ccache --cpio-bulk-download --download-api-only"
 alias please='sudo $(fc -ln -1)'
 
-export LIBVA_DRIVER_NAME=nvidia
 export MALLOC_CHECK_=2
 export MALLOC_PERTURB_=171
 export PIP_REQUIRE_VIRTUALENV=true
