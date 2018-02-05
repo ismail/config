@@ -46,6 +46,9 @@ endif
 filetype plugin on
 filetype indent on
 
+" for vim-gnupg
+let g:GPGExecutable = "gpg2"
+
 " GUI related stuff
 if has("gui_running")
     let base16colorspace=256
