@@ -25,7 +25,7 @@ function i ()
     fi
 }
 
-export PATH=$PATH:/suse/bin:/usr/share/bcc/tools:/havana/bin
+export PATH=$PATH:/suse/bin:/usr/share/bcc/tools:/havana/bin:/usr/sbin
 export LC_ALL=C.UTF-8
 export VENV_DIR=/havana/py-virtualenvs
 
