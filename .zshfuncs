@@ -164,15 +164,15 @@ x () {
         if [ -f $i ] ; then
             case $i in
                 *.tar.lzma|*.tar.xz|*.tar.bz2|*.tar.gz|*.tar|*.tbz2|*.tgz|*.tbz)
-                     tar xvf $1     ;;
+                     tar xvf $i     ;;
                 *.lzma)
-                     lzma -d $1     ;;
-                *.bz2)       bunzip2 $1     ;;
-                *.rar|*.r[0-9]*)       rar x $1     ;;
-                *.gz)        gunzip $1      ;;
-                *.7z|*.a|*.cab|*.msi|*.iso|*.xz|*.zip)  7z x $1        ;;
-                *.deb)       ar x $1 && tar xvf data.tar.xz ;;
-                *.rpm)       unrpm $1 ;;
+                     lzma -d $i     ;;
+                *.bz2)       bunzip2 $i     ;;
+                *.rar|*.r[0-9]*)       rar x $i     ;;
+                *.gz)        gunzip $i      ;;
+                *.7z|*.a|*.cab|*.msi|*.iso|*.xz|*.zip)  7z x $i        ;;
+                *.deb)       ar x $i && tar xvf data.tar.xz ;;
+                *.rpm)       unrpm $i ;;
                 *)     echo "'$i' cannot be extracted via x()" ;;
             esac
         fi
