@@ -160,21 +160,23 @@ synconf () {
 }
 
 x () {
-    if [ -f $1 ] ; then
-      case $1 in
-        *.tar.lzma|*.tar.xz|*.tar.bz2|*.tar.gz|*.tar|*.tbz2|*.tgz|*.tbz)
+    for i in "$@"; do
+        if [ -f $i ] ; then
+            case $i in
+                *.tar.lzma|*.tar.xz|*.tar.bz2|*.tar.gz|*.tar|*.tbz2|*.tgz|*.tbz)
                      tar xvf $1     ;;
-        *.lzma)
+                *.lzma)
                      lzma -d $1     ;;
-        *.bz2)       bunzip2 $1     ;;
-        *.rar|*.r[0-9]*)       rar x $1     ;;
-        *.gz)        gunzip $1      ;;
-        *.7z|*.a|*.cab|*.msi|*.iso|*.xz|*.zip)  7z x $1        ;;
-        *.deb)       ar x $1 && tar xvf data.tar.xz ;;
-        *.rpm)       unrpm $1 ;;
-        *)     echo "'$1' cannot be extracted via x()" ;;
-         esac
-     fi
+                *.bz2)       bunzip2 $1     ;;
+                *.rar|*.r[0-9]*)       rar x $1     ;;
+                *.gz)        gunzip $1      ;;
+                *.7z|*.a|*.cab|*.msi|*.iso|*.xz|*.zip)  7z x $1        ;;
+                *.deb)       ar x $1 && tar xvf data.tar.xz ;;
+                *.rpm)       unrpm $1 ;;
+                *)     echo "'$i' cannot be extracted via x()" ;;
+            esac
+        fi
+    done
 }
 
 ydl () {
