@@ -10,3 +10,6 @@ export MALLOC_PERTURB_=171
 export PIP_REQUIRE_VIRTUALENV=true
 export TZ=:/etc/localtime
 export WINEDEBUG=fixme-all
+
+# https://stackoverflow.com/a/5578718/35060
+export ALTERNATE_EDITOR=""
