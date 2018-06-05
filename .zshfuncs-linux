@@ -19,6 +19,24 @@ browser () {
     xdg-open $f &> /dev/null
 }
 
+cmake-build ()
+{
+    cmake -G Ninja \
+          -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+          -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+          -DCMAKE_CXX_COMPILER=clang++ \
+          -DCMAKE_C_COMPILER=clang \
+          "$@" \
+          ..
+}
+
+destroy ()
+{
+    if [[ ! -z $1 ]]; then
+        rm -rf $1; mkdir $1; cd $1
+    fi
+}
+
 distro () {
     if [ -e /etc/SUSE-brand ]; then
         echo "SUSE"
@@ -39,6 +57,15 @@ ftrace () {
 
 gpg-refresh-agent-tty () {
     gpg-connect-agent <<< "UPDATESTARTUPTTY" > /dev/null
+}
+
+i ()
+{
+    if [[ ! -z $1 && -d $1 ]]; then
+        PATH=$1:$PATH
+        export -U PATH
+        exec zsh -l
+    fi
 }
 
 installpkg () {
