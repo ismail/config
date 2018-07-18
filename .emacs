@@ -48,6 +48,8 @@
 ;; Yep
 (global-auto-revert-mode 1)
 
+(global-display-line-numbers-mode)
+
 ;; Setup theme
 (require 'base16-atelier-heath-theme)
 
