@@ -15,7 +15,7 @@ files=(
 )
 
 # ls(1) colors
-dircolors $srcdir/.dir_colors > ~/.lscolors
+TERM=xterm-256color dircolors $srcdir/.dir_colors > ~/.lscolors
 
 for f in $files; do
     ln -sf $srcdir/$f
