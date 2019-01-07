@@ -7,18 +7,16 @@
 ;; No blinking cursor
 (blink-cursor-mode 0)
 
-;; No toolbar or menubar
+;; No toolbar/menubar or scrollbar
 (menu-bar-mode -1)
 (tool-bar-mode -1)
+(toggle-scroll-bar -1)
 
 ;; Show column numbers
 (setq column-number-mode t)
 
 ;; Don't show start screen
 (setq inhibit-startup-message t)
-
-;; No scrollbars
-(scroll-bar-mode -1)
 
 ;; Follow symlinks
 (setq vc-follow-symlinks t)
@@ -35,8 +33,11 @@
 ;; Disable auto save
 (setq auto-save-default nil)
 
+;; Cursor
+(setq-default cursor-type 'hbar)
+
 ;; Consolas!
-(set-default-font "Consolas-14:antialias=natural")
+(setq default-frame-alist '((font . "Consolas-13:antialias=natural")))
 
 ;; Enable IDO
 (require 'ido)
@@ -54,8 +55,33 @@
 (require 'base16-atelier-heath-theme)
 
 ;; Frame size
-(add-to-list 'default-frame-alist '(height . 45))
+(add-to-list 'default-frame-alist '(height . 40))
 (add-to-list 'default-frame-alist '(width . 110))
+
+;; Langtool
+(defun langtool-autoshow-detail-popup (overlays)
+  (when (require 'popup nil t)
+    ;; Do not interrupt current popup
+    (unless (or popup-instances
+                ;; suppress popup after type `C-g` .
+                (memq last-command '(keyboard-quit)))
+      (let ((msg (langtool-details-error-message overlays)))
+        (popup-tip msg)))))
+(setq langtool-autoshow-message-function
+      'langtool-autoshow-detail-popup)
+
+(setq langtool-language-tool-jar "/havana/binaries/LanguageTool/languagetool-commandline.jar")
+(setq langtool-language-tool-server-jar "/havana/binaries/LanguageTool/languagetool-server.jar")
+(setq langtool-java-user-arguments '("-Dfile.encoding=UTF-8"))
+(setq langtool-user-arguments '("--languagemodel=/havana/binaries/LanguageTool/data/ngram --word2vecmodel=/havana/binaries/LanguageTool/data/word2vec"))
+
+(global-set-key "\C-x4w" 'langtool-check)
+(global-set-key "\C-x4W" 'langtool-check-done)
+(global-set-key "\C-x4l" 'langtool-switch-default-language)
+(global-set-key "\C-x44" 'langtool-show-message-at-point)
+(global-set-key "\C-x4c" 'langtool-correct-buffer)
+
+(require 'langtool)
 
 ;; Start server if needed
 (load "server")
@@ -77,7 +103,7 @@
  '(delete-selection-mode nil)
  '(package-selected-packages
    (quote
-    (cmake-mode clang-format fsharp-mode wandbox groovy-mode go-mode magit base16-theme))))
+    (csharp-mode langtool rust-mode cmake-mode clang-format fsharp-mode wandbox groovy-mode go-mode magit base16-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
