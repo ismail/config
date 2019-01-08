@@ -21,6 +21,12 @@
 ;; Follow symlinks
 (setq vc-follow-symlinks t)
 
+;; GnuPG
+(require 'epa-file)
+(epa-file-enable)
+(setq epa-file-name-regexp "\\.\\(gpg\\|asc\\)$")
+(epa-file-name-regexp-update)
+
 ;; Window title
 (setq frame-title-format '("" "%b - %m"))
 
