@@ -1,4 +1,3 @@
-(package-initialize)
 (require 'package)
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                          ("melpa" . "https://melpa.org/packages/")
@@ -10,7 +9,6 @@
 ;; No toolbar/menubar or scrollbar
 (menu-bar-mode -1)
 (tool-bar-mode -1)
-(toggle-scroll-bar -1)
 
 ;; Show column numbers
 (setq column-number-mode t)
@@ -43,7 +41,9 @@
 (setq-default cursor-type 'hbar)
 
 ;; Consolas!
-(setq default-frame-alist '((font . "Consolas-13:antialias=natural")))
+(setq default-frame-alist
+      '((font . "Consolas-13:antialias=natural")
+        (vertical-scroll-bars . nil)))
 
 ;; Enable IDO
 (require 'ido)
@@ -58,7 +58,7 @@
 (global-display-line-numbers-mode)
 
 ;; Setup theme
-(require 'base16-atelier-heath-theme)
+(load-theme 'base16-atelier-heath t)
 
 ;; Frame size
 (add-to-list 'default-frame-alist '(height . 40))
@@ -109,7 +109,7 @@
  '(delete-selection-mode nil)
  '(package-selected-packages
    (quote
-    (csharp-mode langtool rust-mode cmake-mode clang-format fsharp-mode wandbox groovy-mode go-mode magit base16-theme))))
+    (powershell csharp-mode langtool rust-mode cmake-mode clang-format fsharp-mode wandbox groovy-mode go-mode magit base16-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
