@@ -159,26 +159,6 @@ synconf () {
     pull ${=dirs}
 }
 
-x () {
-    for i in "$@"; do
-        if [ -f $i ] ; then
-            case $i in
-                *.tar.lzma|*.tar.xz|*.tar.bz2|*.tar.gz|*.tar|*.tbz2|*.tgz|*.tbz)
-                     tar xvf $i     ;;
-                *.lzma)
-                     lzma -d $i     ;;
-                *.bz2)       bunzip2 $i     ;;
-                *.rar|*.r[0-9]*)       rar x $i     ;;
-                *.gz)        gunzip $i      ;;
-                *.7z|*.a|*.cab|*.msi|*.iso|*.xz|*.zip)  7z x $i        ;;
-                *.deb)       ar x $i && tar xvf data.tar.xz ;;
-                *.rpm)       unrpm $i ;;
-                *)     echo "'$i' cannot be extracted via x()" ;;
-            esac
-        fi
-    done
-}
-
 ydl () {
     for url in "$@"; do
         youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4' "$url" -o %(title)s.%(ext)s
