@@ -1,5 +1,6 @@
 alias obs="osc build --ccache --cpio-bulk-download --download-api-only"
 alias iosc="osc -Aibs"
+alias ip="ip -color=auto"
 alias open="xdg-open"
 alias p3="python3"
 alias please='sudo $(fc -ln -1)'
