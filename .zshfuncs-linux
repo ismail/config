@@ -87,7 +87,7 @@ removepkg () {
     dist=$(distro)
     case $dist in
         SUSE)
-            sudo zypper rm "$@"
+            sudo zypper rm -u "$@"
             ;;
         DEBIAN)
             sudo apt-get --purge remove "$@"
