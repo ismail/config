@@ -42,7 +42,7 @@
 
 ;; Consolas!
 (setq default-frame-alist
-      '((font . "Consolas-13:antialias=natural")
+      '((font . "Consolas-14:antialias=natural")
         (vertical-scroll-bars . nil)))
 
 ;; Enable IDO
