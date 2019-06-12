@@ -73,7 +73,7 @@ export PS1="%{%(#~$fg[red]~$fg[cyan])%}%m %{$fg[yellow]%}%~%{$reset_color%} %(#~
 export TERM=tmux-256color
 export VISUAL="vim"
 
-alias dirsync="=rsync --archive --partial --progress --sparse --update --delete"
+alias dirsync="=rsync --archive --progress --delete"
 alias ls="ls -F -v --color --show-control-chars"
 alias perms="stat -c '%A %a %n'"
 alias preview="mpv -autofit-larger 480x720 -vo opengl -border=no --no-resume-playback"
