@@ -27,10 +27,8 @@ ln -sf $srcdir/.ssh/config
 popd
 
 pushd .gnupg
-ln -sf $srcdir/.gnupg/dirmngr.conf
 ln -sf $srcdir/.gnupg/gpg.conf
 ln -sf $srcdir/.gnupg/gpg-agent.conf
-ln -sf $srcdir/.gnupg/sks-keyservers.netCA.pem
 popd
 
 case $(uname -s) in
