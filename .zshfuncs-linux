@@ -38,13 +38,21 @@ destroy ()
 }
 
 distro () {
-    if [ -e /etc/SUSE-brand ]; then
-        echo "SUSE"
-    elif [ -e /etc/debian_version ]; then
-        echo "DEBIAN"
-    elif [ -e /etc/redhat-release ]; then
-        echo "REDHAT"
-    fi
+    ID_LIKE=$(grep ID_LIKE /etc/os-release)
+    case $ID_LIKE in
+        *suse*)
+            echo "SUSE"
+            ;;
+        *debian*)
+            echo "DEBIAN"
+            ;;
+        *fedora*)
+            echo "REDHAT"
+            ;;
+        *)
+            echo "No idea about: $ID_LIKE"
+            ;;
+    esac
 }
 
 find-broken-symlinks () {
