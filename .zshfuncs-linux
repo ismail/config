@@ -38,7 +38,8 @@ destroy ()
 }
 
 distro () {
-    ID_LIKE=$(grep ID_LIKE /etc/os-release)
+    . /etc/os-release
+    test -z $ID_LIKE && export ID_LIKE=$ID
     case $ID_LIKE in
         *suse*)
             echo "SUSE"
