@@ -96,7 +96,10 @@ last-modified () {
 }
 
 list-streams () {
-    ffmpeg -i $i 2>&1 | grep -P "Stream #\d:\d"
+    for f in "$@"; do
+        printf "%s:\n" ${f##*/}
+        ffmpeg -i $f 2>&1 | grep -P "Stream #\d:\d";
+    done
 }
 
 longurl () {
