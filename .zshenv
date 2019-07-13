@@ -1,2 +1,2 @@
 # Don't process Ctrl-s and Ctrl-q
-[[ $- == *i* ]] && stty -ixon -ixoff
+[[ $- == *i* ]] && /usr/bin/stty -ixon -ixoff
