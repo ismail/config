@@ -23,7 +23,10 @@ epoch-to-date () {
 }
 
 fix-audio-for-cast() {
-    ffmpeg -i "$1" -c:v copy -c:a libopus -b:a 320K -ac 2 "${1:r}-cast.mkv"
+    for i in "$@"; do
+        ffmpeg -i "$i" -c:v copy -c:a libopus -b:a 320K -ac 2 "${i:r}-cast.mkv"
+        mv "$i" "$i".backup;
+    done
 }
 
 ftpmirror () {
