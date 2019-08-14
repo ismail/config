@@ -24,8 +24,8 @@ epoch-to-date () {
 
 fix-audio-for-cast() {
     for i in "$@"; do
-        ffmpeg -i "$i" -map V -map a -map s -c:v copy -c:s copy -c:a libopus -b:a 320K -ac 2 "${i:r}-cast.mkv"
-        mv "$i" "$i".backup;
+        ffmpeg -i "$i" -map V -map a -map s -c:v copy -c:s copy -c:a libopus -b:a 320K -ac 2 "${i:r}-cast.mkv" &&
+        rm "$i"
     done
 }
 
