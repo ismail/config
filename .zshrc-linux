@@ -1,3 +1,4 @@
+alias ffmpeg="ffmpeg -hide_banner"
 alias obs="osc build --ccache --cpio-bulk-download --download-api-only"
 alias iosc="osc -Aibs"
 alias ip="ip -color=auto"
