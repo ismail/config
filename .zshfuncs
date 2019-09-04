@@ -175,7 +175,7 @@ synconf () {
 
 ydl () {
     for url in "$@"; do
-        youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4' "$url" -o %(title)s.%(ext)s
+        youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4' "$url" --write-subs -o %(title)s.%(ext)s
     done
 }
 
