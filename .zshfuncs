@@ -64,7 +64,7 @@ last-modified () {
         return 0
     fi
 
-    d=$(curl -L -s -I $1 | awk -F: '/Last-Modified/ {print $2}')
+    d=$(curl -L -s -I $1 | awk -F": " 'tolower($0) ~ /last-modified/ {print $2}')
     local -a result
 
     if [ -z $d ]; then
