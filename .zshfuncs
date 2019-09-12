@@ -165,12 +165,7 @@ sslcheck () {
 }
 
 synconf () {
-    local -a dirs
-    [ -d ~/github/config ] && dirs+=("~/github/config")
-    [ -d ~/github/hacks ] && dirs+=("~/github/hacks")
-    [ -d ~/github/randomworks ] && dirs+=("~/github/randomworks")
-
-    pull ${=dirs}
+    pull ~/github/*
 }
 
 ydl () {
