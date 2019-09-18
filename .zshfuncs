@@ -157,7 +157,7 @@ retry-if-fails () {
         sleep $sleeptime
     done
 
-    [[ $errexit_set = "1" ]] && set -e
+    [[ x$errexit_set = "x1" ]] && set -e
 }
 
 sslcheck () {
