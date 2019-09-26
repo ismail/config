@@ -46,6 +46,11 @@ case $(uname -s) in
             echo "export LC_ALL=en_US.UTF-8" >> ~/.zshrc-local
         fi
 
+        mkdir -p ~/.config/emacs
+        pushd ~/.config/emacs
+        cp $srcdir/.emacs init
+        popd
+
         ;;
     CYGWIN_NT*)
         ln -sf $srcdir/.minttyrc
