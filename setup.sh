@@ -39,7 +39,7 @@ case $(uname -s) in
         ln -sf $srcdir/.toprc
         ln -sf $srcdir/.zshrc-linux
         ln -sf $srcdir/.zshfuncs-linux
-        ln -sf $srcdir/.zshrc-$(hostname)
+        [[ ! -f .zshrc-$(hostname) ]] && ln -sf $srcdir/.zshrc-$(hostname)
 
         if [[ ! -d /usr/lib/locale/C.utf8 && ! -d /usr/lib/locale/C.UTF-8 ]]; then
             echo "C.UTF-8 locale doesn't exist, will revert to en_US.UTF-8"
