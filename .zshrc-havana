@@ -1,2 +1,2 @@
-export PATH=$PATH:/suse/bin:/usr/share/bcc/tools:/havana/bin:/usr/sbin
+export PATH=/havana/bin:/usr/share/bcc/tools:/usr/sbin:$PATH:/suse/bin
 export VENV_DIR=/havana/py-virtualenvs
