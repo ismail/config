@@ -1,6 +1,6 @@
-alang=en
+alang=de,ger,eng,en
 hwdec=auto
 osd-font="Noto Sans"
-slang=en
+slang=de,ger,eng,en
 term-status-msg=""
 user-agent="Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; rv:11.0) like Gecko"
