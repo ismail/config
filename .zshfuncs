@@ -147,7 +147,7 @@ retry-if-fails () {
 
         let "retry += 1"
         if [ $retry -ge $timeout ]; then
-            echo "Timeout reached while trying to run command."
+            echo "Timeout reached while trying to run '$@'"
             break
         fi
 
