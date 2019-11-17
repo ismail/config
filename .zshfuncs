@@ -160,6 +160,10 @@ retry-if-fails () {
     [[ x$errexit_set = "x1" ]] && set -e
 }
 
+ssh-bridge () {
+    ssh -N -R $2:localhost:22 $1
+}
+
 sslcheck () {
     nmap --unprivileged --system-dns --script ssl-enum-ciphers -p ${2:-443} $1
 }
