@@ -161,7 +161,7 @@ retry-if-fails () {
 }
 
 ssh-bridge () {
-    ssh -N -R $2:localhost:22 $1
+    ssh -N -R "$2":localhost:22 $1
 }
 
 sslcheck () {
