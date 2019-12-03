@@ -1,7 +1,0 @@
-source ~/.zshrc-common
-
-export PATH=/usr/local/git/bin:/opt/subversion/bin:/Developer/usr/bin:$PATH
-export CLICOLOR=1
-export LSCOLORS=ExFxCxDxBxegedabagacad
-export LC_ALL=en_US.UTF-8
-alias top="top -stats command,pid,user,time,cpu,rsize"
