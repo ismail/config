@@ -35,7 +35,6 @@ ln -sf $srcdir/.iftoprc
 ln -sf $srcdir/.mpv
 ln -sf $srcdir/.pam_environment
 ln -sf $srcdir/.toprc
-ln -sf $srcdir/.zshrc-linux
         
 mkdir -p ~/.config/emacs
 pushd ~/.config/emacs
