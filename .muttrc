@@ -1,6 +1,6 @@
 # Accounts
 set folder="imaps://idoenmez@imap.suse.de"
-set from="İsmail Dönmez <idoenmez@suse.de>"
+set from="İsmail Dönmez <idoenmez@suse.com>"
 set postponed="imaps://idoenmez@imap.suse.de/INBOX/Drafts"
 set record="imaps://idoenmez@imap.suse.de/INBOX/Sent"
 set smtp_url="smtp://idoenmez@imap.suse.de:587/"
