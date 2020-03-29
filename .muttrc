@@ -10,7 +10,7 @@ set spoolfile = +INBOX
 
 # General options
 set confirmappend=no
-set date_format="!%d %b %R"
+set date_format="!%d %b %R %Y"
 set delete=yes
 set editor="vim -i $HOME/.viminfo.mutt +/^$ ++1 -c 'set tw=80 noai nohlsearch expandtab nosmartindent ft=mail'"
 set forward_format="Fwd: [%a: %s]"
@@ -20,7 +20,7 @@ set imap_check_subscribed
 set imap_passive=no
 set include=yes
 set indent_string="> "
-set index_format="%Z %-60.60s %-20.20F [%-12.12d]"
+set index_format="%Z %-60.60s %-20.20F [%-17.17d]"
 set mail_check=30
 set markers=no
 set mark_old=no
