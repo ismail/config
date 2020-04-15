@@ -76,10 +76,10 @@
 (setq langtool-autoshow-message-function
       'langtool-autoshow-detail-popup)
 
-(setq langtool-language-tool-jar "/havana/binaries/LanguageTool/languagetool-commandline.jar")
-(setq langtool-language-tool-server-jar "/havana/binaries/LanguageTool/languagetool-server.jar")
+(setq langtool-language-tool-jar "/usr/share/languagetool/languagetool-commandline.jar")
+(setq langtool-language-tool-server-jar "/usr/share/languagetool/languagetool-server.jar")
 (setq langtool-java-user-arguments '("-Dfile.encoding=UTF-8"))
-(setq langtool-user-arguments '("--languagemodel=/havana/binaries/LanguageTool/data/ngram --word2vecmodel=/havana/binaries/LanguageTool/data/word2vec"))
+(setq langtool-user-arguments '("--languagemodel=/data/binaries/languagetool/ngrams --word2vecmodel=/data/binaries/languagetool/word2vec"))
 
 (global-set-key "\C-x4w" 'langtool-check)
 (global-set-key "\C-x4W" 'langtool-check-done)
@@ -108,7 +108,8 @@
  ;; If there is more than one, they won't work right.
  '(delete-selection-mode nil)
  '(package-selected-packages
-   '(password-store powershell csharp-mode langtool rust-mode cmake-mode clang-format fsharp-mode wandbox groovy-mode go-mode magit base16-theme)))
+   (quote
+    (powershell csharp-mode langtool rust-mode cmake-mode clang-format fsharp-mode wandbox groovy-mode go-mode magit base16-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

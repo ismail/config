@@ -38,5 +38,5 @@ ln -sf $srcdir/.toprc
         
 mkdir -p ~/.config/emacs
 pushd ~/.config/emacs
-cp $srcdir/.emacs init
+ln -sf $srcdir/.emacs init
 popd
