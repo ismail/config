@@ -8,14 +8,11 @@ mkdir -p .ssh
 mkdir -p .gnupg
 
 files=(
-    .base16-atelier-heath.sh .clang-format .gdbinit .gitconfig
-    .gitignore .hgrc .irbrc .lftprc .mailcap .mutt_certificates
+    .base16-atelier-heath.sh .clang-format .dir_colors .gdbinit
+    .gitconfig .gitignore .hgrc .irbrc .lftprc .mailcap .mutt_certificates
     .muttrc .screenrc .tmux.conf .urlview .vimrc .wgetrc .Xdefaults
     .zshrc
 )
-
-# ls(1) colors
-TERM=xterm-256color dircolors $srcdir/.dir_colors > ~/.lscolors
 
 for f in $files; do
     ln -sf $srcdir/$f
