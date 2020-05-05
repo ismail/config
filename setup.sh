@@ -37,3 +37,7 @@ mkdir -p ~/.config/emacs
 pushd ~/.config/emacs
 ln -sf $srcdir/.emacs init
 popd
+
+# Blacklist Segoe Emoji fonts
+mkdir -p ~/.config/fontconfig/conf.d
+ln -sf $srcdir/00-aliases.conf ~/.config/fontconfig/conf.d
