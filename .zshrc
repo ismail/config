@@ -4,6 +4,9 @@ export GPG_ID=0x381FA1D72D72DA97
 autoload -U colors
 colors
 
+# Setup ls colors
+[[ -f ~/.lscolors ]] && . ~/.lscolors
+
 # base16 colors for shell
 source ~/.base16-atelier-heath.sh
 
