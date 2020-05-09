@@ -9,14 +9,18 @@ set smtp_pass=$imap_pass
 set spoolfile = +INBOX
 
 # General options
+set background_edit=yes
 set confirmappend=no
 set date_format="!%d %b %R %Y"
 set delete=yes
-set editor="vim -i $HOME/.viminfo.mutt +/^$ ++1 -c 'set tw=80 noai nohlsearch expandtab nosmartindent ft=mail'"
+#set editor="gvim -i $HOME/.viminfo.mutt +/^$ ++1 -c 'set tw=80 noai nohlsearch expandtab nosmartindent ft=mail'
+#set editor="$HOME/bin/mutt-tmux.sh vim"
+set editor="emacsclient -c"
 set forward_format="Fwd: [%a: %s]"
 set header_cache=~/.hcache
 set help=no
 set imap_check_subscribed
+set imap_deflate=yes
 set imap_passive=no
 set include=yes
 set indent_string="> "
