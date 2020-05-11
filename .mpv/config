@@ -5,4 +5,4 @@ slang=de,ger,eng,en
 sub-color=1/0.8/0.2/0.9
 sub-font-size=35
 term-status-msg=""
-user-agent="Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; rv:11.0) like Gecko"
+user-agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4136.5 Safari/537.36"
