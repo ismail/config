@@ -13,9 +13,7 @@ set background_edit=yes
 set confirmappend=no
 set date_format="!%d %b %R %Y"
 set delete=yes
-#set editor="gvim -i $HOME/.viminfo.mutt +/^$ ++1 -c 'set tw=80 noai nohlsearch expandtab nosmartindent ft=mail'
-#set editor="$HOME/bin/mutt-tmux.sh vim"
-set editor="emacsclient -c"
+set editor="gvim -f -i $HOME/.viminfo.mutt +/^$ ++1 -c 'set tw=80 noai nohlsearch expandtab nosmartindent ft=mail'
 set forward_format="Fwd: [%a: %s]"
 set header_cache=~/.hcache
 set help=no
