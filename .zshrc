@@ -101,7 +101,7 @@ zle_highlight=(
 export LC_ALL=C.UTF-8
 export MALLOC_CHECK_=2
 export PS1="%{%(#~$fg[red]~$fg[cyan])%}%m %{$fg[yellow]%}%~%{$reset_color%} %(#~#~>) "
-export TERM=xterm-256color
+export TERM=tmux-256color
 export VISUAL="vim"
 export WINEDEBUG=fixme-all
 
