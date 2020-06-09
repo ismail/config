@@ -41,6 +41,7 @@ set sort_aux="last-date-received"
 set sort_browser="reverse-date"
 set sort="threads"
 set status_format="mutt --*-- <%f> [%n/%m]"
+set strict_threads="yes"
 set timeout=10
 set user_agent=no
 
