@@ -19,7 +19,4 @@ import sys
 
 sys.path.insert(0, '%s/.gdb/printers' % os.path.expanduser('~'))
 
-from qt4 import register_qt4_printers
-register_qt4_printers (None)
 end
-
