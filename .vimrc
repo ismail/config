@@ -5,12 +5,13 @@ set ai
 set background=dark
 set bs=2
 set encoding=utf-8
+set esckeys
 set et
 set expandtab
 set fileencoding=utf-8
-set fileformats=unix,dos
 set fileformat=unix
-set history=50                  " keep 50 lines of command history
+set fileformats=unix,dos
+set history=50
 set hlsearch
 set incsearch
 set laststatus=2
@@ -18,12 +19,15 @@ set linebreak
 set modelines=0
 set nobackup
 set nocompatible
+set nomodeline
 set noswapfile
 set nowrap
 set nowritebackup
 set number
 set ruler
 set showcmd
+set showmatch
+set showmode
 set showtabline=1
 set sta
 set sts=4
@@ -75,3 +79,13 @@ if has("gui_running")
         set guifont=Menlo\ Regular:h14
     endif
 endif
+
+"Remember the positions in files with some git-specific exceptions"
+autocmd BufReadPost *
+  \ if line("'\"") > 0 && line("'\"") <= line("$")
+  \           && expand("%") !~ "COMMIT_EDITMSG"
+  \           && expand("%") !~ "ADD_EDIT.patch"
+  \           && expand("%") !~ "addp-hunk-edit.diff"
+  \           && expand("%") !~ "git-rebase-todo" |
+  \   exe "normal g`\"" |
+  \ endif
