@@ -15,7 +15,7 @@ autoload -U compinit
 compinit -C
 
 # History
-HISTFILE=~/.zsh_history
+typeset HISTFILE=~/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
 setopt HIST_EXPIRE_DUPS_FIRST
@@ -100,10 +100,10 @@ zle_highlight=(
 
 export LC_ALL=C.UTF-8
 export MALLOC_CHECK_=2
-export PS1="%{%(#~$fg[red]~$fg[cyan])%}%m %{$fg[yellow]%}%~%{$reset_color%} %(#~#~>) "
 export TERM=tmux-256color
 export VISUAL="vim"
 export WINEDEBUG=fixme-all
+typeset PS1="%{%(#~$fg[red]~$fg[cyan])%}%m %{$fg[yellow]%}%~%{$reset_color%} %(#~#~>) "
 
 # https://stackoverflow.com/a/5578718/35060
 export ALTERNATE_EDITOR=""
