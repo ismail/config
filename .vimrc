@@ -80,7 +80,7 @@ if has("gui_running")
     endif
 endif
 
-"Remember the positions in files with some git-specific exceptions"
+" Remember the positions in files with some git-specific exceptions
 autocmd BufReadPost *
   \ if line("'\"") > 0 && line("'\"") <= line("$")
   \           && expand("%") !~ "COMMIT_EDITMSG"
@@ -89,3 +89,9 @@ autocmd BufReadPost *
   \           && expand("%") !~ "git-rebase-todo" |
   \   exe "normal g`\"" |
   \ endif
+
+" Easily switch buffers
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>

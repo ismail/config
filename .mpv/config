@@ -1,8 +1,8 @@
 alang=de,ger,eng,en
-border=no
 hwdec=auto
 osd-font="Noto Sans"
 slang=de,ger,eng,en
+sub-bold=yes
 sub-border-size=0
 sub-color=1.0/1.0/0.0/0.75
 sub-font-size=35
