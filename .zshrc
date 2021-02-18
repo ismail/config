@@ -4,6 +4,10 @@ export GPG_ID=0x381FA1D72D72DA97
 autoload -U colors
 colors
 
+# Some useful modules
+autoload zcalc
+autoload zmv
+
 # Setup ls colors
 [[ -f ~/.lscolors ]] && . ~/.lscolors
 
