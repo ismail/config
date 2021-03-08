@@ -14,10 +14,10 @@ export LESS="-R"
 set -gx LESS_TERMCAP_me \e'[0m' # turn off all appearance modes (mb, md, so, us)
 set -gx LESS_TERMCAP_se \e'[0m' # leave standout mode
 set -gx LESS_TERMCAP_ue \e'[0m' # leave underline mode
-set -gx LESS_TERMCAP_so \e'[30;44m' # standout-mode – info
+set -gx LESS_TERMCAP_so \e'[38;5;016m'\e'[48;5;220m' # standout-mode – info
 set -gx LESS_TERMCAP_mb \e'[01;31m' # enter blinking mode
-set -gx LESS_TERMCAP_md \e'[01;38;5;75m' # enter double-bright mode
-set -gx LESS_TERMCAP_us \e'[04;38;5;200m' # enter underline mode
+set -gx LESS_TERMCAP_md \e'[01;38;5;74m' # enter double-bright mode
+set -gx LESS_TERMCAP_us \e'[04;38;5;146m' # enter underline mode
 
 set -x LC_ALL C.UTF-8
 set -x MALLOC_CHECK_ 2
