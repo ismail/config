@@ -19,13 +19,15 @@ set -gx LESS_TERMCAP_mb \e'[01;31m' # enter blinking mode
 set -gx LESS_TERMCAP_md \e'[01;38;5;74m' # enter double-bright mode
 set -gx LESS_TERMCAP_us \e'[04;38;5;146m' # enter underline mode
 
-set -x LC_ALL C.UTF-8
-set -x MALLOC_CHECK_ 2
-set -x TERM tmux-256color
-set -x VISUAL "vim"
-set -x WINEDEBUG fixme-all
+set -gx LC_ALL C.UTF-8
+set -gx MALLOC_CHECK_ 2
+set -gx TERM tmux-256color
+set -gx VISUAL "vim"
+set -gx WINEDEBUG fixme-all
 
 # https://stackoverflow.com/a/5578718/35060
-set -x ALTERNATE_EDITOR ""
+set -gx ALTERNATE_EDITOR ""
 
 set PATH ~/bin /usr/local/bin /usr/local/sbin /bin /sbin /usr/bin /usr/sbin
+
+test -f ~/.config/fish/config.fish.local && . ~/.config/fish/config.fish.local

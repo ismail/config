@@ -1,4 +1,4 @@
-set -gx NINJA_STATUS='[%f/%t %p %es] '
+set -gx NINJA_STATUS '[%f/%t %p %es] '
 
 alias obs="osc build --ccache --cpio-bulk-download --download-api-only"
 
