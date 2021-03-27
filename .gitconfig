@@ -66,3 +66,5 @@
 	version = 2
 [pull]
 	rebase = true
+[init]
+	defaultBranch = main
