@@ -2,8 +2,22 @@ set -gx NINJA_STATUS '[%f/%t %p %es] '
 
 alias obs="osc build --ccache --cpio-bulk-download --download-api-only"
 
-set PATH /data/binaries/texlive/2020/bin/x86_64-linux /usr/share/bpftrace/tools $PATH
-set PATH /usr/share/bcc/tools $PATH
+set PATH /data/binaries/texlive/2021/bin/x86_64-linux /usr/share/bpftrace/tools $PATH
+set PATH /usr/share/bcc/tools /data/bin $HOME/.cargo/bin $PATH
 set PATH $PATH /usr/local/cuda/bin
+
+function zypper_sysroot
+    set ROOT $argv[1]
+    set ARCH (realpath $ROOT | awk -F "/" '{print $(NF)}' | awk -F "-" '{print $1}')
+    
+    set conf (mktemp)
+    echo "
+    [main]
+    arch=$ARCH
+    " > $conf
+
+    sudo ZYPP_CONF=$conf zypper --root $ROOT $argv[2..]
+    rm -f $conf
+end
 
 ~/bin/sig.py > ~/.signature
