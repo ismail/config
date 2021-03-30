@@ -2,6 +2,9 @@ set -gx NINJA_STATUS '[%f/%t %p %es] '
 
 alias obs="osc build --ccache --cpio-bulk-download --download-api-only"
 
+export DEBUGINFOD_URLS=https://debuginfod.opensuse.org/
+export DEBUGINFOD_PROGRESS=1
+
 set PATH /data/binaries/texlive/2021/bin/x86_64-linux /usr/share/bpftrace/tools $PATH
 set PATH /usr/share/bcc/tools /data/bin $HOME/.cargo/bin $PATH
 set PATH $PATH /usr/local/cuda/bin
