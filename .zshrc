@@ -107,7 +107,8 @@ export MALLOC_CHECK_=2
 export TERM=tmux-256color
 export VISUAL="vim"
 export WINEDEBUG=fixme-all
-typeset PS1="%{%(#~$fg[red]~$fg[cyan])%}%m %{$fg[yellow]%}%~%{$reset_color%} %(#~#~>) "
+typeset PS1='%(?.%(!.#.;).%F{6}%B;%b%f) '
+#typeset PS1="%{%(#~$fg[red]~$fg[cyan])%}%m %{$fg[yellow]%}%~%{$reset_color%} %(#~#~>) "
 
 # https://stackoverflow.com/a/5578718/35060
 export ALTERNATE_EDITOR=""
