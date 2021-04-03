@@ -35,6 +35,8 @@ setopt SHARE_HISTORY
 bindkey -e             # emacs key bindings
 bindkey ' ' magic-space  # also do history expansion on space
 
+bindkey '^[[H' beginning-of-line
+bindkey '^[[F' end-of-line
 bindkey "${terminfo[khome]}" beginning-of-line
 bindkey "${terminfo[kend]}"  end-of-line
 bindkey "${terminfo[kbs]}"   backward-delete-char
