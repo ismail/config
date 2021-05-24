@@ -1,5 +1,6 @@
 set -gx NINJA_STATUS '[%f/%t %p %es] '
 
+alias journal='pass edit journal/(date +%Y-%m-%d)'
 alias obs="osc build --ccache --cpio-bulk-download --download-api-only"
 
 export DEBUGINFOD_URLS=https://debuginfod.opensuse.org/
