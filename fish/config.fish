@@ -11,6 +11,7 @@ alias ls="ls -F -v --color --show-control-chars"
 
 # less(1) options
 export LESS="-R"
+export LESSCHARSET=utf-8
 set -gx LESS_TERMCAP_me \e'[0m' # turn off all appearance modes (mb, md, so, us)
 set -gx LESS_TERMCAP_se \e'[0m' # leave standout mode
 set -gx LESS_TERMCAP_ue \e'[0m' # leave underline mode
@@ -21,7 +22,7 @@ set -gx LESS_TERMCAP_us \e'[04;38;5;146m' # enter underline mode
 
 set -gx LC_ALL C.UTF-8
 set -gx MALLOC_CHECK_ 2
-set -gx TERM tmux-256color
+set -gx TERM screen-256color
 set -gx VISUAL "vim"
 set -gx WINEDEBUG fixme-all
 
