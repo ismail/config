@@ -1,0 +1,1 @@
+feh --borderless --scale-down --conversion-timeout 1 --fontpath /usr/share/fonts/winfonts --menu-font tahoma/18
