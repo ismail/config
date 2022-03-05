@@ -21,11 +21,6 @@ for f in $files; do
     ln -sf $srcdir/$f
 done
 
-pushd .ssh
-ln -sf $srcdir/.ssh/config
-[ ! -f known_hosts ] && cp $srcdir/.ssh/known_hosts .
-popd
-
 pushd .gnupg
 ln -sf $srcdir/.gnupg/gpg.conf
 ln -sf $srcdir/.gnupg/gpg-agent.conf
