@@ -11,9 +11,6 @@ autoload zmv
 # Setup ls colors
 [[ -f ~/.lscolors ]] && . ~/.lscolors
 
-# base16 colors for shell
-source ~/.base16-atelier-heath.sh
-
 # Enable completion
 autoload -Uz compinit
 
