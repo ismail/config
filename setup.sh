@@ -8,7 +8,7 @@ mkdir -p .ssh
 mkdir -p .gnupg
 
 files=(
-    .base16-atelier-heath.sh .clang-format .emacs .gdbinit .gitconfig
+    .clang-format .emacs .gdbinit .gitconfig
     .gitignore .hgrc .irbrc .lftprc .mailcap .mutt_certificates
     .muttrc .screenrc .tmux.conf .urlview .vimrc .wgetrc .Xdefaults
     .zshrc

@@ -14,9 +14,8 @@ autoload zmv
 # base16 colors for shell
 source ~/.base16-atelier-heath.sh
 
-# Update completion
-autoload -U compinit
-compinit -C
+# Enable completion
+autoload -Uz compinit
 
 # History
 typeset HISTFILE=~/.zsh_history
@@ -118,6 +117,9 @@ export ALTERNATE_EDITOR=""
 local_config="$HOME/.zshrc-local"
 [ -f $local_config ] && source $local_config
 
+# Update all completions
+compinit -C
+
 PATH=~/bin:$PATH
 # Remove any duplicates
-export -U PATH
+#export -U PATH

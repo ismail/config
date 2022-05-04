@@ -76,7 +76,7 @@ if has("gui_running")
         imap <C-K> <ESC>:py3f C:/Program Files/LLVM/share/clang/clang-format.py<CR>i
     elseif has("gui_macvim")
         set shellcmdflag+=i
-        set guifont=Menlo\ Regular:h14
+        set guifont=Menlo\ Regular:h16
     endif
 endif
 
