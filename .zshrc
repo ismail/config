@@ -120,3 +120,5 @@ compinit -C
 PATH=~/bin:$PATH
 # Remove any duplicates
 #export -U PATH
+
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
