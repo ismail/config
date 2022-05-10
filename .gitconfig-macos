@@ -1,0 +1,12 @@
+[credential]
+    helper = osxkeychain
+
+[sendemail]
+    smtpserver = smtp.gmail.com
+    smtpserverport = 587
+    smtpencryption = tls
+    smtpuser = ismail@i10z.com
+
+[user]
+    email = ismail@i10z.com
+    signingkey = BE04133F8FEC6368
