@@ -36,19 +36,11 @@
 [push]
     default = simple
 
-[sendemail]
-    smtpserver = smtp.gmail.com
-    smtpserverport = 587
-    smtpencryption = tls
-    smtpuser = ismail@i10z.com
-
 [svn]
     brokenSymlinkWorkaround = false
 
 [user]
     name = İsmail Dönmez
-    email = ismail@i10z.com
-    signingkey = BE04133F8FEC6368
 
 [receive]
     fsckobjects = true
@@ -64,10 +56,13 @@
 
 [protocol]
 	version = 2
+
 [pull]
 	rebase = true
+
 [init]
 	defaultBranch = main
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
