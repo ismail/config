@@ -55,6 +55,7 @@ setopt AUTOCD
 setopt AUTO_LIST
 setopt AUTOPUSHD
 setopt BRACE_CCL
+setopt CBASES
 setopt COMBINING_CHARS
 setopt CORRECT
 setopt EXTENDED_GLOB
