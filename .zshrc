@@ -123,3 +123,6 @@ PATH=~/bin:$PATH
 #export -U PATH
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# bun completions
+[ -s "/Users/ismail/.bun/_bun" ] && source "/Users/ismail/.bun/_bun"
