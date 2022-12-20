@@ -4,6 +4,9 @@
 [credential]
     helper = osxkeychain
 
+[gpg]
+    format = ssh
+
 [sendemail]
     smtpserver = smtp.gmail.com
     smtpserverport = 587
@@ -12,4 +15,4 @@
 
 [user]
     email = ismail@i10z.com
-    signingkey = 8B250390B565C4B5
+    signingkey = /Users/ismail/.ssh/id_ed25519.pub
