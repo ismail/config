@@ -13,6 +13,7 @@ autoload zmv
 
 # Enable completion
 autoload -Uz compinit
+compinit
 
 # History
 typeset HISTFILE=~/.zsh_history
@@ -114,9 +115,6 @@ export ALTERNATE_EDITOR=""
 
 local_config="$HOME/.zshrc-local"
 [ -f $local_config ] && source $local_config
-
-# Update all completions
-compinit -C
 
 PATH=~/bin:$PATH
 # Remove any duplicates
