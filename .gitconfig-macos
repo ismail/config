@@ -4,6 +4,9 @@
 [credential]
     helper = osxkeychain
 
+[diff]
+    external=difft
+
 [gpg]
     format = ssh
 
