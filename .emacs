@@ -42,7 +42,7 @@
 
 ;; Consolas!
 (setq default-frame-alist
-      '((font . "Consolas-13:antialias=natural")
+      '((font . "Monaco-16:antialias=natural")
         (vertical-scroll-bars . nil)))
 
 ;; Enable IDO
@@ -108,8 +108,7 @@
  ;; If there is more than one, they won't work right.
  '(delete-selection-mode nil)
  '(package-selected-packages
-   (quote
-    (powershell csharp-mode langtool rust-mode cmake-mode clang-format fsharp-mode wandbox groovy-mode go-mode magit base16-theme))))
+   '(org-modern powershell csharp-mode langtool rust-mode cmake-mode clang-format fsharp-mode wandbox groovy-mode go-mode magit base16-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
