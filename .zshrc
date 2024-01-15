@@ -1,3 +1,6 @@
+# Uncomment to start profiling
+#zmodload zsh/zprof
+
 # Set GPG ID before doing anything else
 export GPG_ID=0x330CA3035DB28F76
 
@@ -7,7 +10,10 @@ colors
 # Setup ls colors
 [[ -f ~/.lscolors ]] && . ~/.lscolors
 
-# Enable completion
+# Disable compaudit
+ZSH_DISABLE_COMPFIX="true"
+
+# Enable completions
 autoload -Uz compinit
 
 # History
@@ -117,3 +123,6 @@ export -U PATH
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 compinit -C
+
+# Uncomment to print profiling results
+#zprof
