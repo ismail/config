@@ -4,8 +4,6 @@ export GPG_ID=0x330CA3035DB28F76
 autoload -U colors
 colors
 
-# Some useful modules
-
 # Setup ls colors
 [[ -f ~/.lscolors ]] && . ~/.lscolors
 
