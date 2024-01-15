@@ -5,15 +5,12 @@ autoload -U colors
 colors
 
 # Some useful modules
-autoload zcalc
-autoload zmv
 
 # Setup ls colors
 [[ -f ~/.lscolors ]] && . ~/.lscolors
 
 # Enable completion
 autoload -Uz compinit
-compinit
 
 # History
 typeset HISTFILE=~/.zsh_history
@@ -108,7 +105,6 @@ export TERM=screen-256color
 export VISUAL="vim"
 export WINEDEBUG=fixme-all
 typeset PS1='%(?.%(!.#.;).%F{6}%B;%b%f) '
-#typeset PS1="%{%(#~$fg[red]~$fg[cyan])%}%m %{$fg[yellow]%}%~%{$reset_color%} %(#~#~>) "
 
 # https://stackoverflow.com/a/5578718/35060
 export ALTERNATE_EDITOR=""
@@ -118,9 +114,8 @@ local_config="$HOME/.zshrc-local"
 
 PATH=~/bin:$PATH
 # Remove any duplicates
-#export -U PATH
+export -U PATH
 
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# bun completions
-[ -s "/Users/ismail/.bun/_bun" ] && source "/Users/ismail/.bun/_bun"
+compinit -C
