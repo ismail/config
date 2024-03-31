@@ -95,14 +95,6 @@ export LESS_TERMCAP_so=$'\E[38;5;016m\E[48;5;220m'    # begin standout-mode - in
 export LESS_TERMCAP_ue=$'\E[0m'           # end underline
 export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
-# Highlight options, such as ctrl-r highlight
-zle_highlight=(
-    isearch:fg=yellow,underline
-    region:standout
-    special:standout
-    suffix:none
-)
-
 export LC_ALL=C.UTF-8
 export MALLOC_CHECK_=2
 export TERM=screen-256color
