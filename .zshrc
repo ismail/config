@@ -116,4 +116,3 @@ compinit -C
 
 # Uncomment to print profiling results
 #zprof
-. "$HOME/.cargo/env"
