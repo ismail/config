@@ -10,7 +10,7 @@ set print elements 0
 set print pretty on
 set print array off
 set print array-indexes on
-set target-async on
+set mi-async on
 set verbose off
 
 python
