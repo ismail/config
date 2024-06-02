@@ -40,7 +40,7 @@
     brokenSymlinkWorkaround = false
 
 [user]
-    name = İsmail Dönmez
+    name = Ismail Dönmez
 
 [receive]
     fsckobjects = true
