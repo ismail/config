@@ -106,13 +106,15 @@ typeset PS1='%(?.%(!.#.;).%F{6}%B;%b%f) '
 export ALTERNATE_EDITOR=""
 
 local_config="$HOME/.zshrc-local"
-[ -f $local_config ] && source $local_config
+[ -f $local_config ] && . $local_config
 
 PATH=~/bin:$PATH
 # Remove any duplicates
 export -U PATH
 
-compinit -C
+compinit
 
 # Uncomment to print profiling results
 #zprof
+
+
