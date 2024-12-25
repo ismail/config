@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 set -euo pipefail
 
-srcdir=$(pwd)
+srcdir=$(dirname "$(realpath "$0")")
 cd $HOME
 
 mkdir -p .ssh
