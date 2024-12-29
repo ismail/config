@@ -8,7 +8,7 @@ mkdir -p .ssh
 mkdir -p .gnupg
 
 files=(
-    .clang-format .emacs .gdbinit .gitconfig
+    .config/starship.toml .clang-format .emacs .gdbinit .gitconfig
     .gitignore .hgrc .irbrc .lftprc .mailcap .mutt_certificates
     .muttrc .screenrc .tmux.conf .urlview .vimrc .wgetrc .Xdefaults
     .zshrc
@@ -30,6 +30,8 @@ ln -sf $srcdir/.iftoprc
 ln -sf $srcdir/.mpv
 ln -sf $srcdir/.pam_environment
 ln -sf $srcdir/.toprc
+
+ln -sf $srcdir/.config/starship.toml ~/.config/
         
 # Blacklist Segoe Emoji fonts
 mkdir -p ~/.config/fontconfig/conf.d
