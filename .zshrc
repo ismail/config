@@ -97,7 +97,7 @@ export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 
 export LC_ALL=C.UTF-8
 export MALLOC_CHECK_=2
-export TERM=screen-256color
+export TERM=xterm-256color
 export VISUAL="vim"
 export WINEDEBUG=fixme-all
 typeset PS1='%(?.%(!.#.;).%F{6}%B;%b%f) '

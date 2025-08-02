@@ -1,3 +1,4 @@
+.DS_Store
 *.pyc
 .gnupg/private-keys-v1.d
 .gnupg/secring.gpg

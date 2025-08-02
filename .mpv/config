@@ -1,7 +1,7 @@
-alang=eng,en,de,ger
+alang=eng,en
 hwdec=auto
 osd-font="Noto Sans"
-slang=de,ger,eng,en
+slang=eng,en
 sub-ass=yes
 sub-font="Arial"
 sub-font-size=35
