@@ -38,6 +38,13 @@ bindkey '^[[F' end-of-line
 bindkey "\eOH" beginning-of-line
 bindkey "\eOF" end-of-line
 
+bindkey "${terminfo[kbs]}"   backward-delete-char
+bindkey "${terminfo[kdch1]}" delete-char
+bindkey "${terminfo[kich1]}" overwrite-mode
+bindkey "${terminfo[kcud1]}" down-line-or-history
+bindkey "${terminfo[kcub1]}" backward-char
+bindkey "${terminfo[kcuf1]}" forward-char
+
 bindkey '\e[A' history-beginning-search-backward # Up
 bindkey '\e[B' history-beginning-search-forward # Down
 bindkey '\eOA' history-beginning-search-backward
