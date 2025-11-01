@@ -24,6 +24,7 @@ set noswapfile
 set nowrap
 set nowritebackup
 set number
+set paste
 set ruler
 set showcmd
 set showmatch
