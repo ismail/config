@@ -1,17 +1,8 @@
 # Uncomment to start profiling
 #zmodload zsh/zprof
 
-# Set GPG ID before doing anything else
-export GPG_ID=0x330CA3035DB28F76
-
 autoload -U colors
 colors
-
-# Setup ls colors
-[[ -f ~/.lscolors ]] && . ~/.lscolors
-
-# Disable compaudit
-ZSH_DISABLE_COMPFIX="true"
 
 # Enable completions
 autoload -Uz compinit
