@@ -23,9 +23,6 @@
 [diff]
     algorithm = patience
 
-[fetch]
-    fsckobjects = true
-
 [help]
     autocorrect = 5
 
@@ -38,18 +35,6 @@
 
 [push]
     default = simple
-
-[svn]
-    brokenSymlinkWorkaround = false
-
-[user]
-    name = Ismail Dönmez
-
-[receive]
-    fsckobjects = true
-
-[transfer]
-    fsckobjects = true
 
 [status]
 	showUntrackedFiles = all
