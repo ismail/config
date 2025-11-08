@@ -1,5 +1,6 @@
 alang=eng,en
 hwdec=auto
+vo=gpu-next
 osd-font="Noto Sans"
 slang=eng,en
 sub-ass=yes
