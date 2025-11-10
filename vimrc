@@ -62,22 +62,14 @@ if has("gui_running")
     set guicursor+=a:blinkon0
     set guioptions-=T
     set guioptions-=m
-    set lines=50 columns=120
+    set lines=40 columns=100
     set mousemodel=popup
+	set shellcmdflag+=i
 
-    if has("gui_gtk2") || has("gui_gtk3")
-        set guifont=Consolas\ 14
-        set shellcmdflag+=i
-    elseif has("gui_win32")
-        set guifont=Consolas:h11:cANSI:qCLEARTYPE
-        set renderoptions=type:directx,geom:1,renmode:5,taamode:1
-        set shell=cmd
-        set shellcmdflag=/c
-        map <C-K> :py3f C:/Program Files/LLVM/share/clang/clang-format.py<CR>
-        imap <C-K> <ESC>:py3f C:/Program Files/LLVM/share/clang/clang-format.py<CR>i
+    if has("gui_gtk3")
+        set guifont=Consolas\ 18
     elseif has("gui_macvim")
-        set shellcmdflag+=i
-        set guifont=Menlo\ Regular:h16
+        set guifont=Berkeley\ Mono:h18
     endif
 endif
 
