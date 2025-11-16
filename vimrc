@@ -21,10 +21,8 @@ set nobackup
 set nocompatible
 set nomodeline
 set noswapfile
-set nowrap
 set nowritebackup
 set number
-set paste
 set ruler
 set showcmd
 set showmatch
@@ -39,6 +37,8 @@ set ts=4
 set viminfo='10,\"100,:20,%,n~/.viminfo
 set wildmenu
 set wrap
+set colorcolumn=120
+set pastetoggle=<F2>
 
 map Q gq
 syntax on
