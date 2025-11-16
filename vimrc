@@ -37,7 +37,6 @@ set ts=4
 set viminfo='10,\"100,:20,%,n~/.viminfo
 set wildmenu
 set wrap
-set colorcolumn=120
 set pastetoggle=<F2>
 
 map Q gq
