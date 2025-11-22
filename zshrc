@@ -99,16 +99,7 @@ typeset PS1='%(?.%(!.#.;).%F{6}%B;%b%f) '
 # https://stackoverflow.com/a/5578718/35060
 export ALTERNATE_EDITOR=""
 
-local_config="$HOME/.zshrc-local"
-[ -f $local_config ] && . $local_config
-
-PATH=~/bin:$PATH
-# Remove any duplicates
-export -U PATH
-
 compinit
 
 # Uncomment to print profiling results
 #zprof
-
-
