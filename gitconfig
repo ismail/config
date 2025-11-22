@@ -30,9 +30,6 @@
     sslVerify = true
     cookiefile = ~/.gitcookies
 
-[include]
-    path = .gitconfig-local
-
 [push]
     default = simple
 
