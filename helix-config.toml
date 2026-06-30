@@ -1,0 +1,10 @@
+[editor]
+editor-config = true
+true-color = true
+soft-wrap.enable = true
+soft-wrap.wrap-indicator = "↩"
+clipboard-provider = "termcode"
+default-yank-register = "+"
+
+[editor.gutters]
+layout = ["diagnostics", "spacer", "line-numbers", "spacer"]
